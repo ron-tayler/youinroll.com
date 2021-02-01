@@ -1,0 +1,343 @@
+.language-current_lang {
+    color: #f00 !important;
+}
+.p-home .loop-heading { /*Подзаголовки «рекомендованные», «популярные» и «участники нашего проекта*/
+    color: #000;
+    font-weight: 600; 
+}
+.language-current_no { 
+  opacity: 0.8;
+}
+.icon-opacity {
+  opacity: 0.9;
+}
+ul.socialfooter li {
+    margin-right: 10px;
+}
+.video .video-data {
+  overflow: visible;
+  height: 130px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-content: flex-start;
+      -ms-flex-line-pack: start;
+          align-content: flex-start;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+
+}
+.pagination {
+    position: relative;
+    top: 90px;
+}
+.item-activ {
+    background-color: #fce8e6;
+    border-radius: 0 20px 20px 0;
+    width: 97% !important;
+}
+.chanel-avatar {
+  height: 22px;
+  width: 22px;
+  display: inline-block;
+  border: black solid 1px;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  margin-right: 7px;
+  margin-top: 14px;
+  padding: 0;
+}
+
+.chanel-avatar img {
+  margin: 0;
+  position: relative;
+  top: -2px;
+}
+
+.video ul.stats > li {
+  line-height: 25px;
+    overflow: hidden;
+    height: 18px;
+}
+
+.video ul.stats > li:nth-child(1) {
+  margin-top: 10px;
+}
+
+.owl-carousel .owl-nav div {
+  top: 15%;
+}
+
+
+
+/*START HAMBURGER*/
+.hamburger {
+  height: 22px;
+  width: 22px;
+  margin: 11px 0 0 3px;
+}
+
+.hamburger:hover{
+  cursor: pointer;
+}
+
+.hamburger .line{
+  width: 20px;
+  height: 2px;
+  background-color: #000;
+  display: block;
+  margin: 3px auto;
+  -webkit-transition: all 0.35s ease-in-out;
+  -o-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+  position: initial !important;
+}
+
+#hamburger.is-active .line:nth-child(2){
+  opacity: 0;
+}
+
+#hamburger.is-active .line:nth-child(1){
+  -webkit-transform: translateY(5px) rotate(45deg);
+      -ms-transform: translateY(5px) rotate(45deg);
+          transform: translateY(5px) rotate(45deg);
+}
+
+#hamburger.is-active .line:nth-child(3){
+  -webkit-transform: translateY(-5px) rotate(-45deg);
+      -ms-transform: translateY(-5px) rotate(-45deg);
+          transform: translateY(-5px) rotate(-45deg);
+}
+/*END HAMBURGER*/
+
+.sidebar-nav ul a img {
+    max-width: 27px;
+    max-height: 27px;
+}
+
+.video h4 a {
+    font-weight: 500;
+    font-size: 14px;
+    color: #333;
+    font-family: 'Roboto',Arial,sans-serif;
+}
+
+.video-title {
+  height: 33px;
+  display: block;
+  overflow: hidden;
+}
+
+.uploaderlink {
+  height: 38px;
+  overflow: hidden;
+}
+
+.uploaderlink a {
+  position: relative;
+  top: -7px;
+  line-height: 20px;
+}
+
+.video {
+  padding-top: 4px;
+}
+
+.video h4 {
+  margin: 12px 0 4px 0 !important;
+}
+
+.btn-group > .btn {
+    padding: 6px 17px !important;
+}
+
+.members-description {
+  display: block !important;
+  overflow: hidden !important;
+}
+
+#SearchResults .video-title {
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+}
+
+.search-row * {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.video-data-carousel {
+  /*display: block !important;*/
+}
+
+.btn-group>.btn:last-child:not(:first-child) {
+  background-color: #3598dc;
+  border-color: #3598dc;
+}
+.btn-group>.btn {
+    margin-right: 2px;
+}
+
+.author {
+    position: relative;
+    top: -6px;
+}
+
+.eye {
+  width: 20px !important;
+  display: inline !important;
+  margin-bottom: 3px;
+  margin-right: 3px;
+}
+
+.download-icon, .notifications-icon, .chanels-icon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 10px;
+}
+
+.like, .dislike, .share, .later, .save {
+  width: 20px;
+  height: 20px;
+}
+
+.up-arrow {
+  width: 30px;
+  height: 30px;
+}
+
+.man-avatar-icon {
+  border-radius: 0 !important;
+}
+
+.backtotop {
+    -webkit-transform: inherit !important;
+        -ms-transform: inherit !important;
+            transform: inherit !important;
+  background: transparent !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.searchform-wrapper {
+  display: block;
+}
+
+.comment-green-btn {
+    height: 33px;
+    width: 33px;
+    background-image: url(../images/comment-btn.png);
+    border-radius: 50%;
+    position: initial;
+    margin-right: 13px;
+    margin-top: -34px;
+    border: 1px solid #689E39;
+    z-index: 9999;
+    background-color: #689E39;
+    overflow: visible;
+}
+
+.emoj-editor {
+    min-height: 32px !important;
+    padding-right: 47px !important;
+}
+
+.emoj, .emoj.form-control {
+  border-radius: 20px;
+}
+
+.emoj-button {
+  margin-right: 30px !important;
+  margin-top: 2px;
+}
+
+.user-media-actions {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.interaction-icons {
+    padding: 0 !important;
+}
+
+.user-media-actions a {
+    padding: 0 22px 0 0;
+}
+
+.video-under h1 {
+    font-weight: 600;
+}
+
+.user-box h3 {
+    font-weight: 600;
+}
+
+#media-info {
+    padding: 0 0 20px 54px;
+}
+
+#SearchResults .video h4 {
+    margin: 0 !important;
+}
+
+.views-serchresult {
+  display: block !important;
+  margin-bottom: 20px;
+}
+
+.search-row {
+  margin: 0 !important;
+}
+
+.eye-related {
+  width: 20px !important;
+  height: 20px !important;
+  display: inline !important;
+  margin-right: 10px;
+}
+
+.views-related {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.timeline-media .innerT {
+    padding: 10px 0 10px 10px;
+}
+
+
+
+
+
+
+@media only screen and (max-width: 365px) {
+  .row-socials {
+      margin-top: 0;
+  }
+  ul.socialfooter li {
+      margin: 0 3px 10px 3px;
+  }
+} 

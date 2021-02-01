@@ -1,0 +1,726 @@
+:root {
+    --container-width: 1600px;
+    --landing-block-width: 1300px;
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) and (max-width : 800px) {
+
+    .course-channel {
+        margin-left: auto !important;
+    }
+
+    .course-channel>.btn {
+        width: 90%;
+        margin-bottom: 30px !important;
+        margin-top: auto !important;
+    }
+
+    #SearchResults {
+        flex-direction: column !important;
+    }
+
+    #SearchResults .video div {
+        margin: inherit !important;
+    }
+
+    .video-inner {
+        width: inherit;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #panel-profile #SearchResults .video-thumb,
+    #panel-profile #SearchResults .video-thumb img {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    #channelBlock,
+    .channel-info {
+        padding: 10px !important;
+    }
+
+    .video {
+        padding: 0px !important;
+        margin-left: 0px !important;
+    }
+
+    .channel-buttons * {
+        display: none !important;
+    }
+
+    .last-buttons {
+        display: inline-block !important;
+    }
+
+    .course-channel:nth-child(n+4) {
+        display: none !important;
+    }
+
+    #SearchResults .video {
+        width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0px !important;
+    }
+
+    #channelAuthors .loop-content {
+        height: 100px;
+    }
+
+    #channelAbout .landingBlock {
+        width: 100% !important;
+    }
+
+    #channelAbout .landingDescription {
+        max-height: 126px;
+        overflow: scroll;
+    }
+
+    .calendar {
+        overflow: scroll !important;
+    }
+
+    .calendar ol {
+        width: 1100px;
+        max-width: auto !important;
+    }
+
+    #channelCourses .loop-content {
+        flex-direction: column !important;
+        width: fit-content;
+    }
+
+    .channel-buttons-mobile {
+        display: block !important;
+    }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+    .course-image {
+        height: 175px !important;
+        max-width: none;
+        width: 125px !important;
+        border-radius: 5px;
+        margin-bottom: auto;
+    }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .course-image {
+        height: 175px;
+        max-width: none;
+        width: 125px;
+        border-radius: 5px;
+        margin-bottom: auto;
+    }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    /* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    /* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) and (max-width : 1400px) {
+    :root {
+        --container-width: 1200px;
+        --landing-block-width: 650px;
+    }
+
+    #SearchResults .video-thumb,
+    #SearchResults .video-thumb img {
+        width: 100%;
+    }
+
+    .course-channel:last-child {
+        display: none !important;
+    }
+
+    .course-image {
+        height: 240px !important;
+        width: 200px !important;
+    }
+
+    /* .owl-carousel.owl-drag .owl-item {
+      width: 248px !important;
+    } */
+}
+
+/* Large screens ----------- */
+/* @media only screen 
+  and (min-width : 1400px) {
+    :root{
+      --container-width: 1200px;
+      --landing-block-width: 900px;
+    }
+  
+    .course-channel:last-child {
+      display: none !important;
+    }
+  } */
+
+@media only screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    :root {
+        --container-width: 1060px !important;
+        --landing-block-width: 800px;
+    }
+
+    .course-image {
+        height: 240px !important;
+        width: 200px !important;
+    }
+}
+
+/* iPhone 4 ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+    /* Styles */
+}
+
+.container {
+    width: var(--container-width);
+}
+
+.panel-body {
+    padding: 15px 20px;
+}
+
+#channelBlock,
+.channel-image {
+    width: 75px;
+    height: 75px;
+    border: solid white;
+    transition: 0.1s ease-in 0.1s;
+    box-shadow: 0 0 0 3px grey;
+    border-width: 3px;
+    margin-bottom: auto;
+}
+
+#channelBlock,
+.channel-image:hover {
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    transition: 0.1s ease-in 0.1s;
+    animation-iteration-count: infinite;
+    border: solid white;
+    box-shadow: 0 0 0 3px red;
+    border-width: 3px;
+    margin-bottom: auto;
+}
+
+.channel-subheader {
+    display: flex !important;
+    flex-direction: row;
+}
+
+.channel-head {
+    flex: auto;
+}
+
+.channel-head h1 {
+    margin-top: 5px;
+}
+
+.video-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.channel-subheader span {
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.channel-subheader>div {
+    display: flex;
+    flex-direction: row;
+}
+
+#channelBlock,
+.channel-info {
+    display: flex;
+    background-color: white;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.btn {
+    border-radius: 5px !important;
+}
+
+#channelBlock,
+.channel-head * {
+    color: black !important;
+}
+
+.icon-threedot:before {
+    content: "\e5d4";
+}
+
+.icon-ring:before {
+    content: "\e7f4";
+}
+
+.last-buttons {
+    display: inline-block;
+}
+
+.last-buttons .btn {
+    padding: 6px 6px;
+}
+
+.btn-secondary2 {
+    background-color: #a7a7a7;
+}
+
+.red-nav ul {
+    padding: 0px;
+    margin-bottom: unset;
+    background-color: white !important;
+}
+
+#profile-nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.panel-body {
+    background-color: #eeeeee;
+    margin-bottom: 10px;
+}
+
+.cute h1 {
+    padding-right: 0px;
+}
+
+.halfVideo {
+    height: fit-content !important;
+}
+
+.course-channel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.channel-buttons-mobile {
+    display: none;
+}
+
+.course-channel>.btn {
+    width: 90%;
+    margin-top: 30px;
+    margin: 0 auto;
+    vertical-align: middle;
+    margin-top: 5px;
+    height: 27px;
+    color: white !important;
+    padding: 5px 5px;
+}
+
+.course-channel:not(:first-of-type) {
+    margin-left: 10px;
+}
+
+.course-image {
+    height: 350px;
+    max-width: none;
+    width: 250px;
+    border-radius: 5px;
+    margin-bottom: auto;
+}
+
+.author-image {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    border: solid white;
+    box-shadow: 0 0 0 3px grey;
+    border-width: 3px;
+    margin-bottom: auto;
+}
+
+.author-channel {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.author-channel:not(:first-of-type) {
+    margin-left: 50px;
+}
+
+.author-image.online {
+    display: block;
+    /* box-shadow: 0 0 0 3px green; */
+}
+
+.course-channel:hover .course-name {
+    display: flex;
+    background: #4646466b;
+    backdrop-filter: blur(5px);
+    justify-content: space-between;
+    padding: 20px;
+    transition: all 1s ease-in;
+}
+
+.course-name {
+    position: absolute;
+    background: transparent;
+    color: white !important;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0px;
+    transition: all 1s ease-in;
+    /* bottom: 0px; */
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    display: none;
+    flex-flow: column;
+}
+
+.was {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    margin-top: 0;
+    margin-left: 0;
+    padding: 2px;
+    font-size: 13px;
+    color: #fafafa !important;
+    font-weight: 400;
+    line-height: 16px;
+    opacity: .95;
+    background: rgba(28, 28, 28, 0.9);
+    display: -moz-inline-stack;
+    vertical-align: top;
+    zoom: 1;
+    display: block;
+    border-radius: 2px;
+}
+
+.bubble {
+    display: flex;
+    cursor: pointer;
+    padding: 2px 10px;
+    border-radius: 20px;
+    z-index: 1;
+    font-weight: bold;
+    color: white !important;
+    justify-content: center;
+    flex-flow: wrap-reverse;
+}
+
+.bubble:after {
+    display: block;
+    border-radius: 20px;
+    z-index: -1;
+    position: absolute;
+    width: 47px;
+    height: 22px;
+    content: " ";
+    background-color: red;
+    -webkit-animation: bubble-pulse 1.5s linear infinite;
+    -moz-animation: bubble-pulse 1.5s linear infinite;
+    -o-animation: bubble-pulse 1.5s linear infinite;
+    animation: bubble-pulse 1.5s linear infinite
+}
+
+@-webkit-keyframes bubble-pulse {
+    0% {
+        transform: scale(1);
+        opacity: .75
+    }
+
+    25% {
+        transform: scale(1);
+        opacity: .75
+    }
+
+    100% {
+        transform: scale(2.5);
+        opacity: 0
+    }
+}
+
+@keyframes bubble-pulse {
+    0% {
+        transform: scale(1);
+        opacity: .75
+    }
+
+    25% {
+        transform: scale(1);
+        opacity: .75
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0
+    }
+}
+
+@-moz-keyframes bubble-pulse {
+    0% {
+        transform: scale(1);
+        opacity: .75
+    }
+
+    25% {
+        transform: scale(1);
+        opacity: .75
+    }
+
+    100% {
+        transform: scale(2.5);
+        opacity: 0
+    }
+}
+
+@-o-keyframes bubble-pulse {
+    0% {
+        transform: scale(1);
+        opacity: .75
+    }
+
+    25% {
+        transform: scale(1);
+        opacity: .75
+    }
+
+    100% {
+        transform: scale(2.5);
+        opacity: 0
+    }
+}
+
+.bubble:hover:after {
+    background-color: red
+}
+
+.bubble .bubble-outer-dot {
+    text-align: center;
+    position: absolute;
+    background-color: red;
+    padding: 0px 8px;
+    width: max-content;
+    border-radius: 20px;
+}
+
+#SearchResults {
+    display: flex !important;
+    flex-direction: row;
+}
+
+#SearchResults .video-title {
+    max-width: 228px;
+    height: 20px;
+}
+
+#SearchResults .video-title>a {
+    max-width: 228px;
+    text-overflow: ellipsis;
+}
+
+#SearchResults .video-data {
+    display: flex !important;
+    flex-direction: row;
+    max-width: 100% !important;
+    margin: 0 2px 5px !important;
+    text-align: start;
+    padding-left: 0px !important;
+}
+
+#SearchResults .video-thumb,
+#SearchResults .video-thumb img {
+    /* width: 100% !important; */
+}
+
+#SearchResults .video-data>img {
+    display: flex;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+}
+
+#SearchResults .video {
+    width: 250px;
+}
+
+#SearchResults .video div {
+    margin: 0 5px 10px;
+    text-align: start;
+}
+
+#SearchResults .video h4 {
+    margin: 0 !important;
+}
+
+#channelAuthors .loop-content {
+    display: flex !important;
+    flex-direction: row;
+}
+
+#channelCourses .loop-content {
+    display: flex !important;
+    flex-direction: row;
+    /* justify-content: space-between; */
+}
+
+.profile-videos {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.video {
+    width: 23% !important;
+}
+
+#channelAuthors .loop-heading {
+    color: black !important;
+}
+
+#channelAuthors h3 {
+    margin-top: 2px;
+}
+
+#channelAbout .landingHead {
+    width: 1400px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+#channelAbout .landingBlock {
+    margin-top: 20px !important;
+    margin: auto;
+    position: relative;
+    display: flex;
+    width: var(--landing-block-width);
+    padding: 26px;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#channelAbout .landingAvatar {
+    height: 120px;
+    width: 120px;
+    border-radius: 100%;
+    border: solid white;
+    box-shadow: 0 0 0 3px grey;
+    border-width: 3px;
+    margin-bottom: auto;
+}
+
+#channelAbout .landingDescription {
+    display: flex;
+    width: inherit;
+    word-break: break-all;
+    padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#channelAbout .landingSocial>ul>li {
+    display: flex;
+    width: 110px;
+    padding: 5px;
+    justify-content: flex-start;
+}
+
+#channelAbout .landingSocial>ul>li>span {
+    display: flex;
+    text-align: center;
+    font-weight: bold;
+    color: black !important;
+    justify-content: center;
+    flex: auto;
+}
+
+#channelAbout>.btn-writeus {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px !important;
+    margin: auto;
+    width: 120px;
+    font-weight: bold;
+    color: white;
+}
+
+#channelAboutVideo {
+    display: flex;
+    width: calc(var(--landing-block-width) / 2);
+    text-align: center;
+    padding: 26px;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#wrapper {
+    margin-top: 50px !important;
+}
+
+
+.registerChannel {
+    margin-top: auto;
+    white-space: nowrap;
+    position: absolute;
+    right: 11px;
+    bottom: 3px;
+}
+
+.landingText {
+    margin-top: auto;
+    white-space: nowrap;
+    position: absolute;
+    left: 11px;
+    top: 3px;
+}
+
+.btn-center {
+    width: 100%;
+    background-color: #358fe4;
+}
+
+#channelAbout {
+    padding: 0px !important;
+    position: relative;
+}
+
+#channelAbout>h3 {
+    text-align: center;
+    color: black !important;
+}
+
+.btn-writeus {
+    background-color: red;
+}
+
+#channelAbout .landingSocial>ul>li:not(:first-of-type) {
+    margin-top: 5px;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 60px;
+    z-index: 99;
+    width: 82.75% !important;
+    transition: ease-in 1s;
+}

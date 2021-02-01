@@ -1,0 +1,83 @@
+/* Правки для мобильной версии */
+@media only screen and (max-device-width: 768px) {
+
+    #tinted {
+        z-index: 1;
+    }
+
+    .pagination {
+        display: flex !important;
+        justify-content: center;
+    }
+
+    .vpre,
+    .nsfw-warn span {
+        padding-top: 10%;
+    }
+
+    .user-media-actions .like-views,
+    .user-media-actions .interaction-icons,
+    .likes-bar,
+    .user-media-actions a,
+    .user-media-actions .aaa,
+    .user-media-actions .likes-bar {
+        display: inline-block;
+        float: none;
+        position: relative;
+        white-space: nowrap;
+        word-wrap: normal;
+        font-size: 14px;
+        line-height: 14px;
+        vertical-align: top;
+        cursor: pointer;
+        overflow: visible;
+    }
+
+    .user-media-actions .interaction-icons,
+    .like-views {
+        float: left;
+        display: block;
+        width: auto;
+        clear: both;
+        margin: 15px 0 0;
+    }
+
+    .pagination:before {
+        content: none !important;
+    }
+}
+
+@media only screen and (max-device-width: 480px) {
+
+    /* Пагинация на мобильной версии */
+    .pagination>li:nth-child(1n+7) {
+        display: none;
+    }
+
+    .pagination>li:last-child {
+        display: block;
+    }
+
+    .pagination {
+        display: flex !important;
+        justify-content: center;
+        width: calc(100vw);
+    }
+
+    .pagination:before {
+        content: none !important;
+    }
+}
+
+@media only screen and (max-device-width: 320px) {
+
+    /* Пагинация на мобильной версии */
+    .pagination>li:nth-child(1n+5) {
+        display: none;
+    }
+
+    .pagination>li:last-child {
+        display: block;
+    }
+
+}

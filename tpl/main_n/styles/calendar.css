@@ -1,0 +1,167 @@
+/* ================
+   Assign Variables */
+:root {
+    --bg-color: hsl(130, 20%, 80%);
+    --calendar-bg-color: hsl(130, 20%, 100%);
+    --shade-color: hsla(150, 50%, 20%, 0.1);
+    --text-color: hsl(280, 30%, 20%);
+    --headline-color: hsl(0, 0%, 100%);
+    --rule-color: hsla(0, 0%, 50%, 0);
+    --primary-color: hsl(0deg 50% 50%);
+    --secondary-color: hsl(357deg 83% 54%);
+}
+
+/* ===========================
+     Setup Mixins/Helper Classes */
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* ================
+     Calendar Styling */
+.calendar {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    /* border-radius: 1rem; */
+    background: var(--calendar-bg-color);
+    /* box-shadow: 0.25rem 0.25rem 2rem var(--shade-color), -1rem -1rem 2rem var(--bg-color); */
+}
+
+.calendar ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.calendar ol li {
+    width: calc(100% / 7);
+    padding: 1rem;
+    background: linear-gradient(-145deg, transparent, rgba(0, 0, 0, 0.025));
+}
+
+.calendar .days {
+    flex-grow: 1;
+}
+
+.calendar .day-names {
+    background: linear-gradient(70deg, var(--primary-color), var(--secondary-color));
+    color: var(--headline-color);
+    flex-shrink: 0;
+    flex-grow: 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.calendar .date {
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    text-align: left;
+    font-weight: bold;
+}
+
+.calendar .outside .date {
+    opacity: 0.5;
+}
+
+.calendar .event {
+    --dot-color: var(--primary-color);
+    box-shadow: 0.25em 0.25em 1em 0 rgba(0, 0, 0, 0.05) inset;
+    padding: 0 0.75em;
+    line-height: 2em;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 1em;
+    display: flex;
+    align-items: center;
+}
+
+.calendar .event>.event-name {
+    margin: 0px;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.calendar .event>.time {
+    right: 0px;
+}
+
+.calendar .event::before {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    margin-right: 0.5em;
+    background: var(--dot-color);
+    border-radius: 100%;
+    flex-shrink: 0;
+}
+
+.calendar .event.span-2 {
+    width: calc(200% + 2rem);
+}
+
+.calendar .event.begin {
+    border-radius: 1em 0 0 1em;
+}
+
+.calendar .event.end {
+    border-radius: 0 1em 1em 0;
+}
+
+.calendar .event.all-day {
+    background: var(--shade-color);
+}
+
+.calendar .event.clear {
+    visibility: hidden;
+}
+
+.event:hover .tooltiptext {
+    display: block;
+    position: absolute;
+    margin-left: 35px;
+    margin-top: 35px;
+    background-color: #00000087;
+    border-radius: 12px;
+    backdrop-filter: blur(2px);
+    font-weight: bold;
+    color: white;
+    width: auto;
+    height: auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.tooltiptext.tooltip-top-right {
+    margin-top: 0px;
+    margin-bottom: 150px;
+}
+
+.tooltiptext.tooltip-left {
+    margin-left: -210px !important;
+}
+
+.tooltiptext>img {
+    width: 150px;
+    height: 120px;
+    border-radius: 12px;
+}
+
+.event .tooltiptext {
+    display: none;
+}
