@@ -14,13 +14,6 @@ $cls = "container-fluid";
 }	
 return apply_filters("wrapper-class",$cls );	
 }
-/* Individual functions */
-if(isset($_GET['dev']))
-{
-   include_once(TPL.'/tpl.header-dev.php');
-} else
-{
-   include_once(TPL.'/tpl.header.php');
-   include_once(TPL.'/tpl.footer.php');
-}
+include_once(TPL.'/tpl.header.php');
+include_once(TPL.'/tpl.footer.php');
 ?>

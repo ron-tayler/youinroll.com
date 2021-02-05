@@ -130,7 +130,7 @@ class YRChat {
 
             chats.forEach(chat => {
 
-                let $chat = `<li class="list-group-item active" data-id="${chat.id}" data-user="${chat.id}">
+                let $chat = `<li class="list-group-item active" data-id="0" data-user="${chat.id}">
                     <div class="media">
                     <div class="media-left">
                         <a class="avatar" href="${chat.profileUrl}">

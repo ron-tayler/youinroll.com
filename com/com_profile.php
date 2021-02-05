@@ -17,19 +17,12 @@ global $profile;
 
 add_filter( 'phpvibe_title', 'modify_title' );
 add_filter( 'phpvibe_desc', 'modify_desc' );
-//Time for design
- the_header();
 
-if(!isset($_GET['dev']))
-{
-    include_once(TPL.'/profile_dev.php');
-    the_footer();
-} else
-{
-    include_once(TPL.'/profile.php');
-    the_footer();
-}
- //Track this view
+//Time for design
+the_header();
+include_once(TPL.'/profile.php');
+the_footer();
+//Track this view
 	
 $db->query("UPDATE ".DB_PREFIX."users SET views = views+1 WHERE id = '".$profile->id."'");
 } else {

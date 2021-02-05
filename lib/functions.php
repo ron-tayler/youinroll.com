@@ -450,13 +450,7 @@ add_action('vibe_footer', 'vibe_footers', 1);
 function the_side(){
 global $db, $cachedb;
 
-if(!isset($_GET['dev']))
-{
-	include_once(TPL.'/sidebar-dev.php');
-} else
-{
-	include_once(TPL.'/sidebar-dev.php');
-}
+include_once(TPL.'/sidebar.php');
 
 }
 function right_side(){
