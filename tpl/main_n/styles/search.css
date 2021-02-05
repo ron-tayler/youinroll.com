@@ -1,0 +1,108 @@
+.search-holder {
+    border-radius: 40px;
+    border: 2px solid #6f6f6f;
+}
+
+.search-holder:focus-within {
+    border-radius: 40px;
+    border: 2px solid #48a8f7;
+}
+
+.searchWidget .search-button button {
+    height: 100%;
+    border-radius: 0px 40px 40px 0px;
+    border: 1px solid #6f6f6f;
+    border-bottom: 2px solid #6f6f6f;
+    border-right: 2px solid #6f6f6f;
+    border-top: 2px solid #6f6f6f;
+    background-color: #ffffff !important;
+}
+
+.searchWidget {
+    float: left;
+    width: 57%;
+}
+
+.searchWidget .search-button i {
+    font-size: 22px;
+}
+
+.search-icon:before {
+    content: "\e8b6";
+}
+.searchWidget .search-button button {
+    font-family: "Material Icons";
+}
+.searchWidget .search-button i {
+    font-style: normal;
+}
+
+
+/* RESULTS */
+#wrapper.haside {
+    width: 80.75% !important
+}
+
+#SearchResultsChannels {
+    display: flex !important;
+    flex-direction: row;
+}
+
+.channel-result {
+    margin-left: 10px;
+    width: 240px;
+    max-width: 240px;
+    display: flex;
+    justify-content: center;
+}
+
+.channel-result .video-title {
+    text-align: center;
+    height: auto;
+}
+
+
+.channel-result .video-data {
+    height: auto;
+}
+
+.channel-result .video-thumb {
+    position: unset;
+    margin: 0 auto;
+    height: 130px;
+    width: 130px;
+    background: transparent;
+}
+
+.channel-result .video-thumb .clip {
+    position: unset;
+}
+
+.channel-result .video-inner {
+    padding: 20px;
+}
+
+#channelsearch-content {
+    margin-left: 0%;
+}
+
+.row-link {
+    float: right !important;
+    position: absolute;
+    right: 0;
+    padding: 20px;
+}
+
+/* .pull-right {
+    float: right !important;
+    position: absolute;
+    right: 10px;
+    display: flex;
+    top: 27px;
+    justify-content: space-around;
+    width: 20%;
+}
+
+.pull-right  a {
+    
+} */

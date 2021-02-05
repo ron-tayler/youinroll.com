@@ -196,7 +196,7 @@ the_sidebar(); ?>
 		<li class=""><a href="<?php echo site_url(); ?>dashboard/?sk=activity"><i class="material-icons">&#xE7F7;</i><?php echo _lang("Activities");?></a></li>
 		<li class=""><a href="<?php echo site_url().me; ?>?sk=subscriptions"><i class="material-icons">&#xE8A1;</i><?php echo _lang("Payments");?></a></li>
 		<li class=""><a href="<?php echo site_url(); ?>dashboard/?sk=edit"><i class="icon icon-cogs"></i><?php echo _lang("Channel Settings");?></a></li>
-		<li class=""><a href="<?php echo site_url().lessons; ?>"><i class="icon icon-film"></i><?php echo _lang("Lessons");?></a></li>
+		<li class=""><a href="<?php echo site_url(); ?>streams"><i class="icon icon-film"></i><?php echo _lang("Studio");?></a></li>
 		<li class=""><a href="<?php echo site_url().me; ?>"><i class="icon icon-film"></i><?php echo _lang("Videos");?></a></li>
 		<li class="left20"><a href="<?php echo site_url().me; ?>?sk=playlists"><i class="icon icon-bars"></i><?php echo _lang("Playlists");?></a></li>
 		<li class=""><a href="<?php echo site_url().me; ?>?sk=images"><i class="icon icon-camera"></i><?php echo _lang("Images");?></a></li>

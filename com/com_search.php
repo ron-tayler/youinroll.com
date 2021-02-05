@@ -52,6 +52,7 @@ $options = DB_PREFIX."videos.id,".DB_PREFIX."videos.description,".DB_PREFIX."vid
 			   WHEN ".DB_PREFIX."videos.tags like '%" .$key. "%' THEN 5
                ELSE 6
           END, title ".this_limit();
+
  } else {
  /* Use full search */	 
 $vq = "select ".$options.", ".DB_PREFIX."users.name as owner, ".DB_PREFIX."users.group_id,
@@ -69,6 +70,7 @@ $canonical = site_url().show.url_split.str_replace(array(" "),array("-"),$key);
 } else {
 $vq = '';
 }	
+
 // SEO Filters
 function modify_title( $text ) {
 global $heading;
@@ -82,6 +84,13 @@ add_filter( 'phpvibe_title', 'modify_title' );
 add_filter( 'phpvibe_desc', 'modify_desc' );
 //Time for design
 if (!is_ajax_call()) {  the_header(); the_sidebar(); }
-include_once(TPL.'/searchresults.php');
+if(!isset($_GET['test']))
+{
+    include_once(TPL.'/searchresults_dev.php');
+} else
+{
+    include_once(TPL.'/searchresults.php');
+}
+
 if (!is_ajax_call()) { the_footer(); }
 ?>

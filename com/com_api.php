@@ -11,10 +11,8 @@ $notif = $db->get_row("Select count(*) as nr from ".DB_PREFIX."activity where ((
 if($notif) {
 $count["buzz"] = $notif->nr;	
 }
-$lists = $db->get_row("select count(case when read_at = 0 and (by_user <> '".user_id()."') then 1 else null end) as unread  from ".DB_PREFIX."conversation p1 INNER JOIN ( SELECT * FROM ".DB_PREFIX."con_msgs order by at_time desc ) p2 on p2.conv = p1.c_id  where ((p1.user_one='".user_id()."') OR (p1.user_two='".user_id()."'))");
-
 if($lists) {
-$count["msg"] = $lists->unread;	
+$count["msg"] = 0;	
 }
 
 $_SESSION['lastNoty'] = time();	

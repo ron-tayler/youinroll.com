@@ -12,7 +12,7 @@ register_style('playerads');
 if(!is_video()) {
 register_style('owl');
 }
-register_style('https://fonts.googleapis.com/css?family=Material+Icons|Roboto:300,400,500');
+register_style('https://fonts.googleapis.com/css?family=Material+Icons:300,400,500');
 if(not_empty(get_option('rtl_langs',''))) {
 //Rtl	
 $lg = @explode(",",get_option('rtl_langs'));
@@ -25,6 +25,7 @@ global $page;
 $head = render_styles(0);
 $corrections_css .= '<link rel="stylesheet" type="text/css" media="screen" href="'.site_url().'tpl/main/styles/corrections.css" /><!-- ok -->';
 $head .= extra_css().$corrections_css.'
+<link rel="stylesheet" type="text/css" media="screen" href="/tpl/main_n/styles/search.css" />
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
 <script src="html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -78,6 +79,7 @@ $meta = '<!doctype html>
 <meta property="fb:app_id" content="'.Fb_Key.'" />
 <meta property="og:url" content="'.canonical().'" />
 <link rel="stylesheet" href="tpl/main/fonts/fonts.css" type="text/css">
+<link rel="stylesheet" href="tpl/main_n/fonts/fonts.css" type="text/css">
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="tpl/main_n/styles/calendar.css" type="text/css">';
 
@@ -175,24 +177,14 @@ $nav .= '
 <div class="header">
 
 <div class="searchWidget">
-<form action="" method="get" id="searchform" onsubmit="location.href=\''.site_url().show.'/\' + encodeURIComponent(this.tag.value).replace(/%20/g, \'+\') + \'?type=\' + encodeURIComponent(this.component.value).replace(/%20/g, \'+\'); return false;"';
+<form action="" method="get" id="searchform" onsubmit="location.href=\''.site_url().show.'/\' + encodeURIComponent(this.tag.value).replace(/%20/g, \'+\') + \'?type=video\'; return false;"';
 if(get_option('youtube-suggest',1) > 0) { $nav .= 'autocomplete="off"'; }
 $nav .= '> <div class="search-holder">
                     <span class="search-button">
 					<button type="submit">
-					НАЙТИ
+					<i class="search-icon"></i>
 					</button>
 					</span>
-					<div class="search-target">
-          <a id="switch-search" class="dropdown-toggle"  data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button"><i class="icon material-icons">&#xe038</i></a>
-          <input type="text" id="switch-com" class="hide" name="component" value ="video">                
-          <ul class="dropdown-menu dropdown-left bullet" role="menu">
-          <li role="presentation"><a id="s-video" href="javascript:SearchSwitch(\'video\')"><i class="icon material-icons">&#xe039</i>'._lang("Videos and music").'</a></li>
-          <li role="presentation"><a id="s-picture" href="javascript:SearchSwitch(\'picture\')"><i class="icon material-icons">&#xE43B;</i>'._lang("Pictures").'</a></li>
-          <li role="presentation"><a id="s-channel" href="javascript:SearchSwitch(\'channel\')"><i class="icon material-icons">&#xE55A;</i>'._lang("Channels").'</a></li>
-          <li role="presentation"><a id="s-playlist" href="javascript:SearchSwitch(\'playlist\')"><i class="icon material-icons">&#xE05F;</i>'._lang("Playlists").'</a></li>
-          </ul>
-          </div>
                     <div class="form-control-wrap">
                       <input type="text" class="form-control input-lg empty" name="tag" value ="" placeholder="'._lang("Search media").'">                
                     </div>

@@ -37,18 +37,25 @@ $(window).load(function(){
                 type: "POST",
                 dataType: 'jsonp',
                 success: function(data) {
-                    for (var i = 1; i < data[1].length; i++) {
-                        if (data[1][i][0].length && data[1][i]) {
-                            result += '<li class="gsuggested"><a href="#">' + data[1][i][0] + '</a></li>';
+                    if(data[1].length === 0)
+                    {
+                        $("#suggest-results").html("");
+
+                    } else
+                    {
+                        for (var i = 1; i < data[1].length; i++) {
+                            if (data[1][i][0].length && data[1][i]) {
+                                result += '<li class="gsuggested"><a href="#">' + data[1][i][0] + '</a></li>';
+                            }
                         }
+                        $("#suggest-results").html("<ul>" + result.replace("undefined", "") + "</ul>");
+                        $('.gsuggested > a').click(function() {
+                            var valoare = $(this).text();
+                            $(".header input[name=tag]").val(valoare).focus();
+                            $("#suggest-results").html('&nbsp;');
+                            return false;
+                        });
                     }
-                    $("#suggest-results").html("<ul>" + result.replace("undefined", "") + "</ul>");
-                    $('.gsuggested > a').click(function() {
-                        var valoare = $(this).text();
-                        $(".header input[name=tag]").val(valoare).focus();
-						$("#suggest-results").html('&nbsp;');
-                        return false;
-                    });
                 }
             });
         });

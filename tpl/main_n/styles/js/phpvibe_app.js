@@ -149,6 +149,23 @@ jQuery(function($) {
                 });
             });
     };
+    /* Infinite scroll for videos */
+    var $searchcontainer = $('#SearchResults');
+    if ($('#page_nav').html()) {
+        $searchcontainer.infiniteScroll({
+                path: '#page_nav a',
+                append: '.video',
+                status: '.page-load-status',
+                history: 'push'
+            },
+            function(newElements) {
+                var $newElems = jQuery(newElements).hide(); // hide to begin with
+                // ensure that images load before adding to layout
+                $newElems.imagesLoaded(function() {
+                    $newElems.fadeIn(); // fade in when ready	
+                });
+            });
+    };
     /* Infinite scroll for comments */
     var $comstainer = $('ul.comments');
     if ($('#page_nav').html()) {
@@ -1235,18 +1252,16 @@ $(document).ready(function() {
         $(".video-holder").toggleClass('gofullscreen');
     });
 
-
-    var sidebarsh = screen.height - 67;
+    $('#sidebar').animate({scrollTop: 0});
+    
     /* $('.sidescroll').slimScroll({
-        height: sidebarsh,
         position: 'right',
+        touchScrollStep: 50,
         size: 5,
         railVisible: true,
         railOpacity: '0.66',
         color: '#c6c6c6',
-        railColor: '#f5f5f5',
-        wheelStep: 22,
-        touchScrollStep: 75
+        railColor: '#f5f5f5'
     }); */
     //Emoji
     $(".addEmComment").emojioneArea({

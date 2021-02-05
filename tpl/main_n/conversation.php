@@ -20,6 +20,35 @@
 .chat-top-panel > i {
   flex: end;
 }
+
+.chat-search {
+  display: flex;
+  justify-content: space-between;
+  height: 75px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 20px;
+  background-color: #bfbfbf;
+  position: relative;
+}
+
+.chat-search-append {
+  position: absolute;
+  top: 26%;
+  right: 4%;
+  /* border: 2px solid gray; */
+  background-color: white;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 10px;
+  border-radius: 70px;
+  padding: 5px;
+  height: 35px;
+}
+
+.app-message-list .list-group .list-group-item {
+  padding: 10px;
+}
 </style>
 
 <!-- Message Sidebar -->
@@ -27,6 +56,12 @@
   <div class="page-aside-switch">
     <i class="icon icon-chevron-left"></i>
     <i class="icon icon-chevron-right"></i>
+  </div>
+  <div class="chat-search">
+    <input type="text" id='channelTag' class="form-control input-lg empty" name="channelTag" value="" placeholder="Поиск по каналам">                
+    <div class="chat-search-append">
+      <i class="material-icons">&#xe8b6;</i>
+    </div>
   </div>
   <div class="page-aside-inner">
       <div class="app-message-list">
@@ -69,9 +104,6 @@
       <textarea id="insertChat" class="form-control" name='text' rows="1"></textarea>
       <div class="message-input-actions btn-group">
         <div id="showEmoji"></div>
-        <button class="btn btn-pure btn-icon btn-default" rel="popover" data-content="<a class='btn btn-sm btn-danger' href='<?php echo canonical();?>&close=1'><?php echo _lang("Yes, close it!");?></a>" data-html="true" data-toggle="popover" data-placement="bottom" tabindex="0" title="<?php echo _lang("Close conversation?");?>" type="button">
-          <i class="icon icon-lock"></i>
-        </button>
         <button id="sendChat" class="message-input-btn btn btn-primary" type="button"><?= _lang("SEND");?></button>
       </div>
     </form>
@@ -166,6 +198,7 @@ $(document).on('ready', function() {
 
       $('#messageBox').show();
       $('#emptyDialog').hide();
+      $('.list-group-item.active').removeClass('active');
       $(this).addClass('active');
 
       let chatName = $(this).find('.media-heading').text();
@@ -174,6 +207,8 @@ $(document).on('ready', function() {
       $('.chat-top-panel > h3').text(chatName);
       $('.chat-top-panel > img').prop('src', chatImage);
 
+      $('#messageBox .chats').empty();
+
       chatClass.runMethod({
         method: 'getMessages',
         params: {
@@ -181,6 +216,59 @@ $(document).on('ready', function() {
           chatId: $(this).data('id')
         }
       });
+  })
+
+  $('#channelTag').on('change', function(){
+    
+    let value = $(this).val();
+
+    if(value.length > 3)
+    {
+      $('#conversationsList').empty();
+      chatClass.runMethod({
+        method: 'getChannels',
+        params: {
+          block: '#conversationsList',
+          value: value
+        }
+      });
+    }
+
+    if(value.length === 0)
+    {
+      chatClass.runMethod({
+        method: 'getConversations',
+        params: {
+          block: '#conversationsList',
+          userId: parseInt($('#chatMainBlock').data('active')),
+          chatActiveCallback: function() {
+
+            let chatName = $('.list-group-item.active').find('.media-heading').text();
+            let chatImage = $('.list-group-item.active').find('.img-responsive').prop('src');
+
+            $('.chat-top-panel > h3').text(chatName);
+            $('.chat-top-panel > img').prop('src', chatImage);
+
+            chatClass.runMethod({
+              method: 'getMessages',
+              params: {
+                block: '#messageBox .chats',
+                chatId: $('.list-group-item.active').data('id')
+              }
+            });
+
+          },
+          afterCreate: function() {
+            let chatName = $('.list-group-item.active').find('.media-heading').text();
+            let chatImage = $('.list-group-item.active').find('.img-responsive').prop('src');
+
+            $('.chat-top-panel > h3').text(chatName);
+            $('.chat-top-panel > img').prop('src', chatImage);
+            
+          }
+        }
+      });
+    }
   })
 
 })

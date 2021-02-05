@@ -1,2 +1,4 @@
 /storage
+/vendor
+*.lock
 *.sql

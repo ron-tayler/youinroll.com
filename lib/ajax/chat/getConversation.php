@@ -27,6 +27,7 @@ if($firstUserInDialog) {
     $chat->userId = $firstUserInDialog->id;
     $chat->avatar = thumb_fix($firstUserInDialog->avatar, true, 40, 40);
     $chat->title = $firstUserInDialog->name;
+    $chat->profileUrl = profile_url($firstUserInDialog->id, $firstUserInDialog->name);
 } else
 {
     $chat->userId = 0;

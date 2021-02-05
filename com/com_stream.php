@@ -13,6 +13,7 @@ if($streamInfo !== null)
     if($userInfo->isAuthor)
     {
         $db->query('UPDATE '.DB_PREFIX.'users SET onAir = true WHERE id = '.toDb(user_id()));
+        $db->query('UPDATE '.DB_PREFIX.'conferences SET on_air = true WHERE id = '.toDb($streamId));
     }
 }
 

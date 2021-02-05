@@ -114,6 +114,7 @@ $router->map(get_option('profile-seo-url','/profile/:name/:id/'), 'profile', arr
 $router->map('/'.premiumhub.'/:section', 'premiumhub', array('methods' => 'GET', 'filters' => array('section' => '(.*)')));
 $router->map('/'.videos.'/:section', 'videolist', array('methods' => 'GET', 'filters' => array('section' => '(.*)')));
 $router->map('/'.lessons.'/:section', 'lessonslist', array('methods' => 'GET, POST', 'filters' => array('section' => '(.*)')));
+$router->map('/streams/:section', 'streams', array('methods' => 'GET, POST', 'filters' => array('section' => '(.*)')));
 $router->map('/'.lessonsettings.'/:id', 'lessonsettings', array('methods' => 'GET, POST', 'filters' => array('section' => '(.*)')));
 $router->map('/images/:section', 'imageslist', array('methods' => 'GET', 'filters' => array('section' => '(.*)')));
 $router->map('/music/:section', 'musiclist', array('methods' => 'GET', 'filters' => array('section' => '(.*)')));

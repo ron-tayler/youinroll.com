@@ -36,6 +36,7 @@ if($lists) {
         if($firstUserInDialog) {
             $chat->avatar = thumb_fix($firstUserInDialog->avatar, true, 40, 40);
             $chat->title = $firstUserInDialog->name;
+            $chat->profileUrl = profile_url($firstUserInDialog->id, $firstUserInDialog->name);
         } else
         {
             $chat->avatar = thumb_fix('storage/uploads/noimage.png', true, 40, 40);

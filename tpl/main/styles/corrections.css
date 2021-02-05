@@ -178,19 +178,7 @@ ul.socialfooter li {
     border-radius: 20px;
 }
 
-#subscriptionDropdown {
-    align-self: center;
-    display: block;
-    margin: auto;
-    width: 216px;
-}
 
-#subscriptionMinimize {
-    align-self: center;
-    display: none;
-    margin: auto;
-    width: 216px;
-}
 
 /* End subscriptions */
 

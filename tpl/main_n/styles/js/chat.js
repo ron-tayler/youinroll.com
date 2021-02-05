@@ -5,7 +5,8 @@ class YRChat {
             'getConversations': this._getConversations,
             'getMessages': this._getMessages,
             'recieveMessages': this._recieveMessages,
-            'sendMessage': this._sendMessage
+            'sendMessage': this._sendMessage,
+            'getChannels': this._getChannels
         }
     }
 
@@ -34,15 +35,15 @@ class YRChat {
                     let $chat = `<li class="list-group-item active" data-id="${(chat.conf_id !== undefined) ? chat.conf_id : 0}" data-user="${chat.userId}">
                         <div class="media">
                         <div class="media-left">
-                            <a class="avatar" href="">
+                            <a class="avatar" href="${chat.profileUrl}">
                             <img class="img-responsive" src="${chat.avatar}" alt="${chat.title}"><i></i>
                             </a>
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">
-                                <a href="">
+                                <p>
                                 ${chat.title}
-                                </a>
+                                </p>
                             </h4>
                             <!-- <span class="media-text">${chat.lastMessage}</span> -->
                             <span class="media-time">${chat.lastUpdate}</span>
@@ -90,15 +91,15 @@ class YRChat {
                     let $chat = `<li class="list-group-item ${isCurrent}" data-id="${chat.conf_id}">
                         <div class="media">
                         <div class="media-left">
-                            <a class="avatar" href="">
+                            <a class="avatar" href="${chat.profileUrl}">
                             <img class="img-responsive" src="${chat.avatar}" alt="${chat.title}"><i></i>
                             </a>
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">
-                                <a href="">
+                                <p>
                                 ${chat.title}
-                                </a>
+                                </p>
                             </h4>
                             <!-- <span class="media-text">${chat.lastMessage}</span> -->
                             <span class="media-time">${chat.lastUpdate}</span>
@@ -113,6 +114,49 @@ class YRChat {
                 }
 
             });
+    }
+
+    /* 
+     * Method for searching channels by name
+     */
+    _getChannels(params) {
+
+        $.get("lib/ajax/chat/searchChannels.php", {
+            value: params.value
+        },
+        function(data) {
+
+            let chats = JSON.parse(data);
+
+            chats.forEach(chat => {
+
+                let $chat = `<li class="list-group-item active" data-id="${chat.id}" data-user="${chat.id}">
+                    <div class="media">
+                    <div class="media-left">
+                        <a class="avatar" href="${chat.profileUrl}">
+                        <img class="img-responsive" src="${chat.avatar}" alt="${chat.name}"><i></i>
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <p>
+                            ${chat.name}
+                            </p>
+                        </h4>
+                        <!-- <span class="media-text">${chat.lastMessage}</span> -->
+                        <span class="media-time"></span>
+                    </div>
+                    <div class="media-right">
+                        <!-- <span class="badge badge-danger">${chat.unreadCount}</span> -->
+                    </div>
+                    </div>
+                </li>`;
+
+                $(params.block).append($chat);
+                
+            });
+
+        });
     }
 
     /*

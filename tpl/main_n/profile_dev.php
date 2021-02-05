@@ -253,5 +253,8 @@ function myFunction() {
 </script>
 
 <?
-include_once(TPL.'/modals/subscribe.php');
+if((int)$profile->id !== (int)user_id())
+{
+  include_once(TPL.'/modals/subscribe.php');
+}
 ?>

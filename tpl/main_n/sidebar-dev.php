@@ -73,28 +73,41 @@
 	if (is_user()) {
 	/* start my playlists */	
 	?>
-        <h4 class="li-heading"><?php echo _lang('My collections'); ?></h4>
-        <div class="sidebar-nav blc">
-            <ul>
-                <?php 
-	echo '<li><a href="'.site_url().me.'/?sk=likes"><span class="iconed icon-opacity"><i class="material-icons">&#xE8DC;</i></span> '. _lang('Понравившееся').'</a> </li>
-	<li><a href="'.site_url().me.'/?sk=history"><span class="iconed icon-opacity"><i class="material-icons">&#xE889;</i></span> '. _lang('History').'</a> </li>
-	<li><a href="'.site_url().me.'/?sk=later"><span class="iconed icon-opacity"><i class="material-icons">&#xE924;</i></span> '. _lang('Смотреть позже').'</a> </li>
-	';
-	$plays = $cachedb->get_results("SELECT id, title FROM ".DB_PREFIX."playlists where owner= '".user_id()."' and picture not in ('[likes]','[history]','[later]') and ptype < 2 order by title asc limit 0,100");
-	if($plays) { 
-	foreach ($plays as $play) {
-	echo '<li>
-	<a href="'.playlist_url($play->id, $play->title).'" original-title="'.$play->title.'" title="'.$play->title.'"><i class="material-icons">&#xE05F;</i>
-	'._html(_cut($play->title, 24)).'
-	</a>
-	</li>';
-	}
-	}
-
+	<hr />
+	<div class='relative'>
+		<div class="sidebar-nav blc">
+			<ul>
+				<li class='lihead'><a href="<?=site_url().me?>/?sk=likes"><span class="iconed icon-opacity"><i class="material-icons">&#xE8DC;</i></span><?= _lang('Понравившееся')?></a> </li>
+				<li class='lihead'><a href="<?=site_url().me?>/?sk=history"><span class="iconed icon-opacity"><i class="material-icons">&#xE889;</i></span><?=_lang('History')?></a> </li>
+				<li class='lihead'><a href="<?=site_url().me?>/?sk=later"><span class="iconed icon-opacity"><i class="material-icons">&#xE924;</i></span><?=_lang('Смотреть позже')?></a> </li>
+			</ul>
+		</div>
+	</div>
+	<div class='relative'>
+		<h4 class="li-heading li-heading-iconed">
+			<a style="color: #797E89;"
+				href="https://youinroll.com/me?sk=playlists"
+				title="<?php echo _("View all"); ?>">
+				<h5><?=_lang('My Playlists')?></h5></a>
+			
+		</h4>
+		<div class="sidebar-nav blc">
+			<ul id="playlistItems">
+				<i id="playlistDropdown" class="material-icons" type="button"
+					data-page="1" title="<?= _lang('Expand'); ?>">
+					&#xe313;
+				</i>
+				<i id="playlistMinimize" class="material-icons" title="<?= _lang('Minimize'); ?>">
+					&#xe316;
+				</i>
+			</ul>
+		</div>
+	</div>
+	<hr />
+	<?
 	/* end my playlists */
 	/* start my albums */
-	$albums = $cachedb->get_results("SELECT id, title FROM ".DB_PREFIX."playlists where owner= '".user_id()."' and picture not in ('[likes]','[history]','[later]') and ptype > 1 order by title asc limit 0,100");
+	/* $albums = $cachedb->get_results("SELECT id, title FROM ".DB_PREFIX."playlists where owner= '".user_id()."' and picture not in ('[likes]','[history]','[later]') and ptype > 1 order by title asc limit 0,100");
 	if($albums) { 
 	foreach ($albums as $play) {
 	echo '<li>
@@ -105,60 +118,35 @@
 	}
 	}
 	echo '</ul>
-	</div>';
+	</div>'; */
 
-	/* end my albums */	
-	/* 
-	$followings = $cachedb->get_results("SELECT id,avatar,name from ".DB_PREFIX."users where id in (select uid from ".DB_PREFIX."users_friends where fid ='".user_id()."') order by lastNoty desc limit 0,15");
-	if($followings) {
-	$snr = $cachedb->num_rows;
-	?>
-                <h4 class="li-heading">
-                    <a style="color: #797E89;" href="<?php echo profile_url(user_id(), user_name()); ?>?sk=subscribed"
-                        title="<?php echo _("View all"); ?>"><?php echo _lang('My subscriptions'); ?> </a>
-                </h4>
-                <div class="sidebar-nav blc">
-                    <ul>
-                        <?php
-	foreach ($followings as $following) {
-	echo '
-	<li class="subscription-button">
-	<a title="'.$following->name.'" href="'.profile_url($following->id , $following->name).'">
-	<img src="'.thumb_fix($following->avatar, true, 27, 27).'" alt="'.$following->name.'" />'._html(_cut($following->name, 25)).'';
-	echo '
-	</a></li>';
-	}
-	echo '</ul>
-	<button id="subscriptionDropdown" class="btn btn-secondary dropdown-toggle" type="button" data-page="1">
-	Показать ещё
-	</button>
-	</div>
-	';
-	}
-	*/
+	/* end my albums */
 	/* start my  subscriptions */ 
-	$followings = $cachedb->get_results("SELECT id ".DB_PREFIX."users where id in (select uid from ".DB_PREFIX."users_friends where fid ='".user_id()."') order by lastNoty desc limit 0,1");
-	if(true) {
-	$snr = $cachedb->num_rows;
 	?>
-                        <h4 class="li-heading">
-                            <a style="color: #797E89;"
-                                href="<?php echo profile_url(user_id(), user_name()); ?>?sk=subscribed"
-                                title="<?php echo _("View all"); ?>"><?php echo _lang('My subscriptions'); ?> </a>
-                        </h4>
-                        <div class="sidebar-nav blc">
-                            <ul id="subscribtionItems">
-                            </ul>
-                            <button id="subscriptionDropdown" class="btn btn-secondary dropdown-toggle" type="button"
-                                data-page="1">
-                                <?= _lang('Expand'); ?>
-                            </button>
-                            <button id="subscriptionMinimize" class="btn btn-secondary dropdown-toggle" type="button">
-                                <?= _lang('Minimize'); ?>
-                            </button>
-                        </div>
-                        <?php
-		}
+	<div class='relative'>
+		<h4 class="li-heading">
+			<a style="color: #797E89;"
+				href="<?php echo profile_url(user_id(), user_name()); ?>?sk=subscribed"
+				title="<?php echo _("View all"); ?>"><?php echo _lang('My subscriptions'); ?> </a>
+		</h4>
+		<div class="sidebar-nav blc">
+			<ul id="subscribtionItems">
+			</ul>
+			<div id="subscriptionDropdown" class="" type="button" data-page="1">
+				<i class="material-icons" type="button"
+					data-page="1" title="<?= _lang('Expand'); ?>">
+					&#xe313;
+				</i><span><?= _lang('Expand'); ?></span>
+			</div>
+			<div id="subscriptionMinimize" class="" type="button">
+				<i class="material-icons" title="<?= _lang('Minimize'); ?>">
+					&#xe316;
+				</i><span><?= _lang('Minimize'); ?></span>
+			</div>
+		</div>
+	</div>
+	<hr />
+	<?php
 		/* end subscriptions */
 		echo '<div id="endSidebar"><h4 class="li-heading">'._lang('Другие возможности').'</h4>';
 		echo '<div class="sidebar-nav blc"><ul>';

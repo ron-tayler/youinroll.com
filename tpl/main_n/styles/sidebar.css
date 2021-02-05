@@ -6,7 +6,7 @@
     width: 240px;
     top: 62px;
     text-align: left;
-    padding: 0 0 2px 4px;
+    padding: 0px 0px 2px 0px;
     width: 240px;
     z-index: 9;
     overflow-y: scroll;
@@ -17,6 +17,14 @@
     -moz-box-shadow: 0 0 1px 0px rgba(0, 0, 0, .08);
     -webkit-box-shadow: 0 0 1px 0px rgba(0, 0, 0, .08);
     box-shadow: 0 0 1px 0px rgba(0, 0, 0, .08);
+}
+
+.sidebar-nav li {
+    padding: 9px 0 9px 18px !important;
+}
+
+.li-heading {
+    padding: 17px 15px 15px 14px;
 }
 
 #sidebar::-webkit-scrollbar {
@@ -83,11 +91,23 @@
     display: none;
 }
 
+#sidebar.hide #playlistItems {
+    display: none;
+}
+
 #sidebar.hide #subscriptionDropdown {
     display: none;
 }
 
-#sidebar.hide #subscriptionMinimize {
+#sidebar #playlistMinimize {
+    display: none;
+}
+
+#sidebar.hide #playlistMinimize {
+    display: none;
+}
+
+#sidebar.hide #playlistDropdown {
     display: none;
 }
 
@@ -100,7 +120,7 @@
     position: relative;
     display: inline-block;
     margin: 0;
-    margin-left: 3%;
+    margin-left: 10%;
     padding: 5px;
     line-height: 69px;
     vertical-align: middle;
@@ -124,10 +144,71 @@
     display: none !important;
 }
 
+.relative {
+    position: relative;
+}
+
+#sidebar hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.sidebar-nav ul a img {
+    margin-left: 2px;
+    margin-right: 20px !important;
+}
+
+#subscriptionMinimize {
+    display:none;
+    align-self: center;
+    margin: auto;
+    padding-left: 8px;
+    width: 216px;
+}
+
+#subscriptionDropdown {
+    align-self: center;
+    display: block;
+    margin: auto;
+    padding-left: 8px;
+    width: 216px;
+}
+
+#subscriptionMinimize > span, #subscriptionDropdown > span {
+    padding-left: 23px;
+    position: absolute;
+}
+
+#playlistMinimize, #playlistDropdown {
+    align-self: center;
+    display: block;
+    top: 0;
+    /* top: 35%; */
+    left: 8%;
+    margin: auto;
+    position: absolute;
+}
+
+.li-heading.li-heading-iconed {
+    text-align: start;
+    padding: 0px 15px 15px 71px !important;
+}
+
+.li-heading {
+    padding: 5px 15px 5px 22px !important
+}
+
+.li-heading h5 {
+    padding-top: 4px;
+}
+
 a#openusr {
     color: black !important;
 }
 
+#sidebar * {
+    font-weight: bold !important;
+}
 /* ----------- Non-Retina Screens ----------- */
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
     #wrapper.haside {
@@ -141,9 +222,9 @@ a#openusr {
     }
 
     #wrapper {
-        width: 96% !important;
+        width: 92% !important;
         margin-right: 0px !important;
-        margin-left: 4.1% !important;
+        margin-left: 6.1% !important;
         padding: 0px !important;
     }
 }
@@ -307,6 +388,18 @@ a#openusr {
     }
 
     #sidebar #subscriptionMinimize {
+        display: none;
+    }
+
+    #sidebar #playlistItems {
+        display: none;
+    }
+
+    #sidebar #playlistDropdown {
+        display: none;
+    }
+
+    #sidebar #playlistMinimize {
         display: none;
     }
 
