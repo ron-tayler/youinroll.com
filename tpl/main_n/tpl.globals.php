@@ -1,19 +1,27 @@
 <?php /* PHPVibe v5 www.phpvibe.com */
 function extra_js() {
-return apply_filter( 'filter_extrajs', false );
+   return apply_filter( 'filter_extrajs', false );
 }
 function extra_css() {
-return apply_filter( 'filter_extracss', false );
+   return apply_filter( 'filter_extracss', false );
 }
 function wrapper_class(){
-$cls = "container";	
-if(is_com('conversation')) {
-/* Fluid container for Messenger
-   */	
-$cls = "container-fluid";	
-}	
-return apply_filters("wrapper-class",$cls );	
+   $cls = "container";	
+   if(is_com('conversation')) {
+      /* Fluid container for Messenger */	
+      $cls = "container-fluid";	
+   }
+
+   return apply_filters("wrapper-class",$cls );	
 }
-include_once(TPL.'/tpl.header.php');
-include_once(TPL.'/tpl.footer.php');
+
+if(isset($_GET['test']))
+{
+   
+} else
+{
+   include_once(TPL.'/tpl.header.php');
+   include_once(TPL.'/tpl.footer.php');
+}
+
 ?>

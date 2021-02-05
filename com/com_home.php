@@ -2,6 +2,7 @@
 the_header();
 the_sidebar();
 }
-include_once(TPL.'/home.php');
-the_footer();
+
+$YNRtemplate->include('/home.php');
+
 ?>

@@ -1,4 +1,5 @@
 <?php //Check session start
+
 if (!isset($_SESSION)) { @session_start(); }
 // Root 
 if( !defined( 'ABSPATH' ) )
@@ -45,7 +46,10 @@ require_once( INC.'/functions.php' );
 require_once( INC.'/functions.videoads.php' );
 require_once( INC.'/functions.user.php' );
 require_once( INC.'/functions.kses.php' );
+require_once( INC.'/functions.templates.php' );
 require_once( INC.'/comments.php' );
+
+$YNRtemplate = new YNRTemplate();
 // Theme
 if( !defined( 'THEME' ) )
 	define( 'THEME', get_option('theme','main') );	

@@ -18,10 +18,8 @@ global $profile;
 add_filter( 'phpvibe_title', 'modify_title' );
 add_filter( 'phpvibe_desc', 'modify_desc' );
 
-//Time for design
-the_header();
-include_once(TPL.'/profile.php');
-the_footer();
+$YNRtemplate->include('/profile.php');
+
 //Track this view
 	
 $db->query("UPDATE ".DB_PREFIX."users SET views = views+1 WHERE id = '".$profile->id."'");

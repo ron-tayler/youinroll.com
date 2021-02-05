@@ -33,7 +33,6 @@ $head .= extra_css().$corrections_css.'
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://smartfooded.com/libs/external_api.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-<script src="/jitsi.js"></script>
 <script>
 if((typeof jQuery == "undefined") || !window.jQuery )
 {
