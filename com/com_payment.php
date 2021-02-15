@@ -5,6 +5,46 @@ include_once( INC.'/paymaster.class.php' );
 $user = $db->get_row('SELECT * FROM '.DB_PREFIX.'users WHERE id = '.toDb(user_id()));
 $type = null;
 
+
+if(isset($_POST['buyCourse']))
+{	
+	if($_POST['agree'] === 'on' && $_POST['agree2'] === 'on')
+	{
+		if($_POST['payment'] === 'card')
+		{	
+
+			header('Location: '. $YNRpayment->buyCourse($_POST, user_id()));
+			die();
+		}
+
+		if($_POST['payment'] === 'paymaster')
+		{
+			header('Location: '. $YNRpayment->buyCourse($_POST, user_id(), 'paymaster'));
+			die();
+		}
+	}
+	
+	die();
+}
+
+if(isset($_POST['buySubscribe']))
+{	
+	if($_POST['agree'] === 'on' && $_POST['agree2'] === 'on')
+	{
+		if($_POST['payment'] === 'card')
+		{
+			header('Location: '. $YNRpayment->init($_POST, user_id()));
+			die();
+		}
+
+		if($_POST['payment'] === 'paymaster')
+		{
+			header('Location: '. $YNRpayment->init($_POST, user_id(), 'paymaster'));
+			die();
+		}
+	}	
+}
+
 if(token() === "success") {
 	$id = user_id();
 	user::Update('group_id', 6, $id);
@@ -80,7 +120,13 @@ if(token() === "test") {
 	die();
 }
 
-the_header();
+$YNRtemplate->include('/pay-form.php', [
+	'/tpl/main_n/styles/pages/payment.css'
+], [
+	'/tpl/main_n/styles/js/pages/payment.js'
+])
+
+/* the_header();
 include_once(TPL.'/pay-form.php');
-the_footer();	
+the_footer();	 */
 ?>

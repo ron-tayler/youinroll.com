@@ -15,13 +15,7 @@ function wrapper_class(){
    return apply_filters("wrapper-class",$cls );	
 }
 
-if(isset($_GET['test']))
-{
-   
-} else
-{
-   include_once(TPL.'/tpl.header.php');
-   include_once(TPL.'/tpl.footer.php');
-}
+include_once(TPL.'/tpl.header.php');
+include_once(TPL.'/tpl.footer.php');
 
 ?>

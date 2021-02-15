@@ -94,6 +94,14 @@
     .channel-buttons-mobile {
         display: block !important;
     }
+
+    .sticky {
+        left: 0;
+    }
+
+    .video {
+        width: 100% !important;
+    }
 }
 
 /* Smartphones (portrait) ----------- */
@@ -586,7 +594,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 }
 
 .video {
-    width: 23% !important;
+    width: 23% ;
 }
 
 #channelAuthors .loop-heading {

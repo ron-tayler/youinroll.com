@@ -1,8 +1,12 @@
-<?php if (!is_ajax_call()) { 
-the_header();
-the_sidebar();
+<?php 
+
+if(isset($_GET['test']))
+{
+    $YNRtemplate->include('/home-dev.php');
+} else
+{
+    $YNRtemplate->include('/home.php');
 }
 
-$YNRtemplate->include('/home.php');
 
 ?>

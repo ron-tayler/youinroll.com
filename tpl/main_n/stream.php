@@ -135,7 +135,6 @@
     display: flex;
     justify-content: space-between;
 }
-
 </style>
 
 <div class="stream-holder row">
@@ -170,7 +169,7 @@
     <div class="stream-under col-xs-12">
         <div class="oboxed odet mtop10">
             <div class="stream-header">
-                <h1>Test Stream</h1>
+                <h1><?=$streamInfo->name?></h1>
                 <div class='stream-header-end'>
                     <?=((int)$userInfo->id === user_id()) ? '' : subscribe_box($streamInfo->moderator_id, '', false, 'modal'); ?>
                     <?php subscribe_box($streamInfo->moderator_id, 'btn btn-primary tipS mleft10 mright10', false, 'follow'); ?>
@@ -192,30 +191,30 @@
                                 <div class="likes-bar">
                                     <?php if($is_liked) { ?>
                                     <div class="aaa">
-                                        <a href="javascript:RemoveLike(<?php echo $video->id;?>)" id="i-like-it"
+                                        <a href="javascript:RemoveLike(<?php echo $streamInfo->id;?>)" id="i-like-it"
                                             class="isLiked pv_tip likes" title=" <?php echo _lang('Remove from liked');?>">
                                             <!-- <i class="material-icons">&#xE8DC;</i> -->
                                             <img src="/tpl/main/images/like.svg" class="like" />
-                                            <span><?php echo number_format($video->liked);?></span>
+                                            <span><?php echo number_format($streamInfo->liked);?></span>
                                         </a>
                                     </div>
                                     <?php } else { ?>
                                     <div class="aaa">
-                                        <a href="javascript:iLikeThis(<?php echo $video->id;?>)" id="i-like-it"
+                                        <a href="javascript:iLikeThis(<?php echo $streamInfo->id;?>)" id="i-like-it"
                                             class="pv_tip likes" title=" <?php echo _lang('Like');?>">
                                             <!-- <i class="material-icons">&#xE8DC;</i> -->
                                             <img src="/tpl/main/images/like.svg" class="like" />
-                                            <span><?php echo number_format($video->liked);?></span>
+                                            <span><?php echo number_format($streamInfo->liked);?></span>
                                         </a>
                                     </div>
                                     <?php } ?>
                                     <div class="aaa ">
-                                        <a href="javascript:iHateThis(<?php echo $video->id;?>)" id="i-dislike-it"
+                                        <a href="javascript:iHateThis(<?php echo $streamInfo->id;?>)" id="i-dislike-it"
                                             class="pv_tip dislikes <?php if($is_disliked) { echo 'isLiked'; }?>"
                                             data-toggle="tooltip" data-placement="top" title=" <?php echo _lang('Dislike');?>">
                                             <!-- <i class="material-icons">&#xE8DB;</i> -->
                                             <img src="/tpl/main/images/dislike.svg" class="dislike" />
-                                            <span> <?php echo number_format($video->disliked); ?></span>
+                                            <span> <?php echo number_format($streamInfo->disliked); ?></span>
                                         </a>
                                     </div>
                                     <div class="like-box">
@@ -245,9 +244,9 @@
                                     </a>
                                 </div>
                                 <?php if (is_user()) { ?>
-                                <?php if ((int)user_id() === (int)$video->moderator_id) { ?>
+                                <?php if ((int)user_id() === (int)$streamInfo->moderator_id) { ?>
                                 <div class="aaa">
-                                    <a href="<?=site_url().lessonsettings.'/'.$video->id?>">
+                                    <a href="<?=site_url().lessonsettings.'/'.$streamInfo->id?>">
                                         <span><?php echo _lang("Настройки урока");?></span>
                                     </a>
                                 </div>
@@ -280,7 +279,7 @@
                     <h4><?php  echo _lang('Let your friends enjoy it also!');?></h4>
                 </div>
                 <div id="jsshare" data-url="<?php echo $canonical; ?>"
-                    data-title="<?php echo _cut($video->title, 40); ?>"></div>
+                    data-title="<?php echo _cut($streaminfo->name, 40); ?>"></div>
             </div>
             <div class="video-share mtop10 has-shadow right20 left20 clearfix">
                 <div class="text-center text-uppercase full bottom20 top20">
@@ -376,16 +375,16 @@
                 <li>
                     <div id="media-description" data-small="<?php echo _lang("show more");?>"
                         data-big=" <?php echo _lang("show less");?>">
-                        <?php echo makeLn(_html($video->description));?>
+                        <?php echo makeLn(_html($streamInfo->description));?>
                         <p style="font-weight:500; color:#333">
                             <?= _lang("Category :") . $streamInfo->categoryName->cat_name?> <a
-                                href="<?php echo channel_url($video->category,$video->channel_name);?>"
-                                title="<?php echo _html($video->channel_name);?>">
-                                <?php echo _html($video->channel_name);?>
+                                href="<?php echo channel_url($streamInfo->category,$streamInfo->channel_name);?>"
+                                title="<?php echo _html($streamInfo->channel_name);?>">
+                                <?php echo _html($streamInfo->channel_name);?>
                             </a>
                         </p>
-                        <?php if($video->tags) { ?>
-                        <p> <?php echo pretty_tags($video->tags,'right20','#','');?></p>
+                        <?php if($streamInfo->tags) { ?>
+                        <p> <?php echo pretty_tags($streamInfo->tags,'right20','#','');?></p>
                         <?php } ?>
                     </div>
                 </li>

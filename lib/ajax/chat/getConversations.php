@@ -43,7 +43,8 @@ if($lists) {
             $chat->title = _lang('Deleted user');
         }
 
-        $lastUpdated = $db->get_row('SELECT * FROM '.DB_PREFIX.'messages WHERE created_at IN (SELECT max(created_at) FROM '.DB_PREFIX.'messages) AND conversation_id = '.toDb($chat->conf_id));
+        $lastUpdated = $db->get_row('SELECT * FROM '.DB_PREFIX.'messages WHERE conversation_id = '.toDb($chat->conf_id).' ORDER BY created_at DESC LIMIT 0,1');
+    
 
         $chat->lastUpdate = time_ago( (isset($lastUpdated->created_at)) ? $lastUpdated->created_at : date() );
         $chat->lastMessage = $lastUpdated->text;

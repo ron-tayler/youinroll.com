@@ -1,5 +1,7 @@
-<?php the_sidebar(); 
-$active = _get("sk"); if(is_null(_get("sk"))) { $active = "profile";}
+<?php the_sidebar();
+// Canonical url
+$canonical = profile_url($profile->id , $profile->name);
+
 do_action('profile-start');
 $vd = $cachedb->get_row("SELECT count(case when pub = 1 then 1 else null end) as nr, sum(views) as vnr , sum(liked) as lnr FROM ".DB_PREFIX."videos where user_id='".$profile->id."'");
 $imgs = $cachedb->get_row("SELECT count(*) as imgnr, sum(views) as vnr, sum(liked) as lnr FROM ".DB_PREFIX."images where user_id='".$profile->id."'");

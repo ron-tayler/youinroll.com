@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
                     let formData = document.forms[0];
 
-                    jitsiClass.doLogin(formData,'global-room', response.result.haveJitsi);
+                    /* jitsiClass.doLogin(formData,'global-room', response.result.haveJitsi); */
 
                     location.href = 'https://youinroll.com/dashboard';
                 }

@@ -47,9 +47,12 @@ require_once( INC.'/functions.videoads.php' );
 require_once( INC.'/functions.user.php' );
 require_once( INC.'/functions.kses.php' );
 require_once( INC.'/functions.templates.php' );
+require_once( INC.'/functions.payment.php' );
 require_once( INC.'/comments.php' );
 
 $YNRtemplate = new YNRTemplate();
+$YNRpayment = new YNRPayment();
+
 // Theme
 if( !defined( 'THEME' ) )
 	define( 'THEME', get_option('theme','main') );	

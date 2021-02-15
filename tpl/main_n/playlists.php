@@ -7,6 +7,7 @@
 if(!isset($st)){ $st = ''; }
 if(isset($heading) && !empty($heading)) { echo '<h1 class="loop-heading"><span>'._html($heading).'</span>'.$st.'</h1>';}
 if(isset($heading_meta) && !empty($heading_meta)) { echo $heading_meta;}
+
 if ($playlists) {
 
 echo '<div id="SearchResults" class="loop-content phpvibe-video-list ">'; 

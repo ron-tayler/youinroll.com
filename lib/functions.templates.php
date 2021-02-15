@@ -8,12 +8,23 @@ class YNRTemplate {
     /* 
     * Добавить между хедером и футером
     */
-    public function include(string $templatePath, $cssPath = null, $jsPath = null)
+    public function include(string $templatePath, $cssPathes = [], $jsPathes = [], $globalTemplateVariable = null)
     {   
-        global $db, $cachedb,$next;
+        global $db, $cachedb, $next, $active;
 
-        $additionalJs = $jsPath ? '<!-- Page Scripts --> <script src="'.$jsPath.'"></script><!-- End Page Scripts -->' : '';
-        $additionalCss = $cssPath ? '<link rel="stylesheet" href="'.$cssPath.'" type="text/css">' : '';
+        $additionalCss = '<!-- Page Styles --> ';
+        $additionalJs = '<!-- Page Scripts -->';
+
+        foreach ($cssPathes as $cssPath)
+        {
+            $additionalCss .= $cssPath ? '<link rel="stylesheet" href="'.$cssPath.'" type="text/css">' : '';
+        }
+
+        foreach ($jsPathes as $jsPath)
+        {
+            $additionalJs .= $jsPath ? '<script src="'.$jsPath.'"></script>' : '';
+        }
+        
 
         include(TPL.'/general/tpl.header.php'); 
         include_once(TPL.$templatePath);

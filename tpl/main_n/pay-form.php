@@ -108,29 +108,14 @@
     <h2 class="lead">Оформите подписку Premium и получите неограниченный доступ к сервисам YouinRoll.</h2>
 </div>
 <div class="price-promo-center">
-<? if($type === null) {?>
-    <form class="needs-validation" action="https://paymaster.ru/payment/init" novalidate="">
-    <input name='LMI_MERCHANT_ID' type='hidden' value='4cae70bd-2415-4dc8-bb55-e4c3c9439d66' required/>
-    <input name='LMI_PAYMENT_AMOUNT' type='hidden' value='159' required/>
-    <input name='LMI_CURRENCY' type='hidden' value='RUB' required/>
-    <input name='LMI_PAYMENT_DESC' type='hidden' value='Оплата премиума для: <?=$user->email?>' required/>
-    <input name='LMI_PAYER_EMAIL' type='hidden' value='<?=$user->email?>'/>
-    <input name='LMI_SHOPPINGCART.ITEMS[0].NAME' type='hidden' value='Премиум подписка на YouInRoll'/>
-    <input name='LMI_SHOPPINGCART.ITEMS[0].QTY' type='hidden' value='1'/>
-    <input name='LMI_SHOPPINGCART.ITEMS[0].PRICE' type='hidden' value='159'/>
-    <input name='LMI_SHOPPINGCART.ITEMS[0].TAX' type='hidden' value='vat20'/>  
-    <input name='LMI_SHOPPINGCART.ITEMS[0].METHOD' type='hidden' value='3'/>
-    <input name='LMI_SHOPPINGCART.ITEMS[0].SUBJECT' type='hidden' value='1'/>
+
     <? if(is_user()) { ?>
-    <button class="btn-buy btn btn-primary btn-lg btn-block" type="submit">Попробовать бесплатно*</button>
+    <button class="btn-buy btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#SubscribeModal">Попробовать бесплатно*</a>
     <? } else { ?>
     <a class="btn-buy btn btn-primary btn-lg btn-block" href="/login">Попробовать бесплатно*</a>  
     <?}?>
     <br>
-    <center><h3 style="color:black">2 месяца бесплатно • Затем 159,00 ₽/мес.</h3></center>
-    <center><small>Мы продлили бесплатный пробный период до 2-х месяцев для новых подписчиков. Акция действует до 1.03. За 7 дней до окончания бесплатного пробного периода мы отправим вам напоминание. Отказаться от подписки можно в любой момент.</small></center>
-    </form>
-<?}?>
+
 </div>
 <div id='carousel'>
     <div class='item'>
@@ -224,6 +209,8 @@
     Бесплатный пробный период доступен только новым подписчикам. • Регулярные платежи. • Отказаться от подписки можно в любой момент.   
 </div> -->
 </div>
+
+<? include(TPL.'/modals/subscribe-complete.php'); ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js" integrity="sha512-D/zaRVk05q6ERt1JgWB49kL6tyerY7a94egaVv6ObiGcw3OCEv0tvoPDEsVqL28HyAZhDd483ix8gkWQGDgEKw==" crossorigin="anonymous"></script>
 <script>

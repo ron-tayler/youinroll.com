@@ -104,33 +104,9 @@
                     </div>
                 </div>
             </div>
-            ';
-            $footer .='
         </div>
     </div>
 </div>
-<!-- Start Search Modal -->
-<div class="modal fade" id="search-now" aria-hidden="true" data-backdrop="false" aria-labelledby="search-now"
-    role="dialog" tabindex="-1">
-    <div class="modal-dialog modal-sidebar modal-searcher">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="panel panel-transparent">
-                    <div class="row search-now-clone">
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Search Modal -->
 <script>
   let site_url = "<?=site_url()?>";
   let nv_lang = "<?=_lang("Next video starting soon")?>";
@@ -141,8 +117,8 @@
 <script src="/tpl/main_n/styles/js/jquery.js"></script>
 <script>
 
-  let acanceltext = "<?=_lang("Cancel")?>";
-  let startNextVideo, moveToNext, nextPlayUrl;
+  var acanceltext = "<?=_lang("Cancel")?>";
+  var startNextVideo, moveToNext, nextPlayUrl;
 
 </script>
 
@@ -152,15 +128,15 @@
 
 <? if(is_user()) {?>
 <script src="/tpl/main_n/styles/js/chat.js"></script>
-<script src="/tpl/main_n/styles/js/modules/JSJaC/jsjac.js"></script>
+<script src="/tpl/main_n/styles/js/modules/Amqp/callback_api.js"></script>
 <script src="/tpl/main_n/styles/js/jitsi.js"></script>
 
-  <script>
+<script>
     window.chatClass = new YRChat();
     window.jitsiClass = new JitsiChat();
 
-    jitsiClass.startListener();
-  </script>
+    jitsiClass.startListener('Test');
+</script>
 <?}?>
 
 <script>
@@ -178,6 +154,11 @@ $('#searchform').on('submit', function(e){
 })
 
 </script>
+
+<?if(com() === 'home')
+{?>
+    <script type='module' src='/tpl/main_n/styles/js/pages/home.js'></script>
+<?}?>
 
 <?=$additionalJs?>
 
@@ -198,6 +179,26 @@ $('#searchform').on('submit', function(e){
 $(document).ready(function() {
     $("#show-sidebar").click(function() {
         $(".hamburger").toggleClass("is-active");
+    });
+
+    $('.user-quick').on('click', '#show-search', function(){
+
+        $('.searchWidget').toggleClass('hide');
+        $('.logo-wrapper').toggleClass('hide');
+
+        $(this).hide();
+        $('.searchClose').toggleClass('hide');
+
+    });
+
+    $('.fixed-top').on('click', '.searchClose', function(){
+
+        $('.searchWidget').toggleClass('hide');
+        $('.logo-wrapper').toggleClass('hide');
+
+        $('#show-search').show();
+        $(this).toggleClass('hide');
+
     });
 });
 </script>

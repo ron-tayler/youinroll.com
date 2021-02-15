@@ -30,6 +30,15 @@
 .search-icon:before {
     content: "\e8b6";
 }
+
+.search-close-icon {
+    padding: 15px 5px 5px 8px;
+}
+
+.search-close-icon:before {
+    content: "\e5cd";
+}
+
 .searchWidget .search-button button {
     font-family: "Material Icons";
 }

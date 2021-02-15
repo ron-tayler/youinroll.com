@@ -1,5 +1,5 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+/* require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
 use Google_Client;
 
@@ -18,7 +18,7 @@ $client->setApplicationName('Quickstart');
 $client->setScopes(Google_Service_Calendar::CALENDAR_READONLY);
 $client->setAuthConfig(__DIR__.'/credentionals.json');
 $client->setAccessType('offline');
-$client->setPrompt('select_account consent');
+$client->setPrompt('select_account consent'); */
 
 
 $daysInMonth = range(1, date("t"));
@@ -129,7 +129,7 @@ function renderActivation($authUrl)
     </div>";
 }
 
-$userToken = ($user !== null)
+/* $userToken = ($user !== null)
     ? $user[0]->gcalendar
     : null;
 
@@ -177,7 +177,7 @@ if($userToken === null)
         print_r($th);
         die();
     }
-}
+} */
 
 do_action('conferenceloop-end');
 ?>

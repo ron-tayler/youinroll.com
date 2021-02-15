@@ -1217,13 +1217,15 @@ return _lang($txt);
 }
 
 //Active function
-function aTab($current= null){
-global $active;
-if($active){
-if($current == $active){
-echo 'active';
-}
-}
+function aTab($current = null){
+	
+	global $active;
+
+	if($active){
+		if($current === $active){
+			echo 'active';
+		}
+	}
 }
 function rExternal() {
 global $vid,$video;

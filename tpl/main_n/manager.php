@@ -1061,6 +1061,12 @@ $picture  = str_replace(ABSPATH.'/' ,'',$thumb); } else {
  <input type="text" name="play-name" required class=" form-control col-md-12" placeholder="<?php echo _lang("Your playlist's title"); ?>" /> 
  </div>  
  </div>  
+ <div class="control-group">  
+ <label class="control-label"> <?php echo _lang("Price"); ?> </label> 
+ <div class="controls"> 
+ <input type="number" max="10000" min="0" name="play-price" class=" form-control col-md-12" placeholder="<?php echo _lang("Your playlist's price (can be empty)"); ?>" /> 
+ </div>  
+ </div> 
  <div class="control-group mtop20 row"> 
  <label class="control-label"><?php echo _lang("Description"); ?> </label> 
  <div class="controls"> 

@@ -2563,9 +2563,9 @@ a#openusr>.badge {
 }
 
 @media (max-width:1000px) {
-    .searchWidget {
+    /* .searchWidget {
         display: none
-    }
+    } */
 
     #show-search {
         opacity: 1 !important;

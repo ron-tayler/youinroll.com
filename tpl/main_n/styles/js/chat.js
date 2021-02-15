@@ -45,7 +45,7 @@ class YRChat {
                                 ${chat.title}
                                 </p>
                             </h4>
-                            <!-- <span class="media-text">${chat.lastMessage}</span> -->
+                            <span class="media-text">${chat.lastMessage}</span>
                             <span class="media-time">${chat.lastUpdate}</span>
                         </div>
                         <div class="media-right">
@@ -101,7 +101,7 @@ class YRChat {
                                 ${chat.title}
                                 </p>
                             </h4>
-                            <!-- <span class="media-text">${chat.lastMessage}</span> -->
+                            <span class="media-text">${chat.lastMessage}</span>
                             <span class="media-time">${chat.lastUpdate}</span>
                         </div>
                         <div class="media-right">
@@ -143,7 +143,7 @@ class YRChat {
                             ${chat.name}
                             </p>
                         </h4>
-                        <!-- <span class="media-text">${chat.lastMessage}</span> -->
+                        <span class="media-text">${chat.lastMessage}</span>
                         <span class="media-time"></span>
                     </div>
                     <div class="media-right">

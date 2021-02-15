@@ -299,7 +299,7 @@ function conference_url($roomId, $roomName = 'test'){
 	
 	$roomName = translit($roomName);
 
-	$url = '/conference/'. $roomId .'/'. $roomName;
+	$url = '/stream/'. $roomId .'/'. $roomName;
 	return $url;
 }
 function image_url($id, $title, $list=null){
