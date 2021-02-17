@@ -34,6 +34,10 @@
 .modal-inner>a {
     height: fit-content;
 }
+
+.receipt-block {
+    display: flex;
+}
 </style>
 
 <?
@@ -239,22 +243,22 @@ if (!is_user()) {
                                         </p>
                                     </div>
                                     <hr class="mb-4">
-                                    <table class='receipt'>
-                                        <thead>
-                                            <th>Наименование</th>
-                                            <th>Срок действия</th>
-                                            <th>Цена</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Подписка</td>
-                                                <td class='receipt-date'><?=date('Y-m-d', strtotime("+1 month"))?></td>
-                                                <td class='receipt-price'>159р</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class='receipt-block'>
+                                        <button class="btn btn-continue btn-lg btn-block" type="submit">Завершить покупку</button>
+                                        <table class='receipt'>
+                                            <thead>
+                                                <th>Наименование</th>
+                                                <th>Цена</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Подписка</td>
+                                                    <td class='receipt-price'>159р</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     <hr class="mb-4">
-                                    <button class="btn btn-primary btn-lg btn-block" type="submit">Завершить покупку</button>
                                 </div>
                             </form>
                         </div>

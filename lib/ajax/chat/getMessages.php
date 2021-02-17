@@ -7,7 +7,10 @@ if ( !is_user() || !isset($_GET['chatId']) )
     die();
 }
 
-$messages = [];
+$messages = [
+    'messages' => [],
+    'chatInfo' => []
+];
 
 $chatId = $_GET['chatId'];
 
@@ -19,6 +22,19 @@ $lists = $db->get_row(
 );
 
 if($lists) {
+
+    $chatInfo = $db->get_results("SELECT
+        conversation.*,
+        USER.name as author,
+        USER.avatar as authorImage
+    FROM ".
+    DB_PREFIX."conversations AS conversation
+    INNER JOIN vibe_users AS USER
+    ON
+        conversation.user_id = USER.id AND conversation.conf_id = '".$chatId."'
+    ORDER BY
+        conversation.id
+    ASC");
 
     $messagesList = $db->get_results(
         "SELECT * FROM ".DB_PREFIX."messages WHERE conversation_id = ".toDb($chatId)." ORDER BY created_at ASC  LIMIT 0,50"
@@ -40,11 +56,12 @@ if($lists) {
         $message->author = $userOfMesage->name;
         $message->avatarLink = profile_url($message->user_id, $userOfMesage->name);
 
-        array_push($messages, $message);
+        array_push($messages['messages'], $message);
     }
 
-}
+    array_push($messages['chatInfo'], $chatInfo);
 
+}
     
 echo( json_encode($messages, true) );
 ?>

@@ -31,17 +31,34 @@ if($lists) {
 
     foreach($conversations as $chat) {
 
-        $firstUserInDialog = $cachedb->get_row("SELECT avatar,name FROM ".DB_PREFIX."users where id = '".$chat->user_id."' limit  0,1");	
-        
-        if($firstUserInDialog) {
-            $chat->avatar = thumb_fix($firstUserInDialog->avatar, true, 40, 40);
-            $chat->title = $firstUserInDialog->name;
-            $chat->profileUrl = profile_url($firstUserInDialog->id, $firstUserInDialog->name);
-        } else
+        $chatUsers = $db->get_results("SELECT
+            USER.name as name,
+            USER.avatar as avatar
+        FROM ".
+        DB_PREFIX."conversations AS conversation
+        INNER JOIN vibe_users AS USER
+        ON
+            conversation.user_id = USER.id AND conversation.conf_id = '".$chat->conf_id."'
+            AND user_id <> '".toDb(user_id())."'
+        ORDER BY
+            conversation.id, conversation.user_id
+        DESC");
+
+        $firstUserInDialog = $chatUsers[0];
+
+        $chat->avatar = thumb_fix($firstUserInDialog->avatar, true, 40, 40);
+        $chat->title = $firstUserInDialog->name;
+
+        if( count($chatUsers) > 1 )
         {
-            $chat->avatar = thumb_fix('storage/uploads/noimage.png', true, 40, 40);
-            $chat->title = _lang('Deleted user');
+            $chat->title = '';
+
+            foreach ($chatUsers as $chatUser) {
+                $chat->title .= $chatUser->name.', ';
+            }
         }
+        
+        $chat->profileUrl = profile_url($firstUserInDialog->id, $firstUserInDialog->name);
 
         $lastUpdated = $db->get_row('SELECT * FROM '.DB_PREFIX.'messages WHERE conversation_id = '.toDb($chat->conf_id).' ORDER BY created_at DESC LIMIT 0,1');
     

@@ -1060,13 +1060,30 @@ $picture  = str_replace(ABSPATH.'/' ,'',$thumb); } else {
  <div class="controls"> 
  <input type="text" name="play-name" required class=" form-control col-md-12" placeholder="<?php echo _lang("Your playlist's title"); ?>" /> 
  </div>  
+ </div>
+
+ <div class="control-group">  
+ <label class="control-label"> <?php echo _lang("Is it a Paid?"); ?> </label> 
+ <div class="controls"> 
+ <input type='checkbox' class='payEnable' />
  </div>  
+ </div>
+
+ <div class='paymentValues'>
  <div class="control-group">  
  <label class="control-label"> <?php echo _lang("Price"); ?> </label> 
  <div class="controls"> 
  <input type="number" max="10000" min="0" name="play-price" class=" form-control col-md-12" placeholder="<?php echo _lang("Your playlist's price (can be empty)"); ?>" /> 
  </div>  
  </div> 
+ <div class="control-group">
+ <label class="control-label"> <?php echo _lang("Your Card Number"); ?> </label> 
+ <div class="controls"> 
+ <input type="number" name="play-card" class=" form-control col-md-12" placeholder="<?php echo _lang("Your card number"); ?>" /> 
+ </div>  
+ </div>
+ </div>
+
  <div class="control-group mtop20 row"> 
  <label class="control-label"><?php echo _lang("Description"); ?> </label> 
  <div class="controls"> 
@@ -1114,3 +1131,24 @@ $picture  = str_replace(ABSPATH.'/' ,'',$thumb); } else {
  <?php do_action('dashSide-bottom'); ?> </span> 
  </div>  
  </div>
+
+<style>
+.paymentValues {
+	display: none;
+}
+</style>
+
+<script>
+$('.payEnable').on('click', function(){
+
+	if($(this).prop('checked') === true)
+	{
+		$('.paymentValues').show();
+	} else
+	{
+		$('.paymentValues').hide();
+
+		$('.paymentValues').find('input').val('');
+	}
+})
+</script>

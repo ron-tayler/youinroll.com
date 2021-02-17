@@ -1,141 +1,22 @@
-<?php include_once('../../load.php'); the_sidebar(); do_action('pre-video');?>
+<?php include_once('../../load.php'); do_action('pre-video');?>
 
-<style>
-#wrapper {
-    margin-left: 0px !important;
-    margin-top: 9vh;
-}
+<?
+$streamId = token_id();
 
-.p-stream {
-    margin-top: auto;
-}
+$streamInfo = $db->get_row("SELECT id,name,cover,description,category,likes,views,moderator_id FROM ".DB_PREFIX."conferences where id = '".$streamId."' AND type = 'stream' limit  0,1");
 
-.icon-threedot:before {
-    content: "\e5d4";
-}
+if($streamInfo !== null)
+{
+    $streamInfo->categoryName = $db->get_row('SELECT cat_name FROM '.DB_PREFIX.'channels WHERE cat_id = '.toDb($streamInfo->category).'LIMIT(0,1)');
+    $userInfo = $db->get_row("SELECT id,avatar,name,onAir FROM ".DB_PREFIX."users where id = ".toDb((int)$streamInfo->moderator_id)." limit  0,1");
+    $userInfo->isAuthor = ((int)$streamInfo->moderator_id === user_id());
 
-.icon-hide:before {
-    content: "\e31c";
+    if($userInfo->isAuthor)
+    {
+        $db->query('UPDATE '.DB_PREFIX.'conferences SET on_air = true WHERE id = '.toDb($streamId));
+    }
 }
-
-.icon-send:before {
-    content: "\e163";
-}
-
-.stream-chat {
-    position: fixed;
-    right: 0;
-    top: 9vh;
-    width: 290px;
-    background: #f3f3f3;
-}
-
-.stream-chat-control {
-    display: flex;
-    justify-content:center;
-    width: 240px;
-}
-
-.stream-chat-inner {
-    height: 75vh;
-}
-
-.stream-chat-header {
-    display: flex;
-    height: 7vh;
-    justify-content: space-between;
-    padding: 10px;
-    background: #e6e6e6;
-}
-
-.stream-chat-header > i:before {
-    font-size: 20px;
-    padding: 5px;
-    color: black;
-    border-radius: 20px;
-}
-
-.emoj.emoj-inline>.emoj-button {
-    margin-right: auto !important;
-}
-
-.stream-chat-control .emoj.form-control.emoj-inline {
-    width:210px;
-}
-
-.stream-chat-controll #sendChat {
-}
-
-.stream-chat-control .message-input-actions {
-    width:10px;
-}
-
-.stream-holder {
-    width:81%;
-}
-
-#streamerImage {
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-}
-
-#streamerName {
-    margin-left: 5px;
-    color: black !important;
-}
-
-.streamer-row {
-    display: flex;
-    vertical-align: middle;
-    align-items: center;
-}
-
-.stream-header {
-    display:flex;
-    justify-content: space-between;
-}
-
-.stream-header h1 {
-    margin-top: auto !important;
-    margin-bottom: auto !important;
-    color: black;
-}
-
-.stream-header-end {
-    display:flex;
-}
-
-.btn-secondary2 {
-    color: black !important;
-    padding: revert;
-}
-
-.streamerData {
-    width: 100%;
-    margin-left: 15px;
-}
-
-.streamerStatus {
-    border-radius: 50%;
-    border-style: solid;
-    border-width: 2px;
-    padding: 2px;
-}
-
-.streamerStatus.online {
-    border-color: red;
-}
-
-#stream {
-    min-height: 65vh !important;
-}
-
-.user-media-actions {
-    display: flex;
-    justify-content: space-between;
-}
-</style>
+?>
 
 <div class="stream-holder row">
     <div id="renderPlaylist">
@@ -146,22 +27,6 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-    <div class="stream-chat">
-        <div class="stream-chat-header">
-            <i class="icon-hide"></i>
-            <i class="icon-threedot"></i>
-        </div>
-        <div class='stream-chat-inner'>
-
-        </div>
-        <div class="stream-chat-control">
-            <textarea id="insertChat" class="form-control" name='text' rows="1"></textarea>
-            <div class="message-input-actions btn-group">
-                <div id="showEmoji"></div>
-                <button id="sendChat" class="message-input-btn btn btn-primary" type="button"><i class="icon-send"></i></button>
             </div>
         </div>
     </div>
@@ -501,33 +366,3 @@
 </div>
 </div>
 </div>
-
-<script>
-$(document).on('ready', function() {
-    jitsiClass.runConf('#stream', $('#stream').data('stream'), function(data){
-        
-        window.addEventListener("beforeunload", function(evt) {
-
-            evt.preventDefault();
-
-            $.get('https://youinroll.com/lib/ajax/jitsi/removeOnAir.php', {
-                streamId: $('#stream').data('stream')
-            });
-
-            return null;
-        });
-
-        window.addEventListener("onbeforeunload", function(evt) {
-
-            evt.preventDefault();
-
-            $.get('https://youinroll.com/lib/ajax/jitsi/removeOnAir.php', {
-                streamId: $('#stream').data('stream')
-            });
-
-            return null;
-        });
-
-    });
-});
-</script>

@@ -25,7 +25,6 @@ class YNRTemplate {
             $additionalJs .= $jsPath ? '<script src="'.$jsPath.'"></script>' : '';
         }
         
-
         include(TPL.'/general/tpl.header.php'); 
         include_once(TPL.$templatePath);
         include(TPL.'/general/tpl.footer.php');

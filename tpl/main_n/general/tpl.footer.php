@@ -127,15 +127,20 @@
 <script src="<?=tpl()?>styles/minjs.php"></script>
 
 <? if(is_user()) {?>
+<script src="/tpl/main_n/styles/js/modules/Stomp/lib/stomp.min.js"></script>
 <script src="/tpl/main_n/styles/js/chat.js"></script>
-<script src="/tpl/main_n/styles/js/modules/Amqp/callback_api.js"></script>
 <script src="/tpl/main_n/styles/js/jitsi.js"></script>
 
 <script>
     window.chatClass = new YRChat();
     window.jitsiClass = new JitsiChat();
 
-    jitsiClass.startListener('Test');
+    window.CurrentUser = parseInt(<?=user_id()?>);
+
+    let chatClass = new YRChat();
+
+    chatClass.startListener();
+    
 </script>
 <?}?>
 

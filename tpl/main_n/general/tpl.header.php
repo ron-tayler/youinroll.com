@@ -126,7 +126,7 @@ global $page;
     <?=players_js()?>
 </head>
 
-<body class="body-<?=$page?>">
+<body data-route="<?=$page?>" class="body-<?=$page?>">
     <?
     $type = 'iconic';
 

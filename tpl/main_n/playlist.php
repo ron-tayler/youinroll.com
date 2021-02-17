@@ -4,7 +4,7 @@ $playlist = $globalTemplateVariable;
 
 $isBuyed = true;
 
-if($playlist->price !== null)
+if($playlist->price !== null && (int)$playlist->owner !== user_id())
 {
     $isBuyed = $db->get_row('SELECT * FROM '.DB_PREFIX.'users_courses WHERE user_id = '.toDb(user_id()).' AND playlist_id = '.$playlist->id." AND status = 'ready' LIMIT 0,1");
 }

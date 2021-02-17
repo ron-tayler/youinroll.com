@@ -29,12 +29,10 @@ $(CreditCard.init);
     $(this).addClass('active');
     $('.step.choose').show();
 
-    let date = new Date();
-
-    date.setMonth(date.getMonth() + parseInt($(this).data('month')));
+    /* let date = new Date();
     
-    $('.receipt-date').text(`${date.getFullYear()}-${date.getMonth}-${date.getDay()}`);
-    $('.receipt-price').text($(this).data('price'));
+    $('.receipt-date').text(`${date.getFullYear()}-${date.getMonth() + parseInt($(this).data('month'))}-${date.getDay()}`);
+    $('.receipt-price').text($(this).data('price')); */
     
   });
 

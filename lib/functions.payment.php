@@ -165,11 +165,11 @@ class YNRPayment {
         return $cards;
     }
 
-    public function charge($sub)
+    public function charge($sub, $newValid)
     {
         global $cachedb, $db;
 
-        $user = $cachedb->get_row('SELECT email FROM '.DB_PREFIX.'users WHERE id = '.toDb($sub->user_id).' LIMIT 0,1');
+        $user = $cachedb->get_row('SELECT email FROM '.DB_PREFIX.'users WHERE id = '.$sub->user_id.' LIMIT 0,1');
 
         $subApi = new TinkoffMerchantAPI(
             self::tinkoffKey,  //Ваш Terminal_Key
@@ -177,18 +177,20 @@ class YNRPayment {
         );
 
         $customerData = [
-            'CustomerKey' => $sub->RebillId,
-            'SendEmail' => true,
             'PaymentId' => $sub->bank_id,
-            'InfoEmail' => $user->email
+            'RebillId' => $sub->rebill_id
         ];
 
         $subApi->charge($customerData);
 
         if($subApi->response)
         {
-            $db->query('UPDATE '.DB_PREFIX."user_subscriptions SET valid_to = '".toDb($newValid)."' WHERE id = ".toDb($sub->id));
+            //$db->query('UPDATE '.DB_PREFIX."user_subscriptions SET renewed = '1', SET valid_to = '".$newValid."' WHERE id = ".toDb($sub->id));
         }
+
+        print_r($subApi);
+        echo '\n';
+
     }
 
     private function tinkoffPay($api, $user = null)
@@ -358,7 +360,7 @@ class YNRPayment {
         die();
     }
 
-    private function getOrderId($length = 30) :string
+    private function getOrderId($length = 30)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -369,7 +371,7 @@ class YNRPayment {
         return $randomString;
     }
 
-    private function makeDescription($type = 'subscribe') :string
+    private function makeDescription($type = 'subscribe')
     {
         switch ($type) {
             case 'course':

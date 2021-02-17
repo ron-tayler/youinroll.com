@@ -12,12 +12,12 @@ $streamInfo = $db->get_row("SELECT id,name,cover,description,category,likes,view
 
 if($streamInfo !== null)
 {
-    $userInfo = $db->get_row("SELECT id,avatar,name,onAir FROM ".DB_PREFIX."users where id = ".toDb(user_id())." limit  0,1");
+    $userInfo = $db->get_row("SELECT id FROM ".DB_PREFIX."users where id = ".toDb(user_id())." limit  0,1");
     $userInfo->isAuthor = ((int)$streamInfo->moderator_id === user_id());
 
     if($userInfo->isAuthor)
     {
-        $db->query('UPDATE '.DB_PREFIX.'users SET onAir = false WHERE id = '.toDb(user_id()));
+        $db->query('UPDATE '.DB_PREFIX.'conferences SET on_air = 0 WHERE id = '.toDb($streamInfo->id));
     }
 }
 ?>

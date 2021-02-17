@@ -1,7 +1,10 @@
-<?
-require_once('../../load.php');
+<?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-$allSubs = $cachedb->get_results("SELECT * FROM vibe_user_subscriptions WHERE valid_to > CURRENT_TIMESTAMP AND payment_status <> 'waiting'");
+require_once(getcwd().'/cron_load.php');
+
+$allSubs = $db->get_results("SELECT * FROM vibe_user_subscriptions WHERE renewed = '0'");
 
 foreach ($allSubs as $sub) {
 
@@ -27,10 +30,13 @@ foreach ($allSubs as $sub) {
 
     $newValid = date("Y-m-d h:i:s", strtotime("+$month month"));
 
-    if( strtotime($newValid) <= time() )
-    {
-        $YNRpayment->charge($sub);
-    }
-}
+    echo "\n";
+    /* print_r(strtotime($sub->valid_to));
+    echo "\n";
+    print_r(time());
+    echo "\n";
+    die(); */
 
+    $YNRpayment->charge($sub, $newValid);
+}
 ?>

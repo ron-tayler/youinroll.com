@@ -283,14 +283,31 @@ input, select {
 }
 
 .receipt {
-  border: 1px solid gray;
-  width: 100%;
+  width: 75%;
+  margin-left: 20px;
 }
 
 .receipt * {
-  border: 1px solid gray;
   font-weight: bold;
   padding: 10px;
+  text-align: end;
+}
+
+.receipt > thead > * {
+  font-size: 12px;
+}
+
+.btn-continue {
+  display: block;
+  background-color: #358fe4 !important;
+  border-radius: 0px !important;
+  margin: 0 auto;
+  height: 40px;
+  margin-top: 20px;
+}
+
+.receipt > tbody tr:last-child > * {
+  font-size: 18px;
 }
 
 .payment-method {

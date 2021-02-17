@@ -1,0 +1,134 @@
+/* #wrapper {
+    margin-left: 0px !important;
+    margin-top: 9vh;
+} */
+
+.p-stream {
+    margin-top: auto;
+}
+
+.icon-threedot:before {
+    content: "\e5d4";
+}
+
+.icon-hide:before {
+    content: "\e31c";
+}
+
+.icon-send:before {
+    content: "\e163";
+}
+
+.stream-chat {
+    position: fixed;
+    right: 0;
+    top: 9vh;
+    width: 290px;
+    background: #f3f3f3;
+}
+
+.stream-chat-control {
+    display: flex;
+    justify-content:center;
+    width: 240px;
+}
+
+.stream-chat-inner {
+    height: 75vh;
+}
+
+.stream-chat-header {
+    display: flex;
+    height: 7vh;
+    justify-content: space-between;
+    padding: 10px;
+    background: #e6e6e6;
+}
+
+.stream-chat-header > i:before {
+    font-size: 20px;
+    padding: 5px;
+    color: black;
+    border-radius: 20px;
+}
+
+.emoj.emoj-inline>.emoj-button {
+    margin-right: auto !important;
+}
+
+.stream-chat-control .emoj.form-control.emoj-inline {
+    width:210px;
+}
+
+.stream-chat-controll #sendChat {
+}
+
+.stream-chat-control .message-input-actions {
+    width:10px;
+}
+
+.stream-holder {
+    width:81%;
+}
+
+#streamerImage {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+
+#streamerName {
+    margin-left: 5px;
+    color: black !important;
+}
+
+.streamer-row {
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+}
+
+.stream-header {
+    display:flex;
+    justify-content: space-between;
+}
+
+.stream-header h1 {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    color: black;
+}
+
+.stream-header-end {
+    display:flex;
+}
+
+.btn-secondary2 {
+    color: black !important;
+    padding: revert;
+}
+
+.streamerData {
+    width: 100%;
+    margin-left: 15px;
+}
+
+.streamerStatus {
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    padding: 2px;
+}
+
+.streamerStatus.online {
+    border-color: red;
+}
+
+#stream {
+    min-height: 65vh !important;
+}
+
+.user-media-actions {
+    display: flex;
+    justify-content: space-between;
+}

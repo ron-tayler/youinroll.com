@@ -122,7 +122,7 @@ $thumb  = $uploader->getTargetPath();
 $picture  = str_replace(ABSPATH.'/' ,'',$thumb);
 } else { $picture  = ''; 	}
 
-$db->query("INSERT INTO ".DB_PREFIX."playlists (`owner`, `title`, `picture`, `description`, `price`) VALUES ('".user_id()."','".toDb($_POST['play-name'])."', '".toDb($picture)."' , '".toDb($_POST['play-desc'])."', '".toDb($_POST['play-price'])."')");
+$db->query("INSERT INTO ".DB_PREFIX."playlists (`owner`, `title`, `picture`, `description`, `price`, `card_number`) VALUES ('".user_id()."','".toDb($_POST['play-name'])."', '".toDb($picture)."' , '".toDb($_POST['play-desc'])."', '".toDb($_POST['play-price'])."', '".toDb($_POST['play-card'])."')");
 $msg = '<div class="msg-info mleft20 mright20 mtop20">'._lang("Playlist created.").'</div>';
 }
 if(isset($msg)) {

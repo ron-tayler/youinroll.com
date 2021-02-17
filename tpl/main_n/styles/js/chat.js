@@ -1,10 +1,10 @@
 class YRChat {
+    
     constructor(options) {
 
         this.actions = {
             'getConversations': this._getConversations,
             'getMessages': this._getMessages,
-            'recieveMessages': this._recieveMessages,
             'sendMessage': this._sendMessage,
             'getChannels': this._getChannels
         }
@@ -13,6 +13,95 @@ class YRChat {
     runMethod(options) {
         this.actions[options.method](options.params);
     }
+
+    /*
+     * Method for recieving messages of socket
+     */
+    recieveMessages(messageData) {
+
+        let message = JSON.parse(messageData.body);
+
+        switch ($('body').data('route')) {
+            case 'conversation':
+                if(message.type === 'message')
+                {
+                    let typeClass = (parseInt(message.user_id) === CurrentUser)? 'owner' : '';
+
+                    if(parseInt(message.chatId) === parseInt(ActiveChat))
+                    {
+                        let $message = `<div class="chat-msg ${typeClass}">
+                            <div class="chat-msg-profile">
+                                <a href='${message.avatarLink}'>
+                                    <img class="chat-msg-img"
+                                        src="${message.avatar}"
+                                        alt="${message.author}" />
+                                </a>
+                                <div class="chat-msg-date">1.22pm</div>
+                            </div>
+                            <div class="chat-msg-content">
+                                <div class="chat-msg-text">${message.text}</div>
+                            </div>
+                        </div>`;
+
+                        $('.msg.msg-active').find('.msg-message').text(message.text);
+                        $('.msg.msg-active').find('.msg-date').text('Сейчас');
+
+                        $('.chat-area-main').append($message);
+
+                        if(typeClass === 'owner')
+                        {
+                            document.querySelector(".chat-area").scrollTo(0,document.querySelector(".chat-area").scrollHeight);
+                        }
+                    }
+                }
+                break;
+        
+            default:
+                $.notify(message.author + ': ' + message.text);
+                let prevVal = $('#myInbox').find('.badge').text();
+
+                $('#myInbox').find('.badge').text(parseInt(prevVal) + 1);
+                break;
+        }
+    }
+
+    startListener() {
+
+        window.ActiveChat = 0;
+
+        $.get('https://youinroll.com/lib/ajax/chat/getUserRoom.php', function (data){    
+            
+            let bc = new BroadcastChannel('private');
+            let ws = new WebSocket('wss://youinrolltinod.com:15673/ws');
+
+            window.client = Stomp.over(ws);
+            let choosenToken = '';
+            let ownerId = '';
+
+            bc.onmessage = function (messageData) {
+                console.log(messageData);
+            }
+
+            client.debug = true;
+
+            let queuePrefix = 'private';
+            let roomHash = data;
+            
+            let on_connect = function() {
+
+                client.subscribe(`/queue/${queuePrefix}-${roomHash}`, function(data) {
+                    new YRChat().recieveMessages(data)                   
+                });
+            };
+
+            let on_error =  function() {
+                
+            };
+            
+            client.connect('xatikont', 'tester322', on_connect, on_error, '/')
+        })
+    }
+
 
     /* Private actions */
 
@@ -23,7 +112,7 @@ class YRChat {
      */
     _getConversations(params) {
 
-        if (params.userId !== undefined && params.userId !== 0) {
+        if (params.userId !== undefined && params.userId !== 0 && !isNaN(params.userId) ) {
 
             $.get("lib/ajax/chat/getConversation.php", {
                     userId: params.userId
@@ -32,29 +121,19 @@ class YRChat {
 
                     let chat = JSON.parse(data);
 
-                    let $chat = `<li class="list-group-item active" data-id="${(chat.conf_id !== undefined) ? chat.conf_id : 0}" data-user="${chat.userId}">
-                        <div class="media">
-                        <div class="media-left">
-                            <a class="avatar" href="${chat.profileUrl}">
-                            <img class="img-responsive" src="${chat.avatar}" alt="${chat.title}"><i></i>
-                            </a>
+                    let $chat = `<div class="msg msg-active online" data-id="${(chat.conf_id !== undefined) ? chat.conf_id : 0}" data-user="${chat.userId}">
+                        <img class="msg-profile" src="${chat.avatar}"
+                            alt="${chat.title}" />
+                        <div class="msg-detail">
+                            <div class="msg-username">${chat.title}</div>
+                            <div class="msg-content">
+                                <span class="msg-message">${chat.lastMessage}</span>
+                                <span class="msg-date">${chat.lastUpdate}</span>
+                            </div>
                         </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                <p>
-                                ${chat.title}
-                                </p>
-                            </h4>
-                            <span class="media-text">${chat.lastMessage}</span>
-                            <span class="media-time">${chat.lastUpdate}</span>
-                        </div>
-                        <div class="media-right">
-                            <!-- <span class="badge badge-danger">${chat.unreadCount}</span> -->
-                        </div>
-                        </div>
-                    </li>`;
+                    </div>`;
 
-                    $(params.block).append($chat);
+                    $(params.block).after($chat);
 
                     if (chat.conf_id !== undefined) {
 
@@ -77,7 +156,6 @@ class YRChat {
 
                 let conversations = JSON.parse(data);
 
-
                 for (const key in conversations) {
 
                     let isCurrent = "";
@@ -85,32 +163,21 @@ class YRChat {
                     let chat = conversations[key];
 
                     if (params.chatId !== undefined || params.chatId !== 0) {
-                        isCurrent = (params.chatId === chat.id) ? "active" : "";
+                        isCurrent = (params.chatId === chat.id) ? "msg-active" : "";
                     }
+                    let $chat = `<div class="msg ${isCurrent}" data-id="${(chat.conf_id !== undefined) ? chat.conf_id : 0}">
+                        <img class="msg-profile" src="${chat.avatar}"
+                            alt="${chat.title}" />
+                        <div class="msg-detail">
+                            <div class="msg-username">${chat.title}</div>
+                            <div class="msg-content">
+                                <span class="msg-message">${chat.lastMessage}</span>
+                                <span class="msg-date">${chat.lastUpdate}</span>
+                            </div>
+                        </div>
+                    </div>`;
 
-                    let $chat = `<li class="list-group-item ${isCurrent}" data-id="${chat.conf_id}">
-                        <div class="media">
-                        <div class="media-left">
-                            <a class="avatar" href="${chat.profileUrl}">
-                            <img class="img-responsive" src="${chat.avatar}" alt="${chat.title}"><i></i>
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                <p>
-                                ${chat.title}
-                                </p>
-                            </h4>
-                            <span class="media-text">${chat.lastMessage}</span>
-                            <span class="media-time">${chat.lastUpdate}</span>
-                        </div>
-                        <div class="media-right">
-                            ${( parseInt(chat.unreadCount) !== 0) ? '<span class="badge badge-danger">'+chat.unreadCount+'</span>' : ''}
-                        </div>
-                        </div>
-                    </li>`;
-
-                    $(params.block).append($chat);
+                    $(params.block).after($chat);
                 }
 
             });
@@ -130,29 +197,15 @@ class YRChat {
 
             chats.forEach(chat => {
 
-                let $chat = `<li class="list-group-item active" data-id="0" data-user="${chat.id}">
-                    <div class="media">
-                    <div class="media-left">
-                        <a class="avatar" href="${chat.profileUrl}">
-                        <img class="img-responsive" src="${chat.avatar}" alt="${chat.name}"><i></i>
-                        </a>
+                let $chat = `<div class="msg search_result" data-id="0" data-user="${chat.id}">
+                    <img class="msg-profile" src="${chat.avatar}"
+                        alt="${chat.name}" />
+                    <div class="msg-detail">
+                        <div class="msg-username">${chat.name}</div>
                     </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            <p>
-                            ${chat.name}
-                            </p>
-                        </h4>
-                        <span class="media-text">${chat.lastMessage}</span>
-                        <span class="media-time"></span>
-                    </div>
-                    <div class="media-right">
-                        <!-- <span class="badge badge-danger">${chat.unreadCount}</span> -->
-                    </div>
-                    </div>
-                </li>`;
+                </div>`;
 
-                $(params.block).append($chat);
+                $(params.block).after($chat);
                 
             });
 
@@ -172,70 +225,55 @@ class YRChat {
 
                 let messages = JSON.parse(data);
 
+                ActiveChat = params.chatId;
 
-                for (const key in messages) {
+                for (const key in messages.messages) {
 
-                    let isCurrent = "";
+                    let message = messages.messages[key];
 
-                    let message = messages[key];
+                    let typeClass = message.isMine ? 'owner' : '';
 
-                    let typeClass = message.isMine ? 'chat-right' : 'chat-left';
-
-                    let $message = `<div class="chat dummy-chat ${typeClass}">
-                      <div class="chat-avatar">
-                        <a target="_blank" class="avatar" href="${message.avatarLink}" title="${message.author}">
-                          <img src="${message.avatar}" alt="${message.author}">
-                        </a>
-                      </div>
-                      <div class="chat-body">
-                        <div class="chat-content">
-                          ${message.text}
+                    let $message = `<div class="chat-msg ${typeClass}">
+                        <div class="chat-msg-profile">
+                            <a href='${message.avatarLink}'>
+                                <img class="chat-msg-img"
+                                    src="${message.avatar}"
+                                    alt="${message.author}" />
+                            </a>
+                            <div class="chat-msg-date">1.22pm</div>
                         </div>
-                      </div>
+                        <div class="chat-msg-content">
+                            <div class="chat-msg-text">${message.text}</div>
+                        </div>
                     </div>`;
 
                     $(params.block).append($message);
+
                 }
 
-            });
-    }
+                $(params.blockContact).empty();
 
-    /*
-     * Method for recieving messages of selected chat
-     * @param {Object} params.message.from Message from
-     * @param {Object} params.message.text Text of message
-     */
-    _recieveMessages(params) {
+                for(const key in messages.chatInfo[0])
+                {
+                    if(key < 5)
+                    {
+                        let user = messages.chatInfo[0][key];
 
-        let message = params.message;
+                        $(params.blockContact).prepend(`<img class="chat-area-profile" data-id="${user.user_id}" src="${user.authorImage}" alt="" />`);
+                    }   
+                }
 
-        let currentEmail = JSON.parse(localStorage.getItem('jitsiArguments')).username.replace('-dmnSymb-', '@');
+                if( messages.chatInfo[0].length > 3 )
+                {
+                    let participantsLeft = messages.chatInfo[0].length - 3;
 
-        let isMine = (message.from.replace('-dmnSymb-', '@') === currentEmail) ?
-            true : false;
+                    $(params.blockContact).append(`<span>${participantsLeft}</span>`);
+                }
 
-        let typeClass = isMine ? 'chat-right' : 'chat-left';
+                $(params.blockContact).append(`<span data-toggle="modal" data-target="#addParticipantModal" id='addParticipant'>+</span>`);
 
-        $.get("https://youinroll.com/lib/ajax/chat/getAvatarByEmail.php", {
-                email: message.from.replace('-dmnSymb-', '@')
-            },
-            function(data) {
-                let userInfo = JSON.parse(data);
+                document.querySelector(".chat-area").scrollTo(0,document.querySelector(".chat-area").scrollHeight);
 
-                let $message = `<div class="chat dummy-chat ${typeClass}">
-                    <div class="chat-avatar">  
-                        <a target="_blank" class="avatar" href="${userInfo.avatarLink}" title="${userInfo.name}">
-                            <img src="${userInfo.avatar}" alt="${userInfo.name}">
-                        </a>
-                    </div>
-                    <div class="chat-body">
-                        <div class="chat-content">
-                            ${message.text}
-                        </div>
-                    </div>
-                </div>`;
-
-                $(params.block).append($message);
             });
     }
 
@@ -246,7 +284,7 @@ class YRChat {
             text: params.text
         };
 
-        if (params.toUser !== undefined || params.toUser !== 0) {
+        if (params.toUser !== undefined && params.toUser !== 0) {
             postData = {
                 chatId: params.chatId,
                 userId: params.toUser,
@@ -260,8 +298,10 @@ class YRChat {
 
                 data = JSON.parse(data);
 
-                if (data.result === true && data.result !== undefined) {
-                    params.afterComplete(data);
+                if (data !== null) {
+                    for (const user in data.users) {
+                        client.send(`/queue/private-${data.users[user].chatRoom}`, {}, JSON.stringify(data.message));
+                    }
                 }
 
             });
