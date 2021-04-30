@@ -1,6 +1,7 @@
 <?php
 
 namespace Controller;
+use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Exception\AMQPTimeoutException;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -13,46 +14,35 @@ use PhpAmqpLib\Message\AMQPMessage;
 class Debug extends \LMVCL implements \IController
 {
 
+    private AMQPStreamConnection $connection;
+    private AMQPChannel $channel;
+
     public function index(array $param)
     {
-        $wait = $param['wait']??0;
+        $method = $param['method'];
+        $ret = '';
+        switch ($method){
+            case 'listen':
+                $wait = $this->request->get['wait']??0;
+                $id = $this->request->get['user_id']??0;
+                $ret = $this->connectAndListen($wait,$id);
+                break;
+            case 'send':
+                $id = $this->request->get['peer_id']??0;
+                $msg = $this->request->get['message']??'';
+                $this->connectAndSend($id,$msg);
+                $ret = 'Send \''.$msg.'\'';
+                break;
+            case 'work':
 
-        if($wait>0){
-            $id = $this->request->get['user_id']??0;
-
-            if($id==0)
-                throw new \ExceptionBase('Параметры peer_id или message пустые');
-
-            $msg = $this->connectAndListen($wait,$id);
-            return ['message'=>$msg];
-        }else{
-            $id = $this->request->get['peer_id']??0;
-            $msg = $this->request->get['message']??'';
-
-            if($id==0 or $msg==='')
-                throw new \ExceptionBase('Параметры peer_id или message пустые');
-
-            $this->connectAndSend($id,$msg);
-            return ['message'=>" [x] Sent 'Hello World!'"];
         }
+        return ['message'=>$ret];
     }
 
     private function connectAndSend($id,$msg){
-        $connection = new AMQPStreamConnection(
-            'youinrolltinod.com',
-            5672,
-            'xatikont',
-            'tester322'
-        );
-        $channel = $connection->channel();
-
         $msg = new AMQPMessage($msg);
-
-        $channel->basic_publish($msg, 'debug', 'id'.$id);
-
-        //Не забываем закрыть канал и соединение
-        $channel->close();
-        $connection->close();
+        
+        $this->channel->basic_publish($msg, 'debug', 'id'.$id);
     }
 
     private function connectAndListen($wait,$id):string{
@@ -114,6 +104,9 @@ class Debug extends \LMVCL implements \IController
             false,
             $callback
         );
+
+        $channel->basic_get('debug-rtf');
+
         try {
             // Уходим в прослушку
             $channel->wait(null, false, $wait);
@@ -126,4 +119,24 @@ class Debug extends \LMVCL implements \IController
         $connection->close();
         return $response??"Сообщение не получено";
     }
+
+    private function worker(){
+
+    }
+
+    private function connect2rabbit(){
+        $this->connection = new AMQPStreamConnection(
+            'youinrolltinod.com',
+            5672,
+            'xatikont',
+            'tester322'
+        );
+        $this->channel = $this->connection->channel();
+    }
+
+    private function disconnect2rabbit(){
+        $this->channel->close();
+        $this->connection->close();
+    }
+
 }

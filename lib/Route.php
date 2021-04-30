@@ -16,7 +16,7 @@ class Route {
 
 	/**
 	* Target for this route, can be anything.
-	* @var mixed
+	* @var string
 	*/
 	private $target;
 
@@ -83,6 +83,10 @@ class Route {
 		return preg_replace_callback("/:(\w+)/", array(&$this, 'substituteFilter'), $this->url);
 	}
 
+    /**
+     * @param $matches
+     * @return mixed|string
+     */
 	private function substituteFilter($matches) {
 		if (isset($matches[1]) && isset($this->filters[$matches[1]])) {
         		return $this->filters[$matches[1]];

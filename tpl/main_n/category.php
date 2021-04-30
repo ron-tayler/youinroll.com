@@ -86,7 +86,7 @@ and     @pv := concat(@pv, ',', cat_id)) ) and " . DB_PREFIX . "images.pub > 0 a
     }
     ?>
 </div>
-<?php/*
+<?php/* TODO Временно отключили
 <div class="load-cats" data-type="<?=($typeofC < 2)?'1':$typeofC?>">
     &nbsp
 </div>*/?>

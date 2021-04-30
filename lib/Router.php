@@ -36,7 +36,7 @@ class Router {
     *
     * Maps the given URL to the given target.
     * @param string $routeUrl string
-    * @param mixed $target The target of this route. Can be anything. You'll have to provide your own method to turn *      this into a filename, controller / action pair, etc..
+    * @param string $target The target of this route. Can be anything. You'll have to provide your own method to turn *      this into a filename, controller / action pair, etc..
     * @param array $args Array of optional arguments.
     */
     public function map($routeUrl, $target = '', array $args = array()) {
@@ -91,7 +91,7 @@ class Router {
      * If called multiple times
      * @param string $requestUrl
      * @param string $requestMethod
-     * @return bool|mixed
+     * @return Route|bool
      */
     public function match($requestUrl, $requestMethod = 'GET') {
 
@@ -129,13 +129,13 @@ class Router {
     }
 
 
-    
     /**
      * Reverse route a named route
-     * 
-     * @param string $route_name The name of the route to reverse route.
+     *
+     * @param string $routeName The name of the route to reverse route.
      * @param array $params Optional array of parameters to use in URL
      * @return string The url to the route
+     * @throws Exception
      */
     public function generate($routeName, array $params = array()) {
         // Check if route exists

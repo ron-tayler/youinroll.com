@@ -94,5 +94,5 @@ $queues = $db->get_results('SELECT
 $result = ['message' => $message, 'views' => $stream->views, 'chatRoom' => $roomName, 'queues' => $queues];
 $result['message']->chatId = $result['message']->stream_id;// TODO Временно
 
-echo( json_encode($result, true) );
+echo(json_encode($result, true));
 ?>

@@ -1,28 +1,25 @@
 <?php //security check
 if( !defined( 'in_phpvibe' ) || (in_phpvibe !== true) ) {
-die();
+    die();
 }
-/* This is your phpVibe config file.
-* Edit this file with your own settings following the comments next to each line
-*/
+// URLS
+define( 'SITE_URL', 'https://youinroll.com/' );
+define( 'HTTP_URL', 'http://youinroll.com/' );
+define( 'HTTPS_URL', 'https://youinroll.com/' );
 
-/*
-** MySQL settings - You can get this info from your web host
-*/
+// Directories
+define('DIR_SITE',__DIR__);
+define('DIR_APP',DIR_SITE.'/app');
+define('DIR_SYSTEM',DIR_SITE.'/system');
+define('DIR_LIB',DIR_SITE.'/lib');
+define('DIR_STORAGE',DIR_SITE.'/storage');
+define('DIR_LOG',DIR_SITE.'/logs');
 
-/** MySQL database username */
+/** MySQL database */
 define( 'DB_USER', 'xatikont_youinro' );
-
-/** MySQL database password */
 define( 'DB_PASS', 'Cvbn636153' );
-
-/** The name of the database */
 define( 'DB_NAME', 'xatikont_youinro' );
-
-/** MySQL hostname */
 define( 'DB_HOST', 'localhost' );
-
-/** MySQL tables prefix */
 define( 'DB_PREFIX', 'vibe_' );
 
 /** MySQL cache timeout */
@@ -35,9 +32,6 @@ define( 'DB_CACHE', '12' );
 /** License key 
 Create it in the store, under "My Licenses" **/
 define( 'phpVibeKey', '1486h5589ad' );
-
-/** Site url (with end slash, ex: http://www.domain.com/ ) **/
-define( 'SITE_URL', 'https://youinroll.com/' );
 
 /** Admin folder, rename it and change it here **/
 define( 'ADMINCP', 'moderator' );

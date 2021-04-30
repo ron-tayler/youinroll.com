@@ -1,6 +1,5 @@
 <?php
 // PHP Init
-ini_set('display_errors', 0);
 define('DISPLAY_ERROR',false);
 define('LOGFILE_ERROR',true);
 
@@ -43,23 +42,23 @@ require_once DIR_SYSTEM . '/Errors/Load_Errors.php';
 ob_start();
 try {
     //Composer autoload.php
-    require_once DIR_SYSTEM.'/vendor/autoload.php';
+    require_once DIR_SYSTEM . '/vendor/autoload.php';
 
     // Интерфейсы движка
-    require_once DIR_ENGINE.'/IEngine.php';
-    require_once DIR_ENGINE.'/IController.php';
-    require_once DIR_ENGINE.'/IModel.php';
-    require_once DIR_ENGINE.'/IViewer.php';
-    require_once DIR_ENGINE.'/ILanguage.php';
+    require_once DIR_ENGINE . '/IEngine.php';
+    require_once DIR_ENGINE . '/IController.php';
+    require_once DIR_ENGINE . '/IModel.php';
+    require_once DIR_ENGINE . '/IViewer.php';
+    require_once DIR_ENGINE . '/ILanguage.php';
 
     // Классы движка
-    require_once DIR_ENGINE.'/Registry.php';
-    require_once DIR_ENGINE.'/Loader.php';
-    require_once DIR_ENGINE.'/Router.php';
-    require_once DIR_ENGINE.'/Route.php';
-    require_once DIR_ENGINE.'/Request.php';
-    require_once DIR_ENGINE.'/Response.php';
-    require_once DIR_ENGINE.'/LMVCL.php';
+    require_once DIR_ENGINE . '/Registry.php';
+    require_once DIR_ENGINE . '/Loader.php';
+    require_once DIR_ENGINE . '/Router.php';
+    require_once DIR_ENGINE . '/Route.php';
+    require_once DIR_ENGINE . '/Request.php';
+    require_once DIR_ENGINE . '/Response.php';
+    require_once DIR_ENGINE . '/LMVCL.php';
 
     // Логирование ошибок
     require_once DIR_ENGINE . '/Log.php';
@@ -120,7 +119,6 @@ try {
     spl_autoload_extensions('.php');
 
 }catch(ErrorBase | ExceptionBase $err){
-    header("Content-Type: text/html; charset=utf-8");
 
     $resp = json_encode(['error'=>[
         'code'=>$err->getCode(),

@@ -270,9 +270,9 @@ $db->query("INSERT INTO ".DB_PREFIX."playlist_data (`playlist`, `video_id`) VALU
 }
 }
 function history_playlist($uid = null) {
-global $db;
-if(isset($_SESSION['history_id'])) {
-return $_SESSION['history_id'];
+    global $db;
+    if(isset($_SESSION['history_id'])) {
+        return $_SESSION['history_id'];
 }
 if(is_null($uid)) {$uid = user_id();}
 $plays = $db->get_row("SELECT * FROM ".DB_PREFIX."playlists where owner= '".$uid."' and picture like '[history]'");
