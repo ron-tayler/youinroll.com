@@ -53,7 +53,8 @@ class PHPMailer
      * The character set of the message.
      * @type string
      */
-    public $CharSet = 'iso-8859-1';
+    //public $CharSet = 'iso-8859-1';
+    public $CharSet = 'utf-8';
 
     /**
      * The MIME Content-type of the message.
@@ -604,7 +605,9 @@ class PHPMailer
         if (ini_get('safe_mode') || !($this->UseSendmailOptions)) {
             $rt = @mail($to, $this->encodeHeader($this->secureHeader($subject)), $body, $header);
         } else {
-            $rt = @mail($to, $this->encodeHeader($this->secureHeader($subject)), $body, $header, $params);
+           // $rt = @mail($to, $this->encodeHeader($this->secureHeader($subject)), $body, $header, '-fyouinroll@youinroll.com');
+           //$rt = @mail($to, $this->encodeHeader($this->secureHeader($subject)), $body, $header, $params);
+           $rt = @mail($to, $this->encodeHeader($this->secureHeader($subject)), $body, $header, '-fyouinroll@youinroll.com');
         }
         return $rt;
     }

@@ -1,145 +1,168 @@
 @charset "UTF-8";
 
-input, select {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-  border: 0;
-  border-radius: 0;
-  outline: none;
+input,
+select {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    border: 0;
+    border-radius: 0;
+    outline: none;
 }
 
 .credit-card-wrapper .credit-card {
-  box-shadow: 0px 0px 10px 2px #000;
-  background: linear-gradient(-26deg, red 19%, black 24%);
-  border-radius: 8px;
-  color: white;
-  position: inherit;
-  font-size: 14px;
-  height: 240px;
-  width: 388.32px;
-  transition: all 1s ease;
+    box-shadow: 0px 0px 10px 2px #000;
+    background: linear-gradient(-26deg, red 19%, black 24%);
+    border-radius: 8px;
+    color: white;
+    position: inherit;
+    font-size: 14px;
+    height: 240px;
+    width: 388.32px;
+    transition: all 1s ease;
 }
+
 .credit-card-wrapper .credit-card.unfocused {
-  background: linear-gradient(-26deg, #a93131 26%, #2b2b2b 31%);
-  transition: all 1s ease;
+    background: linear-gradient(-26deg, #a93131 26%, #2b2b2b 31%);
+    transition: all 1s ease;
 }
+
 .credit-card-wrapper .front {
-  top: 0px;
-  left: 0px;
-  z-index: 2;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
 }
+
 .credit-card-wrapper .front .card-title {
-  font-size: 18px;
-  font-weight: bolder;
-  margin: 24px 0 0 24px;
+    font-size: 18px;
+    font-weight: bolder;
+    margin: 24px 0 0 24px;
 }
+
 .credit-card-wrapper .front .card-number {
-  padding: 12px 24px 0;
+    padding: 12px 24px 0;
 }
+
 .credit-card-wrapper .front .card-number .card-number-label {
-  margin: 3px 0 6px;
+    margin: 3px 0 6px;
 }
+
 .credit-card-wrapper .front .card-number input {
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  color: black;
-  font-size: 20px;
-  margin: 0 3px 0 0;
-  padding: 3px;
-  width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    color: black;
+    font-size: 20px;
+    margin: 0 3px 0 0;
+    padding: 3px;
+    width: 100%;
 }
+
 .credit-card-wrapper .front .card-expiration {
-  padding: 12px 24px 24px;
+    padding: 12px 24px 24px;
 }
-.credit-card-wrapper .front .card-expiration > div {
-  float: left;
-  padding: 3px;
+
+.credit-card-wrapper .front .card-expiration>div {
+    float: left;
+    padding: 3px;
 }
+
 .credit-card-wrapper .front .card-expiration .card-expiration-label {
-  padding-top: 32.4px;
+    padding-top: 32.4px;
 }
 
 .credit-card-wrapper .front .card-expiration .card-expiration-month:after {
-  left: 118px;
+    left: 118px;
 }
+
 .credit-card-wrapper .front .card-expiration .card-expiration-year:after {
-  left: 218px;
+    left: 218px;
 }
+
 .credit-card-wrapper .front .card-expiration .card-expiration-month-label {
-  margin-bottom: 6px;
+    margin-bottom: 6px;
 }
+
 .credit-card-wrapper .front .card-expiration .card-expiration-year-label {
-  margin-bottom: 6px;
+    margin-bottom: 6px;
 }
+
 .credit-card-wrapper .front .card-expiration .card-expiration-slash {
-  font-size: 32px;
-  padding: 30.72px 6px;
+    font-size: 32px;
+    padding: 30.72px 6px;
 }
+
 .credit-card-wrapper .front .card-expiration select {
-  border-radius: 4px;
-  border: 1px solid gray;
-  color: black;
-  font-size: 20px;
-  padding: 3px 12px 3px 8px;
-  width: 70px;
+    border-radius: 4px;
+    border: 1px solid gray;
+    color: black;
+    font-size: 20px;
+    padding: 3px 12px 3px 8px;
+    width: 70px;
 }
+
 .credit-card-wrapper .back {
-  top: -125px;
-  left: 170px;
-  z-index: 1;
+    top: -125px;
+    left: 170px;
+    z-index: 1;
 }
+
 .credit-card-wrapper .back .magnetic-strip {
-  background: #111;
-  margin-top: 24px;
-  height: 60px;
-  width: 100%;
+    background: #111;
+    margin-top: 24px;
+    height: 60px;
+    width: 100%;
 }
+
 .credit-card-wrapper .back .credit-card-ccv {
-  text-align: right;
+    text-align: right;
 }
+
 .credit-card-wrapper .back .credit-card-ccv .credit-card-ccv-label {
-  padding: 12px 24px 6px;
+    padding: 12px 24px 6px;
 }
+
 .credit-card-wrapper .back .credit-card-ccv .credit-card-ccv-strip {
-  margin: 0 24px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.4);
+    margin: 0 24px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.4);
 }
+
 .credit-card-wrapper .back .credit-card-ccv .credit-card-ccv-prefix {
-  color: black;
-  float: right;
-  font-size: 24px;
-  letter-spacing: 2.5px;
-  padding: 15px 12px;
-  transform: skew(10deg, 0);
+    color: black;
+    float: right;
+    font-size: 24px;
+    letter-spacing: 2.5px;
+    padding: 15px 12px;
+    transform: skew(10deg, 0);
 }
+
 .credit-card-wrapper .back .credit-card-ccv .credit-card-ccv-box {
-  background: white;
-  position: absolute;
-  top: 110px;
-  right: 29px;
-  content: "";
-  border-radius: 4px;
-  border: 1px solid gray;
-  height: 46px;
-  width: 80px;
+    background: white;
+    position: absolute;
+    top: 110px;
+    right: 29px;
+    content: "";
+    border-radius: 4px;
+    border: 1px solid gray;
+    height: 46px;
+    width: 80px;
 }
+
 .cc-row {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
 .credit-card-wrapper .back .credit-card-ccv input {
-  float: right;
-  background: transparent;
-  border-radius: 4px;
-  color: black;
-  font-size: 26px;
-  margin: 6px 0 0 0;
-  padding: 8px;
-  width: 70px;
-  transform: skew(10deg, 0);
+    float: right;
+    background: transparent;
+    border-radius: 4px;
+    color: black;
+    font-size: 26px;
+    margin: 6px 0 0 0;
+    padding: 8px;
+    width: 70px;
+    transform: skew(10deg, 0);
 }
 
 
@@ -157,7 +180,9 @@ input, select {
     position: relative;
 }
 
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
     color: #fff;
     background-color: #c5c5c5;
     border-color: transparent;
@@ -168,7 +193,8 @@ input, select {
     margin: 10% auto;
     color: black !important;
 }
-.modal-title > img {
+
+.modal-title>img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -185,7 +211,7 @@ input, select {
 }
 
 .modal-inner {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     flex-direction: row;
     color: black !important;
@@ -195,7 +221,7 @@ input, select {
     margin-top: 0px;
 }
 
-.modal-inner > a {
+.modal-inner>a {
     height: fit-content;
 }
 
@@ -204,12 +230,12 @@ input, select {
     border-color: white
 }
 
-.panel > * {
+.panel>* {
     color: black !important;
 }
 
 .panel {
-    border: 1px solid #a5a5a5; 
+    border: 1px solid #a5a5a5;
     border-radius: 10px;
     transition: border 0.5s;
     transition: border-radius 0.5s;
@@ -219,103 +245,104 @@ input, select {
 }
 
 .panel-price {
-  position: absolute;
-  bottom: 5px;
-  left: 5px;
-  width: 86%;
-  padding: 5px;
-  vertical-align: middle;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: 86%;
+    padding: 5px;
+    vertical-align: middle;
 }
 
 .panel-price small:first-child {
-  font-size:15px;
-  position: relative;
+    font-size: 15px;
+    position: relative;
 }
 
 .panel-price small:first-child:before {
-  position: absolute;
-  content: "";
-  left: 0;
-  top: 50%;
-  right: 0;
-  border-top: 1px solid;
-  border-color: inherit;
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    right: 0;
+    border-top: 1px solid;
+    border-color: inherit;
 
-  -webkit-transform:rotate(-15deg);
-  -moz-transform:rotate(-15deg);
-  -ms-transform:rotate(-15deg);
-  -o-transform:rotate(-15deg);
-  transform:rotate(-15deg);
+    -webkit-transform: rotate(-15deg);
+    -moz-transform: rotate(-15deg);
+    -ms-transform: rotate(-15deg);
+    -o-transform: rotate(-15deg);
+    transform: rotate(-15deg);
 }
 
 .panel-price small:nth-child(2) {
-  border-radius: 20px;
-  position: absolute;
-  left: 25px;
-  top: -7px;
-  background-color: yellowgreen;
+    border-radius: 20px;
+    position: absolute;
+    left: 25px;
+    top: -7px;
+    background-color: yellowgreen;
 }
 
 .panel-price small:last-child {
-  font-size: 15px;
-  margin-left: 14px;
+    font-size: 15px;
+    margin-left: 14px;
 }
 
-.panel-price > * {
-  margin: 0 auto;
-  font-weight: bold;
+.panel-price>* {
+    margin: 0 auto;
+    font-weight: bold;
 }
 
 #type-card {
-  display: none;
-  height: 409px;
+    display: none;
+    height: 409px;
 }
 
 .step {
-/*   opacity: .5;
+    /*   opacity: .5;
   cursor: not-allowed; */
 }
 
-.panel:hover, .price-col.active {
-    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+.panel:hover,
+.price-col.active {
+    box-shadow: 5px 0px 40px rgba(0, 0, 0, .2);
     border-radius: 20px;
     border-color: yellowgreen;
 }
 
 .receipt {
-  width: 75%;
-  margin-left: 20px;
+    width: 75%;
+    margin-left: 20px;
 }
 
 .receipt * {
-  font-weight: bold;
-  padding: 10px;
-  text-align: end;
+    font-weight: bold;
+    padding: 10px;
+    text-align: end;
 }
 
-.receipt > thead > * {
-  font-size: 12px;
+.receipt>thead>* {
+    font-size: 12px;
 }
 
 .btn-continue {
-  display: block;
-  background-color: #358fe4 !important;
-  border-radius: 0px !important;
-  margin: 0 auto;
-  height: 40px;
-  margin-top: 20px;
+    display: block;
+    background-color: #358fe4 !important;
+    border-radius: 0px !important;
+    margin: 0 auto;
+    height: 40px;
+    margin-top: 20px;
 }
 
-.receipt > tbody tr:last-child > * {
-  font-size: 18px;
+.receipt>tbody tr:last-child>* {
+    font-size: 18px;
 }
 
 .payment-method {
     display: flex;
     justify-content: space-between;
-  }
-   
-  .method {
+}
+
+.method {
     display: flex;
     flex-direction: column;
     width: 282px;
@@ -327,37 +354,39 @@ input, select {
     background-color: rgb(249, 249, 249);
     justify-content: center;
     align-items: center;
-  }
-   
-  .card-logos {
+}
+
+.card-logos {
     display: flex;
     width: 150px;
     justify-content: space-between;
     align-items: center;
-  }
-   
-  .radio-input {
+}
+
+.radio-input {
     margin-top: 20px;
-  }
+}
 
-  input[type="radio"]{
+input[type="radio"] {
     -webkit-appearance: radio;
-  }
+}
 
-  input[type="checkbox"]{
-    -webkit-appearance: checkbox;
-  }
-   
-  input[type='radio'] {
+input[type="checkbox"] {
+    -webkit-appearance: checkbox !important;
+    -moz-appearance: checkbox !important;
+    appearance: checkbox !important;
+}
+
+input[type='radio'] {
     display: inline-block;
-  }
-  
-  .modal-dialog {
-    width: 62%;
-  }
+}
 
-  @media only screen and (max-width: 700px) {
+.modal-dialog {
+    width: 62%;
+}
+
+@media only screen and (max-width: 700px) {
     .modal-dialog {
-      width: 100%;
+        width: 100%;
     }
-  }
+}

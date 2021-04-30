@@ -126,18 +126,19 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script src="<?=tpl()?>styles/minjs.php"></script>
 
-<? if(is_user()) {?>
 <script src="/tpl/main_n/styles/js/modules/Stomp/lib/stomp.min.js"></script>
 <script src="/tpl/main_n/styles/js/chat.js"></script>
 <script src="/tpl/main_n/styles/js/jitsi.js"></script>
 
 <script>
-    window.chatClass = new YRChat();
-    window.jitsiClass = new JitsiChat();
 
-    window.CurrentUser = parseInt(<?=user_id()?>);
+window.jitsiClass = new JitsiChat();
+window.chatClass = new YRChat();
+window.CurrentUser = parseInt(<?=user_id()?>);
 
-    let chatClass = new YRChat();
+</script>
+<? if(is_user()) {?>
+<script>
 
     chatClass.startListener();
     
@@ -149,7 +150,7 @@ $('#searchform').on('submit', function(e){
   
   e.preventDefault();
 
-  let value = $('#searchform :input').first().val();
+  let value = $('#searchform :input[name="tag"]').val();
 
   let tag = encodeURIComponent(value).replace(/%20/g, '+');
 
@@ -160,12 +161,27 @@ $('#searchform').on('submit', function(e){
 
 </script>
 
+<script src="/tpl/main_n/styles/js/mobile.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
+<script src="https://kit.fontawesome.com/6f7eb5a922.js" crossorigin="anonymous"></script>
+
 <?if(com() === 'home')
 {?>
     <script type='module' src='/tpl/main_n/styles/js/pages/home.js'></script>
 <?}?>
 
+
+<?if(com() === 'conversation')
+{?>
+    <script src='/tpl/main_n/styles/js/modules/moment.min.js'></script>
+    <script src="/tpl/main_n/styles/js/modules/moment-timezone.min.js"></script>
+<?}?>
+
 <?=$additionalJs?>
+
+<?if(com() === 'stream'){?>
+    <script src="https://cdn.jsdelivr.net/npm/@videojs/http-streaming@2.6.4/dist/videojs-http-streaming.js"></script>
+<?}?>
 
 <div id="fb-root"></div>
 <script>
@@ -188,7 +204,7 @@ $(document).ready(function() {
 
     $('.user-quick').on('click', '#show-search', function(){
 
-        $('.searchWidget').toggleClass('hide');
+        $('.header').toggleClass('hide');
         $('.logo-wrapper').toggleClass('hide');
 
         $(this).hide();
@@ -196,13 +212,13 @@ $(document).ready(function() {
 
     });
 
-    $('.fixed-top').on('click', '.searchClose', function(){
+    $('.fixed-top').on('click', '.search-close-icon', function(){
 
-        $('.searchWidget').toggleClass('hide');
+        $('.header').toggleClass('hide');
         $('.logo-wrapper').toggleClass('hide');
 
         $('#show-search').show();
-        $(this).toggleClass('hide');
+        $('.searchClose').toggleClass('hide');
 
     });
 });

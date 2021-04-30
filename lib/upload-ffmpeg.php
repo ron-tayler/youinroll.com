@@ -1,4 +1,5 @@
-<?php require_once("../load.php");
+<?php
+require_once("../load.php");
 if(is_user()) {
 $target_path = ABSPATH.'/storage/'.get_option('tmp-folder','rawmedia')."/";
 $final_path = ABSPATH.'/storage/'.get_option('mediafolder')."/";

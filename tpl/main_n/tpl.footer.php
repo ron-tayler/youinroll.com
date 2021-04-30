@@ -161,6 +161,8 @@ $(document).ready(function(){
 });
 </script>';
 
+$footer .= "<script src='/tpl/main_n/styles/js/mobile.js'></script>";
+
 $footer .= $gamburger_script;
 $footer .='
 </body>

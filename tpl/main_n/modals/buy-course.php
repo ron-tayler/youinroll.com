@@ -85,11 +85,11 @@ if (!is_user()) {
                                             </div>
 
                                             <div class="radio-input">
-                                                <input id="card" value="card" type="radio" name="payment">
+                                                <input id="card" value="card" type="radio" name="payment" checked>
                                                 Оплата картой
                                             </div>
                                         </label>
-                                        <label for="paymaster" class="method paymaster" data-type='paymaster'>
+                                        <!-- <label for="paymaster" class="method paymaster" data-type='paymaster'>
                                             <img src="https://designmodo.com/demo/checkout-panel/img/paypal_logo.png" />
                                             <div class="radio-input">
                                                 <input id="paymaster" value="paymaster" type="radio" name="payment">
@@ -102,7 +102,7 @@ if (!is_user()) {
                                                 <input id="other" value="other" type="radio" name="payment">
                                                 Другие методы
                                             </div>
-                                        </label>
+                                        </label> -->
                                     </div>
                                 </div>
                                 <hr class="mb-4">

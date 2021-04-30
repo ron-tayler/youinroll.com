@@ -1,6 +1,8 @@
-<?php error_reporting(E_ALL); 
+<?php
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
 //Vital file include
-require_once("load.php");
+require_once("cron_load.php");
 $tp = ABSPATH.'/storage/'.get_option('tmp-folder','rawmedia')."/";
 //echo $tp;
 $fp = ABSPATH.'/storage/'.get_option('mediafolder','media')."/";
@@ -54,9 +56,18 @@ $imgfinal = $ip.$cron->token;
 $thumb = str_replace(ABSPATH.'/' ,'',$ip.$cron->token.'-01.jpg');
 $imgout = str_replace(array('{ffmpeg-cmd}','{input}','{token}'),array(get_option('ffmpeg-cmd','ffmpeg'), $input,$imgfinal), $imgout);
 $thisimgoutput = shell_exec ( $imgout);
+
+$thumbvidout = '{ffmpeg-cmd} -i {input} -ss 00:00:03 -t 00:00:15 -async 1 {token}.'.$ext;
+$thumbvidout = str_replace(array('{ffmpeg-cmd}','{input}','{token}'),array(get_option('ffmpeg-cmd','ffmpeg'), $input,$imgfinal), $thumbvidout);
+
+$thumbvidoutsrc = str_replace(ABSPATH.'/' ,'',$ip.$cron->token.'.'.$ext);
+$thisvidoutput = shell_exec ($thumbvidout);
+
 vibe_log('<br>'.$imgout.' <br> '.$thisimgoutput.'<br>');
+vibe_log('<br> VIDEO PREVIEW IS \n '.$thumbvidout.' \n <br> '.$thisvidoutput.'<br>');
+
 // Update database
-$db->query("UPDATE  ".DB_PREFIX."videos SET thumb='".$thumb."', source='".$source."', pub = '".intval(get_option('videos-initial'))."'  WHERE id = '".intval($cron->id)."'");
+$db->query("UPDATE  ".DB_PREFIX."videos SET thumb='".$thumb."', preview='".$thumbvidoutsrc."' , source='".$source."', pub = '".intval(get_option('videos-initial'))."'  WHERE id = '".intval($cron->id)."'");
 add_activity('4', $cron->id); 
 //Start video conversion
 

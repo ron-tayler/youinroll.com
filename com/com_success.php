@@ -27,7 +27,7 @@ if($order !== null)
 
         $selectedCard = $cardList[0];
 
-        $db->query('UPDATE '.DB_PREFIX."user_subscriptions SET rebill_id = '".toDb($selectedCard['RebillId'])."' WHERE txn_id = '".toDb($_GET['OrderId'])."'");
+        $db->query('UPDATE '.DB_PREFIX."user_subscriptions SET rebill_id = '".toDb($selectedCard['RebillId'])."', payment_status = 'ready' WHERE txn_id = '".toDb($_GET['OrderId'])."'");
     }
 
     $_SESSION['premium-valid-until'] = $order->valid_to;

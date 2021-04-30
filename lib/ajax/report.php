@@ -9,7 +9,15 @@ $saferep[] = toDb($rep);
 }
 $reason = maybe_serialize($saferep);
 $motive = toDb($_POST['report-text']);
-$db->query("INSERT INTO ".DB_PREFIX."reports (`uid`, `vid`, `reason`, `motive`) VALUES ('".user_id()."', '".$add_video."', '".$reason."', '".$motive."')");
+
+$entity =  'vid';
+
+if( $_POST['type'] === 'stream') 
+{
+    $entity = 'sid';
+}
+
+$db->query("INSERT INTO ".DB_PREFIX."reports (`uid`, `$entity`, `reason`, `motive`) VALUES ('".user_id()."', '".$add_video."', '".$reason."', '".$motive."')");
 
 
 echo '<div class="msg-info">'._lang('Report sent!').'</div>';

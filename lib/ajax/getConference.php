@@ -61,6 +61,7 @@ if(is_user() && $roomName !== null)
     $userAvatar = thumb_fix($userModel[0]->avatar, true, 250, 250);
 
     echo("<div id='meet'></div>");
+    echo("<div id='sweeet'></div>");
 
     echo("
         <script src='https://smartfooded.com/external_api.js'></script>

@@ -1,6 +1,4 @@
 <?php do_action('videoloop-start');
-// $vq = "select vibe_videos.id,vibe_videos.title,vibe_videos.date,vibe_videos.user_id,vibe_videos.thumb,vibe_videos.views,vibe_videos.duration,vibe_users.avatar,vibe_videos.nsfw, vibe_users.name as owner, vibe_users.group_id FROM vibe_videos LEFT JOIN vibe_users ON vibe_videos.user_id = vibe_users.id WHERE vibe_videos.pub > 0 and vibe_videos.media < 2 ORDER BY vibe_videos.id DESC LIMIT 0,28";
-$vq = str_replace("vibe_videos.duration,vibe_videos.nsfw","vibe_videos.duration,vibe_users.avatar,vibe_videos.nsfw",$vq);
 if(!nullval($vq)) { $videos = $db->get_results($vq); } else {$videos = false;}
 
 if(!isset($st)){ $st = ''; }
@@ -26,12 +24,13 @@ if(isset($heading_meta) && !empty($heading_meta)) { echo $heading_meta;}
 if(isset($heading_plus) && !empty($heading_plus)) { echo '<small class="videod">'.$heading_plus.'</small>';}
 if ($videos) {
 
-echo $blockextra.'<div id="videoLoop" class="loop-content phpvibe-video-list '.$blockclass.'">'; 
+echo $blockextra.'<div id="videoLoop" class="loop-content phpvibe-video-list '.$blockclass.'">';
+global $err_log;
 foreach ($videos as $video) {
-
+            $err_log->write(print_r($video,true));// TODO DEBUG
 			$title = _html(_cut($video->title, 70));			
 			$full_title = _html(str_replace("\"", "",$video->title));			
-			$url = video_url($video->id , $video->title);
+			$url = video_url($video->id , $video->title).(isset($playlistActive) ? "?list=$playlistActive": '');
 			if(isset($video->group_id)) { $grcreative= group_creative($video->group_id); } else { $grcreative=''; };
 			$watched = (is_watched($video->id)) ? '<span class="vSeen">'._lang("Watched").'</span>' : '';
 			$liked = (is_liked($video->id)) ? '' : '<a class="heartit" title="'._lang("Like this video").'" href="javascript:iLikeThis('.$video->id.')"><i class="material-icons">&#xE8DC;</i></a>';
@@ -52,7 +51,7 @@ echo '</div>
   <div class="video-description">
 	<h4 class="video-title"><a href="'.$url.'" title="'.htmlspecialchars($full_title, ENT_QUOTES).'">'._html($title).'</a></h4>
   <ul class="stats">	
-    <li class="uploaderlink"><span class="author">Автор: </span><a href="'.profile_url($video->user_id, $video->owner).'" title="'.$video->owner.'">'.$video->owner.' </a> '.$grcreative.'</li>';
+    <li class="uploaderlink"><span class="author">Поделился: </span><a href="'.profile_url($video->user_id, $video->owner).'" title="'.$video->owner.'">'.$video->owner.' </a> '.$grcreative.'</li>';
 if (_lang('views') == 'число просмотров') {
 	$views_text = 'просмотров';
 } else {

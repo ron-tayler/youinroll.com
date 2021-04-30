@@ -86,12 +86,16 @@ class Router {
     }
 
     /**
-    * Match given request url and request method and see if a route has been defined for it
-    * If so, return route's target
-    * If called multiple times
-    */
+     * Match given request url and request method and see if a route has been defined for it
+     * If so, return route's target
+     * If called multiple times
+     * @param string $requestUrl
+     * @param string $requestMethod
+     * @return bool|mixed
+     */
     public function match($requestUrl, $requestMethod = 'GET') {
-                        
+
+        /** @var Route $route */
         foreach($this->routes as $route) {
             
             // compare server request method with route's allowed http methods

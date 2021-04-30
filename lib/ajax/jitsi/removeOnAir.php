@@ -1,6 +1,7 @@
 <?php
 
 include_once('../../../load.php');
+ini_set('display_errors', 0);
 
 if (!is_user() || !isset($_GET['streamId'])){
     die();
@@ -8,16 +9,10 @@ if (!is_user() || !isset($_GET['streamId'])){
 
 $streamId = (int)$_GET['streamId'];
 
-$streamInfo = $db->get_row("SELECT id,name,cover,description,category,likes,views,moderator_id FROM ".DB_PREFIX."conferences where id = '".$streamId."' AND type = 'stream' limit  0,1");
+$streamInfo = $db->get_row("SELECT * FROM ".DB_PREFIX."conferences where id = '".$streamId."' AND moderator_id = '".toDb(user_id())."' limit  0,1");
 
 if($streamInfo !== null)
 {
-    $userInfo = $db->get_row("SELECT id FROM ".DB_PREFIX."users where id = ".toDb(user_id())." limit  0,1");
-    $userInfo->isAuthor = ((int)$streamInfo->moderator_id === user_id());
-
-    if($userInfo->isAuthor)
-    {
-        $db->query('UPDATE '.DB_PREFIX.'conferences SET on_air = 0 WHERE id = '.toDb($streamInfo->id));
-    }
+    $userInfo = $db->get_row("UPDATE ".DB_PREFIX."conferences SET on_air = '0' WHERE id = '$streamId'");
 }
 ?>

@@ -1,30 +1,31 @@
 <?
-    $conferences = $db->get_results('SELECT * FROM '.DB_PREFIX.'conferences WHERE moderator_id = '.toDb($user).' ORDER BY started_at DESC LIMIT 4');
+    $conferences = $db->get_results('SELECT * FROM '.DB_PREFIX.'conferences WHERE moderator_id = '.toDb($profile->id)." AND type = '".toDb('lesson')."' ORDER BY started_at DESC LIMIT 4");
 ?>
 
 <h4 class="loop-heading">
-	<span><?=_lang("Last Conferences")?></span>
+	<span><?=_lang("Последние уроки")?></span>
 </h4>
 <div id="SearchResults" class="loop-content phpvibe-video-list vTrends bottom20 ">
-    <? if($conferences !== null) { ?>
-	<?foreach ($conferences as $conference) { ?>
-		<div id="video-<?=$conference->id?>" class="video halfVideo item">
+    <? if($conferences !== null && count($conferences) > 0 ) { ?>
+    <?foreach ($conferences as $conference) { ?>
+        <? $url2 = conference_url($conference->id, $conference->name); ?>
+		<div id="video-<?=$conference->id?>" class="video halfVideo item"> 
         <div class="video-inner">
             <div class="video-thumb">
-                <a class="clip-link" data-id="" title="" href="">
+                <a class="clip-link" data-id="" title="" href="<?=$url2?>">
                     <span class="clip">
-                        <img src="<?=$conference->cover?>" alt="" /><span class="vertical-align"></span>
+                        <img src="<?=($conference->cover === '') ? '/uploads/def-avatar.jpg' : $conference->cover?>" alt="" /><span class="vertical-align"></span>
                     </span>
                     <span class="overlay"></span>
                 </a>
-                <span class="timer">2:00:20</span>
-				<span class="was">2 days ago</span>
+              <!---  <span class="timer">2:00:20</span> -->
+			 <!---	<span class="was">2 days ago</span> -->
             </div>
             <div class="video-data">
 				<img src='<?=$profile->avatar?>' class='img-rounded'/>
 				<div>
-                <h4 class="video-title"><a href="'.$url.'" title="'.$full_title.'"><?=$conference->name?></a></h4>
-				<small><?= date('Y/m/d', strtotime($conference->started_at)) ?></small>
+                <h4 class="video-title"><a href="<?=$url?>" title="<?=$full_title?>"><?=$conference->name?></a></h4>
+				<small><?= date('Y/m/d', strtotime($conference->created_at)) ?></small>
 				</div>
             </div>
         </div>

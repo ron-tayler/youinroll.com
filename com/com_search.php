@@ -43,7 +43,7 @@ $options = DB_PREFIX."videos.id,".DB_PREFIX."videos.description,".DB_PREFIX."vid
  /* If 3 letter word */
  if((strlen($key) < 4) || (get_option("searchmode",1) == 1)) {
  $vq = "select ".$options.", ".DB_PREFIX."users.name as owner,".DB_PREFIX."users.group_id FROM ".DB_PREFIX."videos LEFT JOIN ".DB_PREFIX."users ON ".DB_PREFIX."videos.user_id = ".DB_PREFIX."users.id 
-	WHERE ".DB_PREFIX."videos.pub > 0 and ".DB_PREFIX."videos.date < now() and ( ".DB_PREFIX."videos.title like '%".$key."%' or ".DB_PREFIX."videos.title like '%".$nkey."%' or ".DB_PREFIX."videos.title like '%".$mkey."%' or ".DB_PREFIX."videos.description like '%".$key."%' or ".DB_PREFIX."videos.tags like '%".$key."%' ) ".$interval."
+	WHERE ".DB_PREFIX."videos.pub > 0 and ".DB_PREFIX."videos.date < now() and vibe_videos.course IS NULL and ( ".DB_PREFIX."videos.title like '%".$key."%' or ".DB_PREFIX."videos.title like '%".$nkey."%' or ".DB_PREFIX."videos.title like '%".$mkey."%' or ".DB_PREFIX."videos.description like '%".$key."%' or ".DB_PREFIX."videos.tags like '%".$key."%' ) ".$interval."
 	   ORDER BY CASE WHEN ".DB_PREFIX."videos.title like '" .$key. "%' THEN 0
 	           WHEN ".DB_PREFIX."videos.title like '%" .$key. "%' THEN 1
 	           WHEN ".DB_PREFIX."videos.tags like '" .$key. "%' THEN 2
@@ -58,7 +58,7 @@ $options = DB_PREFIX."videos.id,".DB_PREFIX."videos.description,".DB_PREFIX."vid
 $vq = "select ".$options.", ".DB_PREFIX."users.name as owner, ".DB_PREFIX."users.group_id,
 MATCH (title,description,tags) AGAINST ('".$key."' IN BOOLEAN MODE) AS relevance,
 MATCH (title) AGAINST ('".$key."' IN BOOLEAN MODE) AS title_relevance FROM ".DB_PREFIX."videos LEFT JOIN ".DB_PREFIX."users ON ".DB_PREFIX."videos.user_id = ".DB_PREFIX."users.id 
-	WHERE MATCH (title,description,tags) AGAINST('".$key."' IN BOOLEAN MODE) AND ".DB_PREFIX."videos.pub > 0 and ".DB_PREFIX."videos.date < now() $interval ORDER by title_relevance DESC,relevance DESC ".this_limit();
+	WHERE MATCH (title,description,tags) AGAINST('".$key."' IN BOOLEAN MODE) AND ".DB_PREFIX."videos.pub > 0 and vibe_videos.course IS NULL and ".DB_PREFIX."videos.date < now() $interval ORDER by title_relevance DESC,relevance DESC ".this_limit();
  }	
 // Canonical url
 if(_get('sort')) {

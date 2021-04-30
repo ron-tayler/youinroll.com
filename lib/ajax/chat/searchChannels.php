@@ -14,7 +14,7 @@ $value = strtolower($_GET['value']);
 /* 
 All users from search
 */
-$lists = $db->get_results("select * from ".DB_PREFIX."users where LOWER(name) like '%" .$value. "%' OR LOWER(name) = '" .toDb($value). "' order by lastNoty DESC LIMIT 25");
+$lists = $db->get_results("select * from ".DB_PREFIX."users where (LOWER(name) like '%" .$value. "%' OR LOWER(name) = '" .toDb($value). "') AND id <> '".toDb(user_id())."' order by lastNoty DESC LIMIT 25");
 
 if($lists) {
 

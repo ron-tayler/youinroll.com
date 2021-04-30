@@ -3,7 +3,7 @@ $error='';
 
 $confType = (isset($_GET['type']) && ($_GET['type'] === 'stream' || $_GET['type'] === 'lesson'))
 	? $_GET['type']
-	: 'stream';
+	: 'lesson';
 
 
 // SEO Filters
@@ -75,7 +75,7 @@ if(isset($_POST['title'])) {
 
 	switch ($confType) {
 		case 'lesson':
-			$hasAccess = $cachedb->get_row('SELECT id FROM '.DB_PREFIX."users_groups WHERE is_bussines = '1' AND id = ".toDb(user_group()));
+			$hasAccess = true;//$cachedb->get_row('SELECT id FROM '.DB_PREFIX."users_groups WHERE is_bussines = '1' AND id = ".toDb(user_group()));
 
 			if($hasAccess)
 			{
@@ -130,8 +130,20 @@ if((get_option('uploadrule') == 1) ||  is_moderator()) {
 	add_filter( 'the_defaults', 'udisabled'  );
 }
 
-//Time for design
-the_header();
-include_once(TPL.'/addconf.php');
-the_footer();
+if(isset($_GET['test']))
+{
+	//Time for design
+	$YNRtemplate->include('/addconf_dev.php',[
+
+	],[
+
+	], $confType);
+
+} else
+{
+	//Time for design
+	the_header();
+	include_once(TPL.'/addconf.php');
+	the_footer();
+}
 ?>

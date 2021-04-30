@@ -42,9 +42,11 @@ jQuery(function($) {
     var $is_mobile = false;
     var $is_tablet = false;
     var $is_pc = false;
-    if ($(window).width() < 600) {
+    if ($(window).width() < 768) {
         /* $('#show-sidebar').click(); */
         $is_mobile = true;
+        $('#wrapper').removeClass('haside');
+
     } else if ($(window).width() < 1000) {
         $is_tablet = true;
     } else {
@@ -859,7 +861,7 @@ $(document).ready(function() {
             1200: {
                 items: 5,
                 nav: true,
-                loop: true
+                loop: false
             },
             /* 1600: {
                 items: 6,
@@ -1025,6 +1027,7 @@ $(document).ready(function() {
 
             if ($('#tinted').length || $('#sidebar').hasClass('hide')) {
                 $('#tinted').remove();
+                $('body').css('overflow-y', 'auto');
             } else {
                 /* $('body').prepend('<div id="tinted"></div>'); */
 
@@ -1050,8 +1053,10 @@ $(document).ready(function() {
 
             if ($('#tinted').length) {
                 $('#tinted').remove();
+                $('body').css('overflow-y', 'auto');
             } else {
                 $('body').prepend('<div id="tinted"></div>');
+                $('body').css('overflow-y', 'hidden');
 
                 setTimeout(() => {
                     document.addEventListener('click', toggleSidebar);
@@ -1252,8 +1257,10 @@ $(document).ready(function() {
         $(".video-holder").toggleClass('gofullscreen');
     });
 
-    $('#sidebar').animate({scrollTop: 0});
-    
+    $('#sidebar').animate({
+        scrollTop: 0
+    });
+
     /* $('.sidescroll').slimScroll({
         position: 'right',
         touchScrollStep: 50,

@@ -66,24 +66,24 @@ return false;
 }
 }
 function is_admin() {
-global $db;
-if (!is_user() || user_group() <> 1) {
-return false;
-} else {
-/* Else */
-if (!isset($_SESSION['LAST_ADC']) || (time() - $_SESSION['LAST_ADC'] > 1800)) {	
-$check = $db->get_row("SELECT group_id from ".DB_PREFIX."users WHERE id='".user_id()."'");
-if($check && ($check->group_id == 1)) {
-$_SESSION['LAST_ADC'] = time();	
-return true;
-} else {
-return false;
-}
-} else {
-return true;	
-}
-/* End else */
-}
+    global $db;
+    if (!is_user() || user_group() <> 1) {
+        return false;
+    } else {
+        /* Else */
+        if (!isset($_SESSION['LAST_ADC']) || (time() - $_SESSION['LAST_ADC'] > 1800)) {
+            $check = $db->get_row("SELECT group_id from ".DB_PREFIX."users WHERE id='".user_id()."'");
+            if($check && ($check->group_id == 1)) {
+                $_SESSION['LAST_ADC'] = time();
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+        /* End else */
+    }
 }
 function premium_group() {
 global $db;
@@ -122,6 +122,8 @@ function has_premium(){
 	if (is_moderator()) {
 		return true;
 	}
+
+	//$hasSubscribe = $cachedb->get_var("SELECT vibe_users_subscriptions WHERE user_id = '".user_id()."' AND payment_status = 'ready'");
 	
 	if (user_group() == premium_group()) {
 		if (new DateTime() > new DateTime(premium_upto())) {
@@ -484,9 +486,10 @@ if(!isset($userData['local']) || nullval($userData['local'])) {$userData['local'
 if(!isset($userData['country']) || nullval($userData['country'])) {$userData['country'] = '';}
 if(!isset($userData['group_id']) || nullval($userData['group_id'])) {$userData['group_id'] = '4';}
 if(!isset($userData['bio']) || nullval($userData['bio'])) {$userData['bio'] = '';}
+if(!isset($userData['chatRoom']) || nullval($userData['chatRoom'])) {$userData['chatRoom'] = '';}
 //insert to db
-$sql = "INSERT INTO ".DB_PREFIX."users (name,username,email,type,lastlogin,date_registered,gid,fid,oauth_token,avatar,local,country,group_id,pass,password,bio)"
-. " VALUES ('" . toDb($userData['name']) . "','" . toDb($userData['username']) . "','" . esc_attr($userData['email']) . "','" . $userData['type'] . "', now(), now(), '".$userData['gid']."', '".$userData['fid']."', '".$userData['oauth_token']."', '".$userData['avatar']."', '".toDb($userData['local'])."', '".toDb($userData['country'])."', '".toDb($userData['group_id'])."', '".$pass."','".toDb($userData['password'])."', '".toDb($userData['bio'])."')";
+$sql = "INSERT INTO ".DB_PREFIX."users (name,username,email,type,lastlogin,date_registered,gid,fid,oauth_token,avatar,local,country,group_id,pass,password,bio,chatRoom)"
+. " VALUES ('" . toDb($userData['name']) . "','" . toDb($userData['username']) . "','" . esc_attr($userData['email']) . "','" . $userData['type'] . "', now(), now(), '".$userData['gid']."', '".$userData['fid']."', '".$userData['oauth_token']."', '".$userData['avatar']."', '".toDb($userData['local'])."', '".toDb($userData['country'])."', '".toDb($userData['group_id'])."', '".$pass."','".toDb($userData['password'])."', '".toDb($userData['bio'])."', '".toDb($userData['chatRoom'])."')";
 $db->query($sql);
 $tid = user::checkUser($userData);
 return $tid;

@@ -1,0 +1,1 @@
+{"TerminalKey":"1612364108805DEMO","OrderId":"IStuzkqqc3f5A0EFuYcN59gr7BE8cQ","Success":true,"Status":"CONFIRMED","PaymentId":497626096,"ErrorCode":"0","Amount":159000,"CardId":65506054,"Pan":"400000******0333","ExpDate":"1122","RebillId":1613386941645,"Token":"ddeaf314a5f27f465a267dfc5bc2d310c373c91aad3b38de585c751e1849dc27"}

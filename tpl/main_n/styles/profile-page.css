@@ -6,6 +6,14 @@
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width : 321px) and (max-width : 800px) {
 
+    .landingSocial {
+        display: none !important;
+    }
+
+    .landingBlock {
+        padding: 17px;
+    }
+
     .course-channel {
         margin-left: auto !important;
     }
@@ -93,6 +101,7 @@
 
     .channel-buttons-mobile {
         display: block !important;
+        zoom: 0.8;
     }
 
     .sticky {
@@ -237,6 +246,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 .channel-head h1 {
     margin-top: 5px;
+    color: black;
 }
 
 .video-inner {
@@ -268,7 +278,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
 
 #channelBlock,
 .channel-head * {
-    color: black !important;
+    color: white;
 }
 
 .icon-threedot:before {
@@ -588,13 +598,13 @@ only screen and (min-device-pixel-ratio : 1.5) {
 }
 
 .profile-videos {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 .video {
-    width: 23% ;
+    width: 23%;
 }
 
 #channelAuthors .loop-heading {

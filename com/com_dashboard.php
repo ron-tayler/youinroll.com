@@ -21,9 +21,31 @@ $text = '<script type="text/javascript" >
 ';
 return $text;
 }
+
 add_filter( 'filter_extrajs', 'file_up_support');
-if(is_user()){
+/* echo "<pre>";
+var_dump($_POST['pass1']);
+die(); */
+
+if( (isset($_SESSION['loggedfrommail']) && isset($_POST['pass1']) && $_POST['pass1'] !== '') || (isset($_POST['pass1']) && $_POST['pass1'] !== '') ) {
+    if(isset($_SESSION['loggedfrommail']) || ($profile->password === sha1($_POST['oldpassword']))) {	
+        if($_POST['pass1'] === $_POST['pass2']) {
+            $msg = '<div class="msg-info">'._lang("Password changed.").'</div>';
+            user::Update('password',sha1($_POST['pass1']));
+        } else {
+            $msg = '<div class="msg-warning">'._lang("Passwords do not match.").'</div>';
+        }
+    } else {
+        $msg = '<div class="msg-warning">'._lang("The old password is incorect.").'</div>';
+    }
+        unset($_SESSION['loggedfrommail']);
+        redirect(site_url().'dashboard/?sk=edit&msg='._lang("Password changed."));
+    $_GET['sk'] = 'edit';
+}
+
 $profile = $db->get_row("SELECT * FROM ".DB_PREFIX."users where id = '".user_id() ."' limit  0,1");	
+
+
 if(isset($_POST['changeavatar'])) {
 if(!is_insecure_file($_FILES['avatar']['name'])) {	
 $formInputName   = 'avatar';							
@@ -175,22 +197,9 @@ if(isset($_POST['vk-link'])) { user::Update('vklink',$_POST['vk-link']); }
 
 user::RefreshUser(user_id());
 redirect(site_url().'dashboard/?sk=edit&msg='.urlencode(_lang('Channel updated')));
-}	
-if(isset($_POST['change-password'])) {
-if(isset($_SESSION['loggedfrommail']) || ($profile->password == sha1($_POST['oldpassword']))) {	
-if($_POST['pass1'] == $_POST['pass2']) {
-$msg = '<div class="msg-info">'._lang("Password changed.").'</div>';
-user::Update('password',sha1($_POST['pass1']));
-} else {
-$msg = '<div class="msg-warning">'._lang("Passwords do not match.").'</div>';
 }
-} else {
-$msg = '<div class="msg-warning">'._lang("The old password is incorect.").'</div>';
-}
-}
+
 include_once(TPL.'/dashboard.php');
 the_footer();
-} else {
-redirect(site_url().'login/');	
-}
+
 ?>

@@ -12,27 +12,20 @@ if(isset($_POST['name']))
 }
 ?>
 <ul class="nav nav-tabs nav-tabs-line mtop20">
-	<li class="<?php aTab(my);?>" role="presentation"><a href="https://youinroll.com/streams"> <i
-				class="material-icons">&#xE8E5;</i> <?php echo _lang('My Streams'); ?></a></li>
-	<?
-	$hasAccess = $cachedb->get_row('SELECT id FROM '.DB_PREFIX."users_groups WHERE is_bussines = '1' AND id = ".toDb(user_group()));
-	if($hasAccess) {
-	?>
-	<li class="<?php aTab(lessons);?>" role="presentation"><a href="https://youinroll.com/streams?sk=lessons"> <i
-				class="material-icons">&#xE8E5;</i> <?php echo _lang('My Lessons'); ?></a></li>
-	<? } ?>
-	<li class="<?php aTab(raspisanie);?>" role="presentation"><a href="https://youinroll.com/streams?sk=raspisanie">
+	<li class="<?php aTab(my);?>" role="presentation"><a href="https://youinroll.com/lessons"> <i
+				class="material-icons">&#xE8E5;</i> <?php echo _lang('Мои уроки'); ?></a></li>
+	<li class="<?php aTab(raspisanie);?>" role="presentation"><a href="https://youinroll.com/lessons?sk=raspisanie">
 			<i class="material-icons">&#xE8E5;</i> <?php echo _lang('Расписание'); ?></a></li>
 </ul>
 <div id="default-content" class="share-media">
     <div class="row odet isBoxed">
 		<?=$error?>
         <div id="formVid block">
-            <h1><?=_lang("Create $confType")?></h1>
+            <h1>Создать урок</h1>
             <form method='POST' class="row" action="<?=site_url()?>addconf"
                 enctype="multipart/form-data">
                 <div class="col-md-7">
-                    <input type="hidden" name="type" id="type" value="<?=$confType?>" readonly />
+                    <input type="hidden" name="type" id="type" value="lesson" readonly />
                     <div class="control-group">
                         <div class="form-group form-material floating">
                             <input type="text" id="title" name="title" class="form-control" required="" value="">

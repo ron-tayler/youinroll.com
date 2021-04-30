@@ -76,23 +76,23 @@ if (!is_user()) {
                 <h3>Оплатить премиум</h3>
                 <p>Премиум подписка за 159р в месяц</p>
             </div>
-            <form class="needs-validation" action="https://paymaster.ru/payment/init" novalidate="">
+            <form class="needs-validation" action="https://paymaster.ru/payment" novalidate="">
             <input name='LMI_MERCHANT_ID' type='hidden' value='4cae70bd-2415-4dc8-bb55-e4c3c9439d66' required/>
             <input name='LMI_PAYMENT_AMOUNT' type='hidden' value='159' required/>
             <input name='LMI_CURRENCY' type='hidden' value='RUB' required/>
             <input name='LMI_PAYMENT_DESC' type='hidden' value='Оплата премиума для: <?=$user?>' required/>
             <input name='LMI_PAYER_EMAIL' type='hidden' value='<?=$user?>'/>
             <? if(is_user()) { ?>
-            <button class="<?=$btnc?>" type="submit">Попробовать бесплатно*</button>
+            <a href="/payment" style="color:white !important" class="<?=$btnc?>" type="submit">Подписаться*</a>
             <? } else { ?>
-            <a class="<?=$btnc?>" href="/login">Попробовать бесплатно*</a>  
+            <a class="<?=$btnc?>" href="/login">Подписаться*</a>  
             <?}?>
             </form>
         </div>
-        <center><small>Мы продлили бесплатный пробный период до 2-х месяцев для новых подписчиков. Акция действует до 1.03. За 7 дней до окончания бесплатного пробного периода мы отправим вам напоминание. Отказаться от подписки можно в любой момент.</small></center>
+        <center><small>Эта подписка напрямую поддержит автора</small></center>
         <hr />
         
-        <center><a class="btn btn-lg btn-primary" href='/payment'>Подробнее</a></center>
+        <center><a class="btn btn-lg btn-primary" href='https://youinroll.com/read/dobro-pozhalovat/93/'>Подробнее</a></center>
         <!-- <p>Modal body text goes here.</p> -->
         
         

@@ -1,4 +1,5 @@
 <?php the_sidebar();
+
 // Canonical url
 $canonical = profile_url($profile->id , $profile->name);
 
@@ -24,8 +25,14 @@ $md = $cachedb->get_row("SELECT count(case when pub = 1 then 1 else null end) as
             <h1><?=_html($profile->name);?></h1>
             <div class='channel-buttons-mobile'>
               <div class="btn-group">
-                    <?php subscribe_box($profile->id, '', false, 'modal'); ?>
-                    <?php subscribe_box($profile->id, 'btn btn-primary tipS mleft10 mright10', false, 'follow'); ?>
+                    <?if(intval($profile->id) !== intval(user_id())) {?>
+                      
+                      <?php subscribe_box($profile->id, '', false, 'modal'); ?>
+                      <?php subscribe_box($profile->id, 'btn btn-primary tipS mleft10', false, 'follow'); ?>
+                    
+                    <?} else {?>
+                      <?php subscribe_box($profile->id); ?>
+                    <?}?>
                     <!-- <div class='last-buttons'>
                     <button class="btn btn-secondary2"><i class="icon-threedot"></i></button>
                     <button class="btn btn-secondary2"><i class="icon-ring"></i></button>
@@ -45,7 +52,7 @@ $md = $cachedb->get_row("SELECT count(case when pub = 1 then 1 else null end) as
           </div>
           <div class='channel-buttons'>
               <div class="btn-group">
-                <?if((int)$profile->id !== (int)user_id()) {?>
+                <?if(intval($profile->id) !== intval(user_id())) {?>
                 
                   <?php subscribe_box($profile->id, '', false, 'modal'); ?>
                   <?php subscribe_box($profile->id, 'btn btn-primary tipS mleft10 mright10', false, 'follow'); ?>
@@ -66,17 +73,14 @@ $md = $cachedb->get_row("SELECT count(case when pub = 1 then 1 else null end) as
                         href="<?=$canonical;?>"><?=_lang("Channel");?></a></li>
                 <li class="<?=aTab("about");?>"><a
                         href="<?=$canonical;?>?sk=about"><?=_lang("About");?></a></li>
-                <li class="<?=aTab("timeline");?>"><a
-                        href="<?=$canonical;?>?sk=timeline"><?=_lang("Timeline");?></a></li>
+                
                 <li class="<?=aTab("videos");?>"><a
                         href="<?=$canonical;?>?sk=videos"><?=_lang("Videos");?></a></li>
                 <?
                   $profile->conferences = $db->get_row('SELECT id,name FROM '.DB_PREFIX.'conferences WHERE moderator_id = '.toDb($profile->id).' AND type = "stream" GROUP BY started_at ORDER BY started_at DESC LIMIT 0,1');
                 ?>
                 <? if($profile->conferences) {?>
-                  <li class="<?=aTab("chat");?>"><a
-                        href="<?=stream_url($profile->conferences->id, $profile->conferences->name);?>"><?=_lang("Chat");?></a></li>
-                  </li>
+                  
                 <? } ?>
                 <?php if(get_option('imagesmenu','1') == 1 ) { ?>
                 <li class="<?=aTab("images");?>"><a
@@ -86,16 +90,14 @@ $md = $cachedb->get_row("SELECT count(case when pub = 1 then 1 else null end) as
                 <li class="<?=aTab("music");?>"><a
                         href="<?=$canonical;?>?sk=music"><?=_lang("Music");?></a></li>
                 <?php } ?>
-                <?
-                  /* <li class="<?=aTab("activity");?>"><a
-                        href="<?=$canonical;?>?sk=activity"><?=_lang("Activity");?></a></li> */
-                ?>
+                <li class="<?=aTab("timeline");?>"><a
+                        href="<?=$canonical;?>?sk=timeline"><?=_lang("Расписание");?></a></li>
             </ul>
             
             <div class="channel-subheader mtop10">
               <? if(u_k($vd->vnr) !== null) {?>
                 <div class="mright20">
-                    <strong class="profile-stat-count"><?=u_k($vd->vnr);?></strong>
+                    <strong class="profile-stat-count"><?=u_k($profile->views);?></strong>
                     <span><?=_lang("Media views");?></span>
                 </div>
               <?}?>
@@ -140,7 +142,7 @@ $md = $cachedb->get_row("SELECT count(case when pub = 1 then 1 else null end) as
                     $count = $cachedb->get_row("Select count(*) as nr from ".DB_PREFIX."activity where user='".$profile->id."' ".$sort);
                     $vq = "Select * from ".DB_PREFIX."activity where user='".$profile->id."' ".$sort." ORDER BY id DESC ".this_offset(45);
                     include_once(TPL.'/profile/activity.php');	
-                    break;	
+                    break;
 
                   case 'videos':
                       $catParams = isset($_GET['cat']) ? '&cat='.$_GET['cat'] : '';
@@ -211,7 +213,7 @@ $md = $cachedb->get_row("SELECT count(case when pub = 1 then 1 else null end) as
               <h4 class="loop-heading">
                 <span><?=_lang("Authors of channel")?></span>
               </h4>
-              <div class="loop-content phpvibe-video-list vTrends bottom20">
+              <?/*<div class="loop-content phpvibe-video-list vTrends bottom20">
                 <?foreach (range(0, 3) as $value) { ?>
                   <div id="author-'.$video->id.'" class="author-channel item">
                       <img class='author-image <?= ($value === 0) ? 'online' : ''; ?>' src="https://via.placeholder.com/150" />
@@ -225,7 +227,7 @@ $md = $cachedb->get_row("SELECT count(case when pub = 1 then 1 else null end) as
                       <h3>Test Author</h3>
                   </div>
                 <? }?>
-              </div>
+              </div>*/?>
             </div>
             <?}?>
           </div>

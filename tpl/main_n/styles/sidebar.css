@@ -8,7 +8,7 @@
     text-align: left;
     padding: 0px 0px 2px 0px;
     width: 240px;
-    z-index: 9;
+    z-index: 103;
     overflow-y: scroll;
     background: #fff;
     color: #666666;
@@ -41,7 +41,7 @@
 }
 
 #sidebar.hide {
-    display: block !important;
+    display: block;
     transition: all .3s linear 0s;
     width: fit-content !important;
 }
@@ -76,7 +76,7 @@
 }
 
 #sidebar.hide #endSidebar {
-    display: none;
+    /* display: none; */
 }
 
 #sidebar.hide #guestButton {
@@ -118,12 +118,6 @@
 
 #myInbox {
     position: relative;
-    display: inline-block;
-    margin: 0;
-    margin-left: 10%;
-    padding: 5px;
-    line-height: 69px;
-    vertical-align: middle;
 }
 
 #sidebar * {
@@ -141,7 +135,7 @@
 }
 
 #show-search {
-    display: none !important;
+    display: none;
 }
 
 .relative {
@@ -159,7 +153,7 @@
 }
 
 #subscriptionMinimize {
-    display:none;
+    display: none;
     align-self: center;
     margin: auto;
     padding-left: 8px;
@@ -174,12 +168,14 @@
     width: 216px;
 }
 
-#subscriptionMinimize > span, #subscriptionDropdown > span {
+#subscriptionMinimize>span,
+#subscriptionDropdown>span {
     padding-left: 23px;
     position: absolute;
 }
 
-#playlistMinimize, #playlistDropdown {
+#playlistMinimize,
+#playlistDropdown {
     align-self: center;
     display: block;
     top: 0;
@@ -202,6 +198,10 @@
     padding-top: 4px;
 }
 
+#sidebar.hide .badge {
+    display: none;
+}
+
 a#openusr {
     color: black !important;
 }
@@ -209,10 +209,11 @@ a#openusr {
 #sidebar * {
     font-weight: bold !important;
 }
+
 /* ----------- Non-Retina Screens ----------- */
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
     #wrapper.haside {
-        width: 82.75% !important;
+        width: 82.75%;
         margin-left: auto !important;
         padding: 0px !important;
     }
@@ -222,9 +223,9 @@ a#openusr {
     }
 
     #wrapper {
-        width: 92% !important;
+        width: 92%;
         margin-right: 0px !important;
-        margin-left: 6.1% !important;
+        margin-left: 6.1%;
         padding: 0px !important;
     }
 }
@@ -232,7 +233,7 @@ a#openusr {
 /* ----------- Retina Screens ----------- */
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
     #wrapper.haside {
-        width: 82.75% !important;
+        width: 82.75%;
         margin-left: auto !important;
         padding: 0px !important;
     }
@@ -244,26 +245,66 @@ a#openusr {
     #wrapper {
         width: 96% !important;
         margin-right: 0px !important;
-        margin-left: 4.1% !important;
+        margin-left: 4.1%;
         padding: 0px !important;
     }
 }
 
-@media only screen and (max-device-width: 736px) {
+@media only screen and (max-device-width: 736px) and (max-device-width: 480px) and (max-device-width: 640px) {
+
+    #sidebar {
+        display: none !important;
+    }
+
+    .searchWidget {
+        display: none !important;
+    }
+
+    #SubscribeModal .modal-dialog {
+        width: 100% !important;
+    }
+
+    #show-search {
+        display: none !important;
+    }
+
+    .sidebar-mobile {
+        display: block;
+    }
+
+    #confSlider {
+        display: none;
+    }
+
+    .course-row {
+        justify-content: center;
+        zoom: .6;
+    }
+
+    .card__body>* {
+        font-size: 15px;
+    }
+
+    #footer {
+        margin-top: 29px;
+        bottom: 7%;
+    }
 
     #wrapper {
-        margin: 0 auto !important;
+        margin: 14% auto !important;
         max-width: fit-content;
     }
 
+    .jumbotron-description {
+        margin: 0 auto !important;
+    }
+
+    .jumbotron-description>h3 {
+        font-size: 15px;
+    }
+
     #myInbox {
-        display: inline-block;
         position: relative;
-        margin: 0;
-        margin-left: auto !important;
-        padding: 5px;
-        line-height: 69px;
-        vertical-align: middle;
     }
 
     #chnls {
@@ -271,7 +312,7 @@ a#openusr {
     }
 
     #show-search {
-        display: inline-block !important;
+        display: inline-block;
     }
 
     .lihead {
@@ -290,13 +331,6 @@ a#openusr {
         transition: all .3s linear 0s;
         font-size: 0px;
         width: fit-content !important;
-    }
-
-    #sidebar {
-        display: block !important;
-        transition: all .3s linear 0s;
-        width: 100% !important;
-        top: auto;
     }
 
     #sidebar .sidebar-nav {
@@ -401,6 +435,10 @@ a#openusr {
 
     #sidebar #playlistMinimize {
         display: none;
+    }
+
+    .owl-item .video {
+        width: 100% !important;
     }
 
     .page {

@@ -66,6 +66,7 @@ global $page;
     <?}?>
 
     <link rel="stylesheet" href="tpl/main_n/styles/sidebar.css" type="text/css">
+    <link rel="stylesheet" href="tpl/main_n/styles/sidebar-mobile.css" type="text/css">
     <link rel="apple-touch-icon" sizes="180x180" href="<?=site_url()?>lib/favicos/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="<?=site_url()?>lib/favicos/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<?=site_url()?>lib/favicos/favicon-16x16.png">
@@ -139,5 +140,6 @@ global $page;
     <? include(TPL.'/layouts/navbar.php'); ?>
     
     <?=the_sidebar()?>
-    <div id="wrapper" class="<?=wrapper_class()?> haside aside">
+    <?include(TPL.'/sidebar-mobile.php');?>
+    <div id="wrapper" class="<?=wrapper_class()?> haside aside <?= ($page === 'stream') ? 'big-pic' : '' ?>">
         <div class="row block page p-<?=$page?>">

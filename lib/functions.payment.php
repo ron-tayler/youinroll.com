@@ -9,11 +9,11 @@ include 'functions.tinkoff.php';
 class YNRPayment {
 
 
-    /* const tinkoffKey = '1612364108805';
-    const tinkoffPass = '81koe78d60rmnidg'; */
+    const tinkoffKey = '1612364108805';
+    const tinkoffPass = '81koe78d60rmnidg';
 
-    const tinkoffKey = '1612364108805DEMO';
-    const tinkoffPass = 'tr0jwagzkswqbvi7';
+    /* const tinkoffKey = '1612364108805DEMO';
+    const tinkoffPass = 'tr0jwagzkswqbvi7'; */
 
     const paymasterId = '4cae70bd-2415-4dc8-bb55-e4c3c9439d66';
 
@@ -159,13 +159,12 @@ class YNRPayment {
 
         $subApi->getCardList($customerData);
 
-
         $cards = $subApi->json;
 
         return $cards;
     }
 
-    public function charge($sub, $newValid)
+    public function charge($sub)
     {
         global $cachedb, $db;
 
@@ -204,8 +203,9 @@ class YNRPayment {
             'IP' => $_SERVER['REMOTE_ADDR'],
             'Description' => $this->description,
             'Password' => self::tinkoffPass,
+            'CustomerKey' => $user->email,
             'Recurrent' => 'Y',
-            'RecurrentDueDate' => date("Y-m-d h:i:s", strtotime("+$this->monthes month"))
+            'RedirectDueDate' => date('Y-m-d\Th:m:s+05:00',strtotime("+1 month"))
         ];
 
         if($user)
@@ -236,6 +236,7 @@ class YNRPayment {
                 'Items' => [
                     [
                         'Name' => 'Premium',
+                        'PaymentObject' => 'service',
                         'Quantity' => 1,
                         'Amount' => $this->defaultPrice,
                         'Price' => $this->defaultPrice,
@@ -248,13 +249,13 @@ class YNRPayment {
         $postData['Token'] = $this->makeToken($postData);
 
         $api->init($postData);
-
+        
         if($api->response)
         {
             $result = $api->PaymentUrl;
 
             $insertSQL = 'INSERT INTO '.DB_PREFIX."user_subscriptions (`user_id`, `type`, `payment_method`, `validity`, `valid_to`, `payment_gross`, `txn_id`, `payment_status`, `bank_id`) 
-                VALUES ('".toDb($user->id)."','role','tinkoff','".toDb($this->monthes)."', '".$postData['RecurrentDueDate']."','".toDb( ($this->defaultPrice / 100) )."','".$postData['OrderId']."','waiting', '".toDb($api->PaymentId)."')";
+                VALUES ('".toDb($user->id)."','role','tinkoff','".toDb($this->monthes)."', '".date("Y-m-d h:i:s", strtotime("+$this->monthes month"))."','".toDb( ($this->defaultPrice / 100) )."','".$postData['OrderId']."','waiting', '".toDb($api->PaymentId)."')";
             
             $db->query($insertSQL);
             
@@ -262,6 +263,77 @@ class YNRPayment {
         else
         {
            $result = $api->error;
+        }
+
+        return $result;
+    }
+
+    public function tinkoffPaySecond($order, $user = null, $month = 1)
+    {
+        global $db;
+
+        $api = new TinkoffMerchantAPI(
+            self::tinkoffKey,  //Ваш Terminal_Key
+            self::tinkoffPass   //Ваш Secret_Key
+        );
+
+
+        $postData = [
+            'TerminalKey' => self::tinkoffKey,
+            'Amount' => $order->payment_gross * 100,
+            'OrderId' => $this->getOrderId(),
+            'Description' =>  $this->makeDescription(),
+            'Password' => self::tinkoffPass,
+            'RedirectDueDate' => date('Y-m-d\Th:m:s+05:00',strtotime("+1 month"))
+        ];
+
+        if($user)
+        {
+            $subApi = new TinkoffMerchantAPI(
+                self::tinkoffKey,  //Ваш Terminal_Key
+                self::tinkoffPass   //Ваш Secret_Key
+            );
+
+            //$customerData['Token'] = $this->makeToken($customerData);
+
+            $subApi->getCustomer($user->email);
+
+            $postData['Receipt'] = [
+                'Email' => $user->email,
+                'Phone' => $user->phone,
+                'EmailCompany' => 'youinroll@gmail.com',
+                'Taxation' => 'osn',
+                'Items' => [
+                    [
+                        'Name' => 'Premium',
+                        'Quantity' => 1,
+                        'PaymentObject' => 'service',
+                        'Amount' => $order->payment_gross * 100,
+                        'Price' => $order->payment_gross * 100,
+                        'Tax' => 'vat20'
+                    ]
+                ]
+            ];
+        }
+        
+
+        $result = $api->init($postData);
+
+        if($api->json['Success'] === true)
+        {
+            $newValid = date("Y-m-d h:i:s", strtotime("+$month month"));
+
+            $sql = 'UPDATE '.DB_PREFIX."user_subscriptions SET valid_to = '$newValid', bank_id = '".$api->json['PaymentId']."', txn_id = '".$postData['OrderId']."' WHERE txn_id = '".$order->txn_id."'";
+
+            $db->query($sql);
+            
+            $order = $db->get_row("SELECT * FROM vibe_user_subscriptions WHERE id = $order->id");
+
+            $this->charge($order);
+        }
+        else
+        {
+           $result = $api->response;
         }
 
         return $result;

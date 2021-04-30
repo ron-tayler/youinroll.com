@@ -21,36 +21,38 @@ if($check > 0 ) {
         $message .= _lang('Regards, Webmaster');
         $message .= '<br> '.site_url();
         $message = str_replace("##link##",$link,$message);	
+
         //echo $link;
         $mail = new PHPMailer;
         if(isset($mvm_useSMTP) && $mvm_useSMTP  ) {
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = $mvm_host;  
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = $mvm_user;                 
+            $mail->Username = $mvm_user;   
+            $mail->AddReplyTo = $mvm_user;              
             $mail->Password = $mvm_pass;                           // SMTP password
             $mail->SMTPSecure = $mvm_secure;                            
             $mail->Port = $mvm_port;                                    
         }
         if(isset($adminMail) && not_empty($adminMail)) {
-            $mail->From = $adminMail;
+            $mail->From = "youinroll@youinroll.com";
         } else {
-            $mail->From = "noreply@".ltrim(cookiedomain(),".");	
+            $mail->From = "youinroll@youinroll.com";	
         }
-            $mail->FromName = get_option('site_logo-text');	
+            $mail->FromName = 'YouInRoll';	
             $mail->addAddress($omail, toDb($result->name));
             $mail->WordWrap = 50;  
         if(_get('verifyemail')) {
-            $mail->Subject = $result->name.' '._lang('Activate your account');	
+            $mail->Subject = 'YouInRoll';//$result->name.' '._lang('Activate your account');	
         } else {
-            $mail->Subject = _lang('Password change for'). ' '.$result->name;
+            $mail->Subject = 'YouInRoll';//_lang('Password change for'). ' '.$result->name;
         }
         $mail->Body    = $message;
         $mail->AltBody = $message;
         if(!$mail->send()) {
             $errors['email'] = _lang('Message could not be sent.');
         } else {
-            $result = _lang('An e-mail has been sent to your account. Please also check the "spam" folder.');					
+            $result = 'Ссылка с восстановлением пароля отправлена на почту';					
         }
     }
 } else {

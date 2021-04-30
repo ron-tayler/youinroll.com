@@ -14,8 +14,8 @@ $result = $db->get_row("SELECT id FROM ".DB_PREFIX."users WHERE email ='" . toDb
 if($result && $result->id) {
 user::LoginUser($result->id);
 		if (is_user()) { 
-		$_SESSION['loggedfrommail'] = 1;
-		redirect(site_url().me.'?sk=edit');
+			$_SESSION['loggedfrommail'] = 1;
+			redirect(site_url().'dashboard?sk=edit');
 		} else {
 		$error = '<div class="msg-warning mleft20 mright20 mtop20">'._lang('Something went wrong. Try refreshing this page').'</div>';
 		}
@@ -34,8 +34,8 @@ $error = '<div class="msg-warning mleft20 mright20 mtop20">'._lang('This account
 /** Actual login **/
 if(_post('password') && _post('email')){
 if(user::loginbymail(_post('email'),_post('password') )) {
-if(_get('return')) {
-redirect(site_url()._get('return').'/');
+if(_get('backurl')) {
+redirect(site_url()._get('backurl').'/');
 } else {
 redirect(site_url().'dashboard/');
 }
@@ -77,9 +77,9 @@ $mail->SMTPSecure = $mvm_secure;
 $mail->Port = $mvm_port;                                    
 }
 if(isset($adminMail) && not_empty($adminMail)) {
-$mail->From = $adminMail;
+$mail->From = "noreply@youinroll.com";
 } else {
-$mail->From = "noreply@".ltrim(cookiedomain(),".");	
+$mail->From = "noreply@youinroll.com";	
 }
 $mail->FromName = get_option('site_logo-text');	
 $mail->addAddress($omail, toDb($result->name));

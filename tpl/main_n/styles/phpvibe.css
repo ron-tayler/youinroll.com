@@ -937,7 +937,7 @@ a#revealRelated {
 
 .video {
     position: relative;
-    width: 210px;
+    width: 310px;
     float: left;
     margin: 4px 3px 11px 0;
     vertical-align: top;
@@ -1064,7 +1064,7 @@ a#revealRelated {
 
     #SearchResults .video-thumb,
     #SearchResults .video-thumb img {
-        width: 123px !important;
+        width: 100% !important;
         /* min-height: 90px; */
         height: 92px !important
     }
@@ -1176,7 +1176,7 @@ a#revealRelated {
     background: #fff;
     font-size: 0;
     vertical-align: middle;
-    height: 110px
+    height: 170px
 }
 
 .video-thumb .timer {
@@ -1776,6 +1776,8 @@ input[type="submit"] {
     margin: -3px 18px 0 3px
 }
 
+
+
 .sidebar-nav a {
     vertical-align: middle;
     display: block;
@@ -1787,7 +1789,7 @@ input[type="submit"] {
     margin: 0;
     padding: 2px;
     text-decoration: none;
-    font-family: 'Proxima Nova Regular';
+    font-family: 'Arial';
 
 }
 
@@ -2275,7 +2277,7 @@ li.indanger {
 a.logo {
     display: block;
     float: left;
-    padding-left: 2px;
+    padding-left: 34px;
     line-height: 60px;
     vertical-align: middle
 }
@@ -2487,7 +2489,7 @@ a#show-sidebar {
     border: none;
     background-color: #fc0;
     color: #424141;
-    font-family: 'Proxima Nova Regular';
+    font-family: 'Arial';
 }
 
 .searchs {}
@@ -3705,9 +3707,10 @@ ul.socialfooter li.youtube a:hover {
     display: block;
     position: relative;
     opacity: 0.90;
+    border-radius: 100%;
     overflow: hidden;
-    width: 100%;
-    min-height: 120px
+    width: 75%;
+    min-height: 133px;
 }
 
 .iholder i {

@@ -63,7 +63,7 @@ $st = '
 $categories = $cachedb->get_results('SELECT cat_id,cat_name,picture FROM '.DB_PREFIX.'channels where type = '.toDb(1).' AND child_of = '.toDb(0).' LIMIT 0,4');
 ?>
 
-<div class="row main-holder">
+<div class="row main-holder" id='categoryBlock'>
     <h1>Категории</h1>
     <div class='category-row'>
         <? foreach ($categories as $category) {?>

@@ -1,4 +1,40 @@
 <?php //Check session start
+ini_set('display_errors', 0);
+
+// Log
+require(__DIR__.'/lib/class.log.php');
+$err_log = new Log(__DIR__.'/logs/error');
+
+set_error_handler(function($code, $message, $file, $line) use($err_log) {
+    // error suppressed with @
+    if (error_reporting() === 0) {
+        return false;
+    }
+    switch ($code) {
+        case E_NOTICE:
+        case E_USER_NOTICE:
+            $error = 'Notice';
+            break;
+        case E_WARNING:
+        case E_USER_WARNING:
+            $error = 'Warning';
+            break;
+        case E_ERROR:
+        case E_USER_ERROR:
+            $error = 'Fatal Error';
+            break;
+        default:
+            $error = 'Unknown';
+            break;
+    }
+    if (false) {
+        echo '<b>' . $error . '</b>: ' . $message . ' in <b>' . $file . '</b> on line <b>' . $line . '</b>';
+    }
+    if (true) {
+        $err_log->write('PHP ' . $error . ':  ' . $message . ' in ' . $file . ' on line ' . $line);
+    }
+    return true;
+});
 
 if (!isset($_SESSION)) { @session_start(); }
 // Root 
@@ -15,22 +51,29 @@ require_once( ABSPATH.'/vibe_config.php' );
 require_once( ABSPATH.'/vibe_setts.php' );
 // Sql db classes
 require_once( INC.'/ez_sql_core.php' );
+
 if( !defined( 'cacheEngine' ) || (cacheEngine == "mysql") ) {
-require_once( INC.'/ez_sql_mysql.php' );
-  /* Define live db for MySql */
-$db = new ezSQL_mysql(DB_USER,DB_PASS,DB_NAME,DB_HOST,'utf8');
- /* Define cached db for MySql */
-$cachedb = new ezSQL_mysql(DB_USER,DB_PASS,DB_NAME,DB_HOST,'utf8');
+    require_once( INC.'/ez_sql_mysql.php' );
+
+    /* Define live db for MySql */
+    $db = new ezSQL_mysql(DB_USER,DB_PASS,DB_NAME,DB_HOST,'utf8');
+
+    /* Define cached db for MySql */
+    $cachedb = new ezSQL_mysql(DB_USER,DB_PASS,DB_NAME,DB_HOST,'utf8');
 } else {
-require_once( INC.'/ez_sql_mysqli.php' );	
-  /* Define live db for MySql Improved */
-$db = new ezSQL_mysqli(DB_USER,DB_PASS,DB_NAME,DB_HOST,'utf8');
- /* Define cached db for MySql Improved */
-$cachedb = new ezSQL_mysqli(DB_USER,DB_PASS,DB_NAME,DB_HOST,'utf8');	
+    require_once( INC.'/ez_sql_mysqli.php' );
+
+    /* Define live db for MySql Improved */
+    $db = new ezSQL_mysqli(DB_USER,DB_PASS,DB_NAME,DB_HOST,'utf8');
+    
+     /* Define cached db for MySql Improved */
+    $cachedb = new ezSQL_mysqli(DB_USER,DB_PASS,DB_NAME,DB_HOST,'utf8');
 }
+
 if( !defined( 'DB_CACHE' ) ) {
-$cachedb->cache_timeout = 6; /* Note: this is hours */
+    $cachedb->cache_timeout = 6; /* Note: this is hours */
 } else { $cachedb->cache_timeout = DB_CACHE; }
+
 $cachedb->cache_dir = ABSPATH.'/storage/cache';
 $cachedb->use_disk_cache = true;
 $cachedb->cache_queries = true;
@@ -69,7 +112,7 @@ require_once( INC.'/class.phpmailer.php' );
 require_once( INC.'/class.images.php' );
 require_once( INC.'/class.youtube.php' );
 // Fix some slashes
-if ( get_magic_quotes_gpc() ) {
+if ( /*get_magic_quotes_gpc() устарело с версии 7.4*/false ) {
     $_POST      = array_map( 'stripslashes_deep', $_POST );
     $_GET       = array_map( 'stripslashes_deep', $_GET );
     $_COOKIE    = array_map( 'stripslashes_deep', $_COOKIE );

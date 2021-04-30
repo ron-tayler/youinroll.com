@@ -2,11 +2,16 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require_once(getcwd().'/cron_load.php');
+require_once('/home/x/xatikont/youinroll.com/public_html/cron_load.php');
 
-$allSubs = $db->get_results("SELECT * FROM vibe_user_subscriptions WHERE renewed = '0'");
+$currentMonth = date("Y-m-d H:i:s", time());
+print($currentMonth);
+
+$allSubs = $db->get_results("SELECT * FROM vibe_user_subscriptions WHERE renewed = '0' AND payment_status = 'ready' AND valid_to < '$currentMonth' ");
 
 foreach ($allSubs as $sub) {
+
+    $user = $cachedb->get_row("SELECT * FROM vibe_users WHERE id = $sub->user_id");
 
     switch ($sub->validity) {
         case '3':
@@ -28,15 +33,6 @@ foreach ($allSubs as $sub) {
             break;
     }
 
-    $newValid = date("Y-m-d h:i:s", strtotime("+$month month"));
-
-    echo "\n";
-    /* print_r(strtotime($sub->valid_to));
-    echo "\n";
-    print_r(time());
-    echo "\n";
-    die(); */
-
-    $YNRpayment->charge($sub, $newValid);
+    $test = $YNRpayment->tinkoffPaySecond($sub, $user, $month);
 }
 ?>

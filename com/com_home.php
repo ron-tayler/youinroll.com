@@ -1,12 +1,7 @@
 <?php 
-
-if(isset($_GET['test']))
-{
-    $YNRtemplate->include('/home-dev.php');
-} else
-{
-    $YNRtemplate->include('/home.php');
-}
+$YNRtemplate->include('/home.php',[
+    '/tpl/main_n/styles/pages/home.css'
+]);
 
 
 ?>

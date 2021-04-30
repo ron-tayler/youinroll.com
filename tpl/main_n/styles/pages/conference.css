@@ -3,6 +3,30 @@
     margin-top: 9vh;
 } */
 
+@import url("./chat.css");
+
+#wrapper.big-pic {
+    margin-left: 0.1% !important;
+    margin-right: 0.1% !important;
+    width: 98% !important;
+}
+
+#stream-content {
+    display: flex;
+}
+
+.chat-wrapper {
+    width: 45%;
+}
+
+#stream-content {
+    height: 88vh;
+}
+
+.chat-area-footer {
+    display: flex;
+}
+
 .p-stream {
     margin-top: auto;
 }
@@ -29,7 +53,7 @@
 
 .stream-chat-control {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     width: 240px;
 }
 
@@ -45,7 +69,7 @@
     background: #e6e6e6;
 }
 
-.stream-chat-header > i:before {
+.stream-chat-header>i:before {
     font-size: 20px;
     padding: 5px;
     color: black;
@@ -57,18 +81,11 @@
 }
 
 .stream-chat-control .emoj.form-control.emoj-inline {
-    width:210px;
-}
-
-.stream-chat-controll #sendChat {
+    width: 210px;
 }
 
 .stream-chat-control .message-input-actions {
-    width:10px;
-}
-
-.stream-holder {
-    width:81%;
+    width: 10px;
 }
 
 #streamerImage {
@@ -78,7 +95,6 @@
 }
 
 #streamerName {
-    margin-left: 5px;
     color: black !important;
 }
 
@@ -89,8 +105,14 @@
 }
 
 .stream-header {
-    display:flex;
+    display: flex;
     justify-content: space-between;
+    padding: 10px;
+}
+
+.interaction-icons {
+    display: flex !important;
+    justify-content: end;
 }
 
 .stream-header h1 {
@@ -100,7 +122,11 @@
 }
 
 .stream-header-end {
-    display:flex;
+    display: flex;
+}
+
+.user-media-actions {
+    border-bottom: none !important;
 }
 
 .btn-secondary2 {
@@ -125,10 +151,42 @@
 }
 
 #stream {
-    min-height: 65vh !important;
+    min-height: 78vh !important;
 }
 
 .user-media-actions {
     display: flex;
     justify-content: space-between;
+}
+
+.like-views {
+    font-size: 15px;
+    display: inline-block;
+    color: #333;
+    border-radius: 20px;
+    background-color: #f1f1f1;
+    padding: 5px;
+    width: fit-content;
+}
+
+.stream-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#report-it>.modal-dialog {
+    margin: 0% auto !important;
+}
+
+#media-info {
+    padding: 0 0 20px 0px !important;
+    font-size: 20px;
+}
+
+@media only screen and (max-device-width: 736px) and (max-device-width: 480px) and (max-device-width: 640px) {
+    .chat-wrapper {
+        width: 100%;
+        height: 475px;
+    }
 }

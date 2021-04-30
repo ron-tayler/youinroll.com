@@ -958,26 +958,27 @@ function start_playlist(){
 global $db;
 $list = token();
 if($list) {
-if(intval($list) > 0) {	
-/* Regular playlist */
-$videox = $db->get_row("select id,video_id as vid from ".DB_PREFIX."playlist_data where playlist=$list  order by id desc");
-} elseif(strpos($list, 'uvs-') !== false) {
-/* All videos */	
-$uid = intval(str_replace('uvs-','',$list));
-$videox = $db->get_row("select id as vid from ".DB_PREFIX."videos where user_id=$uid and media < 2  order by id desc");
-} elseif(strpos($list, 'ums-') !== false) {
-/* All music */
-$uid = intval(str_replace('ums-','',$list));
-$videox = $db->get_row("select id as vid from ".DB_PREFIX."videos where user_id=$uid and media > 1  order by id desc");
-}
-if($videox){
-if(intval($list) > 0) {	
-//$list .='&pos='.$videox->id;
-}
-return video_url($videox->vid, 'playlist',$list );
-}
-}
-return playlist_url($list, 'all');
+	if(intval($list) > 0) {	
+		/* Regular playlist */
+		$videox = $db->get_row("select id,video_id as vid from ".DB_PREFIX."playlist_data where playlist=$list  order by id desc");
+	} elseif(strpos($list, 'uvs-') !== false) {
+		/* All videos */	
+		$uid = intval(str_replace('uvs-','',$list));
+		$videox = $db->get_row("select id as vid from ".DB_PREFIX."videos where user_id=$uid and media < 2  order by id desc");
+	} elseif(strpos($list, 'ums-') !== false) {
+		/* All music */
+		$uid = intval(str_replace('ums-','',$list));
+		$videox = $db->get_row("select id as vid from ".DB_PREFIX."videos where user_id=$uid and media > 1  order by id desc");
+	}
+		if($videox){
+			if(intval($list) > 0) {	
+			//$list .='&pos='.$videox->id;
+			}
+			return video_url($videox->vid, 'playlist',$list );
+		}
+	}
+	
+	return playlist_url($list, 'all');
 }
 //Get the media file
 function get_file($input, $token){
@@ -1417,10 +1418,8 @@ $in = '['.date("d/m/y h:i:sa").'] '.$in;
 if(strlen($in) > 500) {
 $in = '<div class="showmore block blc">'.$in.'</div>';
 }	
-$file = ABSPATH.'/'.ADMINCP.'/alog.txt';
-if (is_file($file) && is_writable ($file)) {
+$file = ABSPATH.'/'.ADMINCP.'/alog-'.date('Y-m-d').'.txt';
 @file_put_contents($file, $in, FILE_APPEND | LOCK_EX);
-}	
 }
 /* Hash id helpers */
 function _dHash($inp){
@@ -1443,25 +1442,25 @@ return $nid;
 }
 /* Router helper */
 function _makeUrlArgs($string) {
-/* Extract name variables */	
-$matches = preg_grep('/:/',explode('/',$string));
-$args = array();
-/* Define global array rules */
-$globalRules = array();
-$globalRules['id'] = array('id' => '(\d+)');
-$globalRules['name'] = array('name' => '(.*)');
-$globalRules['hid'] = array('hid' => '(.*)');
-$globalRules['section'] = array('section' => '(.*)');
-/* End global array rules */
-/* Match named variables to their rule */
-foreach ($matches as $rule) {
-	$rule= ltrim($rule,':');
-	if(isset($globalRules[$rule])) {
-	$args[] =  $globalRules[$rule];	
-	}
-}
-/* End match */
-return $args;	
+    /* Extract name variables */
+    $matches = preg_grep('/:/',explode('/',$string));
+    $args = array();
+    /* Define global array rules */
+    $globalRules = array();
+    $globalRules['id'] = array('id' => '(\d+)');
+    $globalRules['name'] = array('name' => '(.*)');
+    $globalRules['hid'] = array('hid' => '(.*)');
+    $globalRules['section'] = array('section' => '(.*)');
+    /* End global array rules */
+    /* Match named variables to their rule */
+    foreach ($matches as $rule) {
+        $rule= ltrim($rule,':');
+        if(isset($globalRules[$rule])) {
+            $args[] =  $globalRules[$rule];
+        }
+    }
+    /* End match */
+    return $args;
 }
 function _contains($a,$match){
 /* Simple function to check if 
@@ -1662,6 +1661,17 @@ function register_style($link){
 	global $privatestyles;	
 	$privatestyles[]= $link;	
 }
+
+function generateRandomString($length = 8) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
 function render_styles($mode=1){
 	global $privatestyles;
 	$localstyles = array();
@@ -1688,6 +1698,20 @@ function render_styles($mode=1){
 	} else {
 	return $output;	
 	}
+}
+
+function transliterate($textcyr = null, $textlat = null) {
+    $cyr = array(
+	' ',
+    'ж',  'ч',  'щ',   'ш',  'ю',  'а', 'б', 'в', 'г', 'д', 'е', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ъ', 'ь', 'я',
+    'Ж',  'Ч',  'Щ',   'Ш',  'Ю',  'А', 'Б', 'В', 'Г', 'Д', 'Е', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ъ', 'Ь', 'Я');
+    $lat = array(
+	'-',
+    'zh', 'ch', 'sht', 'sh', 'yu', 'a', 'b', 'v', 'g', 'd', 'e', 'z', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'y', 'x', 'q',
+    'Zh', 'Ch', 'Sht', 'Sh', 'Yu', 'A', 'B', 'V', 'G', 'D', 'E', 'Z', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'c', 'Y', 'X', 'Q');
+    if($textcyr) return str_replace($cyr, $lat, $textcyr);
+    else if($textlat) return str_replace($lat, $cyr, $textlat);
+    else return null;
 }
   
 ?>

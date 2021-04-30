@@ -1,8 +1,5 @@
 <div class="fixed-top">
     <div class="row block" style="position:relative;">
-        <span class='searchClose hide'>
-            <i class="material-icons search-close-icon"></i>
-        </span>
         <div class="logo-wrapper">
             <a id="show-sidebar" href="javascript:void(0)" title="<?=_lang('Show sidebar')?>" data-type="<?=$type?>">
                 <div class="hamburger" id="hamburger">
@@ -27,7 +24,7 @@
                         </span>
                         <div class="form-control-wrap">
                             <input type="text" class="form-control input-lg empty" name="tag" value=""
-                                placeholder="<?=_lang(" Search media")?>">
+                                placeholder="<?=_lang("Search media")?>">
                         </div>
                         <div></div>
                     </div>
@@ -37,7 +34,18 @@
                 <div id="suggest-results"></div>
                 <?}?>
             </div>
-            <?
+            
+            <div class="user-quick">
+                <a class="top-link" id="show-search"><i class="material-icons">search</i></a>
+                <?if(!is_user()) {?>
+                <a id="openusr" class="btn uav btn-small no-user" href="/login" data-animation="scale-up" role="button"
+                    title="<?=_lang('Login')?>">
+                    <img title="<?=_lang('Guest')?>" data-name="<?=_lang('Guest')?>"
+                        src="/tpl/main/images/man-avatar.svg" class="man-avatar-icon" alt="icon" />
+                    Войти</a>
+            </div>
+            <?} else {?>
+                <?
                 if(is_user())
                 {
 
@@ -70,22 +78,7 @@
                   $messagesCount = count($messages);
                 }
                 ?>
-
-            <a href="<?=site_url()?>conversation/0/" id="myInbox" title='<?=_lang('Messages')?>'><i
-                    class="icon material-icons">&#xE0C9;</i>
-                <span class="badge badge-danger"><?=$messagesCount?></span>
-            </a>
             <?}?>
-            <div class="user-quick">
-                <a class="top-link" id="show-search"><i class="material-icons">search</i></a>
-                <?if(!is_user()) {?>
-                <a id="openusr" class="btn uav btn-small no-user" href="/login" data-animation="scale-up" role="button"
-                    title="<?=_lang('Login')?>">
-                    <img title="<?=_lang('Guest')?>" data-name="<?=_lang('Guest')?>"
-                        src="/tpl/main/images/man-avatar.svg" class="man-avatar-icon" alt="icon" />
-                    Войти</a>
-            </div>
-            <?} else {?>
             <?if((get_option('upmenu') == 1) ||  is_moderator()) {?>
             <i class="material-icons"></i>
             <a id="uplBtn" href="<?=site_url().share?>" class="top-link" title="<?=_lang('Upload video')?>">
@@ -120,18 +113,44 @@
                     </p>
                     <?}}?>
                 </li>
-                <li class="divider" role="presentation"></li>
+                <li role="presentation">
+                    <a href="<?=site_url()?>studio">
+                        <i class="icon material-icons">
+                            new_releases
+                        </i>
+                        <?= _lang('Студия')?>
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="<?=site_url().me?>/?sk=likes">
+                        <i class="icon material-icons">&#xE8DC;</i>
+                        <?= _lang('Понравившееся')?>
+                    </a>
+                </li>
+				<li>
+                    <a href="<?=site_url().me?>/?sk=history">
+                        <i class="icon material-icons">&#xE889;</i>
+                        <?=_lang('History')?>
+                    </a>
+                </li>
+				<li role="presentation">
+                    <a href="<?=site_url().me?>/?sk=later">
+                        <i class="icon material-icons">&#xE924;</i>
+                        <?=_lang('Смотреть позже')?>
+                    </a>
+                </li>
                 <?
                       if(get_option('allowpremium') == 1 ) {
                       if( is_empty(premium_upto())) {
                     ?>
-                <li>
+                <li role="presentation">
                     <a href="<?=site_url()?>payment">
                         <i class="icon material-icons">&#xE8D0;</i>
                         <?=_lang("Get Premium")?>
                     </a>
                 </li>
                 <?}}?>
+                <? /*
                 <li class="my-buzz" role="presentation">
                     <a href="<?=site_url()?>dashboard/">
                         <i class="icon material-icons">&#xE031;</i>
@@ -143,8 +162,8 @@
                         <i class="icon material-icons">&#xE8B8;</i>
                         <?=_lang("My Settings")?>
                     </a>
-                </li>
-                <li role="presentation">
+                </li> */ ?>
+                <? /*<li role="presentation">
                     <a href="<?=site_url().me?>">
                         <i class="icon material-icons">&#xE04A;</i>
                         <?=_lang("Мои видео")?>
@@ -161,7 +180,7 @@
                         <i class="icon material-icons">&#xE413;</i>
                         <?=_lang("My Images")?>
                     </a>
-                </li>
+                </li> */?>
                 <?if(is_admin()){?>
                 <li role="presentation">
                     <a href="<?=ADMINCP?>">

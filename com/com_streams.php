@@ -25,6 +25,7 @@ $YNRtemplate->include('/streamslist.php', [
     'tpl/main_n/styles/calendar.css'
 ],
 [
-	'/tpl/main_n/styles/js/pages/stream.js'
+	'/tpl/main_n/styles/js/pages/stream.js',
+    '/tpl/main_n/styles/js/pages/streams.js'
 ]);
 ?>

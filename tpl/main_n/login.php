@@ -43,7 +43,7 @@
         </div>
         <small class='ml-3 mt-2 mb-2'><a href='resetpassword' style="font-weight:bold">Забыли пароль?</a></small>
         <div class="form-field mt-2">
-          <input class="btn btn-signin" value="Войти" />
+          <button class="btn btn-signin">Войти</button>
         </div>
         <div class="d-flex justify-content-center mt-2">
             <span class="center text-dark">Или</span>
@@ -62,7 +62,7 @@
       </form>
     </div>
     <div class="form-busines mt-2">
-        <input class="btn btn-busines" value="Регистрация" />
+        <button class="btn btn-busines">Регистрация</button>
     </div>
   </div>
 </div>
@@ -89,6 +89,8 @@
 <script src="/tpl/main_n/styles/js/jitsi.js"></script>
 <script>
 
+window.backurl = `<?=$_GET['backurl'];?>`.replace(/\/$/g, '');
+
 document.addEventListener('DOMContentLoaded', function(){
 
     $(`#captcha`).hide();
@@ -99,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
     $('.btn-busines').on('click', function(){
-        location.href = '/register';
+        location.href = '/register'+'?backurl='+backurl;
     })
 
     $.get(
@@ -135,9 +137,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
                     let formData = document.forms[0];
 
-                    /* jitsiClass.doLogin(formData,'global-room', response.result.haveJitsi); */
-
-                    location.href = 'https://youinroll.com/dashboard';
+                    location.href = 'https://youinroll.com'+backurl;
                 }
 
                 if(response.errors !== null)

@@ -31,7 +31,8 @@ if($lists) {
 
     foreach($conversations as $chat) {
 
-        $chatUsers = $db->get_results("SELECT
+        $chatUsers = $db->get_results("
+        SELECT
             USER.name as name,
             USER.avatar as avatar
         FROM ".
@@ -61,16 +62,55 @@ if($lists) {
         $chat->profileUrl = profile_url($firstUserInDialog->id, $firstUserInDialog->name);
 
         $lastUpdated = $db->get_row('SELECT * FROM '.DB_PREFIX.'messages WHERE conversation_id = '.toDb($chat->conf_id).' ORDER BY created_at DESC LIMIT 0,1');
-    
+        
+        $lastUpdateDay = date_diff(new DateTime('NOW'), new DateTime($lastUpdated->created_at))->format('%d');
 
-        $chat->lastUpdate = time_ago( (isset($lastUpdated->created_at)) ? $lastUpdated->created_at : date() );
-        $chat->lastMessage = $lastUpdated->text;
+        if(intval($lastUpdateDay) < 1)
+        {
+            $lastUpdateDay = date("l, H:i", strtotime($lastUpdated->created_at));
+
+            $search  = [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+                'Saturday',
+                'Sunday'
+            ];
+            $replace = [
+                'Понедельник',
+                'Вторник',
+                'Среда',
+                'Четверг',
+                'Пятница',
+                'Суббота',
+                'Воскресенье'
+            ];
+
+            $lastUpdateDay = str_replace($search, $replace, $lastUpdateDay);
+        }
+
+        $chat->lastUpdate = $lastUpdateDay;
+        $chat->lastMessage = base64_decode($lastUpdated->text);
+        $chat->created_at = $lastUpdated->created_at;
         $chat->unreadCount = $db->get_row(
             'SELECT COUNT(*) as count FROM '.DB_PREFIX.'messages WHERE conversation_id = '.toDb($chat->conf_id).' AND readed = '.toDb(0).' AND user_id <> '.toDb(user_id())
         )->count;
 
         array_push($chats, $chat);
     }
+
+    usort($chats, function($a, $b) {
+        $ad = new DateTime($a->created_at);
+        $bd = new DateTime($b->created_at);
+      
+        if ($ad == $bd) {
+          return 0;
+        }
+      
+        return $ad < $bd ? -1 : 1;
+    });
 
 }
 

@@ -22,7 +22,7 @@ switch ($_GET['sk']) {
 	case lessons:
 		$heading = _lang('Мои уроки');	
         $heading_plus = _lang('Мои уроки');        
-		$vq = "select ".$options.", ".DB_PREFIX."users.avatar as owner_avatar, ".DB_PREFIX."users.name as owner, ".DB_PREFIX."users.group_id FROM ".DB_PREFIX."conferences LEFT JOIN ".DB_PREFIX."users ON ".DB_PREFIX."conferences.moderator_id = ".DB_PREFIX."users.id "." WHERE ".DB_PREFIX."conferences.moderator_id = ".user_id()."  ORDER BY ".DB_PREFIX."conferences.id DESC ".this_limit();
+		$vq = "select ".$options.", ".DB_PREFIX."users.avatar as owner_avatar, ".DB_PREFIX."users.name as owner, ".DB_PREFIX."users.group_id FROM ".DB_PREFIX."conferences LEFT JOIN ".DB_PREFIX."users ON ".DB_PREFIX."conferences.moderator_id = ".DB_PREFIX."users.id "." WHERE ".DB_PREFIX."conferences.moderator_id = ".user_id()." AND ".DB_PREFIX."conferences.type = 'lesson'  ORDER BY ".DB_PREFIX."conferences.id DESC ".this_limit();
         $active = lessons;
 		break;
 
@@ -63,16 +63,11 @@ $st = '
 <div class="row main-holder">
 
     <ul class="nav nav-tabs nav-tabs-line mtop20">
-        <li class="<?php aTab(my);?>" role="presentation"><a href="https://youinroll.com/streams"> <i
-                    class="material-icons">&#xE8E5;</i> <?php echo _lang('My Streams'); ?></a></li>
-        <?
-		$hasAccess = $cachedb->get_row('SELECT id FROM '.DB_PREFIX."users_groups WHERE is_bussines = '1' AND id = ".toDb(user_group()));
-		if($hasAccess) {
-	?>
-        <li class="<?php aTab(lessons);?>" role="presentation"><a href="https://youinroll.com/streams?sk=lessons"> <i
-                    class="material-icons">&#xE8E5;</i> <?php echo _lang('My Lessons'); ?></a></li>
-        <? } ?>
-        <li class="<?php aTab(raspisanie);?>" role="presentation"><a href="https://youinroll.com/streams?sk=raspisanie">
+        <li class="<?php aTab(my);?>" role="presentation"><a href="https://youinroll.com/lessons"> <i
+                    class="material-icons">&#xE8E5;</i> <?php echo _lang('Мои трансляции'); ?></a></li>
+		<li class="<?php aTab(lessons);?>" role="presentation"><a href="https://youinroll.com/lessons?sk=lessons"> <i
+                    class="material-icons">&#xE8E5;</i> <?php echo _lang('Мои уроки'); ?></a></li>
+        <li class="<?php aTab(raspisanie);?>" role="presentation"><a href="https://youinroll.com/lessons?sk=raspisanie">
                 <i class="material-icons">&#xE8E5;</i> <?php echo _lang('Расписание'); ?></a></li>
         <li class="pull-right" role="presentation"><a href="<?php echo site_url().addconf; ?>"> <i
                     class="material-icons">&#xE2C3;</i> <?php echo _lang('Add Stream'); ?></a></li>

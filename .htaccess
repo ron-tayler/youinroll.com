@@ -1,46 +1,63 @@
-php_value auto_prepend_file "/home/x/xatikont/youinroll.com/public_html/php_auth_basic.php"
-SetEnvIf Request_URI ^/playlist/5g-klass-gimnaziya-9-im-n-ostrovskogo/599/$ auth=1
-SetEnvIf Request_URI ^/playlist/5e-klass-gimnaziya-9-im-n-ostrovskogo/603/$ auth=1
-SetEnvIf Request_URI ^/playlist/5d-klass-gimnaziya-9-im-n-ostrovskogo/600/$ auth=1
-SetEnvIf Request_URI ^/playlist/5a-klass-gimnaziya-9-im-n-ostrovskogo/601/$ auth=1
-SetEnvIf Request_URI ^/playlist/5b-klass-gimnaziya-9-im-n-ostrovskogo/598/$ auth=1
-SetEnvIf Request_URI ^/playlist/5v-klass-gimnaziya-9-im-n-ostrovskogo/602/$ auth=1
-SetEnvIf Request_URI ^/playlist/6a-klass-gimnaziya-9-im-n-ostrovskogo/635/$ auth=1
-SetEnvIf Request_URI ^/playlist/6g-klass-gimnaziya-9-im-n-ostrovskogo/636/$ auth=1
-SetEnvIf Request_URI ^/playlist/6d-klass-gimnaziya-9-im-n-ostrovskogo/638/$ auth=1
-SetEnvIf Request_URI ^/playlist/6e-klass-gimnaziya-9-im-n-ostrovskogo/640/$ auth=1
-SetEnvIf Request_URI ^/playlist/6v-klass-gimnaziya-9-im-n-ostrovskogo/639/$ auth=1
-SetEnvIf Request_URI ^/playlist/6b-klass-gimnaziya-9-im-n-ostrovskogo/637/$ auth=1
-SetEnvIf Request_URI ^/playlist/7e-klass-gimnaziya-9-im-n-ostrovskogo/684/$ auth=1
-SetEnvIf Request_URI ^/playlist/7a-klass-gimnaziya-9-im-n-ostrovskogo/679/$ auth=1
-SetEnvIf Request_URI ^/playlist/7v-klass-gimnaziya-9-im-n-ostrovskogo/681/$ auth=1
-SetEnvIf Request_URI ^/playlist/7b-klass-gimnaziya-9-im-n-ostrovskogo/680/$ auth=1
-SetEnvIf Request_URI ^/playlist/7g-klass-gimnaziya-9-im-n-ostrovskogo/682/$ auth=1
-SetEnvIf Request_URI ^/playlist/7d-klass-gimnaziya-9-im-n-ostrovskogo/683/$ auth=1
-SetEnvIf Request_URI ^/playlist/8a-klass-gimnaziya-9-im-n-ostrovskogo/685/$ auth=1
-SetEnvIf Request_URI ^/playlist/8b-klass-gimnaziya-9-im-n-ostrovskogo/686/$ auth=1
-SetEnvIf Request_URI ^/playlist/8v-klass-gimnaziya-9-im-n-ostrovskogo/687/$ auth=1
-SetEnvIf Request_URI ^/playlist/8g-klass-gimnaziya-9-im-n-ostrovskogo/688/$ auth=1
-SetEnvIf Request_URI ^/playlist/8d-klass-gimnaziya-9-im-n-ostrovskogo/689/$ auth=1
-SetEnvIf Request_URI ^/playlist/8e-klass-gimnaziya-9-im-n-ostrovskogo/690/$ auth=1
-SetEnvIf Request_URI ^/playlist/9b-klass-gimnaziya-9-im-n-ostrovskogo/692/$ auth=1
-SetEnvIf Request_URI ^/playlist/9a-klass-gimnaziya-9-im-n-ostrovskogo/691/$ auth=1
-SetEnvIf Request_URI ^/playlist/9v-klass-gimnaziya-9-im-n-ostrovskogo/693/$ auth=1
-SetEnvIf Request_URI ^/playlist/9g-klass-gimnaziya-9-im-n-ostrovskogo/694/$ auth=1
-SetEnvIf Request_URI ^/playlist/9d-klass-gimnaziya-9-im-n-ostrovskogo/695/$ auth=1
-SetEnvIf Request_URI ^/playlist/9e-klass-gimnaziya-9-im-n-ostrovskogo/696/$ auth=1
-SetEnvIf Request_URI ^/playlist/10a-klass-gimnaziya-9-im-n-ostrovskogo/697/$ auth=1
-SetEnvIf Request_URI ^/playlist/10b-klass-gimnaziya-9-im-n-ostrovskogo/698/$ auth=1
-SetEnvIf Request_URI ^/playlist/10v-klass-gimnaziya-9-im-n-ostrovskogo/699/$ auth=1
-SetEnvIf Request_URI ^/playlist/10d-klass-gimnaziya-9-im-n-ostrovskogo/700/$ auth=1
-SetEnvIf Request_URI ^/playlist/10e-klass-gimnaziya-9-im-n-ostrovskogo/701/$ auth=1
-SetEnvIf Request_URI ^/playlist/10g-klass-gimnaziya-9-im-n-ostrovskogo/702/$ auth=1
-SetEnvIf Request_URI ^/playlist/11a-klass-gimnaziya-9-im-n-ostrovskogo/703/$ auth=1
-SetEnvIf Request_URI ^/playlist/11b-klass-gimnaziya-9-im-n-ostrovskogo/704/$ auth=1
-SetEnvIf Request_URI ^/playlist/11v-klass-gimnaziya-9-im-n-ostrovskogo/705/$ auth=1
-SetEnvIf Request_URI ^/playlist/11g-klass-gimnaziya-9-im-n-ostrovskogo/706/$ auth=1
-SetEnvIf Request_URI ^/playlist/11d-klass-gimnaziya-9-im-n-ostrovskog/707/$ auth=1
-SetEnvIf Request_URI ^/playlist/11e-klass-gimnaziya-9-im-n-ostrovskog/708/$ auth=1
+php_flag display_startup_errors off
+php_flag display_errors off
+php_flag html_errors off
+php_flag log_errors on
+php_flag ignore_repeated_errors off
+php_flag ignore_repeated_source off
+php_flag report_memleaks on
+php_flag track_errors on
+php_value docref_root 0
+php_value docref_ext 0
+php_value error_log /home/x/xatikont/youinroll.com/public_html/PHP_errors.log
+php_value error_reporting 2047
+php_value log_errors_max_len 0
+
+<Files PHP_errors.log>
+    Require all denied
+</Files>
+#php_value auto_prepend_file "/home/x/xatikont/youinroll.com/public_html/php_auth_basic.php"
+#SetEnvIf Request_URI ^/playlist/5g-klass-gimnaziya-9-im-n-ostrovskogo/599/$ auth=1
+#SetEnvIf Request_URI ^/playlist/5e-klass-gimnaziya-9-im-n-ostrovskogo/603/$ auth=1
+#SetEnvIf Request_URI ^/playlist/5d-klass-gimnaziya-9-im-n-ostrovskogo/600/$ auth=1
+#SetEnvIf Request_URI ^/playlist/5a-klass-gimnaziya-9-im-n-ostrovskogo/601/$ auth=1
+#SetEnvIf Request_URI ^/playlist/5b-klass-gimnaziya-9-im-n-ostrovskogo/598/$ auth=1
+#SetEnvIf Request_URI ^/playlist/5v-klass-gimnaziya-9-im-n-ostrovskogo/602/$ auth=1
+#SetEnvIf Request_URI ^/playlist/6a-klass-gimnaziya-9-im-n-ostrovskogo/635/$ auth=1
+#SetEnvIf Request_URI ^/playlist/6g-klass-gimnaziya-9-im-n-ostrovskogo/636/$ auth=1
+#SetEnvIf Request_URI ^/playlist/6d-klass-gimnaziya-9-im-n-ostrovskogo/638/$ auth=1
+#SetEnvIf Request_URI ^/playlist/6e-klass-gimnaziya-9-im-n-ostrovskogo/640/$ auth=1
+#SetEnvIf Request_URI ^/playlist/6v-klass-gimnaziya-9-im-n-ostrovskogo/639/$ auth=1
+#SetEnvIf Request_URI ^/playlist/6b-klass-gimnaziya-9-im-n-ostrovskogo/637/$ auth=1
+#SetEnvIf Request_URI ^/playlist/7e-klass-gimnaziya-9-im-n-ostrovskogo/684/$ auth=1
+#SetEnvIf Request_URI ^/playlist/7a-klass-gimnaziya-9-im-n-ostrovskogo/679/$ auth=1
+#SetEnvIf Request_URI ^/playlist/7v-klass-gimnaziya-9-im-n-ostrovskogo/681/$ auth=1
+#SetEnvIf Request_URI ^/playlist/7b-klass-gimnaziya-9-im-n-ostrovskogo/680/$ auth=1
+#SetEnvIf Request_URI ^/playlist/7g-klass-gimnaziya-9-im-n-ostrovskogo/682/$ auth=1
+#SetEnvIf Request_URI ^/playlist/7d-klass-gimnaziya-9-im-n-ostrovskogo/683/$ auth=1
+#SetEnvIf Request_URI ^/playlist/8a-klass-gimnaziya-9-im-n-ostrovskogo/685/$ auth=1
+#SetEnvIf Request_URI ^/playlist/8b-klass-gimnaziya-9-im-n-ostrovskogo/686/$ auth=1
+#SetEnvIf Request_URI ^/playlist/8v-klass-gimnaziya-9-im-n-ostrovskogo/687/$ auth=1
+#SetEnvIf Request_URI ^/playlist/8g-klass-gimnaziya-9-im-n-ostrovskogo/688/$ auth=1
+#SetEnvIf Request_URI ^/playlist/8d-klass-gimnaziya-9-im-n-ostrovskogo/689/$ auth=1
+#SetEnvIf Request_URI ^/playlist/8e-klass-gimnaziya-9-im-n-ostrovskogo/690/$ auth=1
+#SetEnvIf Request_URI ^/playlist/9b-klass-gimnaziya-9-im-n-ostrovskogo/692/$ auth=1
+#SetEnvIf Request_URI ^/playlist/9a-klass-gimnaziya-9-im-n-ostrovskogo/691/$ auth=1
+#SetEnvIf Request_URI ^/playlist/9v-klass-gimnaziya-9-im-n-ostrovskogo/693/$ auth=1
+#SetEnvIf Request_URI ^/playlist/9g-klass-gimnaziya-9-im-n-ostrovskogo/694/$ auth=1
+#SetEnvIf Request_URI ^/playlist/9d-klass-gimnaziya-9-im-n-ostrovskogo/695/$ auth=1
+#SetEnvIf Request_URI ^/playlist/9e-klass-gimnaziya-9-im-n-ostrovskogo/696/$ auth=1
+#SetEnvIf Request_URI ^/playlist/10a-klass-gimnaziya-9-im-n-ostrovskogo/697/$ auth=1
+#SetEnvIf Request_URI ^/playlist/10b-klass-gimnaziya-9-im-n-ostrovskogo/698/$ auth=1
+#SetEnvIf Request_URI ^/playlist/10v-klass-gimnaziya-9-im-n-ostrovskogo/699/$ auth=1
+#SetEnvIf Request_URI ^/playlist/10d-klass-gimnaziya-9-im-n-ostrovskogo/700/$ auth=1
+#SetEnvIf Request_URI ^/playlist/10e-klass-gimnaziya-9-im-n-ostrovskogo/701/$ auth=1
+#SetEnvIf Request_URI ^/playlist/10g-klass-gimnaziya-9-im-n-ostrovskogo/702/$ auth=1
+#SetEnvIf Request_URI ^/playlist/11a-klass-gimnaziya-9-im-n-ostrovskogo/703/$ auth=1
+#SetEnvIf Request_URI ^/playlist/11b-klass-gimnaziya-9-im-n-ostrovskogo/704/$ auth=1
+#SetEnvIf Request_URI ^/playlist/11v-klass-gimnaziya-9-im-n-ostrovskogo/705/$ auth=1
+#SetEnvIf Request_URI ^/playlist/11g-klass-gimnaziya-9-im-n-ostrovskogo/706/$ auth=1
+#SetEnvIf Request_URI ^/playlist/11d-klass-gimnaziya-9-im-n-ostrovskog/707/$ auth=1
+#SetEnvIf Request_URI ^/playlist/11e-klass-gimnaziya-9-im-n-ostrovskog/708/$ auth=1
 
 php_value session.gc_maxlifetime 86400
 php_value session.cookie_lifetime 0
@@ -62,6 +79,13 @@ Deny from env=auth
 <IfModule mod_rewrite.c>
 RewriteEngine on
 RewriteBase /
+
+#RewriteCond %{HTTP_COOKIE} ^$ [NC]
+#RewriteCond %{REQUEST_URI} !^/land/.*$
+#RewriteCond %{REQUEST_URI} !^/register.*$
+#RewriteCond %{REQUEST_URI} !^/index\.php.*$
+#RewriteRule ^(.*)$ /land/$1 [L]
+
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

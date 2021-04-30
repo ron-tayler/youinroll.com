@@ -53,14 +53,14 @@ define( 'PPMail', 'xatiko540@yandex.ru' );
 /*
  ** Mail settings.
  */  
-$adminMail = 'mx1.beget.com';
+$adminMail = 'smtp.beget.com';
 $mvm_useSMTP = false; /* Use smtp for mails? */
 /* true: Use smtp | false : uses's PHP's sendmail() function */
 $mvm_host = 'smtp.beget.com';  /* Main SMTP server */
 $mvm_user = 'youinroll@youinroll.com'; /* SMTP username */
-$mvm_pass = 'A%pf2mdk'; /* SMTP password */
+$mvm_pass = 'lCkQ&1zw'; /* SMTP password */
 $mvm_secure = 'tls'; /* Enable TLS encryption, `ssl` also accepted */
-$mvm_port = '2525';  /* TCP port to connect to	*/
+$mvm_port = '465';  /* TCP port to connect to	*/
 /*
  ** Full cache settings.
  */  

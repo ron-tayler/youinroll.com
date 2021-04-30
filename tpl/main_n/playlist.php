@@ -46,15 +46,17 @@ if($playlist->price !== null && (int)$playlist->owner !== user_id())
                 <p>
                     <h3><?=_html($playlist->description)?></h3>
                 </p>
-                <?if($playlist->ptype == 1 && $isBuyed !== null) {?>
-                <a class="btn btn-primary tipN pull-left" title="<?=_lang(" Play all")?>"
-                    href="<?=site_url()?>forward/<?=$playlist->id?>/"><i class="icon icon-play-circle"></i><?=_lang("Play all")?></a>
-                <?} else {?>
+                <?if($playlist->price !== null and $playlist->price>0 and $isBuyed === null){?>
                     <?if(is_user()) {?>
                         <button data-toggle="modal" data-target="#BuyCourseModal" class="btn btn-primary tipN pull-left" title="<?=_lang("Buy course")?>"><i class="icon icon-play-circle"></i><?=_lang("Buy course for ")?><?=$playlist->price?>р</button>
                     <?} else {?>
                         <a class="btn btn-primary tipN pull-left" title="<?=_lang(" Login for Buy")?>"
-                            href="/login"><i class="icon icon-play-circle"></i><?=_lang("Login for Buy")?></a>
+                           href="/login?backurl=<?=$_SERVER['REQUEST_URI']?>"><i class="icon icon-play-circle"></i><?=_lang("Login for Buy")?></a>
+                    <?}?>
+                <?}else{?>
+                    <?if($playlist->ptype == 1) {?>
+                        <a class="btn btn-primary tipN pull-left" title="<?=_lang(" Play all")?>"
+                           href="<?=site_url()?>forward/<?=$playlist->id?>/"><i class="icon icon-play-circle"></i><?=_lang("Play all")?></a>
                     <?}?>
                 <?}?>
             </div>
@@ -70,8 +72,9 @@ if($playlist->price !== null && (int)$playlist->owner !== user_id())
 <? if($isBuyed !== null) {?>
     <?if($playlist->ptype ==1) {?>
     <?
+        $playlistActive = $playlist->id;
         $options = DB_PREFIX."videos.id,".DB_PREFIX."videos.media,".DB_PREFIX."videos.title,".DB_PREFIX."videos.user_id,".DB_PREFIX."videos.thumb,".DB_PREFIX."videos.views,".DB_PREFIX."videos.liked,".DB_PREFIX."videos.duration,".DB_PREFIX."videos.nsfw";
-        $vq = "SELECT ".DB_PREFIX."videos.id, ".DB_PREFIX."videos.title, ".DB_PREFIX."videos.user_id, ".DB_PREFIX."videos.thumb, ".DB_PREFIX."videos.views, ".DB_PREFIX."videos.liked, ".DB_PREFIX."videos.duration, ".DB_PREFIX."videos.nsfw, ".DB_PREFIX."users.name AS owner
+        $vq = "SELECT ".DB_PREFIX."videos.id, ".DB_PREFIX."users.avatar, ".DB_PREFIX."videos.title, ".DB_PREFIX."videos.user_id, ".DB_PREFIX."videos.thumb, ".DB_PREFIX."videos.views, ".DB_PREFIX."videos.liked, ".DB_PREFIX."videos.duration, ".DB_PREFIX."videos.nsfw, ".DB_PREFIX."users.name AS owner
         FROM ".DB_PREFIX."playlist_data
         LEFT JOIN ".DB_PREFIX."videos ON ".DB_PREFIX."playlist_data.video_id = ".DB_PREFIX."videos.id
         LEFT JOIN ".DB_PREFIX."users ON ".DB_PREFIX."videos.user_id = ".DB_PREFIX."users.id

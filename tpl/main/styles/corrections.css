@@ -15,7 +15,7 @@
     width: 100%;
     height: 100%;
     backdrop-filter: blur(3px);
-    z-index: 2;
+    z-index: 33;
     background-color: #000000a6;
     position: fixed;
     top: 0;
@@ -84,10 +84,10 @@ ul.socialfooter li {
 }
 
 .chanel-avatar {
-    height: 22px;
-    width: 22px;
+    height: 35px;
+    width: 35px;
     display: inline-block;
-    border: black solid 1px;
+    /*border: black solid 1px;*/
     border-radius: 50%;
     overflow: hidden;
     -webkit-flex-shrink: 0;
@@ -101,7 +101,7 @@ ul.socialfooter li {
 .chanel-avatar img {
     margin: 0;
     position: relative;
-    top: -2px;
+    /*top: -2px;*/
 }
 
 .video ul.stats>li {

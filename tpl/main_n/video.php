@@ -107,6 +107,7 @@
     </div>
 	</div>
     <?php } ?>
+    <?if(!isset($_GET['list'])) {?>
     <div class="rur video-under-right oboxed <?php if(has_list()){ echo "mtop10";}?> pull-right col-md-4 col-xs-12">
         <?php do_action('before-related');  echo _ad('0','related-videos-top');?>
             <div class="related video-related top10 related-with-list">
@@ -122,11 +123,12 @@
 					layout('layouts/related'); 
 					echo '</ul>';
 					}
-?>
+                    ?>
                 
             </div>
             <?php do_action('after-related'); ?>
-        </div>
+    </div>
+    <?}?>
         <div class="video-under col-md-8 col-xs-12">
             <div class="oboxed odet mtop10">
                 <div class="row vibe-interactions">

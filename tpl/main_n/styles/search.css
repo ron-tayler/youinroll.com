@@ -32,16 +32,40 @@
 }
 
 .search-close-icon {
-    padding: 15px 5px 5px 8px;
+    padding: 5px;
 }
 
 .search-close-icon:before {
     content: "\e5cd";
 }
 
+.searchClose {
+    display: inline-flex;
+    padding: 10px;
+    width: 100% !important;
+}
+
+.searchClose .form-control {
+    border-radius: 20px !important;
+    border: 2px solid black !important;
+    /* color: black !important; */
+    font-weight: bold !important;
+    color: black !important;
+}
+
+.searchClose .form-control-wrap {
+    width: 100%;
+}
+
+.searchClose .form-control::placeholder {
+    color: rgb(87, 87, 87);
+}
+
+
 .searchWidget .search-button button {
     font-family: "Material Icons";
 }
+
 .searchWidget .search-button i {
     font-style: normal;
 }
@@ -49,7 +73,7 @@
 
 /* RESULTS */
 #wrapper.haside {
-    width: 80.75% !important
+    width: 80.75%;
 }
 
 #SearchResultsChannels {

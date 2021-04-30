@@ -102,7 +102,7 @@ echo '<div class="block isBoxed msg-content msg-note mbot20">'._lang("No past su
  $a->set_pages_items(7); 
  $a->set_per_page(bpp()); 
  $a->set_values($count->nr); ?>   
- <form class="styled" action="<?php echo site_url().me;?>?sk=<?php echo _get('sk');?>&p=<?php echo this_page();?>" enctype="multipart/form-data" method="post">       
+ <form id='playlistsForm' class="styled" action="<?php echo site_url().me;?>?sk=<?php echo _get('sk');?>&p=<?php echo this_page();?>" enctype="multipart/form-data" method="post">       
  <div class="cleafix full">
  </div>  
  <div class="row top10 left10"> 
@@ -114,7 +114,7 @@ echo '<div class="block isBoxed msg-content msg-note mbot20">'._lang("No past su
  <label></label> Select all
  </div>  
   </div>       
-	 <div class="segment">  
+	  <div class="segment">
       <button class="btn btn-danger btn-sm" type="submit"> 
       <i class="icon icon-trash"></i> <?php echo _lang("selected"); ?>  
       </button>  	   
@@ -135,6 +135,13 @@ echo '<div class="block isBoxed msg-content msg-note mbot20">'._lang("No past su
 		 </div> 
 		 <div class="segment"> 
 		 <div class="btn-group">     
+	     <? $playlists = $db->get_results("SELECT id,title FROM vibe_playlists WHERE owner = ".toDb(user_id())." AND price IS NOT NULL"); ?>
+		 <select class='form-control addToPlayList' data-video="<?=$video->id?>" name='playlist'>
+		 	<option value="0">Убрать</option>
+		 	<?foreach($playlists as $playlist) {?>
+				<option value="<?=$playlist->id?>"><?=$playlist->title?></option>
+			<?}?>
+		</select>
 		 <a class="btn  btn-primary " href="<?php echo site_url().me;?>?sk=edit-video&vid=<?php echo $video->id;?>" title="<?php echo _lang("Edit"); ?>"><i class="icon-pencil" style=""></i></a>     
 		 <a class="btn  btn-default btn-outline " href="<?php echo site_url().me;?>?sk=videos&p=<?php echo this_page();?>&delete-video=<?php echo $video->id;?>" title="<?php echo _lang("Unpublish"); ?>"><i class="icon-trash" style=""></i></a> 
 		 </div>  
@@ -144,7 +151,22 @@ echo '<div class="block isBoxed msg-content msg-note mbot20">'._lang("No past su
 	</div>   
  </div>  
  </div>  
- </form> 
+ </form>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+	$('.addToPlayList').on('change', function(){
+
+		$.get('https://youinroll.com/lib/ajax/videoToPlaylist.php',{
+			vid: $(this).data('video'),
+			pid: $(this).val()
+		}, function (data){
+			$.notify(data);
+		})
+
+		$(this).remove();
+	})
+});
+</script>
  <?php  $a->show_pages($ps); } 
  break; 
  case "images":    
@@ -465,73 +487,77 @@ echo '<div class="msg-info mleft20 mright20 mtop20">'._lang("Pictures unliked.")
      <?php  $a->show_pages($ps); } 
  break; 
  case "playlists":    
- $count = $db->get_row("SELECT count(*) as nr FROM ".DB_PREFIX."playlists where owner= '".user_id()."' and ptype < 2 and picture not in ('[likes]','[history]','[later]')"); 
- $videos = $db->get_results("SELECT * FROM ".DB_PREFIX."playlists where owner= '".user_id()."' and picture not in ('[likes]','[history]','[later]') and ptype < 2 order by title desc ".this_limit().""); ?>         
- <div class="row blc mIdent"> 
- <div class="col-md-3"> 
- <div class="iholder bg-facebook"><i class="icon-list-alt"></i> 
- </div>  
- </div>  
- <div class="col-md-7 col-md-offset-1"> 
- <h1><?php echo _lang("Playlists manager");?> </h1> 
- <?php echo $count->nr; ?> <?php echo _lang("playlists by").' '.user_name();?> 
- <p> 
- <a class="btn btn-default" href="<?php echo site_url().me; ?>/?sk=new-playlist">    <i class="icon-play"></i><?php echo  _lang('Create a new playlist'); ?></a> </p> 
- </div>  
- </div>  
-     <?php 
- if($videos) { $ps = site_url().me.'?sk=playlists&p='; 
- $a = new pagination; 
- $a->set_current(this_page()); 
- $a->set_first_page(true); 
- $a->set_pages_items(7); 
- $a->set_per_page(bpp()); 
- $a->set_values($count->nr); 
- $a->show_pages($ps); ?>         
- <form class="styled mtop10" action="<?php echo site_url().me;?>?sk=playlists&p=<?php echo this_page();?>" enctype="multipart/form-data" method="post"> 
- <div class="cleafix full">
- </div>  
- <div class="row top10">
- <div class="div div-checks">            
-<div class="item-in-list list-header">     
-  <div class="segment">
-    <div class="checkbox-custom checkbox-primary"> 
-    <input type="checkbox" name="checkRows" class="check-all" /> 
-    <label></label> Select all
-    </div>  
-  </div>       
-  <div class="segment">  
-      <button class="btn btn-danger btn-sm" type="submit"> 
-      <i class="icon icon-trash"></i> <?php echo _lang("selected"); ?>  
-      </button>  	   
-  </div>
- </div>
-	<div class="content--items">   
-		 <?php foreach ($videos as $video) { ?>        
-		 <div class="item-in-list"> 
-		 <div class="segment"> 
-		 <div class="checkbox-custom checkbox-primary"> 
-		 <input type="checkbox" name="playlistsRow[]" value="<?php echo $video->id; ?>" class="styled" />
-		 <label></label> 
-		 </div>  
-		 </div> 
-		 <div class="segment"> 
-		 <a class="btn btn-sm btn-primary " href="<?php echo site_url().me;?>?sk=manage-playlists&playlist=<?php echo $video->id;?>" title="<?php echo _lang("Manage the videos in "); echo _html($video->title); ?>"><i class="icon icon-navicon"></i><?php echo _lang("Review"); ?> </a> 
-		 </div> 
-		 <div class="segment" > 
-		 <a class="" target="_blank" href="<?php echo playlist_url($video->id, $video->title);?>" title="<?php echo _lang("View"); ?>"><img src="<?php echo thumb_fix($video->picture, true, get_option('thumb-width'), get_option('thumb-height')); ?>" style=""></a>    
-		 <a class="content-title" target="_blank" href="<?php echo playlist_url($video->id, $video->title);?>" title="<?php echo _lang("View"); ?>"><strong> <?php echo _html($video->title); ?></strong></a> 
-		 </div> 
-		 <div class="segment">     
-		 <a class="btn btn-sm btn-default btn-outline " href="<?php echo site_url().me;?>?sk=playlists&p=<?php echo this_page();?>&delete-playlist=<?php echo $video->id;?>" title="<?php echo _lang("Delete playlist"); ?>"><i class="icon-trash"></i></a> 
-		 </div> 
-		 </div>
-		 <?php } ?> 
-	</div>   
- </div>  
- </div>  
- </form> 
- <?php  $a->show_pages($ps); } 
+	$count = $db->get_row("SELECT count(*) as nr FROM ".DB_PREFIX."playlists where owner= '".user_id()."' and ptype < 2 and picture not in ('[likes]','[history]','[later]')"); 
+	$videos = $db->get_results("SELECT * FROM ".DB_PREFIX."playlists where owner= '".user_id()."' and picture not in ('[likes]','[history]','[later]') and ptype < 2 order by title desc ".this_limit().""); ?>         
+	<div class="row blc mIdent"> 
+	<div class="col-md-3"> 
+	<div class="iholder bg-facebook"><i class="icon-list-alt"></i> 
+	</div>  
+	</div>  
+	<div class="col-md-7 col-md-offset-1"> 
+	<h1><?php echo _lang("Playlists manager");?> </h1> 
+	<?php echo $count->nr; ?> <?php echo _lang("playlists by").' '.user_name();?>
+
+	<div class='row'>
+		<a class="btn btn-default" href="/lessons"><?php echo  _lang('Мои уроки'); ?></a>
+		<a class="btn btn-default" href="<?php echo site_url().me; ?>/?sk=new-playlist"><?php echo  _lang('Create a new playlist'); ?></a>
+	</div>
+	
+	</div>  
+	</div>  
+		<?php
+	if($videos) { $ps = site_url().me.'?sk=playlists&p=';
+	$a = new pagination; 
+	$a->set_current(this_page()); 
+	$a->set_first_page(true); 
+	$a->set_pages_items(7); 
+	$a->set_per_page(bpp()); 
+	$a->set_values($count->nr); 
+	$a->show_pages($ps); ?>         
+	<form class="styled mtop10" action="<?php echo site_url().me;?>?sk=playlists&p=<?php echo this_page();?>" enctype="multipart/form-data" method="post"> 
+	<div class="cleafix full">
+	</div>  
+	<div class="row top10">
+	<div class="div div-checks">            
+	<div class="item-in-list list-header">     
+	<div class="segment">
+		<div class="checkbox-custom checkbox-primary"> 
+		<input type="checkbox" name="checkRows" class="check-all" /> 
+		<label></label> Select all
+		</div>  
+	</div>       
+	<div class="segment">  
+		<button class="btn btn-danger btn-sm" type="submit"> 
+		<i class="icon icon-trash"></i> <?php echo _lang("selected"); ?>  
+		</button>  	   
+	</div>
+	</div>
+		<div class="content--items">   
+			<?php foreach ($videos as $video) { ?>        
+			<div class="item-in-list"> 
+			<div class="segment"> 
+			<div class="checkbox-custom checkbox-primary"> 
+			<input type="checkbox" name="playlistsRow[]" value="<?php echo $video->id; ?>" class="styled" />
+			<label></label> 
+			</div>  
+			</div> 
+			<div class="segment"> 
+			<a class="btn btn-sm btn-primary " href="<?php echo site_url().me;?>?sk=manage-playlists&playlist=<?php echo $video->id;?>" title="<?php echo _lang("Manage the videos in "); echo _html($video->title); ?>"><i class="icon icon-navicon"></i><?php echo _lang("Review"); ?> </a> 
+			</div> 
+			<div class="segment" > 
+			<a class="" target="_blank" href="<?php echo playlist_url($video->id, $video->title);?>" title="<?php echo _lang("View"); ?>"><img src="<?php echo thumb_fix($video->picture, true, get_option('thumb-width'), get_option('thumb-height')); ?>" style=""></a>    
+			<a class="content-title" target="_blank" href="<?php echo playlist_url($video->id, $video->title);?>" title="<?php echo _lang("View"); ?>"><strong> <?php echo _html($video->title); ?></strong></a> 
+			</div> 
+			<div class="segment">     
+			<a class="btn btn-sm btn-default btn-outline " href="<?php echo site_url().me;?>?sk=playlists&p=<?php echo this_page();?>&delete-playlist=<?php echo $video->id;?>" title="<?php echo _lang("Delete playlist"); ?>"><i class="icon-trash"></i></a> 
+			</div> 
+			</div>
+			<?php } ?> 
+		</div>   
+	</div>  
+	</div>  
+	</form> 
+	<?php  $a->show_pages($ps); } 
  break; 
  case "albums":    
  $count = $db->get_row("SELECT count(*) as nr FROM ".DB_PREFIX."playlists where owner= '".user_id()."' and ptype > 1 and picture not in ('[likes]','[history]','[later]')"); 
@@ -626,7 +652,7 @@ echo '<div class="msg-info mleft20 mright20 mtop20">'._lang("Pictures unliked.")
  </div>  
  </div>  
 <?php 
- if($videos) { $ps = site_url().me.'?sk=manage-playlists&p='; 
+ if($videos) { $ps = site_url().me.'?sk=manage-playlists&playlist='._get("playlist").'&p='; 
  $a = new pagination; 
  $a->set_current(this_page()); 
  $a->set_first_page(true); 
@@ -1108,7 +1134,7 @@ $picture  = str_replace(ABSPATH.'/' ,'',$thumb); } else {
  </button> 
  </div>  
  </form> 
- </div>  
+ </div>
  <?php 
  break; 
  } ?> 
@@ -1139,6 +1165,7 @@ $picture  = str_replace(ABSPATH.'/' ,'',$thumb); } else {
 </style>
 
 <script>
+
 $('.payEnable').on('click', function(){
 
 	if($(this).prop('checked') === true)

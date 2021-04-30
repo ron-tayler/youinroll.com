@@ -1,0 +1,99 @@
+<tui-root>
+    <div class="wrapper" tuiMode="onDark">
+        <h1 class="tui-text_h3 title">Monty Python</h1>
+        <tui-tabs-with-more class="tabs" [activeItemIndex]="activeItemIndex" [moreContent]="more">
+            <ng-container *ngFor="let tab of tabs">
+                <ng-container *ngIf="isString(tab); else submenu">
+                    <button *tuiTab tuiTab type="button" (click)="onClick(tab)">
+                        {{tab}}
+                    </button>
+                </ng-container>
+                <ng-template #submenu>
+                    <tui-hosted-dropdown *tuiTab class="dropdown" [content]="dropdown" [(open)]="open">
+                        <button class="collaborators" tuiTab type="button" (tui-tab-activate)="stop($event)">
+                            Collaborators
+                            <tui-svg src="tuiIconChevronDown" class="icon" [class.icon_rotated]="open"></tui-svg>
+                        </button>
+                    </tui-hosted-dropdown>
+                </ng-template>
+            </ng-container>
+        </tui-tabs-with-more>
+    </div>
+    <section class="content">Currently active: {{activeElement}}</section>
+    <ng-template #dropdown>
+        <tui-data-list>
+            <button *ngFor="let collaborator of collaborators" tuiOption (click)="onClick(collaborator)">
+                {{collaborator}}
+            </button>
+        </tui-data-list>
+    </ng-template>
+    <ng-template #more>
+        <tui-svg src="tuiIconMoreHorLarge"></tui-svg>
+    </ng-template>
+    <!-- content of your app -->
+    <div class="container">
+        <div class="tui-row">
+            <div class="tui-col_md-4">
+                <tui-island>
+                    <p class="tui-island__category">category</p>
+                    <h3 class="tui-island__title">Some heading</h3>
+                    <p class="tui-island__paragraph">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                        do eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua.
+                    </p>
+                    <p class="tui-island__paragraph tui-island__paragraph_link">
+                        <a href="/" tuiLink>Link</a>
+                    </p>
+                </tui-island>
+            </div>
+            <div class="tui-col_md-4">
+                <tui-island>
+                    <h3 class="tui-island__title">Title</h3>
+                    <p class="tui-island__paragraph">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                        do eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua.
+                    </p>
+                    <button tuiButton type="button" class="tui-island__footer-button" appearance="flat" size="m">
+                        Button
+                    </button>
+                </tui-island>
+            </div>
+            <div class="tui-col_md-4">
+                <tui-island>
+                    <div class="tui-island__content">
+                        <figure class="tui-island__figure">
+                            <div class="some-figure"></div>
+                        </figure>
+                        <div>
+                            <p class="tui-island__paragraph">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit, sed do eiusmod tempor incididunt ut labore et
+                                dolore magna aliqua.
+                            </p>
+                            <p class="tui-island__paragraph tui-island__paragraph_link">
+                                <a href="/" tuiLink>Fill some papers</a>
+                            </p>
+                        </div>
+                    </div>
+                </tui-island>
+            </div>
+        </div>
+    </div>
+    <!--
+   If you need, you can add something between Taiga portal layers:
+  -->
+    <ng-container ngProjectAs="tuiOverDialogs">
+        <!-- Content over dialogs-->
+    </ng-container>
+    <ng-container ngProjectAs="tuiOverNotifications">
+        <!-- Content over notifications -->
+    </ng-container>
+    <ng-container ngProjectAs="tuiOverPortals">
+        <!-- Content over dropdowns -->
+    </ng-container>
+    <ng-container ngProjectAs="tuiOverHints">
+        <!-- Content over hints -->
+    </ng-container>
+</tui-root>

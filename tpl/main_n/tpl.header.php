@@ -88,6 +88,7 @@ if(com() == "profile")
 }
 
 $meta .= '<link rel="stylesheet" href="tpl/main_n/styles/sidebar.css" type="text/css">
+<link rel="stylesheet" href="tpl/main_n/styles/sidebar-mobile.css" type="text/css">
 <link rel="apple-touch-icon" sizes="180x180" href="'.site_url().'lib/favicos/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="'.site_url().'lib/favicos/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="'.site_url().'lib/favicos/favicon-16x16.png">
@@ -158,6 +159,7 @@ function top_nav(){
   }
 
 $nav = '';
+include(TPL.'/sidebar-mobile.php');
 $nav .= '
 <div class="fixed-top">
 <div class="row block" style="position:relative;">
@@ -243,9 +245,7 @@ if(is_user())
     $messagesCount = count($messages);
   }
 
-  $nav .= '<a href="'.site_url().'conversation/0/" id="myInbox" title='. _lang('Messages').'><i class="icon material-icons">&#xE0C9;</i>
-  <span class="badge badge-danger">'.$messagesCount.'</span>
-  </a>';
+  $nav .= '';
 }
 
 $nav .= '<div class="user-quick">
@@ -298,7 +298,7 @@ if( is_empty(premium_upto())) {
 $nav .= '<li><a href="'.site_url().'payment"><i class="icon material-icons">&#xE8D0;</i> '._lang("Get Premium").'</a></li>';	
 }
 }
-$nav .= '<li class="my-buzz" role="presentation"><a href="'.site_url().'dashboard/"><i class="icon material-icons">&#xE031;</i> '. _lang('Media Studio').'</a> </li>
+$nav .= '<li class="my-buzz" role="presentation"><a href="'.site_url().'studio/"><i class="icon material-icons">&#xE031;</i> '. _lang('Media Studio').'</a> </li>
 <li role="presentation"><a href="'.site_url().'dashboard/?sk=edit"><i class="icon material-icons">&#xE8B8;</i> '._lang("My Settings").'</a></li>
 <li role="presentation"> <a href="'.site_url().me.'"> <i class="icon material-icons">&#xE04A;</i> '._lang("Мои видео").' </a>       </li>       
 <li role="presentation"> <a href="'.site_url().me.'?sk=music"> <i class="icon material-icons">&#xE030;</i> '._lang("My Music").' </a>       </li>       

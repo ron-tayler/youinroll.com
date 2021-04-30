@@ -1,91 +1,184 @@
 <div id="home-content" class="main-holder col-md-12">
-<?php echo _ad('0','home-start');
-do_action('home-start');
-$boxes = $db->get_results("SELECT * FROM ".DB_PREFIX."homepage ORDER BY ord ASC");
-if ($boxes) {
-$blockclass = 'hide';	
-$blockextra = '<div class="homeLoader sLoad">
-    <div class="cp-spinner cp-flip"></div>  
-</div>';
-$bnr = $db->num_rows;
-$i= 1;
-foreach ($boxes as $box) {
-/* Box start */	
-if(is_empty($box->mtype)) {$box->mtype = 1;}
-if(is_empty($box->type) || ($box->type == 2) ) {
-$type = $box->mtype;
-switch($type){	
-case "1":
-default:
-include(TPL.'/box_video.php');
-break;	
-case "2":
-include(TPL.'/box_music.php');
-break;
-case "3":
-include(TPL.'/box_pictures.php');
-break;
-}
-} elseif($box->type == 1) {
-	// Html box
-	echo '<div class="row">
-	<h1 class="loop-heading">'._html($box->title).'</h1>	
-	<div class="'.$box->querystring.'">
-	'._html($box->ident).'
+	<div v-cloak>
+		<video-carousel inline-template class="carousel">
+			<div id='confSlider'>
+				<i class="material-icons carousel__chevron" @click="changeVideo('right')">&#xe5cb;</i>
+				<div class="carousel__content">
+					<div class="carousel__video" v-for="(video, i) in videos" :class="video.position">
+						<div @click="changeVideo(0, video.position)" class="inactive" v-if="!video.active"></div>
+						<div v-if='video.position === "main"' class="carousel__overlay-top">
+							<div class="carousel__overlay-picture">
+								<img :src="video.channelImage" alt="">
+							</div>
+							<div class="carousel__overlay-text">
+								<div class="carousel__overlay-name">
+									{{video.channelName}}
+								</div>
+								<div class="carousel__overlay-title">
+									{{video.channelTitle}}
+								</div>
+								<div class="carousel__overlay-views">
+									{{video.channelViews}} Просмотров
+								</div>
+							</div>
+							<div v-if="video.isPlanned" class="carousel__overlay-waiting">
+								<span class="badge badge-warning">Скоро начнётся</span>
+							</div>
+							
+							<div v-if="video.isOnAir" class="carousel__overlay-live">
+								<div class="record-button"></div>
+								<span class="u-inline-text">В эфире</span>
+							</div>
+
+							<div v-else class="carousel__overlay-waiting">
+								<span class="badge badge-secondary">Завершено</span>
+							</div>
+						</div>
+						<div class="carousel__overlay" v-if="!video.active && video.position == 'main'">
+							<a v-bind:href="video.url"><i class="material-icons big-play" v-on:click="video.active = !video.active">
+							&#xe037;
+							</i>
+							</a>
+						</div>
+						<div v-if='video.position === "main"' class="carousel__overlay-bottom">
+							{{video.description}}
+						</div>
+						<img v-if="!video.active" :src="video.thumbnail" alt="" class="carousel__video-picture">
+						
+						<div class="carousel__placeholder-background" v-if="video.active"></div>
+					</div>
+				</div>
+				<i class="material-icons carousel__chevron" @click="changeVideo('left')">&#xe5cc;</i>
+			</div>
+		</video-carousel>
 	</div>
-	</div>';
-} elseif($box->type == 3) {
-	$heading = _html($box->title);	
-	$playlist =$db->get_row("SELECT id,ptype FROM ".DB_PREFIX."playlists where id = '".$box->ident."' limit  0,1");
-	if($playlist->ptype ==1) {
-		$options = DB_PREFIX."videos.id,".DB_PREFIX."videos.media,".DB_PREFIX."videos.title,".DB_PREFIX."videos.user_id,".DB_PREFIX."videos.thumb,".DB_PREFIX."videos.views,".DB_PREFIX."videos.liked,".DB_PREFIX."videos.duration,".DB_PREFIX."videos.nsfw";
-		$vq = "SELECT ".DB_PREFIX."videos.id, ".DB_PREFIX."videos.title, ".DB_PREFIX."videos.user_id, ".DB_PREFIX."videos.thumb, ".DB_PREFIX."videos.views, ".DB_PREFIX."videos.liked, ".DB_PREFIX."videos.duration, ".DB_PREFIX."videos.nsfw, ".DB_PREFIX."users.group_id, ".DB_PREFIX."users.name AS owner
-		FROM ".DB_PREFIX."playlist_data
-		LEFT JOIN ".DB_PREFIX."videos ON ".DB_PREFIX."playlist_data.video_id = ".DB_PREFIX."videos.id
-		LEFT JOIN ".DB_PREFIX."users ON ".DB_PREFIX."videos.user_id = ".DB_PREFIX."users.id
-		WHERE ".DB_PREFIX."playlist_data.playlist =  '".$playlist->id."'
-		ORDER BY ".DB_PREFIX."playlist_data.id DESC ".this_offset(bpp());
-		if(isset($box->car) && ($box->car > 0)){
-		include(TPL.'/video-carousel.php');
-		} else {
-		include(TPL.'/video-loop.php');
-		}
-	} else {
-		$heading = _html($box->title);	
-		$options = DB_PREFIX."images.id,".DB_PREFIX."images.title,".DB_PREFIX."images.user_id,".DB_PREFIX."images.thumb";
-		$vq = "SELECT $options, , ".DB_PREFIX."users.group_id, ".DB_PREFIX."users.name AS owner, ".DB_PREFIX."users.avatar
-		FROM ".DB_PREFIX."playlist_data
-		LEFT JOIN ".DB_PREFIX."images ON ".DB_PREFIX."playlist_data.video_id = ".DB_PREFIX."images.id
-		LEFT JOIN ".DB_PREFIX."users ON ".DB_PREFIX."images.user_id = ".DB_PREFIX."users.id
-		WHERE ".DB_PREFIX."playlist_data.playlist =  '".$playlist->id."'
-		ORDER BY ".DB_PREFIX."playlist_data.id DESC ".this_offset(bpp());
-		if(isset($box->car) && ($box->car > 0)){
-		include(TPL.'/images-carousel.php');
-		} else {
-		include(TPL.'/images-loop.php');
-		}
-	}
-}elseif($box->type == 4) {
-	include(TPL.'/box_channel.php');
-}elseif($box->type == 6) {
-	include(TPL.'/box_channels.php');
-}elseif($box->type == 7) {
-	include(TPL.'/box_playlists.php');
-}
+	<br><br>
 
-unset($box); 
-if(isset($type)) { unset($type); }
-if(isset($vq)) { unset($vq); }
-if(isset($options)) { unset($options); }
-if(isset($kill_infinite)) { unset($kill_infinite); }
-}
+	<div class='container'>
+		<h1>Платные курсы от сообщества:</h1>
+		<div class='loop-content course-row'>
+			<?
+				$popularCourses = $cachedb->get_results("SELECT playlists.id, playlists.title, playlists.price, playlists.description, playlists.picture, playlists.views, USER.name AS author, USER.avatar AS authorAvatar FROM .vibe_playlists AS playlists INNER JOIN vibe_users AS USER ON playlists.owner = USER.id AND playlists.price IS NOT NULL AND playlists.price <> 0 ORDER BY playlists.views DESC LIMIT 7");
+			?>
+			<?foreach ($popularCourses as $course) {?>
 
-/* Box ended */
-do_action('home-after-block');
-} else {
-echo _lang('Nothing selected for home content.').'<p class="mtop20"><a href="'.site_url().ADMINCP.'//?sk=homepage">'._lang("Choose content").'</a> </p>';
-}
-do_action('home-end');
-echo _ad('0','home-end');
-?>
+				<?
+				$hasLand = false;
+				$landing = $cachedb->get_row('SELECT id FROM vibe_landings WHERE playlist_id = '.toDb($course->id));
+				
+				if($landing){
+					$hasLand = true;
+				}
+				?>
+				<a class="card" href='<?=($hasLand) ? "landing/$landing->id" : playlist_url($course->id, $course->title)?>'>
+					<header class="card__header">
+						<div class="thumb" style="background-image: url('<?=thumb_fix($course->picture, 240, 240)?>')"></div>
+						<div class="category">
+							<span><?=(intval($course->price) !== 0) ? $course->price.'р' : 'Бесплатно'?></span>
+						</div>
+						<div class="after">
+						<div class="square"></div>
+						<div class="tri"></div>
+						</div>
+					</header>
+					<div class="card__body">
+						<h1 class="title">
+						<?=$course->title?>
+						</h1>
+						<h2 class="subtitle">
+						Просмотров: <?=$course->views?>
+						</h2>
+					</div>
+				</a>
+			<?}?>
+			<a class="card" href='/lists'>
+				<header class="card__header">
+					<div class="after">
+					<div class="square"></div>
+					<div class="tri"></div>
+					</div>
+				</header>
+				<div class="card__body">
+					<h1 class="title">
+						Показать все
+					</h1>
+				</div>
+			</a>
+		</div>
+	</div>
+	
+	<div class='container'>
+		<h1>Учебные материалы:</h1>
+		<div class='loop-content course-row'>
+			<?
+				$popularCourses = $cachedb->get_results("SELECT playlists.id,playlists.title, playlists.price, playlists.description, playlists.picture, playlists.views, USER.name AS author, USER.avatar AS authorAvatar FROM .vibe_playlists AS playlists INNER JOIN vibe_users AS USER ON playlists.owner = USER.id AND playlists.ptype = 2 ORDER BY playlists.views DESC LIMIT 7");
+			?>
+			<?foreach ($popularCourses as $course) {?>
+				<a class="card" href='<?=playlist_url($course->id, $course->title)?>'>
+					<header class="card__header">
+						<div class="thumb" style="background-image: url('<?=thumb_fix($course->picture, 240, 240)?>')"></div>
+						<div class="category">
+							<span><?=(intval($course->price) !== 0) ? $course->price : 'Бесплатно'?></span>
+						</div>
+						<div class="after">
+						<div class="square"></div>
+						<div class="tri"></div>
+						</div>
+					</header>
+					<div class="card__body">
+						<h1 class="title">
+						<?=$course->title?>
+						</h1>
+						<h2 class="subtitle">
+						Просмотров: <?=$course->views?>
+						</h2>
+					</div>
+				</a>
+			<?}?>
+			<a class="card" href='/albums'>
+				<header class="card__header">
+					<div class="after">
+					<div class="square"></div>
+					<div class="tri"></div>
+					</div>
+				</header>
+				<div class="card__body">
+					<h1 class="title">
+						Показать все
+					</h1>
+				</div>
+			</a>
+		</div>
+	</div>
+
+	<br><br>
+
+	<div class='container'>
+		<h1>Активные каналы, которые могут вам понравиться:</h1>
+		<?
+			$vq = "SELECT
+				videos.id,
+				videos.title,
+				videos.date,
+				videos.user_id,
+				videos.thumb,
+				videos.views,
+				videos.duration,
+				videos.nsfw,
+				users.name AS owner,
+				users.avatar,
+				users.group_id
+			FROM
+				".DB_PREFIX."videos AS videos
+			LEFT JOIN ".DB_PREFIX."users AS users ON videos.user_id = users.id
+			WHERE
+				videos.pub > 0 AND videos.media < 2
+			AND
+				videos.course IS NULL
+			AND MONTH(date) = MONTH(CURDATE())
+			ORDER BY videos.id
+			DESC LIMIT 25";
+		?>
+		<?include(TPL.'/video-carousel.php');?>
+	</div>
 </div>

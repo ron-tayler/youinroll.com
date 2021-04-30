@@ -511,9 +511,9 @@ global $db;
 return rawurldecode($db->escape(stripslashes($str)));
 }
 function toDb($data) {
-$data = escape(nl2br($data));
-$data = sanitize_data($data);
-return $data;
+    $data = escape(nl2br($data));
+    $data = sanitize_data($data);
+    return $data;
 }
 function makeLn($text) {
 $text = preg_replace('#(<br */?>\s*)+#i', '<br />', $text);

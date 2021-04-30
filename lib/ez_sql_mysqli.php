@@ -185,7 +185,7 @@
 				$this->select($this->dbname, $this->encoding);
 			}
                         
-                        if ( get_magic_quotes_gpc() ) {
+                        if ( /*get_magic_quotes_gpc() устарело с версии 7.4*/false ) {
 				$str = stripslashes($str);
                         }                        
 

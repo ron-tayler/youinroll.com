@@ -49,7 +49,8 @@
             </select>
         </div>
         <div class="form-field mt-2">
-            <input type="tel" name="nick" placeholder="Введите номер телефона" pattern="{1}[0-9]{11}" required/>
+<!-- Ron_Tayler  -->
+            <input type="tel" name="nick" placeholder="Введите номер телефона" required/>
         </div>
         <div class="form-field mt-2">
           <input id="password" type="password" name="password" placeholder="Создайте пароль" />
@@ -63,7 +64,7 @@
         </div>
         </div>
         <div class="form-field mt-2">
-          <input class="btn btn-signin" value="Продолжить" />
+          <button class="btn btn-signin">Продолжить</button>
         </div>
         <div class="d-flex justify-content-center mt-0">
             <span class="center text-dark">Или</span>
@@ -83,20 +84,12 @@
       </div>
     </div>
     <div class="form-busines mt-2">
-         <input class="btn btn-busines" value="создать бизнес-аккаунт" />
+         <button class="btn btn-busines">создать бизнес-аккаунт</button>
       </div>
   </div>
 </div>
 <div class="area" >
     <ul class="circles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
         <li></li>
         <li></li>
     </ul>
@@ -109,6 +102,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.js" integrity="sha512-4ejaN8M2YXbJ7KVP13DaCS0fZOoNCUPukqOMumr8r32Xz1/2wRw4nCKJrNmTxstfH5Gf2oLe27YpAPiQr2OnTQ==" crossorigin="anonymous"></script>
 <script>
 
+window.backurl = "<?=$_GET['backurl'];?>".replace(/\/$/g, '');
+
 document.addEventListener('DOMContentLoaded', function(){
 
     const ps = new PerfectScrollbar($('.form')[0], {
@@ -116,21 +111,20 @@ document.addEventListener('DOMContentLoaded', function(){
         minScrollbarLength: 20
     });
 
-    $(`input[name="password2"]`).parent().hide();
-    $(`#captcha`).hide();
 
     $('.btn-busines').on('click', function(){
         location.href = '/register/busines';
     });
 
-
+/*
     $(`input[name="password"]`).on('click', function(){
         $(`input[name="password2"]`).parent().show();
     })
 
     $(`input[name="password2"]`).on('click', function(){
         $(`#captcha`).show();
-    })
+})
+  */
 
     $.get(
         'lib/ajax/getRandomAuthor.php',
@@ -165,18 +159,29 @@ document.addEventListener('DOMContentLoaded', function(){
         $.post(
             'lib/ajax/registerUser.php',
             $('form').serialize(),
-            function(data)
+            function(datadata)
             {
-                let response = JSON.parse(data);
+		    console.log(datadata);
+		    var data = datadata.match(/\{(.*?)\}/)[0];
+		    console.log('start');
+		    console.log(data);
+		    console.log("finish");
+        	var response = null;
+	       try {
+                 response = JSON.parse(data);
+		console.log(response);
+                 } catch(e) {
+                        console.log(e);
+                };
 
                 if(response.result === 'success')
                 {
-                    location.href = 'https://youinroll.com/login/?verifyemail=1&mail='+response.email;
+                    location.href = 'https://youinroll.com'+backurl;
                 }
 
                 if(response.errors !== null)
                 {
-                    for (const key in response.errors)
+                    for (var key in response.errors)
                     {
                         $(`input[name="${key}"]`).parent().append(`<small class="form-text text-muted">${response.errors[key]}</small>`)
                         $(`input[name="${key}"]`).addClass('is-invalid')

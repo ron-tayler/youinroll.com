@@ -1,43 +1,43 @@
 <?php function com(){
-/* Returns the current component used */	
-global $route;
-if(isset($route) && $route) {
-return toDb($route->getTarget());
-}
-return false;
+    /* Returns the current component used */
+    global $route;
+    if(isset($route) && $route) {
+        return toDb($route->getTarget());
+    }
+    return false;
 }
 function token(){
-/* Returns the token in the url */	
-global $route;
-if(isset($route) && $route) {
-$idx = $route->getParameters();
-if(isset($idx["section"])) {
-$idx["section"] = current(explode("/", $idx["section"]));
-$idx["section"] = trim(str_replace("/","",$idx["section"]));
-return $idx["section"];
-}
-}
-return false;
+    /* Returns the token in the url */
+    global $route;
+    if(isset($route) && $route) {
+        $idx = $route->getParameters();
+        if(isset($idx["section"])) {
+            $idx["section"] = current(explode("/", $idx["section"]));
+            $idx["section"] = trim(str_replace("/","",$idx["section"]));
+            return $idx["section"];
+        }
+    }
+    return false;
 }
 function token_id(){
-/* Returns the id or hashed id in the url */	
-	
-global $route;
-if(isset($route) && $route) {
-$idx = $route->getParameters();
-if(isset($idx["id"])) {
-return $idx["id"];
-} elseif(isset($idx["hid"])) {
-return _dHash($idx["hid"]);	
-}
-}
-return false;
+    /* Returns the id or hashed id in the url */
+
+    global $route;
+    if(isset($route) && $route) {
+        $idx = $route->getParameters();
+        if(isset($idx["id"])) {
+            return $idx["id"];
+        } elseif(isset($idx["hid"])) {
+            return _dHash($idx["hid"]);
+        }
+    }
+    return false;
 }
 // Sef rewrite tag function
 function nice_tag($tag){
-$tag = strip_punctuation($tag);	
-$tag = preg_replace(array('~^-+|-+$~', '~-+~'), array('', '-'), $tag);
-return strtolower($tag);
+    $tag = strip_punctuation($tag);
+    $tag = preg_replace(array('~^-+|-+$~', '~-+~'), array('', '-'), $tag);
+    return strtolower($tag);
 }
 function strip_punctuation($string, $rep ="-") {
     $string = strtolower($string);
@@ -50,20 +50,20 @@ function strip_punctuation($string, $rep ="-") {
 }
 // Sef rewrite function	
 function nice_url($iniurl) {
-$string ='';
-// translate utf-8
-$url = url_translate($iniurl);
-// remove all chars
-$url = strip_punctuation(strtolower($url));
-$url = preg_replace("/\W+/", " ", $url);
-$url = preg_replace("/[^a-z0-9]+/","-",strtolower($url));
-// Test it
-$test = str_replace('-','',$url);
-if(is_empty($test)) {
-// Fallback 
-$url = brute_url_translate($iniurl);
-}
-return urlencode(strtolower($url));
+    $string ='';
+    // translate utf-8
+    $url = url_translate($iniurl);
+    // remove all chars
+    $url = strip_punctuation(strtolower($url));
+    $url = preg_replace("/\W+/", " ", $url);
+    $url = preg_replace("/[^a-z0-9]+/","-",strtolower($url));
+    // Test it
+    $test = str_replace('-','',$url);
+    if(is_empty($test)) {
+        // Fallback
+        $url = brute_url_translate($iniurl);
+    }
+    return urlencode(strtolower($url));
 }
 // New
 function url_translate($text)
@@ -110,10 +110,11 @@ function url_translate($text)
 		'yu' => array ('ю', 'Ю'),
 		'ya' => array ('я', 'Я'),
 		'' => array ('ъ', 'Ъ', 'ь', 'Ь', '?', '«', '»', ':', '&', '+', '@', '%', '^', '№', '#'),
-		'-'	=>	array ('-', ' ', '.', ','),
+		'-'	=>	array ('-', ' ', '.', ',','|'),
 		'_'	=>	array ('_'),
 		'!'	=>	array ('!'),
 		'~'	=>	array ('~'),
+		'' =>  array('-'),
 		'*'	=>	array ('*'),
 		"\x12"	=>	array ("'", '"'),
 		'('	=>	array ('(', '{', '['),
@@ -283,138 +284,138 @@ return $url;
 }
 // Rewrite urls for coms
 function video_url($id, $title, $list=null){
-$post = '';
-if(!is_null($list)){ $post= '?list='.$list; }
-$or = get_option('video-seo-url','/video/:id/:name');
-$or = str_replace(':name',nice_url($title),$or);
-$or = str_replace(':id',$id,$or);
-$or = str_replace(':hid',_mHash($id),$or);
-$or = str_replace(':section','',$or);
-$or .= (substr($or, -1) == '/' ? '' : '/');
-$url = sef_url().$or.$post;
-return $url;
+    $post = '';
+    if(!is_null($list)){ $post= '?list='.$list; }
+    $or = get_option('video-seo-url','/video/:id/:name');
+    $or = str_replace(':name',nice_url($title),$or);
+    $or = str_replace(':id',$id,$or);
+    $or = str_replace(':hid',_mHash($id),$or);
+    $or = str_replace(':section','',$or);
+    $or .= (substr($or, -1) == '/' ? '' : '/');
+    $url = sef_url().$or.$post;
+    return $url;
 }
 // Rewrite urls for confs
 function conference_url($roomId, $roomName = 'test'){
 	
 	$roomName = translit($roomName);
 
-	$url = '/stream/'. $roomId .'/'. $roomName;
+	$url = '/lesson/'. $roomId .'/'. $roomName;
 	return $url;
 }
 function image_url($id, $title, $list=null){
-$or = get_option('image-seo-url','/image/:id/:name');
-$or = str_replace(':name',nice_url($title),$or);
-$or = str_replace(':id',$id,$or);
-$or = str_replace(':hid',_mHash($id),$or);
-$or = str_replace(':section','',$or);
-$or .= (substr($or, -1) == '/' ? '' : '/');
-$url = sef_url().$or;
-return $url;
+    $or = get_option('image-seo-url','/image/:id/:name');
+    $or = str_replace(':name',nice_url($title),$or);
+    $or = str_replace(':id',$id,$or);
+    $or = str_replace(':hid',_mHash($id),$or);
+    $or = str_replace(':section','',$or);
+    $or .= (substr($or, -1) == '/' ? '' : '/');
+    $url = sef_url().$or;
+    return $url;
 }
 function profile_url($id, $title){
-$or = get_option('profile-seo-url','/profile/:name/:id/:section');
-$or = str_replace(':name',nice_url($title),$or);
-$or = str_replace(':id',$id,$or);
-$or = str_replace(':hid',_mHash($id),$or);
-$or = str_replace(':section','',$or);
-$or .= (substr($or, -1) == '/' ? '' : '/');
-$url = sef_url().$or;
-return $url;
+    $or = get_option('profile-seo-url','/profile/:name/:id/:section');
+    $or = str_replace(':name',nice_url($title),$or);
+    $or = str_replace(':id',$id,$or);
+    $or = str_replace(':hid',_mHash($id),$or);
+    $or = str_replace(':section','',$or);
+    $or .= (substr($or, -1) == '/' ? '' : '/');
+    $url = sef_url().$or;
+    return $url;
 }
 function stream_url($id, $title){
-	$or = get_option('stream-seo-url','/stream/:id/:name/:section');
+	$or = get_option('stream-seo-url','/lesson/:id/:name/:section');
 	$or = str_replace(':name',nice_url($title),$or);
 	$or = str_replace(':id',$id,$or);
 	$or = str_replace(':hid',_mHash($id),$or);
 	$or = str_replace(':section','',$or);
 	$or .= (substr($or, -1) == '/' ? '' : '/');
-	$url = sef_url().$or;
+	$url = $or;
 	return $url;
 }
 function playlist_url($id, $title){
-return site_url().playlist.url_split.nice_url($title).url_split.$id.'/';
+    return site_url().playlist.url_split.nice_url($title).url_split.$id.'/';
 }
 function channel_url($id, $title){
-$or = get_option('channel-seo-url','/channel/:name/:id/:section');
-$or = str_replace(':name',nice_url($title),$or);
-$or = str_replace(':id',$id,$or);
-$or = str_replace(':hid',_mHash($id),$or);
-$or = str_replace(':section','',$or);
-$or .= (substr($or, -1) == '/' ? '' : '/');
-$url = sef_url().$or;
-return $url;
+    $or = get_option('channel-seo-url','/channel/:name/:id/:section');
+    $or = str_replace(':name',nice_url($title),$or);
+    $or = str_replace(':id',$id,$or);
+    $or = str_replace(':hid',_mHash($id),$or);
+    $or = str_replace(':section','',$or);
+    $or .= (substr($or, -1) == '/' ? '' : '/');
+    $url = sef_url().$or;
+    return $url;
 }
 function bc_url($id, $title){
-return site_url().blogcat.url_split.nice_url($title).url_split.$id.'/';
+    return site_url().blogcat.url_split.nice_url($title).url_split.$id.'/';
 }
 function note_url($id, $title=null){
-if(!is_null($title)) {
-return site_url().note.url_split.$id.url_split.nice_url($title).'/';
-}
-return site_url().note.url_split.$id.'/';
+    if(!is_null($title)) {
+        return site_url().note.url_split.$id.url_split.nice_url($title).'/';
+    }
+    return site_url().note.url_split.$id.'/';
 }
 function list_url($part){
-return site_url().videos.url_split.$part.'/';
+    return site_url().videos.url_split.$part.'/';
 }
 function lessonslist_url($part){
-return site_url().lessons.url_split.$part.'/';
+    return site_url().'lessons'.url_split.$part.'/';
 }
 function hub_url($part){
-return site_url().premiumhub.url_split.$part.'/';
+    return site_url().premiumhub.url_split.$part.'/';
 }
 function images_url($part){
-return site_url().'images'.url_split.$part.'/';
+    return site_url().'images'.url_split.$part.'/';
 }
 function music_url($part){
-return site_url().'music'.url_split.$part.'/';
+    return site_url().'music'.url_split.$part.'/';
 }
 function page_url($id, $title=null){
-$or = get_option('page-seo-url','/read/:name/:id');
-$or = str_replace(':name',nice_url($title),$or);
-$or = str_replace(':id',$id,$or);
-$or = str_replace(':hid',_mHash($id),$or);
-$or = str_replace(':section','',$or);
-$or .= (substr($or, -1) == '/' ? '' : '/');
-$url = sef_url().$or;
-return $url;
+    $or = get_option('page-seo-url','/read/:name/:id');
+    $or = str_replace(':name',nice_url($title),$or);
+    $or = str_replace(':id',$id,$or);
+    $or = str_replace(':hid',_mHash($id),$or);
+    $or = str_replace(':section','',$or);
+    $or .= (substr($or, -1) == '/' ? '' : '/');
+    $url = sef_url().$or;
+    return $url;
 }
 function article_url($id, $title=null){
-$or = get_option('article-seo-url','/article/:name/:id');
-$or = str_replace(':name',nice_url($title),$or);
-$or = str_replace(':id',$id,$or);
-$or = str_replace(':hid',_mHash($id),$or);
-$or = str_replace(':section','',$or);
-$or .= (substr($or, -1) == '/' ? '' : '/');
-$url = sef_url().$or;
-return $url;
+    $or = get_option('article-seo-url','/article/:name/:id');
+    $or = str_replace(':name',nice_url($title),$or);
+    $or = str_replace(':id',$id,$or);
+    $or = str_replace(':hid',_mHash($id),$or);
+    $or = str_replace(':section','',$or);
+    $or .= (substr($or, -1) == '/' ? '' : '/');
+    $url = sef_url().$or;
+    return $url;
 }
 //Video & Music tags
 function pretty_tags($tags, $class='', $pre='', $post = ''){
-$list ='';
-$keywords_array = explode(',', $tags);
-if (count($keywords_array) > 0){
-foreach ($keywords_array as $keyword){
-if (not_empty(trim($keyword))){
-$k_url = site_url().show.'/'.nice_tag(trim($keyword)).'/';
-$list .=  $pre.'<a class="'.$class.'" href="'.$k_url.'">'.$keyword.'</a>'.$post;
-}
-}
-}
-return $list;
+    $list ='';
+    $keywords_array = explode(',', $tags);
+    if (count($keywords_array) > 0){
+        foreach ($keywords_array as $keyword){
+            if (not_empty(trim($keyword))){
+                $k_url = site_url().show.'/'.nice_tag(trim($keyword)).'/';
+                $list .=  $pre.'<a class="'.$class.'" href="'.$k_url.'">'.$keyword.'</a>'.$post;
+            }
+        }
+    }
+    return $list;
 }
 //Image tags
 function pretty_imgtags($tags, $class='', $pre='', $post = ''){
-$list ='';
-$keywords_array = explode(',', $tags);
-if (count($keywords_array) > 0){
-foreach ($keywords_array as $keyword){
-if (not_empty(trim($keyword))){
-$k_url = images_url('tag').'?tag='.nice_tag(trim($keyword));
-$list .=  $pre.'<a class="'.$class.'" href="'.$k_url.'">'.$keyword.'</a>'.$post;
-}
-}
-}
-return $list;
+    $list ='';
+    $keywords_array = explode(',', $tags);
+    if (count($keywords_array) > 0){
+        foreach ($keywords_array as $keyword){
+            if (not_empty(trim($keyword))){
+                $k_url = images_url('tag').'?tag='.nice_tag(trim($keyword));
+                $list .=  $pre.'<a class="'.$class.'" href="'.$k_url.'">'.$keyword.'</a>'.$post;
+            }
+        }
+    }
+    return $list;
 }
 ?>

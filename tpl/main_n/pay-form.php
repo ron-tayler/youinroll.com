@@ -110,9 +110,11 @@
 <div class="price-promo-center">
 
     <? if(is_user()) { ?>
-    <button class="btn-buy btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#SubscribeModal">Попробовать бесплатно*</a>
+
+        <button class="btn-buy btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#SubscribeModal">Продолжить</a>
+    
     <? } else { ?>
-    <a class="btn-buy btn btn-primary btn-lg btn-block" href="/login">Попробовать бесплатно*</a>  
+        <a class="btn-buy btn btn-primary btn-lg btn-block" href="/login">Продолжить</a>  
     <?}?>
     <br>
 

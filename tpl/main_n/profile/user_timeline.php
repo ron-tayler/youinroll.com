@@ -4,39 +4,41 @@ $daysInMonth = range(1, date("t"));
 
 $currentDay = date('d');
 $currentMonth = date('m');
-$currentYear = date('y');
+$currentYear = date('Y');
 
 $monthStartTimestamp = "$currentYear-$currentMonth-01 00:00:00";
 
-$conferences = $db->get_results('SELECT * FROM '.DB_PREFIX.'conferences WHERE moderator_id = '.toDb($user)." AND started_at >= '$monthStartTimestamp'");
+$sql = 'SELECT * FROM '.DB_PREFIX."conferences WHERE moderator_id = '".toDb($profile->id)."'"." AND started_at >= '$monthStartTimestamp'";
+
+$conferences = $db->get_results($sql);
 
 ?>
 <div id='channelCalendar' class="">
     <h4 class="loop-heading">
-        <span><?=_lang("Last conferences")?></span>
+        <span><?=_lang("Расписание уроков")?></span>
     </h4>
     <div class="calendar">
         <ol class="day-names">
             <li>
-                Sunday
+                Понедельник
             </li>
             <li>
-                Monday
+                Вторник
             </li>
             <li>
-                Tuesday
+                Среда
             </li>
             <li>
-                Wednesday
+                Четверг
             </li>
             <li>
-                Thursday
+                Пятница
             </li>
             <li>
-                Friday
+                Суббота
             </li>
             <li>
-                Saturday
+                Воскресенье
             </li>
         </ol>
         <ol class="days">
@@ -50,7 +52,8 @@ $conferences = $db->get_results('SELECT * FROM '.DB_PREFIX.'conferences WHERE mo
                 {
                     $confDay = date('j', strtotime($conference->started_at));
 
-                    if($confDay === (string)$day)
+
+                    if((string)$confDay === (string)$day)
                     {
                         $confTime = date('h:m', strtotime($conference->started_at));
                         ?>

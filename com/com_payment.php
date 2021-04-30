@@ -27,6 +27,28 @@ if(isset($_POST['buyCourse']))
 	die();
 }
 
+if(isset($_POST['buyLandingCourse']))
+{	
+	if($_POST['agree'] === 'on' && $_POST['agree2'] === 'on')
+	{
+		if($_POST['payment'] === 'card')
+		{	
+
+			header('Location: '. $YNRpayment->buyLandingCourse($_POST));
+			die();
+		}
+
+		if($_POST['payment'] === 'paymaster')
+		{
+			header('Location: '. $YNRpayment->buyLandingCourse($_POST, 'paymaster'));
+			die();
+		}
+	}
+	
+	die();
+}
+
+
 if(isset($_POST['buySubscribe']))
 {	
 	if($_POST['agree'] === 'on' && $_POST['agree2'] === 'on')

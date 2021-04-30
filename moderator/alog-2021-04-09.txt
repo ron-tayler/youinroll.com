@@ -1,0 +1,489 @@
+[09/04/21 08:30:38pm] <br>Conversion starting for: <br><code>/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4</code><br>[09/04/21 08:30:49pm] <br>/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4 -vf "select=gt(scene,0.3)" -frames:v 5 -vsync vfr -vf fps=fps=1/60 -qscale:v 2 /home/x/xatikont/youinroll.com/public_html/storage/media/thumbs/8882e274f477c6847fd65c637d0844a6-%02d.jpg <br> <br>[09/04/21 08:30:49pm] <br> VIDEO PREVIEW IS \n /usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4 -ss 00:00:03 -t 00:00:15 -async 1 /home/x/xatikont/youinroll.com/public_html/storage/media/thumbs/8882e274f477c6847fd65c637d0844a6.MP4 \n <br> <br><div class="showmore block blc">[09/04/21 08:30:49pm] Chained cmds:/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4  -s 426x240 -c:v libx264 -preset veryfast -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/8882e274f477c6847fd65c637d0844a6-240.mp4 2>&1;/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4 -s 640x360 -c:v libx264 -preset slow -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/8882e274f477c6847fd65c637d0844a6-360.mp4 2>&1;/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4 -vf scale=-1:720 -c:v libx264 -preset veryfast -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/8882e274f477c6847fd65c637d0844a6-720.mp4 2>&1;/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4 -vf scale=-1:720 -c:v libx264 -preset veryfast -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/8882e274f477c6847fd65c637d0844a6-720.mp4 2>&1;/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4 -vf scale=-1:1080 -c:v libx264 -preset veryfast -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/8882e274f477c6847fd65c637d0844a6-1080.mp4 2>&1;<br></div><div class="showmore block blc">[09/04/21 08:34:14pm] ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x6c39d00] st: 0 edit list: 1 Missing key frame while searching for timestamp: 0
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x6c39d00] st: 0 edit list 1 Cannot find an index entry before timestamp: 0.
+Guessed Channel Layout for Input Stream #0.1 : stereo
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42
+    creation_time   : 2021-04-08T18:13:57.000000Z
+  Duration: 00:03:24.07, start: 0.000000, bitrate: 16267 kb/s
+    Stream #0:0(eng): Video: mpeg2video (Main) (mp4v / 0x7634706D), yuv420p(tv, bt709), 1920x1080 [SAR 1:1 DAR 16:9], 14728 kb/s, 29.97 fps, 29.97 tbr, 30k tbn, 59.94 tbc (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Video Media Handler
+    Stream #0:1(eng): Audio: pcm_s16be (twos / 0x736F7774), 48000 Hz, stereo, s16, 1536 kb/s (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Sound Media Handler
+Stream mapping:
+  Stream #0:0 -> #0:0 (mpeg2video (native) -> h264 (libx264))
+  Stream #0:1 -> #0:1 (pcm_s16be (native) -> aac (native))
+Press [q] to stop, [?] for help
+[libx264 @ 0x6c67180] using SAR=640/639
+[libx264 @ 0x6c67180] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0x6c67180] profile High, level 2.1
+[libx264 @ 0x6c67180] 264 - core 155 r2901 7d0ff22 - H.264/MPEG-4 AVC codec - Copyleft 2003-2018 - http://www.videolan.org/x264.html - options: cabac=1 ref=1 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=2 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=0 threads=2 lookahead_threads=1 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=1 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=10 rc=crf mbtree=1 crf=28.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/home/x/xatikont/youinroll.com/public_html/storage/media/8882e274f477c6847fd65c637d0844a6-240.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42
+    encoder         : Lavf58.12.100
+    Stream #0:0(eng): Video: h264 (libx264) (avc1 / 0x31637661), yuv420p, 426x240 [SAR 640:639 DAR 16:9], q=-1--1, 29.97 fps, 30k tbn, 29.97 tbc (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Video Media Handler
+      encoder         : Lavc58.18.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: -1
+    Stream #0:1(eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Sound Media Handler
+      encoder         : Lavc58.18.100 aac
+frame=   61 fps=0.0 q=34.0 size=       0kB time=00:00:02.45 bitrate=   0.2kbits/s speed=4.85x    frame=  164 fps=163 q=34.0 size=       0kB time=00:00:05.82 bitrate=   0.1kbits/s speed=5.79x    frame=  267 fps=177 q=34.0 size=       0kB time=00:00:08.96 bitrate=   0.0kbits/s speed=5.94x    frame=  359 fps=179 q=34.0 size=       0kB time=00:00:12.39 bitrate=   0.0kbits/s speed=6.17x    frame=  462 fps=184 q=34.0 size=     256kB time=00:00:15.57 bitrate= 134.7kbits/s speed= 6.2x    frame=  564 fps=187 q=34.0 size=     256kB time=00:00:19.00 bitrate= 110.4kbits/s speed= 6.3x    frame=  657 fps=187 q=34.0 size=     256kB time=00:00:22.20 bitrate=  94.4kbits/s speed=6.31x    frame=  764 fps=190 q=34.0 size=     256kB time=00:00:25.51 bitrate=  82.2kbits/s speed=6.35x    frame=  868 fps=192 q=34.0 size=     512kB time=00:00:28.97 bitrate= 144.8kbits/s speed=6.41x    frame=  966 fps=192 q=34.0 size=     512kB time=00:00:32.32 bitrate= 129.8kbits/s speed=6.43x    frame= 1054 fps=191 q=34.0 size=     512kB time=00:00:35.24 bitrate= 119.0kbits/s speed=6.37x    frame= 1147 fps=190 q=34.0 size=     512kB time=00:00:38.27 bitrate= 109.6kbits/s speed=6.34x    frame= 1241 fps=190 q=34.0 size=     768kB time=00:00:41.74 bitrate= 150.7kbits/s speed=6.38x    frame= 1341 fps=190 q=34.0 size=     768kB time=00:00:44.94 bitrate= 140.0kbits/s speed=6.38x    frame= 1447 fps=192 q=34.0 size=     768kB time=00:00:48.46 bitrate= 129.8kbits/s speed=6.42x    frame= 1550 fps=192 q=34.0 size=     768kB time=00:00:51.96 bitrate= 121.1kbits/s speed=6.45x    frame= 1635 fps=191 q=34.0 size=    1024kB time=00:00:54.97 bitrate= 152.6kbits/s speed=6.42x    frame= 1740 fps=192 q=34.0 size=    1024kB time=00:00:58.47 bitrate= 143.5kbits/s speed=6.45x    frame= 1819 fps=190 q=34.0 size=    1024kB time=00:01:00.97 bitrate= 137.6kbits/s speed=6.37x    frame= 1920 fps=191 q=34.0 size=    1024kB time=00:01:04.46 bitrate= 130.1kbits/s speed= 6.4x    frame= 2023 fps=191 q=34.0 size=    1024kB time=00:01:07.47 bitrate= 124.3kbits/s speed=6.38x    frame= 2121 fps=192 q=34.0 size=    1024kB time=00:01:10.97 bitrate= 118.2kbits/s speed=6.41x    frame= 2202 fps=190 q=34.0 size=    1280kB time=00:01:13.49 bitrate= 142.7kbits/s speed=6.35x    frame= 2287 fps=189 q=34.0 size=    1280kB time=00:01:16.48 bitrate= 137.1kbits/s speed=6.33x    frame= 2371 fps=189 q=34.0 size=    1280kB time=00:01:19.31 bitrate= 132.2kbits/s speed=6.31x    frame= 2403 fps=184 q=34.0 size=    1280kB time=00:01:20.59 bitrate= 130.1kbits/s speed=6.16x    frame= 2466 fps=182 q=34.0 size=    1280kB time=00:01:22.60 bitrate= 126.9kbits/s speed=6.08x    frame= 2536 fps=180 q=34.0 size=    1536kB time=00:01:24.62 bitrate= 148.7kbits/s speed=6.01x    frame= 2609 fps=179 q=34.0 size=    1536kB time=00:01:27.10 bitrate= 144.5kbits/s speed=5.97x    frame= 2669 fps=177 q=34.0 size=    1536kB time=00:01:29.10 bitrate= 141.2kbits/s speed= 5.9x    frame= 2729 fps=175 q=34.0 size=    1536kB time=00:01:31.11 bitrate= 138.1kbits/s speed=5.84x    frame= 2797 fps=174 q=34.0 size=    1536kB time=00:01:33.61 bitrate= 134.4kbits/s speed=5.82x    frame= 2881 fps=174 q=34.0 size=    1792kB time=00:01:36.12 bitrate= 152.7kbits/s speed=5.79x    frame= 2986 fps=175 q=34.0 size=    1792kB time=00:01:39.62 bitrate= 147.4kbits/s speed=5.83x    frame= 3093 fps=176 q=34.0 size=    1792kB time=00:01:43.61 bitrate= 141.7kbits/s speed=5.89x    frame= 3191 fps=176 q=34.0 size=    1792kB time=00:01:46.62 bitrate= 137.7kbits/s speed=5.89x    frame= 3289 fps=177 q=34.0 size=    2048kB time=00:01:50.12 bitrate= 152.4kbits/s speed=5.92x    frame= 3396 fps=178 q=34.0 size=    2048kB time=00:01:53.62 bitrate= 147.7kbits/s speed=5.95x    frame= 3499 fps=178 q=34.0 size=    2048kB time=00:01:57.12 bitrate= 143.3kbits/s speed=5.97x    frame= 3598 fps=179 q=34.0 size=    2048kB time=00:02:00.19 bitrate= 139.6kbits/s speed=5.98x    frame= 3688 fps=179 q=34.0 size=    2304kB time=00:02:03.17 bitrate= 153.2kbits/s speed=5.98x    frame= 3781 fps=179 q=34.0 size=    2304kB time=00:02:06.54 bitrate= 149.1kbits/s speed=5.99x    frame= 3892 fps=180 q=34.0 size=    2304kB time=00:02:10.04 bitrate= 145.1kbits/s speed=6.02x    frame= 4000 fps=181 q=34.0 size=    2560kB time=00:02:13.58 bitrate= 157.0kbits/s speed=6.04x    frame= 4114 fps=182 q=34.0 size=    2560kB time=00:02:17.70 bitrate= 152.3kbits/s speed=6.09x    frame= 4216 fps=182 q=34.0 size=    2560kB time=00:02:20.75 bitrate= 149.0kbits/s speed=6.09x    frame= 4301 fps=182 q=34.0 size=    2560kB time=00:02:23.55 bitrate= 146.1kbits/s speed=6.08x    frame= 4401 fps=182 q=34.0 size=    2560kB time=00:02:26.92 bitrate= 142.7kbits/s speed=6.09x    frame= 4482 fps=182 q=34.0 size=    2816kB time=00:02:29.82 bitrate= 154.0kbits/s speed=6.08x    frame= 4566 fps=182 q=34.0 size=    2816kB time=00:02:32.34 bitrate= 151.4kbits/s speed=6.06x    frame= 4653 fps=182 q=34.0 size=    2816kB time=00:02:35.32 bitrate= 148.5kbits/s speed=6.06x    frame= 4727 fps=181 q=34.0 size=    2816kB time=00:02:37.84 bitrate= 146.1kbits/s speed=6.04x    frame= 4800 fps=180 q=34.0 size=    2816kB time=00:02:40.53 bitrate= 143.7kbits/s speed=6.03x    frame= 4894 fps=180 q=34.0 size=    3072kB time=00:02:43.34 bitrate= 154.1kbits/s speed=6.02x    frame= 4995 fps=181 q=34.0 size=    3072kB time=00:02:46.95 bitrate= 150.7kbits/s speed=6.04x    frame= 5075 fps=180 q=34.0 size=    3072kB time=00:02:49.45 bitrate= 148.5kbits/s speed=6.02x    frame= 5154 fps=180 q=34.0 size=    3072kB time=00:02:52.16 bitrate= 146.2kbits/s speed=6.01x    frame= 5248 fps=180 q=34.0 size=    3072kB time=00:02:55.25 bitrate= 143.6kbits/s speed=6.01x    frame= 5354 fps=181 q=34.0 size=    3328kB time=00:02:58.85 bitrate= 152.4kbits/s speed=6.03x    frame= 5459 fps=181 q=34.0 size=    3328kB time=00:03:02.35 bitrate= 149.5kbits/s speed=6.05x    frame= 5559 fps=181 q=34.0 size=    3328kB time=00:03:05.47 bitrate= 147.0kbits/s speed=6.05x    frame= 5663 fps=182 q=34.0 size=    3328kB time=00:03:09.26 bitrate= 144.0kbits/s speed=6.08x    frame= 5745 fps=182 q=34.0 size=    3584kB time=00:03:11.80 bitrate= 153.1kbits/s speed=6.06x    frame= 5839 fps=182 q=34.0 size=    3584kB time=00:03:15.17 bitrate= 150.4kbits/s speed=6.07x    frame= 5953 fps=182 q=34.0 size=    3584kB time=00:03:18.78 bitrate= 147.7kbits/s speed=6.09x    frame= 6054 fps=183 q=34.0 size=    3584kB time=00:03:22.28 bitrate= 145.1kbits/s speed= 6.1x    [mp4 @ 0x6c66280] Starting second pass: moving the moov atom to the beginning of the file
+frame= 6115 fps=183 q=-1.0 Lsize=    4068kB time=00:03:24.07 bitrate= 163.3kbits/s speed=6.09x    
+video:788kB audio:3060kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 5.689254%
+[libx264 @ 0x6c67180] frame I:30    Avg QP:24.15  size:  5689
+[libx264 @ 0x6c67180] frame P:1820  Avg QP:30.22  size:   287
+[libx264 @ 0x6c67180] frame B:4265  Avg QP:36.36  size:    27
+[libx264 @ 0x6c67180] consecutive B-frames:  4.3%  5.2%  8.2% 82.2%
+[libx264 @ 0x6c67180] mb I  I16..4: 56.9% 11.0% 32.1%
+[libx264 @ 0x6c67180] mb P  I16..4:  1.7%  0.4%  0.3%  P16..4:  3.5%  1.5%  1.1%  0.0%  0.0%    skip:91.6%
+[libx264 @ 0x6c67180] mb B  I16..4:  0.1%  0.0%  0.0%  B16..8:  1.0%  0.1%  0.0%  direct: 0.2%  skip:98.6%  L0:47.4% L1:47.7% BI: 4.9%
+[libx264 @ 0x6c67180] 8x8 transform intra:14.1% inter:12.9%
+[libx264 @ 0x6c67180] coded y,uvDC,uvAC intra: 29.2% 24.3% 10.2% inter: 0.7% 0.5% 0.1%
+[libx264 @ 0x6c67180] i16 v,h,dc,p: 48% 48%  3%  1%
+[libx264 @ 0x6c67180] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 23% 41% 24%  2%  2%  2%  2%  2%  3%
+[libx264 @ 0x6c67180] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 21% 36% 21%  3%  4%  3%  5%  3%  5%
+[libx264 @ 0x6c67180] i8c dc,h,v,p: 66% 24%  9%  1%
+[libx264 @ 0x6c67180] Weighted P-Frames: Y:0.3% UV:0.2%
+[libx264 @ 0x6c67180] kb/s:31.62
+[aac @ 0x6c68500] Qavg: 3197.907
+ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x6dccd00] st: 0 edit list: 1 Missing key frame while searching for timestamp: 0
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x6dccd00] st: 0 edit list 1 Cannot find an index entry before timestamp: 0.
+Guessed Channel Layout for Input Stream #0.1 : stereo
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42
+    creation_time   : 2021-04-08T18:13:57.000000Z
+  Duration: 00:03:24.07, start: 0.000000, bitrate: 16267 kb/s
+    Stream #0:0(eng): Video: mpeg2video (Main) (mp4v / 0x7634706D), yuv420p(tv, bt709), 1920x1080 [SAR 1:1 DAR 16:9], 14728 kb/s, 29.97 fps, 29.97 tbr, 30k tbn, 59.94 tbc (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Video Media Handler
+    Stream #0:1(eng): Audio: pcm_s16be (twos / 0x736F7774), 48000 Hz, stereo, s16, 1536 kb/s (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Sound Media Handler
+Stream mapping:
+  Stream #0:0 -> #0:0 (mpeg2video (native) -> h264 (libx264))
+  Stream #0:1 -> #0:1 (pcm_s16be (native) -> aac (native))
+Press [q] to stop, [?] for help
+[libx264 @ 0x6dfa180] using SAR=1/1
+[libx264 @ 0x6dfa180] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0x6dfa180] profile High, level 3.0
+[libx264 @ 0x6dfa180] 264 - core 155 r2901 7d0ff22 - H.264/MPEG-4 AVC codec - Copyleft 2003-2018 - http://www.videolan.org/x264.html - options: cabac=1 ref=5 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=8 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=2 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=2 lookahead_threads=1 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=3 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=50 rc=crf mbtree=1 crf=28.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/home/x/xatikont/youinroll.com/public_html/storage/media/8882e274f477c6847fd65c637d0844a6-360.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42
+    encoder         : Lavf58.12.100
+    Stream #0:0(eng): Video: h264 (libx264) (avc1 / 0x31637661), yuv420p, 640x360 [SAR 1:1 DAR 16:9], q=-1--1, 29.97 fps, 30k tbn, 29.97 tbc (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Video Media Handler
+      encoder         : Lavc58.18.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: -1
+    Stream #0:1(eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Sound Media Handler
+      encoder         : Lavc58.18.100 aac
+frame=   62 fps=0.0 q=34.0 size=       0kB time=00:00:02.45 bitrate=   0.2kbits/s speed=4.85x    frame=  104 fps=103 q=34.0 size=       0kB time=00:00:03.54 bitrate=   0.1kbits/s speed=3.52x    frame=  152 fps=101 q=34.0 size=       0kB time=00:00:05.46 bitrate=   0.1kbits/s speed=3.63x    frame=  201 fps= 99 q=34.0 size=       0kB time=00:00:06.95 bitrate=   0.1kbits/s speed=3.43x    frame=  244 fps= 96 q=34.0 size=       0kB time=00:00:08.44 bitrate=   0.0kbits/s speed=3.32x    frame=  287 fps= 94 q=34.0 size=       0kB time=00:00:09.96 bitrate=   0.0kbits/s speed=3.26x    frame=  327 fps= 92 q=34.0 size=     256kB time=00:00:10.90 bitrate= 192.4kbits/s speed=3.06x    frame=  376 fps= 93 q=34.0 size=     256kB time=00:00:12.88 bitrate= 162.8kbits/s speed=3.17x    frame=  442 fps= 97 q=34.0 size=     256kB time=00:00:14.89 bitrate= 140.9kbits/s speed=3.26x    frame=  521 fps=103 q=34.0 size=     256kB time=00:00:17.40 bitrate= 120.5kbits/s speed=3.43x    frame=  596 fps=107 q=34.0 size=     256kB time=00:00:20.20 bitrate= 103.8kbits/s speed=3.62x    frame=  661 fps=109 q=34.0 size=     512kB time=00:00:22.20 bitrate= 188.9kbits/s speed=3.65x    frame=  747 fps=113 q=34.0 size=     512kB time=00:00:25.00 bitrate= 167.8kbits/s speed=3.79x    frame=  812 fps=114 q=34.0 size=     512kB time=00:00:27.43 bitrate= 152.9kbits/s speed=3.87x    frame=  883 fps=116 q=34.0 size=     512kB time=00:00:29.46 bitrate= 142.4kbits/s speed=3.88x    frame=  950 fps=117 q=34.0 size=     512kB time=00:00:31.93 bitrate= 131.3kbits/s speed=3.94x    frame= 1022 fps=119 q=34.0 size=     512kB time=00:00:34.24 bitrate= 122.5kbits/s speed=3.98x    frame= 1097 fps=120 q=34.0 size=     768kB time=00:00:36.75 bitrate= 171.2kbits/s speed=4.03x    frame= 1172 fps=122 q=34.0 size=     768kB time=00:00:39.25 bitrate= 160.3kbits/s speed=4.08x    frame= 1237 fps=122 q=34.0 size=     768kB time=00:00:41.25 bitrate= 152.5kbits/s speed=4.08x    frame= 1295 fps=122 q=34.0 size=     768kB time=00:00:43.26 bitrate= 145.4kbits/s speed=4.07x    frame= 1363 fps=123 q=34.0 size=    1024kB time=00:00:45.46 bitrate= 184.5kbits/s speed=4.09x    frame= 1428 fps=123 q=34.0 size=    1024kB time=00:00:47.95 bitrate= 174.9kbits/s speed=4.12x    frame= 1498 fps=123 q=34.0 size=    1024kB time=00:00:49.96 bitrate= 167.9kbits/s speed=4.12x    frame= 1557 fps=123 q=34.0 size=    1024kB time=00:00:51.96 bitrate= 161.4kbits/s speed=4.11x    frame= 1617 fps=123 q=34.0 size=    1024kB time=00:00:53.97 bitrate= 155.4kbits/s speed=4.11x    frame= 1678 fps=123 q=34.0 size=    1280kB time=00:00:55.97 bitrate= 187.3kbits/s speed= 4.1x    frame= 1750 fps=124 q=34.0 size=    1280kB time=00:00:58.47 bitrate= 179.3kbits/s speed=4.13x    frame= 1815 fps=124 q=34.0 size=    1280kB time=00:01:00.97 bitrate= 172.0kbits/s speed=4.16x    frame= 1887 fps=125 q=34.0 size=    1280kB time=00:01:02.97 bitrate= 166.5kbits/s speed=4.16x    frame= 1955 fps=125 q=34.0 size=    1280kB time=00:01:05.47 bitrate= 160.2kbits/s speed=4.18x    frame= 2027 fps=125 q=34.0 size=    1536kB time=00:01:07.98 bitrate= 185.1kbits/s speed=4.21x    frame= 2091 fps=125 q=34.0 size=    1536kB time=00:01:09.97 bitrate= 179.8kbits/s speed= 4.2x    frame= 2152 fps=125 q=34.0 size=    1536kB time=00:01:11.97 bitrate= 174.8kbits/s speed=4.19x    frame= 2216 fps=125 q=34.0 size=    1536kB time=00:01:13.98 bitrate= 170.1kbits/s speed=4.18x    frame= 2278 fps=125 q=34.0 size=    1536kB time=00:01:16.18 bitrate= 165.2kbits/s speed=4.19x    frame= 2353 fps=126 q=34.0 size=    1536kB time=00:01:18.59 bitrate= 160.1kbits/s speed=4.21x    frame= 2425 fps=126 q=34.0 size=    1792kB time=00:01:21.08 bitrate= 181.0kbits/s speed=4.23x    frame= 2482 fps=126 q=34.0 size=    1792kB time=00:01:23.09 bitrate= 176.7kbits/s speed=4.22x    frame= 2540 fps=126 q=34.0 size=    1792kB time=00:01:25.09 bitrate= 172.5kbits/s speed=4.22x    frame= 2611 fps=126 q=34.0 size=    1792kB time=00:01:27.12 bitrate= 168.5kbits/s speed=4.21x    frame= 2686 fps=127 q=34.0 size=    2048kB time=00:01:29.68 bitrate= 187.1kbits/s speed=4.23x    frame= 2752 fps=127 q=34.0 size=    2048kB time=00:01:32.09 bitrate= 182.2kbits/s speed=4.25x    frame= 2821 fps=127 q=34.0 size=    2048kB time=00:01:34.12 bitrate= 178.3kbits/s speed=4.24x    frame= 2892 fps=127 q=34.0 size=    2048kB time=00:01:36.61 bitrate= 173.6kbits/s speed=4.26x    frame= 2963 fps=128 q=34.0 size=    2304kB time=00:01:39.11 bitrate= 190.4kbits/s speed=4.27x    frame= 3028 fps=128 q=34.0 size=    2304kB time=00:01:41.12 bitrate= 186.7kbits/s speed=4.26x    frame= 3101 fps=128 q=34.0 size=    2304kB time=00:01:43.61 bitrate= 182.2kbits/s speed=4.28x    frame= 3171 fps=128 q=34.0 size=    2304kB time=00:01:46.11 bitrate= 177.9kbits/s speed=4.29x    frame= 3243 fps=129 q=34.0 size=    2560kB time=00:01:48.62 bitrate= 193.1kbits/s speed=4.31x    frame= 3316 fps=129 q=34.0 size=    2560kB time=00:01:50.91 bitrate= 189.1kbits/s speed=4.31x    frame= 3400 fps=130 q=34.0 size=    2560kB time=00:01:53.62 bitrate= 184.6kbits/s speed=4.33x    frame= 3465 fps=130 q=34.0 size=    2560kB time=00:01:55.62 bitrate= 181.4kbits/s speed=4.32x    frame= 3534 fps=130 q=34.0 size=    2816kB time=00:01:58.03 bitrate= 195.4kbits/s speed=4.33x    frame= 3586 fps=129 q=34.0 size=    2816kB time=00:02:00.04 bitrate= 192.2kbits/s speed=4.33x    frame= 3664 fps=130 q=34.0 size=    2816kB time=00:02:02.53 bitrate= 188.3kbits/s speed=4.34x    frame= 3730 fps=130 q=34.0 size=    2816kB time=00:02:04.54 bitrate= 185.2kbits/s speed=4.33x    frame= 3790 fps=130 q=34.0 size=    2816kB time=00:02:06.54 bitrate= 182.3kbits/s speed=4.33x    frame= 3862 fps=130 q=34.0 size=    3072kB time=00:02:09.04 bitrate= 195.0kbits/s speed=4.34x    frame= 3932 fps=130 q=34.0 size=    3072kB time=00:02:11.54 bitrate= 191.3kbits/s speed=4.35x    frame= 3995 fps=130 q=34.0 size=    3072kB time=00:02:13.58 bitrate= 188.4kbits/s speed=4.34x    frame= 4048 fps=129 q=34.0 size=    3072kB time=00:02:15.16 bitrate= 186.2kbits/s speed=4.32x    frame= 4117 fps=130 q=34.0 size=    3072kB time=00:02:17.74 bitrate= 182.7kbits/s speed=4.34x    frame= 4194 fps=130 q=34.0 size=    3328kB time=00:02:20.24 bitrate= 194.4kbits/s speed=4.35x    frame= 4272 fps=130 q=34.0 size=    3328kB time=00:02:22.95 bitrate= 190.7kbits/s speed=4.36x    frame= 4340 fps=130 q=34.0 size=    3328kB time=00:02:25.06 bitrate= 187.9kbits/s speed=4.36x    frame= 4420 fps=131 q=34.0 size=    3328kB time=00:02:27.62 bitrate= 184.7kbits/s speed=4.37x    frame= 4491 fps=131 q=34.0 size=    3328kB time=00:02:30.14 bitrate= 181.6kbits/s speed=4.38x    frame= 4566 fps=131 q=34.0 size=    3584kB time=00:02:32.72 bitrate= 192.2kbits/s speed=4.39x    frame= 4646 fps=132 q=34.0 size=    3584kB time=00:02:35.32 bitrate= 189.0kbits/s speed= 4.4x    frame= 4720 fps=132 q=34.0 size=    3584kB time=00:02:37.84 bitrate= 186.0kbits/s speed=4.41x    frame= 4785 fps=132 q=34.0 size=    3584kB time=00:02:39.82 bitrate= 183.7kbits/s speed= 4.4x    frame= 4850 fps=132 q=34.0 size=    3584kB time=00:02:42.13 bitrate= 181.1kbits/s speed= 4.4x    frame= 4917 fps=132 q=34.0 size=    3840kB time=00:02:44.50 bitrate= 191.2kbits/s speed=4.41x    frame= 4979 fps=132 q=34.0 size=    3840kB time=00:02:46.44 bitrate= 189.0kbits/s speed= 4.4x    frame= 5049 fps=132 q=34.0 size=    3840kB time=00:02:48.44 bitrate= 186.8kbits/s speed= 4.4x    frame= 5124 fps=132 q=34.0 size=    3840kB time=00:02:51.07 bitrate= 183.9kbits/s speed=4.41x    frame= 5173 fps=132 q=34.0 size=    3840kB time=00:02:52.94 bitrate= 181.9kbits/s speed= 4.4x    frame= 5214 fps=131 q=34.0 size=    3840kB time=00:02:54.10 bitrate= 180.7kbits/s speed=4.37x    frame= 5278 fps=131 q=34.0 size=    4096kB time=00:02:56.25 bitrate= 190.4kbits/s speed=4.37x    frame= 5337 fps=131 q=34.0 size=    4096kB time=00:02:58.04 bitrate= 188.5kbits/s speed=4.36x    frame= 5408 fps=131 q=34.0 size=    4096kB time=00:03:00.86 bitrate= 185.5kbits/s speed=4.37x    frame= 5484 fps=131 q=34.0 size=    4096kB time=00:03:03.36 bitrate= 183.0kbits/s speed=4.38x    frame= 5559 fps=131 q=34.0 size=    4096kB time=00:03:05.47 bitrate= 180.9kbits/s speed=4.38x    frame= 5627 fps=131 q=34.0 size=    4352kB time=00:03:07.77 bitrate= 189.9kbits/s speed=4.38x    frame= 5703 fps=132 q=34.0 size=    4352kB time=00:03:10.35 bitrate= 187.3kbits/s speed=4.39x    frame= 5774 fps=132 q=34.0 size=    4352kB time=00:03:12.68 bitrate= 185.0kbits/s speed=4.39x    frame= 5850 fps=132 q=34.0 size=    4352kB time=00:03:15.17 bitrate= 182.7kbits/s speed= 4.4x    frame= 5923 fps=132 q=34.0 size=    4352kB time=00:03:17.78 bitrate= 180.3kbits/s speed=4.41x    frame= 5993 fps=132 q=34.0 size=    4608kB time=00:03:20.27 bitrate= 188.5kbits/s speed=4.41x    frame= 6065 fps=132 q=34.0 size=    4608kB time=00:03:22.77 bitrate= 186.2kbits/s speed=4.42x    [mp4 @ 0x6df9280] Starting second pass: moving the moov atom to the beginning of the file
+frame= 6115 fps=132 q=-1.0 Lsize=    4972kB time=00:03:24.07 bitrate= 199.6kbits/s speed= 4.4x    
+video:1692kB audio:3060kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 4.607020%
+[libx264 @ 0x6dfa180] frame I:26    Avg QP:21.94  size: 12963
+[libx264 @ 0x6dfa180] frame P:1730  Avg QP:25.31  size:   649
+[libx264 @ 0x6dfa180] frame B:4359  Avg QP:38.46  size:    63
+[libx264 @ 0x6dfa180] consecutive B-frames:  2.7%  3.7%  9.4% 84.2%
+[libx264 @ 0x6dfa180] mb I  I16..4: 41.4% 28.7% 29.8%
+[libx264 @ 0x6dfa180] mb P  I16..4:  1.2%  1.2%  0.4%  P16..4:  5.4%  1.4%  0.9%  0.0%  0.0%    skip:89.5%
+[libx264 @ 0x6dfa180] mb B  I16..4:  0.0%  0.0%  0.0%  B16..8:  3.3%  0.1%  0.0%  direct: 0.1%  skip:96.4%  L0:44.6% L1:53.7% BI: 1.7%
+[libx264 @ 0x6dfa180] 8x8 transform intra:37.6% inter:49.1%
+[libx264 @ 0x6dfa180] direct mvs  spatial:99.9% temporal:0.1%
+[libx264 @ 0x6dfa180] coded y,uvDC,uvAC intra: 18.8% 29.0% 10.3% inter: 0.6% 1.0% 0.1%
+[libx264 @ 0x6dfa180] i16 v,h,dc,p: 43% 52%  2%  2%
+[libx264 @ 0x6dfa180] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 19% 16% 53%  2%  2%  2%  2%  2%  3%
+[libx264 @ 0x6dfa180] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 17% 33% 20%  3%  5%  4%  6%  4%  8%
+[libx264 @ 0x6dfa180] i8c dc,h,v,p: 50% 38%  9%  2%
+[libx264 @ 0x6dfa180] Weighted P-Frames: Y:0.2% UV:0.2%
+[libx264 @ 0x6dfa180] ref P L0: 77.2%  7.8%  9.7%  2.4%  2.6%  0.2%
+[libx264 @ 0x6dfa180] ref B L0: 78.7% 16.5%  3.8%  1.0%
+[libx264 @ 0x6dfa180] ref B L1: 94.6%  5.4%
+[libx264 @ 0x6dfa180] kb/s:67.91
+[aac @ 0x6dfb500] Qavg: 3197.907
+ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5867d00] st: 0 edit list: 1 Missing key frame while searching for timestamp: 0
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5867d00] st: 0 edit list 1 Cannot find an index entry before timestamp: 0.
+Guessed Channel Layout for Input Stream #0.1 : stereo
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42
+    creation_time   : 2021-04-08T18:13:57.000000Z
+  Duration: 00:03:24.07, start: 0.000000, bitrate: 16267 kb/s
+    Stream #0:0(eng): Video: mpeg2video (Main) (mp4v / 0x7634706D), yuv420p(tv, bt709), 1920x1080 [SAR 1:1 DAR 16:9], 14728 kb/s, 29.97 fps, 29.97 tbr, 30k tbn, 59.94 tbc (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Video Media Handler
+    Stream #0:1(eng): Audio: pcm_s16be (twos / 0x736F7774), 48000 Hz, stereo, s16, 1536 kb/s (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Sound Media Handler
+Stream mapping:
+  Stream #0:0 -> #0:0 (mpeg2video (native) -> h264 (libx264))
+  Stream #0:1 -> #0:1 (pcm_s16be (native) -> aac (native))
+Press [q] to stop, [?] for help
+[libx264 @ 0x5895180] using SAR=1/1
+[libx264 @ 0x5895180] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0x5895180] profile High, level 3.1
+[libx264 @ 0x5895180] 264 - core 155 r2901 7d0ff22 - H.264/MPEG-4 AVC codec - Copyleft 2003-2018 - http://www.videolan.org/x264.html - options: cabac=1 ref=1 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=2 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=0 threads=2 lookahead_threads=1 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=1 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=10 rc=crf mbtree=1 crf=28.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/home/x/xatikont/youinroll.com/public_html/storage/media/8882e274f477c6847fd65c637d0844a6-720.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42
+    encoder         : Lavf58.12.100
+    Stream #0:0(eng): Video: h264 (libx264) (avc1 / 0x31637661), yuv420p, 1280x720 [SAR 1:1 DAR 16:9], q=-1--1, 29.97 fps, 30k tbn, 29.97 tbc (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Video Media Handler
+      encoder         : Lavc58.18.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: -1
+    Stream #0:1(eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Sound Media Handler
+      encoder         : Lavc58.18.100 aac
+frame=   48 fps=0.0 q=34.0 size=       0kB time=00:00:01.94 bitrate=   0.2kbits/s speed=3.87x    frame=   97 fps= 97 q=34.0 size=       0kB time=00:00:03.45 bitrate=   0.1kbits/s speed=3.44x    frame=  149 fps= 99 q=34.0 size=       0kB time=00:00:04.97 bitrate=   0.1kbits/s speed= 3.3x    frame=  209 fps=104 q=34.0 size=     256kB time=00:00:07.44 bitrate= 281.7kbits/s speed=3.71x    frame=  269 fps=107 q=34.0 size=     256kB time=00:00:09.25 bitrate= 226.5kbits/s speed= 3.7x    frame=  335 fps=111 q=34.0 size=     256kB time=00:00:11.39 bitrate= 184.1kbits/s speed=3.79x    frame=  409 fps=116 q=34.0 size=     512kB time=00:00:13.88 bitrate= 302.0kbits/s speed=3.95x    frame=  474 fps=118 q=34.0 size=     512kB time=00:00:15.89 bitrate= 263.9kbits/s speed=3.96x    frame=  540 fps=119 q=34.0 size=     512kB time=00:00:18.19 bitrate= 230.5kbits/s speed=4.03x    frame=  600 fps=119 q=34.0 size=     512kB time=00:00:20.20 bitrate= 207.6kbits/s speed=4.02x    frame=  672 fps=122 q=34.0 size=     768kB time=00:00:22.69 bitrate= 277.2kbits/s speed= 4.1x    frame=  744 fps=123 q=34.0 size=     768kB time=00:00:25.00 bitrate= 251.6kbits/s speed=4.15x    frame=  812 fps=124 q=34.0 size=     768kB time=00:00:27.43 bitrate= 229.3kbits/s speed= 4.2x    frame=  883 fps=125 q=34.0 size=     768kB time=00:00:29.46 bitrate= 213.6kbits/s speed=4.19x    frame=  961 fps=127 q=34.0 size=    1024kB time=00:00:32.32 bitrate= 259.6kbits/s speed=4.28x    frame= 1027 fps=128 q=34.0 size=    1024kB time=00:00:34.24 bitrate= 245.0kbits/s speed=4.25x    frame= 1091 fps=128 q=34.0 size=    1024kB time=00:00:36.75 bitrate= 228.2kbits/s speed= 4.3x    frame= 1154 fps=127 q=34.0 size=    1024kB time=00:00:38.76 bitrate= 216.4kbits/s speed=4.28x    frame= 1215 fps=127 q=34.0 size=    1280kB time=00:00:40.74 bitrate= 257.3kbits/s speed=4.26x    frame= 1278 fps=127 q=34.0 size=    1280kB time=00:00:42.75 bitrate= 245.3kbits/s speed=4.25x    frame= 1335 fps=126 q=34.0 size=    1280kB time=00:00:44.94 bitrate= 233.3kbits/s speed=4.25x    frame= 1397 fps=126 q=34.0 size=    1280kB time=00:00:46.95 bitrate= 223.3kbits/s speed=4.24x    frame= 1453 fps=125 q=34.0 size=    1536kB time=00:00:48.89 bitrate= 257.3kbits/s speed=4.22x    frame= 1516 fps=125 q=34.0 size=    1536kB time=00:00:50.96 bitrate= 246.9kbits/s speed=4.22x    frame= 1575 fps=125 q=34.0 size=    1536kB time=00:00:52.97 bitrate= 237.6kbits/s speed=4.21x    frame= 1623 fps=124 q=34.0 size=    1792kB time=00:00:54.46 bitrate= 269.5kbits/s speed=4.16x    frame= 1678 fps=123 q=34.0 size=    1792kB time=00:00:55.97 bitrate= 262.3kbits/s speed=4.12x    frame= 1723 fps=122 q=34.0 size=    1792kB time=00:00:57.87 bitrate= 253.6kbits/s speed= 4.1x    frame= 1783 fps=122 q=34.0 size=    1792kB time=00:00:59.96 bitrate= 244.8kbits/s speed=4.11x    frame= 1854 fps=123 q=34.0 size=    2048kB time=00:01:01.97 bitrate= 270.7kbits/s speed= 4.1x    frame= 1920 fps=123 q=34.0 size=    2048kB time=00:01:04.46 bitrate= 260.2kbits/s speed=4.13x    frame= 1988 fps=123 q=34.0 size=    2048kB time=00:01:06.47 bitrate= 252.4kbits/s speed=4.12x    frame= 2053 fps=124 q=34.0 size=    2048kB time=00:01:08.48 bitrate= 245.0kbits/s speed=4.12x    frame= 2112 fps=123 q=34.0 size=    2048kB time=00:01:10.48 bitrate= 238.0kbits/s speed=4.12x    frame= 2176 fps=123 q=34.0 size=    2304kB time=00:01:12.98 bitrate= 258.6kbits/s speed=4.14x    frame= 2242 fps=124 q=34.0 size=    2304kB time=00:01:14.98 bitrate= 251.7kbits/s speed=4.14x    frame= 2301 fps=123 q=34.0 size=    2304kB time=00:01:16.99 bitrate= 245.2kbits/s speed=4.13x    frame= 2368 fps=124 q=34.0 size=    2560kB time=00:01:19.08 bitrate= 265.2kbits/s speed=4.13x    frame= 2431 fps=124 q=34.0 size=    2560kB time=00:01:21.10 bitrate= 258.6kbits/s speed=4.13x    frame= 2491 fps=124 q=34.0 size=    2560kB time=00:01:23.11 bitrate= 252.3kbits/s speed=4.12x    frame= 2560 fps=124 q=34.0 size=    2816kB time=00:01:25.58 bitrate= 269.5kbits/s speed=4.14x    frame= 2629 fps=124 q=34.0 size=    2816kB time=00:01:28.10 bitrate= 261.8kbits/s speed=4.16x    frame= 2696 fps=124 q=34.0 size=    2816kB time=00:01:30.11 bitrate= 256.0kbits/s speed=4.16x    frame= 2751 fps=124 q=34.0 size=    3072kB time=00:01:32.09 bitrate= 273.3kbits/s speed=4.16x    frame= 2814 fps=124 q=34.0 size=    3072kB time=00:01:34.10 bitrate= 267.4kbits/s speed=4.15x    frame= 2881 fps=124 q=34.0 size=    3072kB time=00:01:36.10 bitrate= 261.9kbits/s speed=4.15x    frame= 2930 fps=124 q=34.0 size=    3072kB time=00:01:38.11 bitrate= 256.5kbits/s speed=4.14x    frame= 2986 fps=124 q=31.0 size=    3328kB time=00:01:39.98 bitrate= 272.7kbits/s speed=4.14x    frame= 3051 fps=124 q=34.0 size=    3328kB time=00:01:42.12 bitrate= 267.0kbits/s speed=4.14x    frame= 3094 fps=123 q=34.0 size=    3328kB time=00:01:43.61 bitrate= 263.1kbits/s speed=4.11x    frame= 3136 fps=122 q=34.0 size=    3328kB time=00:01:44.61 bitrate= 260.6kbits/s speed=4.07x    frame= 3187 fps=122 q=34.0 size=    3584kB time=00:01:46.62 bitrate= 275.4kbits/s speed=4.07x    frame= 3240 fps=121 q=34.0 size=    3584kB time=00:01:48.11 bitrate= 271.6kbits/s speed=4.05x    frame= 3291 fps=121 q=34.0 size=    3584kB time=00:01:50.12 bitrate= 266.6kbits/s speed=4.05x    frame= 3349 fps=121 q=34.0 size=    3584kB time=00:01:52.12 bitrate= 261.8kbits/s speed=4.05x    frame= 3391 fps=120 q=34.0 size=    3584kB time=00:01:53.15 bitrate= 259.5kbits/s speed=4.01x    frame= 3440 fps=120 q=34.0 size=    3840kB time=00:01:55.13 bitrate= 273.2kbits/s speed=4.01x    frame= 3481 fps=119 q=34.0 size=    3840kB time=00:01:56.60 bitrate= 269.8kbits/s speed=3.99x    frame= 3533 fps=119 q=34.0 size=    3840kB time=00:01:58.03 bitrate= 266.5kbits/s speed=3.97x    frame= 3572 fps=118 q=34.0 size=    3840kB time=00:01:59.53 bitrate= 263.2kbits/s speed=3.95x    frame= 3618 fps=118 q=34.0 size=    4096kB time=00:02:01.02 bitrate= 277.3kbits/s speed=3.94x    frame= 3672 fps=117 q=34.0 size=    4096kB time=00:02:02.53 bitrate= 273.8kbits/s speed=3.92x    frame= 3721 fps=117 q=34.0 size=    4096kB time=00:02:04.54 bitrate= 269.4kbits/s speed=3.92x    frame= 3775 fps=117 q=34.0 size=    4096kB time=00:02:06.03 bitrate= 266.2kbits/s speed=3.91x    frame= 3835 fps=117 q=34.0 size=    4352kB time=00:02:08.04 bitrate= 278.4kbits/s speed=3.91x    frame= 3897 fps=117 q=34.0 size=    4352kB time=00:02:10.04 bitrate= 274.1kbits/s speed=3.91x    frame= 3954 fps=117 q=34.0 size=    4352kB time=00:02:12.05 bitrate= 270.0kbits/s speed=3.91x    frame= 4010 fps=117 q=34.0 size=    4608kB time=00:02:14.08 bitrate= 281.5kbits/s speed=3.91x    frame= 4071 fps=117 q=34.0 size=    4608kB time=00:02:16.04 bitrate= 277.5kbits/s speed=3.91x    frame= 4132 fps=117 q=34.0 size=    4608kB time=00:02:18.26 bitrate= 273.0kbits/s speed=3.92x    frame= 4202 fps=117 q=34.0 size=    4608kB time=00:02:20.24 bitrate= 269.2kbits/s speed=3.92x    frame= 4261 fps=117 q=34.0 size=    4608kB time=00:02:22.46 bitrate= 265.0kbits/s speed=3.92x    frame= 4317 fps=117 q=34.0 size=    4608kB time=00:02:24.06 bitrate= 262.0kbits/s speed=3.91x    frame= 4374 fps=117 q=34.0 size=    4864kB time=00:02:25.92 bitrate= 273.1kbits/s speed=3.91x    frame= 4429 fps=117 q=34.0 size=    4864kB time=00:02:28.13 bitrate= 269.0kbits/s speed=3.92x    frame= 4490 fps=117 q=34.0 size=    4864kB time=00:02:29.82 bitrate= 266.0kbits/s speed=3.91x    frame= 4557 fps=117 q=34.0 size=    4864kB time=00:02:32.34 bitrate= 261.6kbits/s speed=3.92x    frame= 4605 fps=117 q=34.0 size=    4864kB time=00:02:33.83 bitrate= 259.0kbits/s speed=3.91x    frame= 4649 fps=117 q=34.0 size=    5120kB time=00:02:35.32 bitrate= 270.0kbits/s speed= 3.9x    frame= 4695 fps=116 q=34.0 size=    5120kB time=00:02:36.84 bitrate= 267.4kbits/s speed=3.89x    frame= 4749 fps=116 q=34.0 size=    5120kB time=00:02:38.74 bitrate= 264.2kbits/s speed=3.89x    frame= 4808 fps=116 q=34.0 size=    5120kB time=00:02:40.64 bitrate= 261.1kbits/s speed=3.88x    frame= 4852 fps=116 q=34.0 size=    5120kB time=00:02:42.13 bitrate= 258.7kbits/s speed=3.87x    frame= 4915 fps=116 q=34.0 size=    5376kB time=00:02:44.05 bitrate= 268.5kbits/s speed=3.87x    frame= 4965 fps=116 q=34.0 size=    5376kB time=00:02:45.95 bitrate= 265.4kbits/s speed=3.87x    frame= 5028 fps=116 q=34.0 size=    5376kB time=00:02:47.95 bitrate= 262.2kbits/s speed=3.87x    frame= 5094 fps=116 q=34.0 size=    5376kB time=00:02:49.96 bitrate= 259.1kbits/s speed=3.87x    frame= 5154 fps=116 q=34.0 size=    5632kB time=00:02:51.94 bitrate= 268.3kbits/s speed=3.87x    frame= 5214 fps=116 q=34.0 size=    5632kB time=00:02:54.20 bitrate= 264.8kbits/s speed=3.88x    frame= 5282 fps=116 q=34.0 size=    5632kB time=00:02:56.25 bitrate= 261.8kbits/s speed=3.88x    frame= 5337 fps=116 q=34.0 size=    5632kB time=00:02:58.06 bitrate= 259.1kbits/s speed=3.88x    frame= 5387 fps=116 q=34.0 size=    5888kB time=00:02:59.86 bitrate= 268.2kbits/s speed=3.87x    frame= 5456 fps=116 q=34.0 size=    5888kB time=00:03:02.35 bitrate= 264.5kbits/s speed=3.89x    frame= 5522 fps=116 q=34.0 size=    5888kB time=00:03:04.46 bitrate= 261.5kbits/s speed=3.89x    frame= 5589 fps=117 q=34.0 size=    5888kB time=00:03:06.88 bitrate= 258.1kbits/s speed= 3.9x    frame= 5660 fps=117 q=34.0 size=    6144kB time=00:03:09.26 bitrate= 265.9kbits/s speed=3.91x    frame= 5724 fps=117 q=34.0 size=    6144kB time=00:03:11.16 bitrate= 263.3kbits/s speed=3.91x    frame= 5782 fps=117 q=34.0 size=    6144kB time=00:03:13.17 bitrate= 260.6kbits/s speed=3.91x    frame= 5850 fps=117 q=34.0 size=    6144kB time=00:03:15.22 bitrate= 257.8kbits/s speed=3.91x    frame= 5913 fps=117 q=34.0 size=    6144kB time=00:03:17.26 bitrate= 255.1kbits/s speed=3.91x    frame= 5970 fps=117 q=34.0 size=    6144kB time=00:03:19.27 bitrate= 252.6kbits/s speed=3.91x    frame= 6027 fps=117 q=34.0 size=    6400kB time=00:03:21.28 bitrate= 260.5kbits/s speed=3.91x    frame= 6086 fps=117 q=34.0 size=    6400kB time=00:03:23.28 bitrate= 257.9kbits/s speed=3.91x    [mp4 @ 0x5894280] Starting second pass: moving the moov atom to the beginning of the file
+frame= 6115 fps=117 q=-1.0 Lsize=    6730kB time=00:03:24.07 bitrate= 270.1kbits/s speed=3.91x    
+video:3450kB audio:3060kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 3.369416%
+[libx264 @ 0x5895180] frame I:27    Avg QP:20.55  size: 23665
+[libx264 @ 0x5895180] frame P:1647  Avg QP:27.13  size:  1337
+[libx264 @ 0x5895180] frame B:4441  Avg QP:32.15  size:   156
+[libx264 @ 0x5895180] consecutive B-frames:  1.5%  2.5%  7.5% 88.5%
+[libx264 @ 0x5895180] mb I  I16..4: 70.4% 12.5% 17.1%
+[libx264 @ 0x5895180] mb P  I16..4:  2.9%  0.8%  0.3%  P16..4:  2.5%  0.8%  0.4%  0.0%  0.0%    skip:92.2%
+[libx264 @ 0x5895180] mb B  I16..4:  0.1%  0.1%  0.0%  B16..8:  0.8%  0.1%  0.0%  direct: 0.5%  skip:98.5%  L0:47.2% L1:48.9% BI: 3.8%
+[libx264 @ 0x5895180] 8x8 transform intra:19.3% inter:28.9%
+[libx264 @ 0x5895180] coded y,uvDC,uvAC intra: 17.4% 28.8% 7.0% inter: 0.3% 0.7% 0.0%
+[libx264 @ 0x5895180] i16 v,h,dc,p: 68% 28%  3%  1%
+[libx264 @ 0x5895180] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 20% 31% 24%  4%  4%  4%  4%  3%  5%
+[libx264 @ 0x5895180] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 22% 27% 20%  4%  6%  5%  6%  4%  6%
+[libx264 @ 0x5895180] i8c dc,h,v,p: 71% 18% 10%  1%
+[libx264 @ 0x5895180] Weighted P-Frames: Y:0.3% UV:0.2%
+[libx264 @ 0x5895180] kb/s:138.49
+[aac @ 0x5896500] Qavg: 3197.907
+ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5259d00] st: 0 edit list: 1 Missing key frame while searching for timestamp: 0
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5259d00] st: 0 edit list 1 Cannot find an index entry before timestamp: 0.
+Guessed Channel Layout for Input Stream #0.1 : stereo
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42
+    creation_time   : 2021-04-08T18:13:57.000000Z
+  Duration: 00:03:24.07, start: 0.000000, bitrate: 16267 kb/s
+    Stream #0:0(eng): Video: mpeg2video (Main) (mp4v / 0x7634706D), yuv420p(tv, bt709), 1920x1080 [SAR 1:1 DAR 16:9], 14728 kb/s, 29.97 fps, 29.97 tbr, 30k tbn, 59.94 tbc (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Video Media Handler
+    Stream #0:1(eng): Audio: pcm_s16be (twos / 0x736F7774), 48000 Hz, stereo, s16, 1536 kb/s (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Sound Media Handler
+File '/home/x/xatikont/youinroll.com/public_html/storage/media/8882e274f477c6847fd65c637d0844a6-720.mp4' already exists. Overwrite ? [y/N] Not overwriting - exiting
+ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x6cf6d00] st: 0 edit list: 1 Missing key frame while searching for timestamp: 0
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x6cf6d00] st: 0 edit list 1 Cannot find an index entry before timestamp: 0.
+Guessed Channel Layout for Input Stream #0.1 : stereo
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/8882e274f477c6847fd65c637d0844a6.MP4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42
+    creation_time   : 2021-04-08T18:13:57.000000Z
+  Duration: 00:03:24.07, start: 0.000000, bitrate: 16267 kb/s
+    Stream #0:0(eng): Video: mpeg2video (Main) (mp4v / 0x7634706D), yuv420p(tv, bt709), 1920x1080 [SAR 1:1 DAR 16:9], 14728 kb/s, 29.97 fps, 29.97 tbr, 30k tbn, 59.94 tbc (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Video Media Handler
+    Stream #0:1(eng): Audio: pcm_s16be (twos / 0x736F7774), 48000 Hz, stereo, s16, 1536 kb/s (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Sound Media Handler
+Stream mapping:
+  Stream #0:0 -> #0:0 (mpeg2video (native) -> h264 (libx264))
+  Stream #0:1 -> #0:1 (pcm_s16be (native) -> aac (native))
+Press [q] to stop, [?] for help
+[libx264 @ 0x6d24180] using SAR=1/1
+[libx264 @ 0x6d24180] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0x6d24180] profile High, level 4.0
+[libx264 @ 0x6d24180] 264 - core 155 r2901 7d0ff22 - H.264/MPEG-4 AVC codec - Copyleft 2003-2018 - http://www.videolan.org/x264.html - options: cabac=1 ref=1 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=2 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=0 threads=2 lookahead_threads=1 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=1 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=10 rc=crf mbtree=1 crf=28.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/home/x/xatikont/youinroll.com/public_html/storage/media/8882e274f477c6847fd65c637d0844a6-1080.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42
+    encoder         : Lavf58.12.100
+    Stream #0:0(eng): Video: h264 (libx264) (avc1 / 0x31637661), yuv420p, 1920x1080 [SAR 1:1 DAR 16:9], q=-1--1, 29.97 fps, 30k tbn, 29.97 tbc (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Video Media Handler
+      encoder         : Lavc58.18.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: -1
+    Stream #0:1(eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      creation_time   : 2021-04-08T18:13:57.000000Z
+      handler_name    : Sound Media Handler
+      encoder         : Lavc58.18.100 aac
+frame=   29 fps=0.0 q=34.0 size=       0kB time=00:00:01.00 bitrate=   0.4kbits/s speed=   2x    frame=   43 fps= 42 q=34.0 size=       0kB time=00:00:01.45 bitrate=   0.3kbits/s speed=1.42x    frame=   65 fps= 43 q=34.0 size=       0kB time=00:00:02.45 bitrate=   0.2kbits/s speed=1.61x    frame=   95 fps= 47 q=34.0 size=     256kB time=00:00:03.45 bitrate= 606.9kbits/s speed= 1.7x    frame=  131 fps= 51 q=34.0 size=     256kB time=00:00:04.45 bitrate= 470.4kbits/s speed=1.75x    frame=  164 fps= 54 q=34.0 size=     256kB time=00:00:05.48 bitrate= 382.6kbits/s speed=1.79x    frame=  197 fps= 55 q=34.0 size=     512kB time=00:00:06.95 bitrate= 603.1kbits/s speed=1.95x    frame=  229 fps= 56 q=34.0 size=     512kB time=00:00:07.95 bitrate= 527.1kbits/s speed=1.95x    frame=  267 fps= 58 q=34.0 size=     768kB time=00:00:08.96 bitrate= 702.2kbits/s speed=1.94x    frame=  299 fps= 58 q=34.0 size=     768kB time=00:00:09.98 bitrate= 630.2kbits/s speed=1.94x    frame=  336 fps= 59 q=34.0 size=     768kB time=00:00:11.39 bitrate= 552.3kbits/s speed=2.01x    frame=  394 fps= 64 q=34.0 size=     768kB time=00:00:13.39 bitrate= 469.6kbits/s speed=2.17x    frame=  447 fps= 67 q=34.0 size=    1024kB time=00:00:14.89 bitrate= 563.4kbits/s speed=2.23x    frame=  494 fps= 69 q=34.0 size=    1024kB time=00:00:16.89 bitrate= 496.5kbits/s speed=2.35x    frame=  546 fps= 71 q=34.0 size=    1024kB time=00:00:18.21 bitrate= 460.5kbits/s speed=2.37x    frame=  597 fps= 73 q=34.0 size=    1280kB time=00:00:20.20 bitrate= 519.0kbits/s speed=2.46x    frame=  648 fps= 74 q=34.0 size=    1280kB time=00:00:21.69 bitrate= 483.3kbits/s speed=2.49x    frame=  702 fps= 76 q=34.0 size=    1280kB time=00:00:23.48 bitrate= 446.4kbits/s speed=2.55x    frame=  750 fps= 77 q=34.0 size=    1280kB time=00:00:25.00 bitrate= 419.4kbits/s speed=2.57x    frame=  796 fps= 78 q=34.0 size=    1536kB time=00:00:26.94 bitrate= 467.0kbits/s speed=2.63x    frame=  853 fps= 79 q=34.0 size=    1536kB time=00:00:28.43 bitrate= 442.5kbits/s speed=2.65x    frame=  894 fps= 80 q=34.0 size=    1536kB time=00:00:29.95 bitrate= 420.1kbits/s speed=2.66x    frame=  950 fps= 81 q=34.0 size=    1536kB time=00:00:31.93 bitrate= 394.0kbits/s speed=2.72x    frame=  991 fps= 81 q=34.0 size=    1792kB time=00:00:33.23 bitrate= 441.7kbits/s speed=2.71x    frame= 1039 fps= 81 q=34.0 size=    1792kB time=00:00:34.75 bitrate= 422.4kbits/s speed=2.73x    frame= 1081 fps= 82 q=34.0 size=    1792kB time=00:00:36.24 bitrate= 405.0kbits/s speed=2.73x    frame= 1127 fps= 82 q=34.0 size=    1792kB time=00:00:37.76 bitrate= 388.8kbits/s speed=2.74x    frame= 1165 fps= 82 q=34.0 size=    2048kB time=00:00:39.25 bitrate= 427.4kbits/s speed=2.75x    frame= 1207 fps= 82 q=34.0 size=    2048kB time=00:00:40.27 bitrate= 416.6kbits/s speed=2.73x    frame= 1251 fps= 82 q=34.0 size=    2048kB time=00:00:41.74 bitrate= 401.9kbits/s speed=2.73x    frame= 1288 fps= 82 q=34.0 size=    2304kB time=00:00:43.26 bitrate= 436.3kbits/s speed=2.74x    frame= 1329 fps= 82 q=34.0 size=    2304kB time=00:00:44.45 bitrate= 424.5kbits/s speed=2.73x    frame= 1372 fps= 82 q=34.0 size=    2304kB time=00:00:45.95 bitrate= 410.7kbits/s speed=2.74x    frame= 1421 fps= 82 q=34.0 size=    2560kB time=00:00:47.46 bitrate= 441.8kbits/s speed=2.75x    frame= 1463 fps= 82 q=34.0 size=    2560kB time=00:00:48.96 bitrate= 428.3kbits/s speed=2.75x    frame= 1505 fps= 82 q=34.0 size=    2560kB time=00:00:50.45 bitrate= 415.7kbits/s speed=2.76x    frame= 1540 fps= 82 q=34.0 size=    2816kB time=00:00:51.45 bitrate= 448.3kbits/s speed=2.74x    frame= 1578 fps= 82 q=34.0 size=    2816kB time=00:00:52.97 bitrate= 435.5kbits/s speed=2.74x    frame= 1621 fps= 82 q=34.0 size=    2816kB time=00:00:54.46 bitrate= 423.6kbits/s speed=2.75x    frame= 1662 fps= 82 q=34.0 size=    3072kB time=00:00:55.46 bitrate= 453.7kbits/s speed=2.73x    frame= 1708 fps= 82 q=34.0 size=    3072kB time=00:00:56.98 bitrate= 441.7kbits/s speed=2.74x    frame= 1743 fps= 82 q=34.0 size=    3072kB time=00:00:58.47 bitrate= 430.4kbits/s speed=2.74x    frame= 1789 fps= 82 q=34.0 size=    3328kB time=00:00:59.96 bitrate= 454.6kbits/s speed=2.75x    frame= 1833 fps= 82 q=34.0 size=    3328kB time=00:01:01.48 bitrate= 443.4kbits/s speed=2.75x    frame= 1876 fps= 82 q=34.0 size=    3328kB time=00:01:02.97 bitrate= 432.9kbits/s speed=2.76x    frame= 1918 fps= 82 q=34.0 size=    3328kB time=00:01:04.00 bitrate= 426.0kbits/s speed=2.74x    frame= 1967 fps= 82 q=34.0 size=    3584kB time=00:01:05.98 bitrate= 445.0kbits/s speed=2.76x    frame= 2010 fps= 82 q=34.0 size=    3584kB time=00:01:07.47 bitrate= 435.1kbits/s speed=2.77x    frame= 2056 fps= 83 q=34.0 size=    3584kB time=00:01:08.99 bitrate= 425.6kbits/s speed=2.77x    frame= 2102 fps= 83 q=34.0 size=    3584kB time=00:01:10.48 bitrate= 416.5kbits/s speed=2.78x    frame= 2152 fps= 83 q=34.0 size=    3840kB time=00:01:11.97 bitrate= 437.0kbits/s speed=2.78x    frame= 2203 fps= 83 q=34.0 size=    3840kB time=00:01:13.49 bitrate= 428.0kbits/s speed=2.78x    frame= 2246 fps= 83 q=34.0 size=    4096kB time=00:01:14.98 bitrate= 447.5kbits/s speed=2.79x    frame= 2295 fps= 84 q=34.0 size=    4096kB time=00:01:16.99 bitrate= 435.8kbits/s speed=2.81x    frame= 2336 fps= 84 q=34.0 size=    4096kB time=00:01:18.10 bitrate= 429.6kbits/s speed= 2.8x    frame= 2376 fps= 84 q=34.0 size=    4352kB time=00:01:19.59 bitrate= 447.9kbits/s speed= 2.8x    frame= 2424 fps= 84 q=34.0 size=    4352kB time=00:01:21.08 bitrate= 439.7kbits/s speed= 2.8x    frame= 2463 fps= 84 q=34.0 size=    4352kB time=00:01:22.60 bitrate= 431.6kbits/s speed=2.81x    frame= 2504 fps= 84 q=34.0 size=    4608kB time=00:01:23.60 bitrate= 451.5kbits/s speed=2.79x    frame= 2550 fps= 84 q=34.0 size=    4608kB time=00:01:25.09 bitrate= 443.6kbits/s speed= 2.8x    frame= 2596 fps= 84 q=34.0 size=    4864kB time=00:01:26.59 bitrate= 460.2kbits/s speed= 2.8x    frame= 2639 fps= 84 q=34.0 size=    4864kB time=00:01:28.10 bitrate= 452.3kbits/s speed= 2.8x    frame= 2691 fps= 84 q=34.0 size=    4864kB time=00:01:30.11 bitrate= 442.2kbits/s speed=2.82x    frame= 2741 fps= 84 q=34.0 size=    5120kB time=00:01:31.60 bitrate= 457.9kbits/s speed=2.82x    frame= 2787 fps= 85 q=34.0 size=    5120kB time=00:01:33.09 bitrate= 450.5kbits/s speed=2.82x    frame= 2828 fps= 84 q=34.0 size=    5376kB time=00:01:34.61 bitrate= 465.5kbits/s speed=2.82x    frame= 2873 fps= 84 q=34.0 size=    5376kB time=00:01:36.10 bitrate= 458.2kbits/s speed=2.83x    frame= 2923 fps= 85 q=34.0 size=    5376kB time=00:01:37.62 bitrate= 451.1kbits/s speed=2.83x    frame= 2971 fps= 85 q=34.0 size=    5632kB time=00:01:39.11 bitrate= 465.5kbits/s speed=2.83x    frame= 3015 fps= 85 q=34.0 size=    5632kB time=00:01:40.60 bitrate= 458.6kbits/s speed=2.83x    frame= 3065 fps= 85 q=34.0 size=    5632kB time=00:01:42.61 bitrate= 449.6kbits/s speed=2.85x    frame= 3108 fps= 85 q=34.0 size=    5888kB time=00:01:44.12 bitrate= 463.2kbits/s speed=2.85x    frame= 3156 fps= 85 q=34.0 size=    5888kB time=00:01:45.62 bitrate= 456.7kbits/s speed=2.85x    frame= 3199 fps= 85 q=34.0 size=    5888kB time=00:01:47.11 bitrate= 450.3kbits/s speed=2.85x    frame= 3245 fps= 85 q=34.0 size=    6144kB time=00:01:48.62 bitrate= 463.3kbits/s speed=2.85x    frame= 3289 fps= 85 q=34.0 size=    6144kB time=00:01:50.12 bitrate= 457.1kbits/s speed=2.85x    frame= 3337 fps= 85 q=34.0 size=    6144kB time=00:01:51.61 bitrate= 450.9kbits/s speed=2.86x    frame= 3382 fps= 85 q=34.0 size=    6144kB time=00:01:53.13 bitrate= 444.9kbits/s speed=2.86x    frame= 3426 fps= 85 q=34.0 size=    6400kB time=00:01:54.62 bitrate= 457.4kbits/s speed=2.86x    frame= 3466 fps= 85 q=34.0 size=    6400kB time=00:01:55.62 bitrate= 453.4kbits/s speed=2.85x    frame= 3504 fps= 85 q=34.0 size=    6656kB time=00:01:57.12 bitrate= 465.6kbits/s speed=2.85x    frame= 3548 fps= 85 q=34.0 size=    6656kB time=00:01:58.52 bitrate= 460.0kbits/s speed=2.85x    frame= 3596 fps= 85 q=34.0 size=    6656kB time=00:02:00.04 bitrate= 454.2kbits/s speed=2.85x    frame= 3643 fps= 85 q=34.0 size=    6912kB time=00:02:01.92 bitrate= 464.4kbits/s speed=2.86x    frame= 3686 fps= 85 q=34.0 size=    6912kB time=00:02:03.02 bitrate= 460.2kbits/s speed=2.85x    frame= 3725 fps= 85 q=34.0 size=    6912kB time=00:02:04.54 bitrate= 454.6kbits/s speed=2.85x    frame= 3766 fps= 85 q=34.0 size=    7168kB time=00:02:06.03 bitrate= 465.9kbits/s speed=2.86x    frame= 3811 fps= 85 q=34.0 size=    7168kB time=00:02:07.53 bitrate= 460.4kbits/s speed=2.86x    frame= 3853 fps= 85 q=34.0 size=    7168kB time=00:02:08.55 bitrate= 456.8kbits/s speed=2.85x    frame= 3898 fps= 85 q=34.0 size=    7424kB time=00:02:10.36 bitrate= 466.5kbits/s speed=2.86x    frame= 3940 fps= 85 q=34.0 size=    7424kB time=00:02:11.54 bitrate= 462.3kbits/s speed=2.85x    frame= 3988 fps= 85 q=34.0 size=    7424kB time=00:02:13.07 bitrate= 457.0kbits/s speed=2.85x    frame= 4027 fps= 85 q=34.0 size=    7680kB time=00:02:14.54 bitrate= 467.6kbits/s speed=2.85x    frame= 4077 fps= 85 q=34.0 size=    7680kB time=00:02:16.04 bitrate= 462.5kbits/s speed=2.85x    frame= 4126 fps= 86 q=34.0 size=    7680kB time=00:02:17.74 bitrate= 456.7kbits/s speed=2.86x    frame= 4177 fps= 86 q=34.0 size=    7680kB time=00:02:19.75 bitrate= 450.2kbits/s speed=2.87x    frame= 4225 fps= 86 q=34.0 size=    7680kB time=00:02:21.24 bitrate= 445.4kbits/s speed=2.87x    frame= 4270 fps= 86 q=34.0 size=    7936kB time=00:02:22.63 bitrate= 455.8kbits/s speed=2.87x    frame= 4329 fps= 86 q=34.0 size=    7936kB time=00:02:24.55 bitrate= 449.7kbits/s speed=2.88x    frame= 4376 fps= 86 q=34.0 size=    7936kB time=00:02:26.43 bitrate= 444.0kbits/s speed=2.89x    frame= 4417 fps= 86 q=34.0 size=    7936kB time=00:02:27.62 bitrate= 440.4kbits/s speed=2.88x    frame= 4474 fps= 87 q=34.0 size=    8192kB time=00:02:29.33 bitrate= 449.4kbits/s speed=2.89x    frame= 4526 fps= 87 q=34.0 size=    8192kB time=00:02:31.33 bitrate= 443.4kbits/s speed= 2.9x    frame= 4575 fps= 87 q=34.0 size=    8192kB time=00:02:32.83 bitrate= 439.1kbits/s speed= 2.9x    frame= 4626 fps= 87 q=34.0 size=    8192kB time=00:02:34.34 bitrate= 434.8kbits/s speed= 2.9x    frame= 4673 fps= 87 q=34.0 size=    8192kB time=00:02:36.33 bitrate= 429.3kbits/s speed=2.91x    frame= 4721 fps= 87 q=34.0 size=    8448kB time=00:02:37.84 bitrate= 438.4kbits/s speed=2.91x    frame= 4760 fps= 87 q=34.0 size=    8448kB time=00:02:39.23 bitrate= 434.6kbits/s speed=2.91x    frame= 4805 fps= 87 q=34.0 size=    8704kB time=00:02:40.64 bitrate= 443.9kbits/s speed=2.91x    frame= 4851 fps= 87 q=34.0 size=    8704kB time=00:02:42.13 bitrate= 439.8kbits/s speed=2.91x    frame= 4896 fps= 87 q=34.0 size=    8704kB time=00:02:43.37 bitrate= 436.5kbits/s speed= 2.9x    frame= 4932 fps= 87 q=34.0 size=    8704kB time=00:02:44.69 bitrate= 432.9kbits/s speed= 2.9x    frame= 4979 fps= 87 q=34.0 size=    8960kB time=00:02:46.44 bitrate= 441.0kbits/s speed= 2.9x    frame= 5034 fps= 87 q=34.0 size=    8960kB time=00:02:47.95 bitrate= 437.0kbits/s speed=2.91x    frame= 5082 fps= 87 q=34.0 size=    8960kB time=00:02:49.94 bitrate= 431.9kbits/s speed=2.91x    frame= 5124 fps= 87 q=34.0 size=    8960kB time=00:02:50.96 bitrate= 429.3kbits/s speed=2.91x    frame= 5159 fps= 87 q=34.0 size=    8960kB time=00:02:52.45 bitrate= 425.6kbits/s speed=2.91x    frame= 5206 fps= 87 q=34.0 size=    9216kB time=00:02:53.95 bitrate= 434.0kbits/s speed=2.91x    frame= 5243 fps= 87 q=34.0 size=    9216kB time=00:02:55.25 bitrate= 430.8kbits/s speed= 2.9x    frame= 5268 fps= 87 q=34.0 size=    9216kB time=00:02:56.12 bitrate= 428.7kbits/s speed=2.89x    frame= 5289 fps= 86 q=34.0 size=    9216kB time=00:02:56.55 bitrate= 427.6kbits/s speed=2.88x    frame= 5307 fps= 86 q=34.0 size=    9216kB time=00:02:57.08 bitrate= 426.3kbits/s speed=2.86x    frame= 5337 fps= 86 q=34.0 size=    9472kB time=00:02:58.32 bitrate= 435.1kbits/s speed=2.86x    frame= 5374 fps= 85 q=34.0 size=    9472kB time=00:02:59.34 bitrate= 432.6kbits/s speed=2.85x    frame= 5421 fps= 86 q=34.0 size=    9472kB time=00:03:00.90 bitrate= 428.9kbits/s speed=2.85x    frame= 5469 fps= 86 q=34.0 size=    9472kB time=00:03:02.86 bitrate= 424.3kbits/s speed=2.86x    frame= 5505 fps= 85 q=34.0 size=    9728kB time=00:03:03.76 bitrate= 433.7kbits/s speed=2.85x    frame= 5537 fps= 85 q=34.0 size=    9728kB time=00:03:04.96 bitrate= 430.9kbits/s speed=2.85x    frame= 5576 fps= 85 q=34.0 size=    9728kB time=00:03:06.47 bitrate= 427.4kbits/s speed=2.85x    frame= 5626 fps= 85 q=34.0 size=    9728kB time=00:03:07.77 bitrate= 424.4kbits/s speed=2.85x    frame= 5680 fps= 85 q=34.0 size=    9984kB time=00:03:09.76 bitrate= 431.0kbits/s speed=2.86x    frame= 5730 fps= 86 q=34.0 size=    9984kB time=00:03:11.18 bitrate= 427.8kbits/s speed=2.86x    frame= 5775 fps= 86 q=34.0 size=    9984kB time=00:03:12.68 bitrate= 424.5kbits/s speed=2.86x    frame= 5823 fps= 86 q=34.0 size=    9984kB time=00:03:14.66 bitrate= 420.2kbits/s speed=2.86x    frame= 5874 fps= 86 q=34.0 size=    9984kB time=00:03:16.26 bitrate= 416.7kbits/s speed=2.87x    frame= 5925 fps= 86 q=34.0 size=   10240kB time=00:03:17.78 bitrate= 424.1kbits/s speed=2.87x    frame= 5972 fps= 86 q=34.0 size=   10240kB time=00:03:19.27 bitrate= 421.0kbits/s speed=2.87x    frame= 6018 fps= 86 q=34.0 size=   10240kB time=00:03:20.81 bitrate= 417.7kbits/s speed=2.87x    frame= 6072 fps= 86 q=34.0 size=   10240kB time=00:03:22.77 bitrate= 413.7kbits/s speed=2.88x    [mp4 @ 0x6d23280] Starting second pass: moving the moov atom to the beginning of the file
+frame= 6115 fps= 85 q=-1.0 Lsize=   10676kB time=00:03:24.07 bitrate= 428.5kbits/s speed=2.83x    
+video:7396kB audio:3060kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 2.095185%
+[libx264 @ 0x6d24180] frame I:26    Avg QP:19.30  size: 40152
+[libx264 @ 0x6d24180] frame P:1672  Avg QP:25.52  size:  2800
+[libx264 @ 0x6d24180] frame B:4417  Avg QP:29.40  size:   418
+[libx264 @ 0x6d24180] consecutive B-frames:  1.7%  2.8%  9.0% 86.4%
+[libx264 @ 0x6d24180] mb I  I16..4: 70.4% 17.2% 12.4%
+[libx264 @ 0x6d24180] mb P  I16..4:  2.8%  1.5%  0.3%  P16..4:  2.3%  0.6%  0.2%  0.0%  0.0%    skip:92.3%
+[libx264 @ 0x6d24180] mb B  I16..4:  0.1%  0.1%  0.0%  B16..8:  0.7%  0.1%  0.0%  direct: 0.6%  skip:98.4%  L0:46.2% L1:49.4% BI: 4.4%
+[libx264 @ 0x6d24180] 8x8 transform intra:29.8% inter:44.7%
+[libx264 @ 0x6d24180] coded y,uvDC,uvAC intra: 21.4% 27.1% 7.7% inter: 0.2% 0.8% 0.0%
+[libx264 @ 0x6d24180] i16 v,h,dc,p: 70% 27%  2%  1%
+[libx264 @ 0x6d24180] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 23% 28% 30%  3%  3%  3%  3%  3%  4%
+[libx264 @ 0x6d24180] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 21% 34% 16%  4%  5%  5%  5%  4%  5%
+[libx264 @ 0x6d24180] i8c dc,h,v,p: 63% 22% 14%  2%
+[libx264 @ 0x6d24180] Weighted P-Frames: Y:0.2% UV:0.1%
+[libx264 @ 0x6d24180] kb/s:296.93
+[aac @ 0x6d25500] Qavg: 3197.907
+</div>[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/0112b10c3b34846af97fb947575e6621-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/02cf9b7395ce1f1c731fa01348504259-10.jpeg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/050925079473d902d351ed74d02d3e1b-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/0ac2626943d303ce92f5fd25fe2284e6-10.png for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/0cf4ed1b1d59476b67827eb7f2d76359-1.jpg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/10ecebbc4ddb660d8e145c563780b556-1.webp for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/11242d24fd95959fdfdcbeed825300a4-1.webp for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/127105e12b8543b18ea01b4c4d8169bc-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/139444b47ae2bfd995ce0d789de9517d-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/13d9fedae5ab9bd8ae4021ca3f53ce46-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/14b122c35539c2c84d6b653a48200d55-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1793deb96ef7d02fd5810954b138d982-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/180a7ecbcc299adb5dbc06284bdd69a0-240.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/18a973bdbfbc65404d719a9b47e6743f-305.jpg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/195773c5cfda660c147fd04024bf4c37-1.webp for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1a4558e7da4b75aaaeab4e0c853b945b-202.jpg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1af9e2ff25503d08774639f4ac9d0357-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1cb24cbc9843dede83c3e33ec579cc25-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1cbf7eba793aea4aa90aa7f621e8b7f9-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1e7bb3f6b966572938f927df35a7a3e6-1.webp for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1f13399c8fa8f6c131d92a5f0d5a2679-1.png for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/202a6846af8378455ad0383fa0864f1b-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/2154ed73f06480cb349511afbfe12c25-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/21a4a7dd8999fc3a62375ac11e22661f-10.png for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/249476c0c8981cc4b05a6eb803dbc503-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/29a25c4ae64241ab3ee56ba5fae7d3d0-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/2e08634bcabce04796aa00c7fad62b28-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/30535c023b550d86e0fcdb1aa0a570b9-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3062b451f3979f92dbbdf13226b49e6c-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/30f9f9a60bc27bd269186e7ad400f967-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/320b459762f0ccd6f6c0a6ea1d07d4d2-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/32b259d3a17d6f1aeaffd325ee7c0b55-1.png for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/33afc29488fc7b91854bfb66aaf52376-1080.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/33afc29488fc7b91854bfb66aaf52376-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/349bbe233c6d5f37a291199853374547-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/34c9fa3c608fa5e98f898eaaf27e3672-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/352a9ef1a6292b56f7ae84dfbdcd94ef-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3555f949b4bbd38127b572bf4452e03c-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/371730a5228c1573ed41f3822f9bebbf-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3a9e899594381a16124fda2293987374-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3af2c2a2b7442f350e3ce958d75aa013-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3ba4db96afe8fc14f2b3b5c463891b3a-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3c03df9804de1a27c08c5261ac63b05b-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3c95e986727179d7ac71cd99ef6b2ea9-10.png for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3c9e0edc247f0e155a5aea2149dcdaf6-456.gif for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3cb4c85390c3aceb9429fa2c8743fa0e-1080.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3cb4c85390c3aceb9429fa2c8743fa0e-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/419cae668100f01cbacb19fc177fabce-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/429c9ff2973137de18e508a3b3443f14-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/43daae7a234c2757b7a83df72006babd-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/44639242ec877e0efe4d7d359b4ebfca-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/489af4f5849f5a04e796602c211b69a8-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/4b3c24306a5e6d7a002e628f5e4655a0-193.jpg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/4c307a88786fb72f4fd8d2d61c4fe8db-538.PNG for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/5056b2c6f0fe40521f824282dd6b0b27-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/538d8ad7a5b75e62a1b21622f0cd7e20-1.webp for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/53bccd5ebd8a0600124ac99fcbbdac3b-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/56747fedd3131a6f37e43dd0acde612b-1.png for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/5740e51473c5ddcc10b861cdb6c897c4-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/574531c76742c80e925aeaf2d4860571-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/57628a0deaef23cdda96913c8c41bfe3-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/5b14a80750d3de63c04b628e8bb7fa83-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/5dce606e3410071e0e59d6d3901da477-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/5eff608ae82a5797213a0b8779b3dd97-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/600191dbf0e2144d83ae6a5859272836-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/60246de6c413821379345d13aed968b6-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/6156df9fc718376bdc5642dbf82d7f47-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/64d5c60de0f5db9f89f32bb1a537d94d-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/67d97865bc9c4ca4e7b6150f52b2d359-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/68deb841e77416d3383c94cc873364bd-1.webp for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/68e609f7fa3abecf40b5da3bb5c62b5b-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/6adbb9f53372925b5084c6bfe725e801-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/6d574c84624e07c097d7013655eea75f-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/6d657f8e020f58b2037af755842482b6-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/75ecfca6990a22b5585d488414c52680-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/7c0c51a2d0f1435337c7f954d14e78a4-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/7d0610baf32dd45e27d6eef763898945-526.jpg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/7e2d08008279dd63db6a8fb4a6190236-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8029df3a7ac32b194229b07805f88287-1080.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8029df3a7ac32b194229b07805f88287-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8062b1c9b72dc30876e834ddaf25d057-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/80a54dfc015ebf0a0c56d05ff17dabc1-1.jpg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/80d90f786622dc31715b967d45b55590-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/80e31222823b074073e4ed5a74572d60-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8126ec798d28986a8294540f1798884e-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/813196da46e94e14d2df2b1978c0eef5-1.png for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/831af5a57da6416b165348e90fb1ccf4-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/843befae807c8a54c6b4ba672b173604-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/870ebb9209696f22d878d8bc46050030-191.jpg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/87b3fbad3ead11f6707d197d836b61f6-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8aed15cf91ac09e478ea4bbce298f442-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8b08d305e098ac15d256c313b81473a6-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8c10dd6312384210cce0f091540783ce-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8f19f43b5c47e4edd73604e960dbd208-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/906ebb410b1d5b949be4ebf07b277606-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/94d675f54633fd760baf48452990462d-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/97cdea07c1e278978ef6f78df7f9984f-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/983043705d34dfdeb6c64566aabd6dde-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/9bddbf0acefbcc16b4ed4b46daa7f979-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/9c48f15e214b301f2430dc56724aa865-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/9dfa8c5faa4ed1448e7673b5859462ab-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/a34e17f9de1075b36d8f374000bc0840-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/a4f4a872c6638ad9b12f9f0c035a632c-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/a59fd9e520bbe557fa5ebd84e768fdb1-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/a812a453a6beaf8997d69ad4d2fe1b7d-1.webp for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/aae369e68435dcd4b86508528461b4b4-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ac2994528158ece5f0ae3583edfb8b66-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ad149ec8b4438f223e91886ac45ccc95-1080.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ad149ec8b4438f223e91886ac45ccc95-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/b0f173b0496685e787b8cbe0957753e5-1.webp for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/b33cfe37c976154b2006527e863ba5e8-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/b3c862030ed4cb091abec32edd7a01b0-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/b4222273df077e5cc58300951adfd81a-1.png for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/b7cfc6192fc49aa68f572e7719c21068-1.webp for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ba61e2165ff7c7215cafe126a64b80e2-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/bc14195a4bbb0c3e1d648127504ff8f9-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/be1fce9de253b036ae5844236171c537-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c0ad6de39962888063b381fd8e58d047-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c17d1e8bc274c352c7d9975c575f2a87-1.PNG for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c246949b2a871820f0caeda6ae5441a5-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c74ce0abca05511285429739dc83bbd4-538.jpg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c782336372a1dfed5ec1d4fb1a72ae90-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c8d9f96ae167da3ce49b3cd14167e7f0-1080.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c8d9f96ae167da3ce49b3cd14167e7f0-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/cb4e27e00dc4f6ff6d2cd3cc1ce27391-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/cb94304f7f8b0626ed7cc5a0db856f54-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ce45ac7cda8a68ef89911641da5f55aa-10.jpeg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ced6f3261b57a745c686ed5329eb5d30-1.webp for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/cf80a1f680d4509650f619607d53de38-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/d213fc853a03fae76d57943bd0a2baaf-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/d351512a68e9f0e2ece507a529194514-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/d3de08dd69063e6ef01f1ea710d380eb-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/d42e20c5c4d2b55df434635e8fbd82f5-192.jpg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/df4af7919e17f827692216845ceb4bda-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/e111bccc0f6931799464d57ff4051981-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/e21560aecd9a6c64cd7c08ae34a581fa-1080.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/e21560aecd9a6c64cd7c08ae34a581fa-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/e40da3e8d638f28d4714d2e666c00207-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/e70123c8515b8493ec1195fbabd87d0d-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/e715a968983a0613fbc215784aaf4c38-240.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ec1e5fb78792e86d68c7a41cbce00f94-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ec4c86e39ee2417c59fbb730c5d78ed1-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ec7683766000d71d15fbad7f68a83ee1-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ecf70ed1de688823d24f4687e2d7eb34-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/f228ade1d9237ac1a8fafcb2d291ca99-1.webp for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/f4a38a1364f3e627774dbe9d6e5dca0d-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/f52b2fbef98000f648079614b2b31cac-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/f663b7f2a2f61e1f4d45984c63673392-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/fa166b787b6a43982f3b063e37dbf4ac-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/fe37ef69c3f350c93e76096cb68a259f-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/fe8a69bdbfe9182221741b70c70aa45f-720.mp4 for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ffd3368606c5f858e456f8ffe644bb92-1.svg for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/fwugs. for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/index.html for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/messengericon.png for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/musicicon.png for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/playicon.png for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/usericon.png for 0 filesize 
+[09/04/21 08:34:14pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/videoicon.png for 0 filesize 

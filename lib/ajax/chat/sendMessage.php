@@ -1,6 +1,6 @@
 <?php
-ini_set('display_errors', 1);
 include_once('../../../load.php');
+ini_set('display_errors', 0);
 
 $result = ['result' => false];
 
@@ -10,7 +10,9 @@ if ( !is_user() || !isset($_POST['chatId']) || !isset($_POST['text']) )
 }
 
 $chatId = $_POST['chatId'];
-$text = $_POST['text'];
+$text = base64_encode($_POST['text']);
+$participants = [];
+$message = '';
 $userId = (isset($_POST['userId']) || $_POST['userId'] !== 0) ? $_POST['userId'] : null;
 
 /* 
@@ -21,17 +23,57 @@ $chat = $db->get_row(
 );
 
 
-if($chat === null) {
+if($chat === null) {    
 
-    $chat = $db->get_row(
-        "SELECT * FROM ".DB_PREFIX."conversations WHERE user_id = ".toDb( user_id() ).' OR user_id = '.toDb( $userId ).' GROUP BY conf_id HAVING COUNT(*) > 1'
-    );
-
-    if($chat !== null)
+    if($userId !== null)
     {
-        $chat = $cachedb->get_row('SELECT * FROM '.DB_PREFIX."conversations WHERE conf_id = '".$chat->conf_id."' GROUP BY conf_id HAVING COUNT(*) > 2"); 
+
+        /* Проверка на то, есть ли приватный чат с пользователем */
+        $sql = "SELECT * FROM ".DB_PREFIX."conversations WHERE (user_id = ".toDb( user_id() ).' OR user_id = '.toDb( $userId ).') GROUP BY conf_id HAVING COUNT(*) > 1';
+        $chats = $db->get_results(
+            $sql
+        );
         
-        if($chat)
+        if($chats !== null)
+        {
+            $isEx = false;
+
+            foreach ($chats as $chat)
+            {
+                $chatNotPrivate = $db->get_row('SELECT * FROM vibe_conversations WHERE conf_id = '.toDb($chat->conf_id).' HAVING COUNT(*) > 2');
+                
+                if($chatNotPrivate)
+                {
+                    $chat = new Chat();
+        
+                } else
+                {
+                    $isEx = true;
+                    $normalchat = $db->get_row('SELECT * FROM vibe_conversations WHERE conf_id = '.toDb($chat->conf_id));
+                }
+            }
+
+            if($isEx === true)
+            {
+                $chatId = $normalchat->conf_id;
+
+            } else
+            {
+                $db->query(
+                    "INSERT INTO ".DB_PREFIX."conversations(conf_id, user_id) VALUES ((SELECT MAX(conf_id)+1 FROM ".DB_PREFIX."conversations conv),'".toDb(user_id())."')"
+                );
+            
+                $db->query(
+                    "INSERT INTO ".DB_PREFIX."conversations(conf_id, user_id) VALUES ((SELECT MAX(conf_id) FROM ".DB_PREFIX."conversations conv),'".toDb($userId)."')"
+                );
+        
+                $chat = $db->get_row("SELECT MAX(conf_id) as id FROM ".DB_PREFIX."conversations");
+        
+                $chatId = $chat->id;
+            }
+
+            
+        } else
         {
             $db->query(
                 "INSERT INTO ".DB_PREFIX."conversations(conf_id, user_id) VALUES ((SELECT MAX(conf_id)+1 FROM ".DB_PREFIX."conversations conv),'".toDb(user_id())."')"
@@ -40,41 +82,65 @@ if($chat === null) {
             $db->query(
                 "INSERT INTO ".DB_PREFIX."conversations(conf_id, user_id) VALUES ((SELECT MAX(conf_id) FROM ".DB_PREFIX."conversations conv),'".toDb($userId)."')"
             );
-            
-            $chatId = $db->get_row("SELECT MAX(conf_id) as id FROM ".DB_PREFIX."conversations");
-        
-            $chatId = $chatId->id;
-            
-        } else
-        {
-            $chatId = $chat->conf_id;
+    
+            $chat = $db->get_row("SELECT MAX(conf_id) as id FROM ".DB_PREFIX."conversations");
+    
+            $chatId = $chat->id;
         }
 
     } else
     {
-        $db->query(
-            "INSERT INTO ".DB_PREFIX."conversations(conf_id, user_id) VALUES ((SELECT MAX(conf_id)+1 FROM ".DB_PREFIX."conversations conv),'".toDb(user_id())."')"
-        );
-    
-        $db->query(
-            "INSERT INTO ".DB_PREFIX."conversations(conf_id, user_id) VALUES ((SELECT MAX(conf_id) FROM ".DB_PREFIX."conversations conv),'".toDb($userId)."')"
-        );
-        
-        $chatId = $db->get_row("SELECT MAX(conf_id) as id FROM ".DB_PREFIX."conversations");
-    
-        $chatId = $chatId->id;
+        /* $chatId = $db->get_row(
+            "SELECT * FROM ".DB_PREFIX."conversations WHERE (user_id = ".toDb( user_id() ).' OR user_id = '.toDb( $userId ).') GROUP BY conf_id HAVING COUNT(*) > 1'
+        ); */
     }
+
 }
 
 $db->query(
     "INSERT INTO ".DB_PREFIX."messages(`text`, `user_id`, `conversation_id`) VALUES ('".toDb($text)."','".toDb(user_id())."','".toDb($chatId)."')"
 );
 
+$message = $db->get_row('SELECT * FROM '.DB_PREFIX.'messages
+WHERE id = (
+    SELECT MAX(id) FROM '.DB_PREFIX.'messages)');
+
+if(isset($_FILES['chatfile']))
+{
+    $name = $_FILES['chatfile']['name'];
+    $type = $_FILES['chatfile']['type'];
+    $size = $_FILES['chatfile']['size'];
+    $tmp = $_FILES['chatfile']['tmp_name'];
+
+    $uploaddir = ABSPATH.'/storage/chat/';
+
+    $uploadfile = $uploaddir . $name;
+
+    move_uploaded_file($_FILES['chatfile']['tmp_name'], $uploadfile);
+
+    $uploadfile = str_replace(ABSPATH, '', $uploaddir) . $name;
+
+
+    $db->query(
+        "INSERT INTO ".DB_PREFIX."chat_media(`name`, `path`, `size`, `chat`, `author`, `type`)
+            VALUES ('$name', '$uploadfile', '$size', '$chatId', '".user_id()."', '$type')"
+    );
+
+    $file = $db->get_row('SELECT id,name,path,type FROM '.DB_PREFIX.'chat_media
+    WHERE id = (
+        SELECT MAX(id) FROM '.DB_PREFIX.'chat_media) AND author = '.toDb(user_id()));
+
+    $db->query('UPDATE vibe_messages SET file_id = '.toDb($file->id).' WHERE id = '.toDb($message->id));
+    
+    $file->path = '/download.php?path='.$file->path;
+
+    $message->file_id = $file->id;
+    $message->file = $file;
+}
+
 $allParticipants = $db->get_results(
     "SELECT user_id,conf_id FROM ".DB_PREFIX."conversations WHERE conf_id = ".toDb($chatId)
 );
-
-$participants = [];
 
 foreach ($allParticipants as $participant)
 {
@@ -86,10 +152,6 @@ foreach ($allParticipants as $participant)
     }
 }
 
-$message = $db->get_row('SELECT * FROM '.DB_PREFIX.'messages
-WHERE id = (
-    SELECT MAX(id) FROM '.DB_PREFIX.'messages)');
-
 $message->isMine = ( intval($message->user_id) === intval(user_id()))
     ? true
     : false;
@@ -99,10 +161,13 @@ $userOfMesage = $db->get_row("SELECT avatar,name FROM ".DB_PREFIX."users where i
 $message->avatar = thumb_fix($userOfMesage->avatar, true, 40, 40);
 $message->author = $userOfMesage->name;
 $message->type = 'message';
+$message->text = base64_decode($message->text);
 $message->chatId = $message->conversation_id;
 $message->avatarLink = profile_url($message->user_id, $userOfMesage->name);
 
 $result = ['message' => $message, 'users' => $participants];
 
 echo( json_encode($result, true) );
+
+class Chat {}
 ?>

@@ -1,0 +1,552 @@
+[08/04/21 03:19:02pm] <br>Conversion starting for: <br><code>/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4</code><br>[08/04/21 03:19:16pm] <br>/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4 -vf "select=gt(scene,0.3)" -frames:v 5 -vsync vfr -vf fps=fps=1/60 -qscale:v 2 /home/x/xatikont/youinroll.com/public_html/storage/media/thumbs/adf8edb72feac803df86451bfbece56a-%02d.jpg <br> <br>[08/04/21 03:19:16pm] <br> VIDEO PREVIEW IS \n /usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4 -ss 00:00:03 -t 00:00:15 -async 1 /home/x/xatikont/youinroll.com/public_html/storage/media/thumbs/adf8edb72feac803df86451bfbece56a.mp4 \n <br> <br><div class="showmore block blc">[08/04/21 03:19:16pm] Chained cmds:/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4  -s 426x240 -c:v libx264 -preset veryfast -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/adf8edb72feac803df86451bfbece56a-240.mp4 2>&1;/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4 -s 640x360 -c:v libx264 -preset slow -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/adf8edb72feac803df86451bfbece56a-360.mp4 2>&1;/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4 -vf scale=-1:720 -c:v libx264 -preset veryfast -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/adf8edb72feac803df86451bfbece56a-720.mp4 2>&1;/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4 -vf scale=-1:720 -c:v libx264 -preset veryfast -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/adf8edb72feac803df86451bfbece56a-720.mp4 2>&1;/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4 -vf scale=-1:1080 -c:v libx264 -preset veryfast -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/adf8edb72feac803df86451bfbece56a-1080.mp4 2>&1;<br></div><div class="showmore block blc">[08/04/21 03:19:17pm] ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf58.45.100
+  Duration: 00:04:53.97, start: 0.000000, bitrate: 2413 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 1920x1080, 2279 kb/s, 30 fps, 30 tbr, 15360 tbn, 60 tbc (default)
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 126 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+File '/home/x/xatikont/youinroll.com/public_html/storage/media/adf8edb72feac803df86451bfbece56a-240.mp4' already exists. Overwrite ? [y/N] Not overwriting - exiting
+ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf58.45.100
+  Duration: 00:04:53.97, start: 0.000000, bitrate: 2413 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 1920x1080, 2279 kb/s, 30 fps, 30 tbr, 15360 tbn, 60 tbc (default)
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 126 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+File '/home/x/xatikont/youinroll.com/public_html/storage/media/adf8edb72feac803df86451bfbece56a-360.mp4' already exists. Overwrite ? [y/N] Not overwriting - exiting
+ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf58.45.100
+  Duration: 00:04:53.97, start: 0.000000, bitrate: 2413 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 1920x1080, 2279 kb/s, 30 fps, 30 tbr, 15360 tbn, 60 tbc (default)
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 126 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+File '/home/x/xatikont/youinroll.com/public_html/storage/media/adf8edb72feac803df86451bfbece56a-720.mp4' already exists. Overwrite ? [y/N] Not overwriting - exiting
+ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf58.45.100
+  Duration: 00:04:53.97, start: 0.000000, bitrate: 2413 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 1920x1080, 2279 kb/s, 30 fps, 30 tbr, 15360 tbn, 60 tbc (default)
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 126 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+File '/home/x/xatikont/youinroll.com/public_html/storage/media/adf8edb72feac803df86451bfbece56a-720.mp4' already exists. Overwrite ? [y/N] Not overwriting - exiting
+ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/adf8edb72feac803df86451bfbece56a.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf58.45.100
+  Duration: 00:04:53.97, start: 0.000000, bitrate: 2413 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 1920x1080, 2279 kb/s, 30 fps, 30 tbr, 15360 tbn, 60 tbc (default)
+    Metadata:
+      handler_name    : VideoHandler
+    Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 126 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+File '/home/x/xatikont/youinroll.com/public_html/storage/media/adf8edb72feac803df86451bfbece56a-1080.mp4' already exists. Overwrite ? [y/N] Not overwriting - exiting
+</div>[08/04/21 03:19:17pm] <br>Conversion starting for: <br><code>/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4</code><br>[08/04/21 03:19:31pm] <br>/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4 -vf "select=gt(scene,0.3)" -frames:v 5 -vsync vfr -vf fps=fps=1/60 -qscale:v 2 /home/x/xatikont/youinroll.com/public_html/storage/media/thumbs/bab5e9972dd959ca3670d5941fe48c86-%02d.jpg <br> <br>[08/04/21 03:19:31pm] <br> VIDEO PREVIEW IS \n /usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4 -ss 00:00:03 -t 00:00:15 -async 1 /home/x/xatikont/youinroll.com/public_html/storage/media/thumbs/bab5e9972dd959ca3670d5941fe48c86.mp4 \n <br> <br><div class="showmore block blc">[08/04/21 03:19:31pm] Chained cmds:/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4  -s 426x240 -c:v libx264 -preset veryfast -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/bab5e9972dd959ca3670d5941fe48c86-240.mp4 2>&1;/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4 -s 640x360 -c:v libx264 -preset slow -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/bab5e9972dd959ca3670d5941fe48c86-360.mp4 2>&1;/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4 -vf scale=-1:720 -c:v libx264 -preset veryfast -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/bab5e9972dd959ca3670d5941fe48c86-720.mp4 2>&1;/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4 -vf scale=-1:720 -c:v libx264 -preset veryfast -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/bab5e9972dd959ca3670d5941fe48c86-720.mp4 2>&1;/usr/local/bin/ffmpeg -i /home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4 -vf scale=-1:1080 -c:v libx264 -preset veryfast -crf 28 -threads 2 -movflags faststart /home/x/xatikont/youinroll.com/public_html/storage/media/bab5e9972dd959ca3670d5941fe48c86-1080.mp4 2>&1;<br></div><div class="showmore block blc">[08/04/21 03:20:07pm] ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42mp41isomavc1
+    creation_time   : 2019-11-07T10:31:22.000000Z
+  Duration: 00:00:11.24, start: 0.000000, bitrate: 21610 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 3840x2160, 21608 kb/s, 25 fps, 25 tbr, 25 tbn, 50 tbc (default)
+    Metadata:
+      creation_time   : 2019-11-07T10:31:22.000000Z
+      handler_name    : L-SMASH Video Handler
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[libx264 @ 0x5dd6240] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0x5dd6240] profile High, level 2.1
+[libx264 @ 0x5dd6240] 264 - core 155 r2901 7d0ff22 - H.264/MPEG-4 AVC codec - Copyleft 2003-2018 - http://www.videolan.org/x264.html - options: cabac=1 ref=1 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=2 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=0 threads=2 lookahead_threads=1 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=1 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=10 rc=crf mbtree=1 crf=28.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/home/x/xatikont/youinroll.com/public_html/storage/media/bab5e9972dd959ca3670d5941fe48c86-240.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42mp41isomavc1
+    encoder         : Lavf58.12.100
+    Stream #0:0(und): Video: h264 (libx264) (avc1 / 0x31637661), yuv420p, 426x240, q=-1--1, 25 fps, 12800 tbn, 25 tbc (default)
+    Metadata:
+      creation_time   : 2019-11-07T10:31:22.000000Z
+      handler_name    : L-SMASH Video Handler
+      encoder         : Lavc58.18.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: -1
+frame=   16 fps=0.0 q=0.0 size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    frame=   55 fps= 54 q=33.0 size=       0kB time=00:00:01.44 bitrate=   0.3kbits/s speed=1.42x    frame=  104 fps= 69 q=33.0 size=       0kB time=00:00:03.40 bitrate=   0.1kbits/s speed=2.24x    frame=  151 fps= 75 q=33.0 size=       0kB time=00:00:05.28 bitrate=   0.1kbits/s speed=2.61x    frame=  192 fps= 76 q=33.0 size=     256kB time=00:00:06.92 bitrate= 303.1kbits/s speed=2.73x    frame=  238 fps= 78 q=33.0 size=     256kB time=00:00:08.76 bitrate= 239.4kbits/s speed=2.88x    [mp4 @ 0x5dfc500] Starting second pass: moving the moov atom to the beginning of the file
+frame=  281 fps= 79 q=-1.0 Lsize=     528kB time=00:00:11.12 bitrate= 388.9kbits/s speed=3.12x    
+video:524kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.766821%
+[libx264 @ 0x5dd6240] frame I:2     Avg QP:29.97  size:  8550
+[libx264 @ 0x5dd6240] frame P:84    Avg QP:31.86  size:  3746
+[libx264 @ 0x5dd6240] frame B:195   Avg QP:35.32  size:  1046
+[libx264 @ 0x5dd6240] consecutive B-frames:  5.3%  4.3%  6.4% 84.0%
+[libx264 @ 0x5dd6240] mb I  I16..4:  5.1% 38.4% 56.5%
+[libx264 @ 0x5dd6240] mb P  I16..4:  3.1% 16.9%  6.4%  P16..4: 25.0% 22.3% 15.4%  0.0%  0.0%    skip:10.8%
+[libx264 @ 0x5dd6240] mb B  I16..4:  0.3%  0.6%  0.1%  B16..8: 26.9% 14.5%  2.0%  direct: 5.6%  skip:50.1%  L0:30.6% L1:40.2% BI:29.3%
+[libx264 @ 0x5dd6240] 8x8 transform intra:62.2% inter:26.8%
+[libx264 @ 0x5dd6240] coded y,uvDC,uvAC intra: 77.1% 52.2% 16.5% inter: 17.2% 5.1% 0.0%
+[libx264 @ 0x5dd6240] i16 v,h,dc,p: 33% 17% 37% 13%
+[libx264 @ 0x5dd6240] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 13% 14% 24%  8%  6%  5%  8%  8% 13%
+[libx264 @ 0x5dd6240] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 15% 17% 17%  8%  9%  7% 10%  7%  9%
+[libx264 @ 0x5dd6240] i8c dc,h,v,p: 67% 16% 13%  4%
+[libx264 @ 0x5dd6240] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0x5dd6240] kb/s:381.36
+ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42mp41isomavc1
+    creation_time   : 2019-11-07T10:31:22.000000Z
+  Duration: 00:00:11.24, start: 0.000000, bitrate: 21610 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 3840x2160, 21608 kb/s, 25 fps, 25 tbr, 25 tbn, 50 tbc (default)
+    Metadata:
+      creation_time   : 2019-11-07T10:31:22.000000Z
+      handler_name    : L-SMASH Video Handler
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[libx264 @ 0x5566240] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0x5566240] profile High, level 3.0
+[libx264 @ 0x5566240] 264 - core 155 r2901 7d0ff22 - H.264/MPEG-4 AVC codec - Copyleft 2003-2018 - http://www.videolan.org/x264.html - options: cabac=1 ref=5 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=8 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=2 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=2 lookahead_threads=1 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=3 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=50 rc=crf mbtree=1 crf=28.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/home/x/xatikont/youinroll.com/public_html/storage/media/bab5e9972dd959ca3670d5941fe48c86-360.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42mp41isomavc1
+    encoder         : Lavf58.12.100
+    Stream #0:0(und): Video: h264 (libx264) (avc1 / 0x31637661), yuv420p, 640x360, q=-1--1, 25 fps, 12800 tbn, 25 tbc (default)
+    Metadata:
+      creation_time   : 2019-11-07T10:31:22.000000Z
+      handler_name    : L-SMASH Video Handler
+      encoder         : Lavc58.18.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: -1
+frame=   17 fps=0.0 q=0.0 size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    frame=   57 fps= 56 q=33.0 size=       0kB time=-00:00:00.07 bitrate=N/A speed=N/A    frame=   71 fps= 45 q=33.0 size=       0kB time=00:00:00.48 bitrate=   0.8kbits/s speed=0.302x    frame=   86 fps= 41 q=33.0 size=       0kB time=00:00:01.08 bitrate=   0.4kbits/s speed=0.515x    frame=   99 fps= 37 q=33.0 size=       0kB time=00:00:01.60 bitrate=   0.2kbits/s speed= 0.6x    frame=  119 fps= 37 q=33.0 size=     256kB time=00:00:02.40 bitrate= 873.9kbits/s speed=0.744x    frame=  138 fps= 37 q=33.0 size=     256kB time=00:00:03.16 bitrate= 663.8kbits/s speed=0.846x    frame=  155 fps= 37 q=33.0 size=     256kB time=00:00:03.84 bitrate= 546.2kbits/s speed=0.906x    frame=  171 fps= 36 q=33.0 size=     256kB time=00:00:04.48 bitrate= 468.2kbits/s speed=0.94x    frame=  187 fps= 35 q=33.0 size=     512kB time=00:00:05.12 bitrate= 819.3kbits/s speed=0.97x    frame=  203 fps= 35 q=33.0 size=     512kB time=00:00:05.76 bitrate= 728.2kbits/s speed=0.996x    frame=  219 fps= 35 q=33.0 size=     512kB time=00:00:06.40 bitrate= 655.4kbits/s speed=1.02x    frame=  232 fps= 34 q=33.0 size=     512kB time=00:00:06.92 bitrate= 606.2kbits/s speed=1.01x    frame=  246 fps= 33 q=33.0 size=     512kB time=00:00:07.48 bitrate= 560.8kbits/s speed=1.02x    frame=  260 fps= 33 q=33.0 size=     768kB time=00:00:08.04 bitrate= 782.6kbits/s speed=1.02x    frame=  275 fps= 33 q=33.0 size=     768kB time=00:00:08.64 bitrate= 728.2kbits/s speed=1.03x    [mp4 @ 0x558c500] Starting second pass: moving the moov atom to the beginning of the file
+frame=  281 fps= 28 q=-1.0 Lsize=    1158kB time=00:00:11.12 bitrate= 852.8kbits/s speed= 1.1x    
+video:1154kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.348452%
+[libx264 @ 0x5566240] frame I:2     Avg QP:29.39  size: 16989
+[libx264 @ 0x5566240] frame P:85    Avg QP:31.29  size:  7723
+[libx264 @ 0x5566240] frame B:194   Avg QP:34.95  size:  2526
+[libx264 @ 0x5566240] consecutive B-frames:  6.0%  4.3%  4.3% 85.4%
+[libx264 @ 0x5566240] mb I  I16..4:  6.1% 82.4% 11.5%
+[libx264 @ 0x5566240] mb P  I16..4:  0.7%  9.9%  1.0%  P16..4: 40.9% 25.3% 10.0%  0.0%  0.0%    skip:12.3%
+[libx264 @ 0x5566240] mb B  I16..4:  0.0%  0.5%  0.0%  B16..8: 51.9% 11.9%  2.4%  direct: 3.0%  skip:30.2%  L0:40.8% L1:49.0% BI:10.2%
+[libx264 @ 0x5566240] 8x8 transform intra:85.0% inter:70.7%
+[libx264 @ 0x5566240] direct mvs  spatial:99.0% temporal:1.0%
+[libx264 @ 0x5566240] coded y,uvDC,uvAC intra: 80.7% 60.6% 21.0% inter: 22.2% 11.1% 0.1%
+[libx264 @ 0x5566240] i16 v,h,dc,p: 30% 18% 11% 41%
+[libx264 @ 0x5566240] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 10%  6%  5% 10% 14% 11% 15% 12% 18%
+[libx264 @ 0x5566240] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu:  9%  7%  5%  9% 14% 12% 16% 11% 17%
+[libx264 @ 0x5566240] i8c dc,h,v,p: 47% 22% 16% 14%
+[libx264 @ 0x5566240] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0x5566240] ref P L0: 62.0% 18.7% 11.5%  4.0%  3.5%  0.3%
+[libx264 @ 0x5566240] ref B L0: 93.5%  4.5%  1.5%  0.5%
+[libx264 @ 0x5566240] ref B L1: 98.6%  1.4%
+[libx264 @ 0x5566240] kb/s:840.24
+ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42mp41isomavc1
+    creation_time   : 2019-11-07T10:31:22.000000Z
+  Duration: 00:00:11.24, start: 0.000000, bitrate: 21610 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 3840x2160, 21608 kb/s, 25 fps, 25 tbr, 25 tbn, 50 tbc (default)
+    Metadata:
+      creation_time   : 2019-11-07T10:31:22.000000Z
+      handler_name    : L-SMASH Video Handler
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[libx264 @ 0x524d240] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0x524d240] profile High, level 3.1
+[libx264 @ 0x524d240] 264 - core 155 r2901 7d0ff22 - H.264/MPEG-4 AVC codec - Copyleft 2003-2018 - http://www.videolan.org/x264.html - options: cabac=1 ref=1 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=2 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=0 threads=2 lookahead_threads=1 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=1 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=10 rc=crf mbtree=1 crf=28.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/home/x/xatikont/youinroll.com/public_html/storage/media/bab5e9972dd959ca3670d5941fe48c86-720.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42mp41isomavc1
+    encoder         : Lavf58.12.100
+    Stream #0:0(und): Video: h264 (libx264) (avc1 / 0x31637661), yuv420p, 1280x720, q=-1--1, 25 fps, 12800 tbn, 25 tbc (default)
+    Metadata:
+      creation_time   : 2019-11-07T10:31:22.000000Z
+      handler_name    : L-SMASH Video Handler
+      encoder         : Lavc58.18.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: -1
+frame=   11 fps=0.0 q=0.0 size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    frame=   29 fps= 29 q=33.0 size=       0kB time=00:00:00.40 bitrate=   1.0kbits/s speed=0.394x    frame=   52 fps= 34 q=33.0 size=     256kB time=00:00:01.32 bitrate=1588.9kbits/s speed=0.861x    frame=   74 fps= 36 q=33.0 size=     512kB time=00:00:02.20 bitrate=1906.6kbits/s speed=1.08x    frame=   97 fps= 38 q=33.0 size=     768kB time=00:00:03.12 bitrate=2016.6kbits/s speed=1.22x    frame=  117 fps= 38 q=33.0 size=    1024kB time=00:00:03.92 bitrate=2140.0kbits/s speed=1.28x    frame=  135 fps= 38 q=33.0 size=    1280kB time=00:00:04.64 bitrate=2259.9kbits/s speed=1.29x    frame=  157 fps= 38 q=33.0 size=    1280kB time=00:00:05.52 bitrate=1899.6kbits/s speed=1.35x    frame=  179 fps= 39 q=33.0 size=    1536kB time=00:00:06.40 bitrate=1966.1kbits/s speed=1.39x    frame=  200 fps= 39 q=33.0 size=    1792kB time=00:00:07.24 bitrate=2027.7kbits/s speed=1.42x    frame=  220 fps= 39 q=33.0 size=    2048kB time=00:00:08.04 bitrate=2086.7kbits/s speed=1.43x    frame=  240 fps= 39 q=33.0 size=    2304kB time=00:00:08.84 bitrate=2135.1kbits/s speed=1.44x    frame=  261 fps= 39 q=33.0 size=    2560kB time=00:00:09.68 bitrate=2166.5kbits/s speed=1.45x    [mp4 @ 0x5273500] Starting second pass: moving the moov atom to the beginning of the file
+frame=  281 fps= 38 q=-1.0 Lsize=    3001kB time=00:00:11.12 bitrate=2210.8kbits/s speed=1.51x    
+video:2997kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.134055%
+[libx264 @ 0x524d240] frame I:2     Avg QP:29.04  size: 38524
+[libx264 @ 0x524d240] frame P:80    Avg QP:30.67  size: 20300
+[libx264 @ 0x524d240] frame B:199   Avg QP:33.42  size:  6870
+[libx264 @ 0x524d240] consecutive B-frames:  3.6%  2.1% 11.7% 82.6%
+[libx264 @ 0x524d240] mb I  I16..4: 11.5% 62.6% 26.0%
+[libx264 @ 0x524d240] mb P  I16..4:  6.2% 35.7%  3.8%  P16..4: 18.6% 12.7%  6.0%  0.0%  0.0%    skip:17.1%
+[libx264 @ 0x524d240] mb B  I16..4:  1.1%  5.1%  0.2%  B16..8: 25.4%  9.3%  0.7%  direct: 5.0%  skip:53.2%  L0:39.5% L1:46.2% BI:14.3%
+[libx264 @ 0x524d240] 8x8 transform intra:77.8% inter:40.0%
+[libx264 @ 0x524d240] coded y,uvDC,uvAC intra: 61.5% 37.4% 5.9% inter: 9.4% 4.7% 0.0%
+[libx264 @ 0x524d240] i16 v,h,dc,p: 34% 23% 26% 17%
+[libx264 @ 0x524d240] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 15% 19% 20%  7%  6%  5%  8%  8% 12%
+[libx264 @ 0x524d240] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 15% 18% 14%  7% 11%  8% 12%  7%  7%
+[libx264 @ 0x524d240] i8c dc,h,v,p: 67% 15% 14%  3%
+[libx264 @ 0x524d240] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0x524d240] kb/s:2183.78
+ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42mp41isomavc1
+    creation_time   : 2019-11-07T10:31:22.000000Z
+  Duration: 00:00:11.24, start: 0.000000, bitrate: 21610 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 3840x2160, 21608 kb/s, 25 fps, 25 tbr, 25 tbn, 50 tbc (default)
+    Metadata:
+      creation_time   : 2019-11-07T10:31:22.000000Z
+      handler_name    : L-SMASH Video Handler
+      encoder         : AVC Coding
+File '/home/x/xatikont/youinroll.com/public_html/storage/media/bab5e9972dd959ca3670d5941fe48c86-720.mp4' already exists. Overwrite ? [y/N] Not overwriting - exiting
+ffmpeg version 4.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc-6 --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg
+  libavutil      56. 14.100 / 56. 14.100
+  libavcodec     58. 18.100 / 58. 18.100
+  libavformat    58. 12.100 / 58. 12.100
+  libavdevice    58.  3.100 / 58.  3.100
+  libavfilter     7. 16.100 /  7. 16.100
+  libswscale      5.  1.100 /  5.  1.100
+  libswresample   3.  1.100 /  3.  1.100
+  libpostproc    55.  1.100 / 55.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/x/xatikont/youinroll.com/public_html/storage/rawmedia/bab5e9972dd959ca3670d5941fe48c86.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42mp41isomavc1
+    creation_time   : 2019-11-07T10:31:22.000000Z
+  Duration: 00:00:11.24, start: 0.000000, bitrate: 21610 kb/s
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709), 3840x2160, 21608 kb/s, 25 fps, 25 tbr, 25 tbn, 50 tbc (default)
+    Metadata:
+      creation_time   : 2019-11-07T10:31:22.000000Z
+      handler_name    : L-SMASH Video Handler
+      encoder         : AVC Coding
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[libx264 @ 0x5511240] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0x5511240] profile High, level 4.0
+[libx264 @ 0x5511240] 264 - core 155 r2901 7d0ff22 - H.264/MPEG-4 AVC codec - Copyleft 2003-2018 - http://www.videolan.org/x264.html - options: cabac=1 ref=1 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=2 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=0 threads=2 lookahead_threads=1 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=1 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=10 rc=crf mbtree=1 crf=28.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/home/x/xatikont/youinroll.com/public_html/storage/media/bab5e9972dd959ca3670d5941fe48c86-1080.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp42mp41isomavc1
+    encoder         : Lavf58.12.100
+    Stream #0:0(und): Video: h264 (libx264) (avc1 / 0x31637661), yuv420p, 1920x1080, q=-1--1, 25 fps, 12800 tbn, 25 tbc (default)
+    Metadata:
+      creation_time   : 2019-11-07T10:31:22.000000Z
+      handler_name    : L-SMASH Video Handler
+      encoder         : Lavc58.18.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: -1
+frame=   10 fps=0.0 q=0.0 size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    frame=   19 fps= 19 q=33.0 size=       0kB time=00:00:00.00 bitrate=4923.1kbits/s speed=7.67e-05x    frame=   31 fps= 20 q=33.0 size=     256kB time=00:00:00.48 bitrate=4369.2kbits/s speed=0.308x    frame=   43 fps= 20 q=33.0 size=     512kB time=00:00:00.96 bitrate=4369.1kbits/s speed=0.456x    frame=   56 fps= 21 q=33.0 size=     768kB time=00:00:01.48 bitrate=4251.0kbits/s speed=0.563x    frame=   67 fps= 21 q=33.0 size=    1024kB time=00:00:01.92 bitrate=4369.1kbits/s speed=0.613x    frame=   78 fps= 21 q=33.0 size=    1280kB time=00:00:02.36 bitrate=4443.1kbits/s speed=0.645x    frame=   89 fps= 21 q=33.0 size=    1536kB time=00:00:02.80 bitrate=4493.9kbits/s speed=0.667x    frame=  100 fps= 21 q=33.0 size=    1536kB time=00:00:03.24 bitrate=3883.6kbits/s speed=0.686x    frame=  111 fps= 21 q=33.0 size=    1792kB time=00:00:03.68 bitrate=3989.2kbits/s speed=0.696x    frame=  122 fps= 21 q=33.0 size=    2048kB time=00:00:04.12 bitrate=4072.2kbits/s speed=0.706x    frame=  132 fps= 21 q=33.0 size=    2304kB time=00:00:04.52 bitrate=4175.8kbits/s speed=0.71x    frame=  143 fps= 21 q=33.0 size=    2560kB time=00:00:04.96 bitrate=4228.1kbits/s speed=0.718x    frame=  155 fps= 21 q=33.0 size=    2816kB time=00:00:05.44 bitrate=4240.6kbits/s speed=0.731x    frame=  167 fps= 21 q=33.0 size=    2816kB time=00:00:05.92 bitrate=3896.7kbits/s speed=0.742x    frame=  178 fps= 21 q=33.0 size=    3072kB time=00:00:06.36 bitrate=3956.9kbits/s speed=0.748x    frame=  191 fps= 21 q=33.0 size=    3328kB time=00:00:06.88 bitrate=3962.7kbits/s speed=0.762x    frame=  196 fps= 20 q=33.0 size=    3584kB time=00:00:07.08 bitrate=4146.9kbits/s speed=0.74x    frame=  202 fps= 20 q=33.0 size=    3584kB time=00:00:07.32 bitrate=4011.0kbits/s speed=0.725x    frame=  211 fps= 20 q=33.0 size=    3840kB time=00:00:07.68 bitrate=4096.0kbits/s speed=0.722x    frame=  221 fps= 20 q=33.0 size=    4096kB time=00:00:08.08 bitrate=4152.8kbits/s speed=0.721x    frame=  232 fps= 20 q=33.0 size=    4352kB time=00:00:08.52 bitrate=4184.5kbits/s speed=0.727x    frame=  243 fps= 20 q=33.0 size=    4608kB time=00:00:08.96 bitrate=4213.0kbits/s speed=0.732x    frame=  253 fps= 20 q=33.0 size=    4864kB time=00:00:09.36 bitrate=4257.0kbits/s speed=0.733x    frame=  265 fps= 20 q=33.0 size=    4864kB time=00:00:09.84 bitrate=4049.4kbits/s speed=0.739x    frame=  276 fps= 20 q=33.0 size=    5120kB time=00:00:10.28 bitrate=4080.1kbits/s speed=0.743x    [mp4 @ 0x5537500] Starting second pass: moving the moov atom to the beginning of the file
+frame=  281 fps= 19 q=-1.0 Lsize=    5737kB time=00:00:11.12 bitrate=4226.3kbits/s speed=0.763x    
+video:5733kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.069074%
+[libx264 @ 0x5511240] frame I:2     Avg QP:28.59  size: 64646
+[libx264 @ 0x5511240] frame P:84    Avg QP:30.13  size: 36208
+[libx264 @ 0x5511240] frame B:195   Avg QP:32.37  size: 13841
+[libx264 @ 0x5511240] consecutive B-frames:  3.9%  2.1% 25.6% 68.3%
+[libx264 @ 0x5511240] mb I  I16..4: 12.5% 71.7% 15.9%
+[libx264 @ 0x5511240] mb P  I16..4:  7.6% 42.1%  2.5%  P16..4: 15.6%  9.5%  3.7%  0.0%  0.0%    skip:19.0%
+[libx264 @ 0x5511240] mb B  I16..4:  1.7%  8.3%  0.2%  B16..8: 22.8%  7.4%  0.5%  direct: 4.3%  skip:54.8%  L0:43.1% L1:47.3% BI: 9.6%
+[libx264 @ 0x5511240] 8x8 transform intra:80.6% inter:46.2%
+[libx264 @ 0x5511240] coded y,uvDC,uvAC intra: 53.7% 33.7% 3.0% inter: 6.4% 4.6% 0.0%
+[libx264 @ 0x5511240] i16 v,h,dc,p: 34% 24% 24% 17%
+[libx264 @ 0x5511240] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 17% 21% 20%  7%  6%  5%  7%  7% 10%
+[libx264 @ 0x5511240] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 16% 18% 12%  7% 13%  9% 13%  6%  6%
+[libx264 @ 0x5511240] i8c dc,h,v,p: 69% 15% 14%  3%
+[libx264 @ 0x5511240] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0x5511240] kb/s:4177.84
+</div>[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/0112b10c3b34846af97fb947575e6621-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/02cf9b7395ce1f1c731fa01348504259-10.jpeg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/050925079473d902d351ed74d02d3e1b-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/0ac2626943d303ce92f5fd25fe2284e6-10.png for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/0cf4ed1b1d59476b67827eb7f2d76359-1.jpg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/10ecebbc4ddb660d8e145c563780b556-1.webp for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/11242d24fd95959fdfdcbeed825300a4-1.webp for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/127105e12b8543b18ea01b4c4d8169bc-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/139444b47ae2bfd995ce0d789de9517d-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/13d9fedae5ab9bd8ae4021ca3f53ce46-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/14b122c35539c2c84d6b653a48200d55-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1793deb96ef7d02fd5810954b138d982-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/180a7ecbcc299adb5dbc06284bdd69a0-240.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/18a973bdbfbc65404d719a9b47e6743f-305.jpg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/195773c5cfda660c147fd04024bf4c37-1.webp for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1a4558e7da4b75aaaeab4e0c853b945b-202.jpg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1af9e2ff25503d08774639f4ac9d0357-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1cb24cbc9843dede83c3e33ec579cc25-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1cbf7eba793aea4aa90aa7f621e8b7f9-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1e7bb3f6b966572938f927df35a7a3e6-1.webp for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/1f13399c8fa8f6c131d92a5f0d5a2679-1.png for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/202a6846af8378455ad0383fa0864f1b-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/2154ed73f06480cb349511afbfe12c25-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/21a4a7dd8999fc3a62375ac11e22661f-10.png for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/249476c0c8981cc4b05a6eb803dbc503-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/29a25c4ae64241ab3ee56ba5fae7d3d0-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/2e08634bcabce04796aa00c7fad62b28-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/30535c023b550d86e0fcdb1aa0a570b9-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3062b451f3979f92dbbdf13226b49e6c-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/30f9f9a60bc27bd269186e7ad400f967-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/320b459762f0ccd6f6c0a6ea1d07d4d2-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/32b259d3a17d6f1aeaffd325ee7c0b55-1.png for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/33afc29488fc7b91854bfb66aaf52376-1080.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/33afc29488fc7b91854bfb66aaf52376-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/349bbe233c6d5f37a291199853374547-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/34c9fa3c608fa5e98f898eaaf27e3672-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/352a9ef1a6292b56f7ae84dfbdcd94ef-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3555f949b4bbd38127b572bf4452e03c-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/371730a5228c1573ed41f3822f9bebbf-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3a9e899594381a16124fda2293987374-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3af2c2a2b7442f350e3ce958d75aa013-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3ba4db96afe8fc14f2b3b5c463891b3a-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3c03df9804de1a27c08c5261ac63b05b-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3c95e986727179d7ac71cd99ef6b2ea9-10.png for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3c9e0edc247f0e155a5aea2149dcdaf6-456.gif for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3cb4c85390c3aceb9429fa2c8743fa0e-1080.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/3cb4c85390c3aceb9429fa2c8743fa0e-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/419cae668100f01cbacb19fc177fabce-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/429c9ff2973137de18e508a3b3443f14-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/43daae7a234c2757b7a83df72006babd-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/44639242ec877e0efe4d7d359b4ebfca-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/489af4f5849f5a04e796602c211b69a8-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/4b3c24306a5e6d7a002e628f5e4655a0-193.jpg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/4c307a88786fb72f4fd8d2d61c4fe8db-538.PNG for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/5056b2c6f0fe40521f824282dd6b0b27-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/538d8ad7a5b75e62a1b21622f0cd7e20-1.webp for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/53bccd5ebd8a0600124ac99fcbbdac3b-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/56747fedd3131a6f37e43dd0acde612b-1.png for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/5740e51473c5ddcc10b861cdb6c897c4-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/574531c76742c80e925aeaf2d4860571-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/57628a0deaef23cdda96913c8c41bfe3-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/5b14a80750d3de63c04b628e8bb7fa83-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/5dce606e3410071e0e59d6d3901da477-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/5eff608ae82a5797213a0b8779b3dd97-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/600191dbf0e2144d83ae6a5859272836-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/60246de6c413821379345d13aed968b6-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/6156df9fc718376bdc5642dbf82d7f47-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/64d5c60de0f5db9f89f32bb1a537d94d-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/67d97865bc9c4ca4e7b6150f52b2d359-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/68deb841e77416d3383c94cc873364bd-1.webp for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/68e609f7fa3abecf40b5da3bb5c62b5b-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/6adbb9f53372925b5084c6bfe725e801-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/6d574c84624e07c097d7013655eea75f-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/6d657f8e020f58b2037af755842482b6-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/75ecfca6990a22b5585d488414c52680-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/7c0c51a2d0f1435337c7f954d14e78a4-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/7d0610baf32dd45e27d6eef763898945-526.jpg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/7e2d08008279dd63db6a8fb4a6190236-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8029df3a7ac32b194229b07805f88287-1080.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8029df3a7ac32b194229b07805f88287-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8062b1c9b72dc30876e834ddaf25d057-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/80a54dfc015ebf0a0c56d05ff17dabc1-1.jpg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/80d90f786622dc31715b967d45b55590-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/80e31222823b074073e4ed5a74572d60-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8126ec798d28986a8294540f1798884e-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/813196da46e94e14d2df2b1978c0eef5-1.png for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/831af5a57da6416b165348e90fb1ccf4-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/843befae807c8a54c6b4ba672b173604-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/870ebb9209696f22d878d8bc46050030-191.jpg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/87b3fbad3ead11f6707d197d836b61f6-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8aed15cf91ac09e478ea4bbce298f442-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8b08d305e098ac15d256c313b81473a6-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8c10dd6312384210cce0f091540783ce-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/8f19f43b5c47e4edd73604e960dbd208-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/906ebb410b1d5b949be4ebf07b277606-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/94d675f54633fd760baf48452990462d-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/97cdea07c1e278978ef6f78df7f9984f-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/983043705d34dfdeb6c64566aabd6dde-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/9bddbf0acefbcc16b4ed4b46daa7f979-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/9c48f15e214b301f2430dc56724aa865-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/9dfa8c5faa4ed1448e7673b5859462ab-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/a34e17f9de1075b36d8f374000bc0840-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/a4f4a872c6638ad9b12f9f0c035a632c-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/a59fd9e520bbe557fa5ebd84e768fdb1-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/a812a453a6beaf8997d69ad4d2fe1b7d-1.webp for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/aae369e68435dcd4b86508528461b4b4-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ac2994528158ece5f0ae3583edfb8b66-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ad149ec8b4438f223e91886ac45ccc95-1080.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ad149ec8b4438f223e91886ac45ccc95-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/b0f173b0496685e787b8cbe0957753e5-1.webp for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/b33cfe37c976154b2006527e863ba5e8-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/b3c862030ed4cb091abec32edd7a01b0-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/b4222273df077e5cc58300951adfd81a-1.png for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/b7cfc6192fc49aa68f572e7719c21068-1.webp for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ba61e2165ff7c7215cafe126a64b80e2-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/bc14195a4bbb0c3e1d648127504ff8f9-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/be1fce9de253b036ae5844236171c537-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c0ad6de39962888063b381fd8e58d047-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c17d1e8bc274c352c7d9975c575f2a87-1.PNG for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c246949b2a871820f0caeda6ae5441a5-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c74ce0abca05511285429739dc83bbd4-538.jpg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c782336372a1dfed5ec1d4fb1a72ae90-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c8d9f96ae167da3ce49b3cd14167e7f0-1080.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/c8d9f96ae167da3ce49b3cd14167e7f0-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/cb4e27e00dc4f6ff6d2cd3cc1ce27391-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/cb94304f7f8b0626ed7cc5a0db856f54-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ce45ac7cda8a68ef89911641da5f55aa-10.jpeg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ced6f3261b57a745c686ed5329eb5d30-1.webp for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/cf80a1f680d4509650f619607d53de38-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/d213fc853a03fae76d57943bd0a2baaf-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/d351512a68e9f0e2ece507a529194514-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/d3de08dd69063e6ef01f1ea710d380eb-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/d42e20c5c4d2b55df434635e8fbd82f5-192.jpg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/df4af7919e17f827692216845ceb4bda-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/e111bccc0f6931799464d57ff4051981-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/e21560aecd9a6c64cd7c08ae34a581fa-1080.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/e21560aecd9a6c64cd7c08ae34a581fa-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/e40da3e8d638f28d4714d2e666c00207-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/e70123c8515b8493ec1195fbabd87d0d-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/e715a968983a0613fbc215784aaf4c38-240.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ec1e5fb78792e86d68c7a41cbce00f94-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ec4c86e39ee2417c59fbb730c5d78ed1-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ec7683766000d71d15fbad7f68a83ee1-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ecf70ed1de688823d24f4687e2d7eb34-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/f228ade1d9237ac1a8fafcb2d291ca99-1.webp for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/f4a38a1364f3e627774dbe9d6e5dca0d-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/f52b2fbef98000f648079614b2b31cac-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/f663b7f2a2f61e1f4d45984c63673392-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/fa166b787b6a43982f3b063e37dbf4ac-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/fe37ef69c3f350c93e76096cb68a259f-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/fe8a69bdbfe9182221741b70c70aa45f-720.mp4 for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/ffd3368606c5f858e456f8ffe644bb92-1.svg for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/fwugs. for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/index.html for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/messengericon.png for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/musicicon.png for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/playicon.png for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/usericon.png for 0 filesize 
+[08/04/21 03:20:07pm] Removed /home/x/xatikont/youinroll.com/public_html/storage/media/videoicon.png for 0 filesize 

@@ -1,4 +1,8 @@
-<?php require_once("load.php");
+<?php
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
+
+require_once("cron_load.php");
 $crons = $db->get_results("select * from ".DB_PREFIX."crons where cron_type = 'youtube' or cron_type = 'youtube-1by1' or cron_type = 'video' or cron_type = 'yt_playlistsearch' order by cron_lastrun ASC limit 0,100000");
 if($crons) {
 $youtube = new Youtube(array('key' => get_option('youtubekey')));	
@@ -14,8 +18,8 @@ for($p=1;$p < ($cron->cron_pages + 1);$p++) {
 $params = array(
     'maxResults'    => $the['bpp']
 );
-$params['pageToken'] = $youtube->thisToken($params['maxResults'],$i); 
-$search = $youtube->getPlaylistItemsByPlaylistId($the['pID'],$the['bpp'],$i);
+$params['pageToken'] = $youtube->thisToken($params['maxResults'],$p); 
+$search = $youtube->getPlaylistItemsByPlaylistId($the['pID'],$the['bpp'],$p);
 if($search) {
 foreach ($search as $vd) {
 $video = $youtube->Single($vd->contentDetails->videoId);

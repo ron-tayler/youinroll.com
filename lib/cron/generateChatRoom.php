@@ -2,12 +2,12 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require_once(getcwd().'/cron_load.php');
+require_once('/home/x/xatikont/youinroll.com/public_html/cron_load.php');
 
 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 $charactersLength = strlen($characters);
 
-$allUsers = $db->get_results("SELECT id,chatRoom FROM vibe_users WHERE chatRoom = 'MD5(RANDSTRING(8))'");
+$allUsers = $db->get_results("SELECT id,chatRoom FROM vibe_users WHERE chatRoom IS NULL");
 foreach ($allUsers as $user) {
 
     $chatRoom = '';

@@ -19,29 +19,52 @@ $st = '
  ?>
 <div class="row main-holder">
 
-<ul class="nav nav-tabs nav-tabs-line mtop20">
-    <li class="<?php aTab(browse);?>" role="presentation"><a href="<?php echo list_url('browse'); ?>"> <i class="material-icons">&#xE038;</i> <?php echo _lang('Recent'); ?> </li></a>
-    <li class="<?php aTab(mostviewed);?>" role="presentation"><a href="<?php echo list_url(mostviewed); ?>"> <i class="material-icons">&#xE8E5;</i> <?php echo _lang('Топ'); ?></a></li>
-    <li class="<?php aTab(mostliked);?>" role="presentation"><a href="<?php echo list_url(mostliked); ?>"> <i class="material-icons">&#xE8DD;</i> <?php echo _lang('Понравилось'); ?></a></li>
-    <li class="<?php aTab(mostcom);?>" role="presentation"><a href="<?php echo list_url(mostcom); ?>"> <i class="material-icons">&#xE0B7;</i> <?php echo _lang('Обсуждаемое'); ?></a></li>
-    <li class="<?php aTab(promoted);?>" role="presentation"><a href="<?php echo list_url(promoted); ?>"> <i class="material-icons">&#xE41B;</i> <?php echo _lang('Picks'); ?></a></li>
-	<?php if(_UpVideo()) { ?>
-	<li class="pull-right" role="presentation"><a href="<?php echo site_url().add; ?>"> <i class="material-icons">&#xE2C3;</i> <?php echo _lang('Upload'); ?></a></li>
-    <?php } ?>
-	<?php if(_EmbedVideo()) { ?>
-	<li class="pull-right" role="presentation"><a href="<?php echo site_url().share; ?>"> <i class="material-icons">&#xE146;</i> <?php echo _lang('Поделиться'); ?></a></li>
-    <?php } ?>
-	</ul>
+<?
+$categories = $cachedb->get_results('SELECT cat_id,cat_name,cat_desc,picture FROM '.DB_PREFIX.'channels where type = '.toDb(1).' AND child_of = '.toDb(0).'');
+?>
+
+<div class='container'>
+	<h1>Категории</h1>
+	<div class='loop-content course-row'>
+		<?foreach ($categories as $category) {?>
+
+			<a class="card" href='<?=channel_url($category->cat_id, $category->cat_name)?>'>
+				<header class="card__header">
+					<div class="thumb" style="background-image: url('<?=thumb_fix($category->picture, 240, 240)?>')"></div>
+					<div class="after">
+					<div class="square"></div>
+					<div class="tri"></div>
+					</div>
+				</header>
+				<div class="card__body">
+					<h1 class="title">
+						<?=$category->cat_name?>
+					</h1>
+					<h2 class="subtitle">
+					<?=substr($category->cat_desc, 0, 200)?>
+					</h2>
+				</div>
+			</a>
+		<?}?>
+	</div>
+</div>
+
+<br>
+
 <div id="videolist-content">
+
 <?php echo _ad('0','video-list-top');
-include_once(TPL.'/video-loop.php');
+
+$vq = isset($vq) ? $vq : $globalTemplateVariable['vq'];
+$active = isset($active) ? $active : $globalTemplateVariable['active'];
+$header = isset($header) ? $header : $globalTemplateVariable['header'];
+$header_plus = isset($header_plus) ? $header_plus : $globalTemplateVariable['header_plus'];
+
+//include_once(TPL.'/video-loop.php');
  echo _ad('0','video-list-bottom');
 ?>
 
 
 
 </div>
-</div>
-<div class="load-cats" data-type="1">
-&nbsp;
 </div>
