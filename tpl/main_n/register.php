@@ -49,7 +49,7 @@
             </select>
         </div>
         <div class="form-field mt-2">
-<!-- Ron_Tayler  -->
+<!-- TODO Ron_Tayler  -->
             <input type="tel" name="nick" placeholder="Введите номер телефона" required/>
         </div>
         <div class="form-field mt-2">
