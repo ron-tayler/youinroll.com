@@ -232,7 +232,7 @@ class YNRPayment {
                 'Email' => $user->email,
                 'Phone' => $user->phone,
                 'EmailCompany' => 'youinroll@gmail.com',
-                'Taxation' => 'osn',
+                'Taxation' => 'usn',
                 'Items' => [
                     [
                         'Name' => 'Premium',
@@ -302,7 +302,7 @@ class YNRPayment {
                 'Email' => $user->email,
                 'Phone' => $user->phone,
                 'EmailCompany' => 'youinroll@gmail.com',
-                'Taxation' => 'osn',
+                'Taxation' => 'usn',
                 'Items' => [
                     [
                         'Name' => 'Premium',
@@ -362,7 +362,7 @@ class YNRPayment {
                 'Email' => $user->email,
                 'Phone' => $user->phone,
                 'EmailCompany' => 'youinroll@gmail.com',
-                'Taxation' => 'osn',
+                'Taxation' => 'usn',
                 'Items' => [
                     [
                         'Name' => 'Premium',
