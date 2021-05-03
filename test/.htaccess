@@ -1,6 +1,0 @@
-
-# Beget FileManager Auth rules
-AuthName "Protected area, need authorization"
-AuthType Basic
-AuthUserFile /home/x/xatikont/youinroll.com/public_html/test/.htpasswd
-require valid-user
