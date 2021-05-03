@@ -12,6 +12,9 @@
 /react1
 /land
 
+config.php
+vibe_config.php
+
 .bash_history
 .htaccess
 .htaccess_gzip
