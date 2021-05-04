@@ -1,6 +1,6 @@
 <?php
-namespace DB;
-final class MySQL {
+namespace Library\DB;
+final class MySQL implements IAdaptor{
 	private $connection;
 
 	public function __construct($hostname, $username, $password, $database, $port = '3306') {
@@ -73,6 +73,10 @@ final class MySQL {
 			return mysql_insert_id($this->connection);
 		}
 	}
+
+    public function connected(){
+        return $this->isConnected();
+    }
 	
 	public function isConnected() {
 		if ($this->connection) {
@@ -87,4 +91,5 @@ final class MySQL {
 			mysql_close($this->connection);
 		}
 	}
+
 }

@@ -1,7 +1,6 @@
 <?php
 
 
-class ErrorLog extends ErrorBase
-{
+class ErrorLog extends ErrorBase{
 
 }

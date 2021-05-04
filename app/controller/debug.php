@@ -5,17 +5,43 @@ use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Exception\AMQPTimeoutException;
 use PhpAmqpLib\Message\AMQPMessage;
+
 /**
  * Class Controller\Debug
- * @package YouInRoll.com
+ * @package Controller
  * @author Ron_Tayler
  * @copyright 22.04.2021
  */
-class Debug extends \LMVCL implements \IController
-{
+class Debug implements \Engine\IController {
+
+    private static \Library\DB $db;
+    private static \Engine\Log $log;
+    private static \Engine\Log $dlog;
 
     private AMQPStreamConnection $connection;
     private AMQPChannel $channel;
+
+    /**
+     * Static method init
+     * @throws \ExceptionBase
+     */
+    public static function init(){
+        self::$db = \Library\DB::init('base');
+        self::$log = \Engine\Log::init('error');
+        self::$dlog = \Engine\Log::init('debug');
+    }
+
+    /**
+     * Static method worker
+     * @param array $param
+     * @return array
+     * @throws \Exception
+     */
+    public static function worker(array $param = []){
+        $user = self::$db->select('*','users','id=1');
+        return (array)$user->row;
+    }
+
 
     public function index(array $param)
     {
@@ -118,10 +144,6 @@ class Debug extends \LMVCL implements \IController
         $channel->close();
         $connection->close();
         return $response??"Сообщение не получено";
-    }
-
-    private function worker(){
-
     }
 
     private function connect2rabbit(){

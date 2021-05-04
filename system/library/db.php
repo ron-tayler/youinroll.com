@@ -1,40 +1,80 @@
 <?php
+
+namespace Library;
+
+require_once __DIR__.'/db/IAdaptor.php';
+require_once __DIR__.'/db/mpdo.php';
+require_once __DIR__.'/db/mssql.php';
+require_once __DIR__.'/db/mysql.php';
+require_once __DIR__.'/db/mysqli.php';
+require_once __DIR__.'/db/postgre.php';
+
 /**
  * Class DB
- * @package		YouInRoll
- * @author		Ron_Tayler
- * @copyright	2021
+ * @package	Library
+ * @author Ron_Tayler
+ * @copyright 04.05.2021
 */
-class DB extends LMVCL {
-    /** @var db\mysqli | db\mysql | db\mpdo | db\mssql | db\postgre */
-	private $adaptor;
+class DB {
+    /** @var DB[] - Список подключений */
+    private static array $data = [];
+    private DB\IAdaptor $adaptor;
+
+    /**
+     * Инициализация подключения или получение из списка
+     * @param string $name
+     * @param array $param
+     * @return DB|mixed
+     * @throws \ExceptionBase
+     */
+    public static function init(string $name, array $param = []){
+        if(isset(self::$data[$name])){
+            return self::$data[$name];
+        }else{
+            if(!isset($param['username'])) throw new \ExceptionBase('Не указан пользователь для подключения к БД',5);
+            if(!isset($param['password'])) throw new \ExceptionBase('Не указан пароль для подключения к БД',5);
+            if(!isset($param['database'])) throw new \ExceptionBase('Не указано название базы данных',5);
+            $adaptor  = $param['adaptor']??'mysqli';
+            $hostname = $param['hostname']??'localhost';
+            $port = $param['port']??3306;
+            $username = $param['username'];
+            $password = $param['password'];
+            $database = $param['database'];
+
+            try{
+                return self::$data[$name] = new self($adaptor, $hostname, $username, $password, $database, $port);
+            }catch (\ExceptionBase $ex){
+                unset(self::$data[$name]);
+                throw new \ExceptionBase($ex->getPrivateMessage(),5,$ex->getMessage());
+            }
+        }
+    }
 
     /**
      * Constructor
-     * @param $registry
      * @param string $adaptor
      * @param string $hostname
      * @param string $username
      * @param string $password
      * @param string $database
      * @param int $port
-     * @throws Exception
+     * @throws \Exception
      */
-	public function __construct($registry,$adaptor, $hostname, $username, $password, $database, $port = NULL) {
-	    parent::__construct($registry);
-		$class = 'DB\\' . $adaptor;
+	private function __construct($adaptor, $hostname, $username, $password, $database, $port = NULL) {
+		$class = __NAMESPACE__.'\\DB\\' . $adaptor;
 
 		if (class_exists($class)) {
 			$this->adaptor = new $class($hostname, $username, $password, $database, $port);
 		} else {
-			throw new \Exception('Error: Could not load database adaptor ' . $adaptor . '!');
+			throw new \ExceptionBase('Error: Could not load database adaptor ' . $class . '!',0);
 		}
 	}
 
-	/**
+    /**
      * query
-     * @param	string	$sql
-	 * @return bool|stdClass
+     * @param string $sql
+     * @return bool|\stdClass
+     * @throws \Exception
      */
 	public function query($sql) {
 		return $this->adaptor->query($sql);
@@ -45,7 +85,8 @@ class DB extends LMVCL {
      * @param string $tbl
      * @param string $where
      * @param bool $is_return
-     * @return bool|stdClass|string
+     * @return bool|\stdClass|string
+     * @throws \Exception
      */
 	public function selectAll($tbl,$where,$is_return=false){
 	    return $this->select('*',$tbl,$where,$is_return);
@@ -57,7 +98,8 @@ class DB extends LMVCL {
      * @param $tbl
      * @param $where
      * @param bool $is_return
-     * @return bool|stdClass|string
+     * @return bool|\stdClass|string
+     * @throws \Exception
      */
     public function select($select,$tbl,$where,$is_return=false){
         $sql = 'SELECT '.$select.' FROM '.DB_PREFIX.$tbl;
@@ -73,6 +115,7 @@ class DB extends LMVCL {
      * @param string $tbl
      * @param array $params
      * @return int Last id
+     * @throws \Exception
      */
     public function insert_into($tbl,$params){
         $str_keys = implode(', ',array_keys($params));
@@ -87,6 +130,7 @@ class DB extends LMVCL {
      * @param string $tbl
      * @param array $params
      * @param string $where
+     * @throws \Exception
      */
     public function update($tbl,$params,$where){
         $array_params = array();
@@ -103,7 +147,8 @@ class DB extends LMVCL {
      * @param $tbl
      * @param $where
      * @param bool $is_return
-     * @return bool|stdClass|string
+     * @return bool|\stdClass|string
+     * @throws \Exception
      */
     public function delete($tbl,$where,$is_return=false){
         $sql = 'DELETE FROM '.DB_PREFIX.$tbl;
@@ -138,7 +183,7 @@ class DB extends LMVCL {
 	public function getLastId() {
 		return $this->adaptor->getLastId();
 	}
-	
+
 	/**
      * connected
 	 * @return	bool

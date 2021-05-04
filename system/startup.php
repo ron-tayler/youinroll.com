@@ -1,6 +1,6 @@
 <?php
 // PHP Init
-define('DISPLAY_ERROR',false);
+if(!defined('DISPLAY_ERROR')) define('DISPLAY_ERROR',false);
 define('LOGFILE_ERROR',true);
 
 // Вывод ошибок на экран
@@ -27,7 +27,7 @@ set_error_handler(function($code, $message, $file, $line){
             break;
     }
     if (DISPLAY_ERROR) {
-        echo '<b>'.$error.'</b>: '.$message.' in <b>'.$file.'</b> on line <b>'.$line.'</b><br />';
+        echo '<br /><b>'.$error.'</b>: '.$message.' in <b>'.$file.'</b> on line <b>'.$line.'</b>';
     }
     return true;
 });
@@ -82,7 +82,7 @@ try {
                 break;
         }
         if (DISPLAY_ERROR) {
-            echo '<b>' . $error . '</b>: ' . $message . ' in <b>' . $file . '</b> on line <b>' . $line . '</b><br />';
+            echo '<br /><b>' . $error . '</b>: ' . $message . ' in <b>' . $file . '</b> on line <b>' . $line . '</b>';
         }
         if (LOGFILE_ERROR) {
             $log->print('PHP ' . $error . ':  ' . $message . ' in ' . $file . ' on line ' . $line);
@@ -106,16 +106,7 @@ try {
     spl_autoload_extensions('.php');
     */
 }catch(ErrorBase | ExceptionBase $err){
-
-    $resp = json_encode(['error'=>[
-        'code'=>$err->getCode(),
-        'message'=>$err->getMessage()
-    ]],JSON_UNESCAPED_UNICODE);
-
-    $buffer = ob_get_contents();
-    echo $resp.$buffer;
-    trigger_error($err->getPrivateMessage(),E_USER_WARNING);
-    exit();
+    throw new ErrorBase($err->getPrivateMessage(),$err->getCode(),$err->getMessage(),$err);
 } finally {
     ob_end_flush();
 }

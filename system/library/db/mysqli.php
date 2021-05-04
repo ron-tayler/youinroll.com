@@ -1,7 +1,7 @@
 <?php
-namespace DB;
-final class MySQLi {
-	private $connection;
+namespace Library\DB;
+final class MySQLi implements IAdaptor {
+    private \mysqli $connection;
 
 	public function __construct($hostname, $username, $password, $database, $port = '3306') {
 		$this->connection = new \mysqli($hostname, $username, $password, $database, $port);

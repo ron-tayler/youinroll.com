@@ -36,9 +36,10 @@ class Router {
      */
     public static function execute($version){
         $version = explode('.',$version);
-        $url = Request::$server['REDIRECT_URL'];
+        $url = explode('?',Request::$server['REQUEST_URI'])[0];
 
         foreach (self::$routes as $route){
+            // Проверка версии
             $minVersion = explode('.',$route->getMinVersion());
             if($version[0]<$minVersion[0] OR $version[0]==$minVersion[0] AND $version[1]<$minVersion[1]) continue;
             if($route->getMaxVersion()!='') {
@@ -46,16 +47,26 @@ class Router {
                 if ($version[0] > $maxVersion[0] OR $version[0]==$maxVersion[0] and $version[1] > $maxVersion[1]) continue;
             }
 
+            // Проверка url по регулярному выражению
             $pat = str_replace('/','\\/',$route->getRegex());
             $res = preg_match('/^'.$pat.'$/',$url,$request_params);
             if($res!==1) continue;
+
+            // Проверка отдельных параметров по регулярному выражению
             array_splice($request_params,0,1);
             $params = array_combine($route->getParams(),$request_params);
             foreach ($params as $name => $value){
                 $res = preg_match('/'.$route->getFilters()[$name].'/',$value);
                 if($res!==1) continue(2);
             }
-            $response_params = $route->execute($params);
+
+            // Запуск контроллера и ожидание от него ответа
+            try{
+                $response_params = $route->execute($params);
+            }catch(\ExceptionBase $ex){
+                trigger_error($ex->getPrivateMessage(),E_USER_WARNING);
+                continue;
+            }
             break;
         }
         if(!isset($response_params)) throw new ErrorEngine('Контроллер не найден: '.$url.' - v'.$version[0].'.'.$version[1],4,'Не найден метод API или версия не верна');

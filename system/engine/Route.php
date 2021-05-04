@@ -35,6 +35,11 @@ class Route{
         $this->version_max = $version[1]??'';
     }
 
+    /**
+     * @param array $params
+     * @return array
+     * @throws \ExceptionBase
+     */
     public function execute(array $params):array{
         $path = explode('/',$this->target);
         $controller = $this->target;
@@ -44,8 +49,11 @@ class Route{
             $controller = implode('/',array_slice($path,0,-1));
         }
         Loader::controller($controller);
-        $controller = str_replace('/','\\',$controller);
-        return $controller::$method($params);
+        $controller = 'Controller\\'.str_replace('/','\\',$controller);
+        if(!class_exists($controller)) throw new \ExceptionBase('Класс '.$controller.'Не объявлен',5);
+        if(is_callable(Array($controller, "init"))) call_user_func(Array($controller, "init"));
+        if(!is_callable(array($controller, $method))) throw new \ExceptionBase('Невозможно вызвать метод '.$controller.'::'.$method,5);
+        return call_user_func(Array($controller, $method),$params);
     }
 
     public function getUrl(){

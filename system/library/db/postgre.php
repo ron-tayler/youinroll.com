@@ -1,6 +1,7 @@
 <?php
-namespace DB;
-final class Postgre {
+
+namespace Library\DB;
+final class Postgre implements IAdaptor {
 	private $link;
 
 	public function __construct($hostname, $username, $password, $database, $port = '5432') {
@@ -65,4 +66,8 @@ final class Postgre {
 	public function __destruct() {
 		pg_close($this->link);
 	}
+
+    public function connected(){
+        return (bool)($this->link);
+    }
 }

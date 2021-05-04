@@ -10,17 +10,23 @@ use ErrorLog;
  * @copyright 04.05.2021
  */
 class Log {
+    /** @var Log[] */
     private static array $data;
     private string $hash;
     private $handle_list;
     private $handle_log;
 
+    /**
+     * @param string $name
+     * @param string $dir
+     * @return Log
+     */
     public static function init(string $name,string $dir = ''){
         if(isset(self::$data[$name])){
             return self::$data[$name];
         }else{
-            if($dir=='') return null;
-            return $data[$name] = new self($name,$dir);
+            if($dir=='') throw new \ExceptionBase('Не найден Log или директория не указана');
+            return self::$data[$name] = new self($name,$dir);
         }
     }
 
@@ -31,13 +37,13 @@ class Log {
      * @throws ErrorLog
      */
     public function __construct(string $name,string $dir) {
-        $this->hash = date('d.m.Y-H:i:s,u-').md5(rand(0,PHP_INT_MAX)).'.'.$name;
+        $this->hash = date('d.m.Y-H:i:s').'-'.md5((string)TIME_USEC).'.'.$name;
 
         $this->handle_list = fopen($dir.'/log.list','a');
-        if(!$this->handle_list) throw new ErrorLog("Не удалось открыть/создать файл .../log.list");
+        if(!$this->handle_list) throw new ErrorLog("Не удалось открыть/создать файл .../log.list",5);
 
         $this->handle_log = fopen($dir.'/'.$this->hash.'.log','w');
-        if(!$this->handle_log) throw new ErrorLog("Не удалось открыть/создать файл .../*.log");
+        if(!$this->handle_log) throw new ErrorLog("Не удалось открыть/создать файл .../*.log",5);
     }
 
     /**
