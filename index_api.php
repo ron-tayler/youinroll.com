@@ -27,20 +27,9 @@ if($_GET['debug']='on'){
 
 try{
     // Инициализация элементов
-    $registry = new Registry();
-    $registry->set('log',$log);
+    Engine\Request::init();
 
-    $loader = new Loader($registry);
-    $registry->set('load',$loader);
 
-    $router = new Router($registry);
-    $registry->set('router',$router);
-
-    $request = new Request();
-    $registry->set('request',$request);
-
-    $response = new Response();
-    $registry->set('response',$response);
 
     $db = new DB($registry,DB_DRIVER,DB_HOSTNAME,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
     $registry->set('db',$db);

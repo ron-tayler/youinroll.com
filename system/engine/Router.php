@@ -1,41 +1,31 @@
 <?php
 
+namespace Engine;
+use ErrorEngine;
+
 /**
  * Class Router - Маршрутизатор запросов
- * @package YouInRoll.com
+ * @package Engine
  * @author Ron_Tayler
- * @copyright 2021
+ * @copyright 04.05.2021
  */
-class Router implements IEngine{
-    private Registry $registry;
+class Router {
     /** @var Route[] */
-    private array $routes;
-    /** @var Route[] */
-    private array $preRoutes;
-    /** @var Route[] */
-    private array $postRoutes;
-    private Route $baseRoute;
-    private Route $errorRoute;
+    private static array $routes;
+    private static Route $baseRoute;
+    private static Route $errorRoute;
 
-    public function __construct(Registry $registry){
-        $this->registry = $registry;
-    }
+    private function __construct(){}
 
-    public function setBase(string $target){
-        $this->baseRoute = new Route('/',$target);
+    public static function setBase(string $target){
+        self::$baseRoute = new Route('/',$target);
     }
-    public function setError(string $target){
-        $this->errorRoute = new Route('/',$target);
+    public static function setError(string $target){
+        self::$errorRoute = new Route('/',$target);
     }
 
-    public function map(string $url, string $target, array $methods = [], array $filters = [], array $version = []){
-        $this->routes[] = new Route($url,$target,$methods,$filters,$version);
-    }
-    public function preMap(string $url, string $target, array $methods = [], array $filters = []){
-        $this->preRoutes[] = new Route($url,$target,$methods,$filters);
-    }
-    public function postMap(string $url, string $target, array $methods = [], array $filters = []){
-        $this->postRoutes[] = new Route($url,$target,$methods,$filters);
+    public static function map(string $url, string $target, array $methods = [], array $filters = [], array $version = []){
+        self::$routes[] = new Route($url,$target,$methods,$filters,$version);
     }
 
     /**
@@ -44,15 +34,11 @@ class Router implements IEngine{
      * @return array
      * @todo Продумать запуск Pre и Post маршрутов
      */
-    public function execute($version){
-        /** @var Request $request */
-        $request = $this->registry->get('request');
+    public static function execute($version){
         $version = explode('.',$version);
-        $url = $request->server['REDIRECT_URL'];
-        //$params = [];
-        // Работа с PreRoutes
-        // Работа с Routes
-        foreach ($this->routes as $route){
+        $url = Request::$server['REDIRECT_URL'];
+
+        foreach (self::$routes as $route){
             $minVersion = explode('.',$route->getMinVersion());
             if($version[0]<$minVersion[0] OR $version[0]==$minVersion[0] AND $version[1]<$minVersion[1]) continue;
             if($route->getMaxVersion()!='') {
@@ -69,12 +55,11 @@ class Router implements IEngine{
                 $res = preg_match('/'.$route->getFilters()[$name].'/',$value);
                 if($res!==1) continue(2);
             }
-            $response_params = $route->execute($this->registry,$params);
+            $response_params = $route->execute($params);
             break;
         }
         if(!isset($response_params)) throw new ErrorEngine('Контроллер не найден: '.$url.' - v'.$version[0].'.'.$version[1],4,'Не найден метод API или версия не верна');
         return $response_params;
-        // Работа с PostRoutes
     }
 
     private function checkingConvergence(){

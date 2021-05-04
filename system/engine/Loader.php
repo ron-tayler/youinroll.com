@@ -1,29 +1,26 @@
 <?php
 
+namespace Engine;
 /**
  * Class Loader
- * @package YouInRoll.com
+ * @package Engine
  * @author Ron_Tayler
- * @copyright 2021
+ * @copyright 04.05.2021
  */
-class Loader implements IEngine{
-    private Registry $registry;
+class Loader {
 
     /**
      * Loader constructor.
-     * @param Registry $registry
      */
-    public function __construct(Registry $registry){
-        $this->registry = $registry;
-    }
+    private function __construct(){}
 
     /**
      * Method controller - Загрузка контролеров
      * @param string $name
      * @return bool False при ошибке, True при успехе
      */
-    public function controller(string $name){
-        return $this->load($name,DIR_CONTROLLER,'controller_','Controller');
+    public static function controller(string $name){
+        return self::load($name,DIR_CONTROLLER);
     }
 
     /**
@@ -31,8 +28,8 @@ class Loader implements IEngine{
      * @param string $name
      * @return bool False при ошибке, True при успехе
      */
-    public function model(string $name){
-        return $this->load($name,DIR_MODEL,'model_','Model');
+    public static function model(string $name){
+        return self::load($name,DIR_MODEL);
     }
 
     /**
@@ -40,30 +37,21 @@ class Loader implements IEngine{
      * @param string $name
      * @return bool False при ошибке, True при успехе
      */
-    public function library(string $name){
-        return $this->load($name,DIR_LIB,'','');
+    public static function library(string $name){
+        return self::load($name,DIR_LIB);
     }
 
     /**
      * Method load - Универсальный загрузчик
      * @param string $name 'video' or 'user/chanel/video'
      * @param string $dir DIR_...
-     * @param string $prefix
-     * @param string $namespace
      * @return bool False при ошибке, True при успехе
      * @todo Добавить проверки
      * Проверка $name по регулярке
-     * Проверка наличия файла
-     * Проверка наличия класса
      */
-    private function load(string $name,string $dir,string $prefix,string $namespace){
-        $class = $namespace.'\\'.str_replace('/','\\', $name);
+    private static function load(string $name,string $dir){
         $file = $dir.'/'.strtolower($name).'.php';
-        $reg_name = strtolower($prefix).str_replace('/','_',strtolower($name));
-        require_once $file;
-        /** @var LMVCL $lmvcl */
-        $lmvcl = new $class($this->registry);
-        $this->registry->set($reg_name,$lmvcl);
-        return true;
+        if(!is_file($file)) return false;
+        return require_once $file;
     }
 }

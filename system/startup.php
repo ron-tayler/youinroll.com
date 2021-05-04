@@ -45,24 +45,20 @@ try {
     require_once DIR_SYSTEM . '/vendor/autoload.php';
 
     // Интерфейсы движка
-    require_once DIR_ENGINE . '/IEngine.php';
     require_once DIR_ENGINE . '/IController.php';
     require_once DIR_ENGINE . '/IModel.php';
-    require_once DIR_ENGINE . '/IViewer.php';
-    require_once DIR_ENGINE . '/ILanguage.php';
 
     // Классы движка
-    require_once DIR_ENGINE . '/Registry.php';
     require_once DIR_ENGINE . '/Loader.php';
     require_once DIR_ENGINE . '/Router.php';
     require_once DIR_ENGINE . '/Route.php';
     require_once DIR_ENGINE . '/Request.php';
     require_once DIR_ENGINE . '/Response.php';
-    require_once DIR_ENGINE . '/LMVCL.php';
 
     // Логирование ошибок
     require_once DIR_ENGINE . '/Log.php';
-    $log = new Log(DIR_LOGS);
+    Engine\Log::init('debug',DIR_LOGS);
+    $log = Engine\Log::init('error',DIR_LOGS);
     set_error_handler(function ($code, $message, $file, $line) use ($log) {
         // error suppressed with @
         if (error_reporting() === 0) {
@@ -89,20 +85,11 @@ try {
             echo '<b>' . $error . '</b>: ' . $message . ' in <b>' . $file . '</b> on line <b>' . $line . '</b><br />';
         }
         if (LOGFILE_ERROR) {
-            $log->printError('PHP ' . $error . ':  ' . $message . ' in ' . $file . ' on line ' . $line);
+            $log->print('PHP ' . $error . ':  ' . $message . ' in ' . $file . ' on line ' . $line);
         }
         return true;
     });
-
-    // Классы движка
-    require_once DIR_ENGINE . '/Registry.php';
-    require_once DIR_ENGINE . '/Loader.php';
-    require_once DIR_ENGINE . '/Router.php';
-    require_once DIR_ENGINE . '/Route.php';
-    require_once DIR_ENGINE . '/Request.php';
-    require_once DIR_ENGINE . '/Response.php';
-    require_once DIR_ENGINE . '/LMVCL.php';
-
+    /*
     function library($class) {
         $file = DIR_LIB . '/' . str_replace('\\', '/', strtolower($class)).'.php';
 
@@ -117,7 +104,7 @@ try {
 
     spl_autoload_register('library');
     spl_autoload_extensions('.php');
-
+    */
 }catch(ErrorBase | ExceptionBase $err){
 
     $resp = json_encode(['error'=>[

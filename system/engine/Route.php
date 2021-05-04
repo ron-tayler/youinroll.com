@@ -1,5 +1,6 @@
 <?php
 
+namespace Engine;
 /**
  * Class Route - Маршрут для маршрутизатора
  * @package YouInRoll.com
@@ -34,7 +35,7 @@ class Route{
         $this->version_max = $version[1]??'';
     }
 
-    public function execute(Registry $registry,array $params):array{
+    public function execute(array $params):array{
         $path = explode('/',$this->target);
         $controller = $this->target;
         $method = 'index';
@@ -42,9 +43,9 @@ class Route{
             $method = $match[1];
             $controller = implode('/',array_slice($path,0,-1));
         }
-        $registry->get('load')->controller($controller);
-        $target = str_replace('/','_',strtolower($controller));
-        return $registry->get('controller_'.$target)->$method($params);
+        Loader::controller($controller);
+        $controller = str_replace('/','\\',$controller);
+        return $controller::$method($params);
     }
 
     public function getUrl(){
