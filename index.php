@@ -17,6 +17,10 @@ if(isset($_GET['api']) or isset($_POST['api'])){
     exit();
 }
 /* End API */
+if($_COOKIE['landing']!='visited' and $_SERVER['REQUEST_URI']=='/'){
+    echo file_get_contents(__DIR__.'/land/index.html');
+    exit();
+}
 
 /* Start YouInRoll Vibe */
 error_reporting(E_ERROR);
