@@ -90,22 +90,7 @@ try {
         }
         return true;
     });
-    /*
-    function library($class) {
-        $file = DIR_LIB . '/' . str_replace('\\', '/', strtolower($class)).'.php';
 
-        if (is_file($file)) {
-            include_once($file);
-
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    spl_autoload_register('library');
-    spl_autoload_extensions('.php');
-    */
 }catch(ErrorBase | ExceptionBase $err){
     throw new ErrorBase($err->getPrivateMessage(),$err->getCode(),$err->getMessage(),$err);
 } finally {

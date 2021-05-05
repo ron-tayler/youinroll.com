@@ -1,8 +1,10 @@
 <?php
 
 namespace Controller;
+use Engine\Event;
 use Engine\Log;
 use Engine\Request;
+use Engine\Response;
 use Library\DB;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
@@ -32,8 +34,8 @@ final class Debug implements \Engine\IController {
         self::$db = DB::init('base');
         self::$log = Log::init('error');
         self::$dlog = Log::init('debug');
-        \Engine\Event::add('debug/event','Debug/event()');
-        \Engine\Event::add('debug/event','Debug/event()');
+        Event::add('debug/event','Debug::event');
+        Event::add('debug/event','Debug::event');
     }
 
     /**
@@ -43,14 +45,13 @@ final class Debug implements \Engine\IController {
      * @throws \Exception
      */
     public static function worker(array $param = []){
-        \Engine\Event::exec('debug/event',['text'=>'Hello event!']);
+        Event::exec('debug/event',['text'=>'Hello event!']);
         $user = self::$db->select('*','users','id=1');
-        return (array)$user->row;
+        Response::setOutput((array)$user->row);
     }
 
     public static function event(array $param = []){
         echo $param['text']??'text';
-        return [];
     }
 
     public static function index(array $param = [])

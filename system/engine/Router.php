@@ -31,13 +31,12 @@ class Router {
     /**
      * Method execute - Запуск обработки маршрутизации
      * @param string $version
-     * @return array
      * @todo Продумать запуск Pre и Post маршрутов
      */
     public static function execute($version){
         $version = explode('.',$version);
         $url = explode('?',Request::$server['REQUEST_URI'])[0];
-
+        $executed = false;
         foreach (self::$routes as $route){
             // Проверка версии
             $minVersion = explode('.',$route->getMinVersion());
@@ -60,17 +59,17 @@ class Router {
                 if($res!==1) continue(2);
             }
 
-            // Запуск контроллера и ожидание от него ответа
+            // Запуск контроллера
             try{
-                $response_params = $route->execute($params);
+                $route->execute($params);
+                $executed = true;
             }catch(\ExceptionBase $ex){
-                trigger_error($ex->getPrivateMessage(),E_USER_WARNING);
+                trigger_error($ex->getPrivateMessage(),E_USER_NOTICE);
                 continue;
             }
             break;
         }
-        if(!isset($response_params)) throw new ErrorEngine('Контроллер не найден: '.$url.' - v'.$version[0].'.'.$version[1],4,'Не найден метод API или версия не верна');
-        return $response_params;
+        if(!$executed) throw new ErrorEngine('Контроллер не найден: '.$url.' - v'.$version[0].'.'.$version[1],4,'Не найден метод API или версия не верна');
     }
 
     private function checkingConvergence(){

@@ -10,7 +10,8 @@ namespace Engine;
 class Response {
 	private static array $headers = array();
 	private static int $level = 0;
-	private static string $output = '';
+	/** @var string|array */
+	private static $output;
 
 	/**
 	 * Method addHeader - Добавление заголовков
@@ -26,26 +27,35 @@ class Response {
 	 * @param int $status
  	 */
 	public static function redirect($url, $status = 303) {
-		header('Location: ' . str_replace(array('&amp;', "\n", "\r"), array('&', '', ''), $url), true, $status);
+        if (!headers_sent())
+            header('Location: ' . str_replace(array('&amp;', "\n", "\r"), array('&', '', ''), $url), true, $status);
+        else {
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="'.$url.'";';
+            echo '</script>';
+            echo '<noscript>';
+            echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+            echo '</noscript>';
+        }
 		exit();
 	}
 	
 	/**
 	 * @param int $level
  	 */
-	public static function setCompression($level) {
+	private static function setCompression($level) {
 		self::$level = $level;
 	}
 	
 	/**
-	 * @return string
+	 * @return string|array
  	 */
 	public static function getOutput() {
 		return self::$output;
 	}
 	
 	/**
-	 * @param string $output
+	 * @param string|array $output
  	 */
 	public static function setOutput($output) {
 		self::$output = $output;
@@ -56,7 +66,7 @@ class Response {
 	 * @param	int		$level
 	 * @return	string
  	 */
-	private static function compress($data, $level = 0) {
+    private static function compress($data, $level = 0) {
 		if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && (strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false)) {
 			$encoding = 'gzip';
 		}
@@ -90,7 +100,7 @@ class Response {
 	 * output
      * Вывод данных пользователю
  	 */
-	public static function output() {
+    private static function output() {
 		if (self::$output) {
 			$output = self::$level ? self::compress(self::$output, self::$level) : self::$output;
 			

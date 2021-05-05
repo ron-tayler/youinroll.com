@@ -5,7 +5,7 @@ $time = explode(" ", microtime());
 define('TIME_SEC',$time[1]);
 define('TIME_USEC',$time[0]);
 unset($time);
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 
 // Заголовки
 header("Content-Type: text/html; charset=utf-8");
@@ -39,24 +39,27 @@ try{
 
     // Мапинг
     Engine\Router::map('/profile/:id','User/Profile',['GET'],['id'=>'\d+'],['1.0','1.0']);
-    Engine\Router::map('/profile/:id/info','User/Profile/info()',['GET'],['id'=>'\d+'],['1.0']);
-    Engine\Router::map('/profile/:id/subscribers','User/Profile/subscribers()',['GET'],['id'=>'\d+'],['1.0']);
-    Engine\Router::map('/profile/:id/subscriptions','User/Profile/subscriptions()',['GET'],['id'=>'\d+'],['1.0']);
-    Engine\Router::map('/channels','channel/list()',['GET'],[],['1.0']);
-    Engine\Router::map('/debug','Debug/worker()',['GET','POST'],['wait'=>'\w+']);
+    Engine\Router::map('/profile/:id/info','User/Profile::info',['GET'],['id'=>'\d+'],['1.0']);
+    Engine\Router::map('/profile/:id/subscribers','User/Profile::subscribers',['GET'],['id'=>'\d+'],['1.0']);
+    Engine\Router::map('/profile/:id/subscriptions','User/Profile::subscriptions',['GET'],['id'=>'\d+'],['1.0']);
+    Engine\Router::map('/channels','Channel::list',['GET'],[],['1.0']);
+    Engine\Router::map('/debug','Debug::worker',['GET','POST'],['wait'=>'\w+']);
 
     // Версия
     preg_match('/v?([1-9]+[0-9]*\.[0-9]+)/',$_GET['api'],$matches);
     // Запуск маршрута
-    $return = Engine\Router::execute($matches[1]);
+    Engine\Router::execute($matches[1]);
 
     // Вывод ответа
-    $resp = json_encode(['response'=>$return],JSON_UNESCAPED_UNICODE);
+    \Engine\Response::getOutput();
+    $resp = json_encode(['response'=>\Engine\Response::getOutput()],JSON_UNESCAPED_UNICODE);
     $buffer = ob_get_contents();
     ob_end_clean();
     echo $resp.$buffer;
 
 }catch (ErrorBase | ExceptionBase $err){
+    // TODO Отделить Исключения и вызывать ErrorBase с ошибкой непойманного исключения
+    // Всегда при любых фатальных ошибках нужно генерировать JSON Error Code 5
 
     $msg = ['error'=>[
         'code'=>$err->getCode(),
@@ -65,7 +68,7 @@ try{
 
     if(isset($_GET['debug']) and ($_GET['debug']=='private' or $_GET['debug']=='all')) {
         $msg['error']['private'] = $err->getPrivateMessage();
-        $msg['error']['Trace'] = $err->getTraceAsString();
+        echo '<br />'.$err->getTraceAsString();
     }
     Engine\Log::init('error')->print($err->getPrivateMessage());
     Engine\Log::init('error')->print($err->getTraceAsString());

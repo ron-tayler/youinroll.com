@@ -24,7 +24,7 @@ class Event{
      */
     public static function exec(string $hook,array $param){
         foreach (self::$events as $route){
-            if($route->getUrl()==$hook){
+            if($route->getPattern()==$hook){
                 $route->execute($param);
             }
         }

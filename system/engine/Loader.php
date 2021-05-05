@@ -1,6 +1,8 @@
 <?php
 
 namespace Engine;
+use ExceptionBase;
+
 /**
  * Class Loader
  * @package Engine
@@ -17,41 +19,43 @@ class Loader {
     /**
      * Method controller - Загрузка контролеров
      * @param string $name
-     * @return bool False при ошибке, True при успехе
+     * @throws ExceptionBase
      */
     public static function controller(string $name){
-        return self::load($name,DIR_CONTROLLER);
+        self::load($name,DIR_CONTROLLER);
     }
 
     /**
      * Method model - Загрузка моделей
      * @param string $name
-     * @return bool False при ошибке, True при успехе
+     * @throws ExceptionBase
      */
     public static function model(string $name){
-        return self::load($name,DIR_MODEL);
+        self::load($name,DIR_MODEL);
     }
 
     /**
      * Method library - Загрузка моделей
      * @param string $name
-     * @return bool False при ошибке, True при успехе
+     * @throws ExceptionBase
      */
     public static function library(string $name){
-        return self::load($name,DIR_LIB);
+        self::load($name,DIR_LIB);
     }
 
     /**
      * Method load - Универсальный загрузчик
-     * @param string $name 'video' or 'user/chanel/video'
+     * @param string $name 'Video' or 'User/Chanel/Video'
      * @param string $dir DIR_...
-     * @return bool False при ошибке, True при успехе
-     * @todo Добавить проверки
-     * Проверка $name по регулярке
+     * @throws ExceptionBase
      */
     private static function load(string $name,string $dir){
+        $reg = /** @lang PhpRegExp */ '/^(?:[A-Za-z_]+)(?:\/[A-Za-z_]+)*$/';
+        if(preg_match($reg,$name)!==1){
+            throw new ExceptionBase("Name '$name' указанно неверно",5);
+        }
         $file = $dir.'/'.strtolower($name).'.php';
-        if(!is_file($file)) return false;
-        return require_once $file;
+        if(!is_file($file)) throw new ExceptionBase("File '$file' не найден",5);
+        require_once $file;
     }
 }
