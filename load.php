@@ -39,7 +39,7 @@ set_error_handler(function($code, $message, $file, $line) use($err_log) {
 if (!isset($_SESSION)) { @session_start(); }
 // Root 
 if( !defined( 'ABSPATH' ) )
-	define( 'ABSPATH', str_replace( '\\', '/',  dirname( __FILE__ ) )  );
+	define( 'ABSPATH', __DIR__  );
 // Includes
 if( !defined( 'INC' ) )
 	define( 'INC', ABSPATH.'/lib' );

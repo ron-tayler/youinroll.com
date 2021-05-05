@@ -1,82 +1,86 @@
-<?php  //Notifications
-if(is_user() && (token() == "noty")) {
-if(isset($_SESSION['lastNoty'])) {
-if(($_SESSION['lastNoty'] - time()) < 1  ) { $continue = true;  } else { $continue = false;}
-} else {
-$continue = true;
-}
-$count = array("msg" => 0, "buzz" =>0);
-if($continue){
-$notif = $db->get_row("Select count(*) as nr from ".DB_PREFIX."activity where ((type not in (8,9) and ".DB_PREFIX."activity.object in (select id from ".DB_PREFIX."videos where user_id ='".user_id()."' ) ) or (type in (8,9) and ".DB_PREFIX."activity.object in (select id from ".DB_PREFIX."images where user_id ='".user_id()."' ) ) and user <> '".user_id()."') and `date` > '".user_noty()."'");
-if($notif) {
-$count["buzz"] = $notif->nr;	
-}
-if($lists) {
-$count["msg"] = 0;	
-}
+<?php //Notifications
+if (is_user() && (token() == "noty")) {
+    if (isset($_SESSION['lastNoty'])) {
+        if (($_SESSION['lastNoty'] - time()) < 1) {
+            $continue = true;
+        } else {
+            $continue = false;
+        }
+    } else {
+        $continue = true;
+    }
+    $count = array("msg" => 0, "buzz" => 0);
+    if ($continue) {
+        $notif = $db->get_row("Select count(*) as nr from " . DB_PREFIX . "activity where ((type not in (8,9) and " . DB_PREFIX . "activity.object in (select id from " . DB_PREFIX . "videos where user_id ='" . user_id() . "' ) ) or (type in (8,9) and " . DB_PREFIX . "activity.object in (select id from " . DB_PREFIX . "images where user_id ='" . user_id() . "' ) ) and user <> '" . user_id() . "') and `date` > '" . user_noty() . "'");
+        if ($notif) {
+            $count["buzz"] = $notif->nr;
+        }
+        if ($lists) {
+            $count["msg"] = 0;
+        }
 
-$_SESSION['lastNoty'] = time();	
-}
-echo json_encode($count);
+        $_SESSION['lastNoty'] = time();
+    }
+    echo json_encode($count);
 //End notifications
-LastOnline();
-exit();	
+    LastOnline();
+    exit();
 }
-if(token() == "categories") {
-$list = _get('list');
-echo '
+if (token() == "categories") {
+    $list = _get('list');
+    echo '
 <div class="cats cats-fixed-right">
 <div class="cats-inner">
-'.the_nav($list).'
+' . the_nav($list) . '
 </div>
 </div>
-';	
-exit();	
+';
+    exit();
 }
-if(token() == "autoplay") {
-if(isset($_SESSION['autoplayoff'])) {
-unset($_SESSION['autoplayoff']);
-setcookie('autoplayoff', '', -3600,'/', cookiedomain());
-} else {
-$_SESSION['autoplayoff'] = 1;
-setcookie('autoplayoff', 1 , time() + 60 * 60 * 24 * 5,'/', cookiedomain());
-}
-exit();	
+if (token() == "autoplay") {
+    if (isset($_SESSION['autoplayoff'])) {
+        unset($_SESSION['autoplayoff']);
+        setcookie('autoplayoff', '', -3600, '/', cookiedomain());
+    } else {
+        $_SESSION['autoplayoff'] = 1;
+        setcookie('autoplayoff', 1, time() + 60 * 60 * 24 * 5, '/', cookiedomain());
+    }
+    exit();
 }
 
 /* Playlist data */
-if(token() == "playlist") {
-$list = _get('list');
-    if(is_empty($list)) {
-	exit("Bad list id");
+if (token() == "playlist") {
+    $list = _get('list');
+    if (is_empty($list)) {
+        exit("Bad list id");
     }
-$video = new stdClass();
-$video->id = _get('videoid');
-$video->user_id = _get('idowner');
-$video->owner =  getUserName(_get('idowner'));
+    $video = new stdClass();
+    $video->id = _get('videoid');
+    $video->user_id = _get('idowner');
+    $video->owner = getUserName(_get('idowner'));
 //print_r($video);
-echo '<ul>';
+    echo '<ul>';
 
-layout('layouts/list');
-echo '</ul>';
+    layout('layouts/list');
+    echo '</ul>';
 }
 /* End list items */
 /* Related videos */
-if(token() == "relatedvids") {	
-$video_id = _get('videoid');
-if(is_empty($video_id)) {
-	exit("Bad video id");
-}
-$titles = $cachedb->get_row("SELECT tags,title FROM ".DB_PREFIX."videos where id= '".$video_id."'");
-$video = new stdClass();
-$video->category = _get('videocategory');
-$video->media = _get('videomedia');
-$video->id = $video_id;
-$video->title = $titles->title;
-$video->tags= $titles->tags;
-echo '<ul>';
-layout('layouts/related');
-echo '</ul>';
+if (token() == "relatedvids") {
+    $video_id = _get('videoid');
+    if (is_empty($video_id)) {
+        exit("Bad video id");
+    }
+    $titles = $cachedb->get_row("SELECT tags,title FROM " . DB_PREFIX . "videos where id= '" . $video_id . "'");
+    $video = new stdClass();
+    $video->category = _get('videocategory');
+    $video->media = _get('videomedia');
+    $video->id = $video_id;
+    $video->title = $titles->title;
+    $video->tags = $titles->tags;
+    echo '<ul>';
+    layout('layouts/related');
+    echo '</ul>';
 }
 /* End related videos */
 

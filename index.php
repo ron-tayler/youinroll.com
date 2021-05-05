@@ -19,9 +19,9 @@ if(isset($_GET['api']) or isset($_POST['api'])){
 /* End API */
 
 /* Start YouInRoll Vibe */
-error_reporting(E_ERROR);
+error_reporting(E_ALL);
 
-// Degugging?
+// Debugging?
 $sttime = microtime(true); 
 
 // Security
@@ -30,16 +30,7 @@ if( !defined( 'in_phpvibe' ) )
 
 // Root 
 if( !defined( 'ABSPATH' ) )
-	define( 'ABSPATH', str_replace( '\\', '/',  dirname( __FILE__ ) )  );
-
-//Check if installed
-if(!is_readable('vibe_config.php') || is_readable('hold')){
-    echo '<div style="padding:10% 20%; display:block; color:#fff; background:#ff604f"><h1>Hold on!</h1>';
-    echo '<h3> The configuration file needs editing OR/AND the "hold" file exists on your server! </h3><br />';
-    echo '<a href="setup/index.php"><h2>RUN PHPVibe\'s SETUP</h2></a></strong>';
-    echo '</div>';
-    die();
-}
+	define( 'ABSPATH', __DIR__);
 
 //Include configuration
 require_once( ABSPATH.'/vibe_config.php' );
