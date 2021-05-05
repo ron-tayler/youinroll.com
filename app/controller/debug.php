@@ -6,6 +6,7 @@ use Engine\Log;
 use Engine\Request;
 use Engine\Response;
 use Library\DB;
+use Library\RabbitMQ;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Exception\AMQPTimeoutException;
@@ -22,6 +23,7 @@ final class Debug implements \Engine\IController {
     private static DB $db;
     private static Log $log;
     private static Log $dlog;
+    private static RabbitMQ $rabbit;
 
     private static AMQPStreamConnection $connection;
     private static AMQPChannel $channel;
@@ -34,8 +36,13 @@ final class Debug implements \Engine\IController {
         self::$db = DB::init('base');
         self::$log = Log::init('error');
         self::$dlog = Log::init('debug');
-        Event::add('debug/event','Debug::event');
-        Event::add('debug/event','Debug::event');
+        \Engine\Loader::library('RabbitMQ');
+        self::$rabbit = RabbitMQ::init('base',[
+            'host'=>'youinrolltinod.com',
+            'port'=>5672,
+            'login'=>'xatikont',
+            'password'=>'tester322'
+        ]);
     }
 
     /**
@@ -80,21 +87,13 @@ final class Debug implements \Engine\IController {
         self::$channel->basic_publish($msg, 'debug', 'id'.$id);
     }
 
-    private static function connectAndListen($wait,$id):string{
-
-        // Подключаемся
-        $connection = new AMQPStreamConnection(
-            'youinrolltinod.com',
-            5672,
-            'xatikont',
-            'tester322'
-        );
-
-        // Создаём канал связи
-        $channel = $connection->channel();
-
+    public static function listen(array $param = []){
+        // Параметры
+        $wait = (int)\Engine\Request::$get['wait'];
+        $id = (int)$param['id'];
         $queue_id = 'debug-id'.$id.'-'.md5(rand(PHP_INT_MIN,PHP_INT_MAX));
         $fanout_id = 'debug-id'.$id;
+        $channel = self::$rabbit->getChannel();
 
         // Создаём очередь
         $channel->queue_declare(
@@ -114,18 +113,13 @@ final class Debug implements \Engine\IController {
             false
         );
 
-        // Подключаем очередь и распределитель
-        $channel->exchange_bind(
-            $fanout_id,
-            'debug',
-            'id'.$id
-        );
+        // Подключаем распределители и очередь
+        $channel->exchange_bind($fanout_id,'debug','id'.$id);
         $channel->queue_bind($queue_id,$fanout_id);
 
         //Функция, которая будет обрабатывать данные, полученные из очереди
         $response = null;
         $callback = function($msg) use (&$response) {
-            $this->log->printArrDebug($msg);
             $response .= $msg->body;
         };
 
@@ -140,7 +134,7 @@ final class Debug implements \Engine\IController {
             $callback
         );
 
-        $channel->basic_get('debug-rtf');
+        //$channel->basic_get('debug-rtf');
 
         try {
             // Уходим в прослушку
@@ -148,11 +142,7 @@ final class Debug implements \Engine\IController {
         }catch (AMQPTimeoutException $ex){
             $response = 'timeout';
         }
-
-        //Не забываем закрыть канал и соединение
-        $channel->close();
-        $connection->close();
-        return $response??"Сообщение не получено";
+        \Engine\Response::setOutput($response??'Сообщение не получено');
     }
 
     private static function connect2rabbit(){

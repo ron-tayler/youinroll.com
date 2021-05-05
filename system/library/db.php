@@ -45,7 +45,7 @@ class DB {
                 return self::$data[$name] = new self($adaptor, $hostname, $username, $password, $database, $port);
             }catch (\ExceptionBase $ex){
                 unset(self::$data[$name]);
-                throw new \ExceptionBase($ex->getPrivateMessage(),5,$ex->getMessage());
+                throw new \ExceptionBase($ex->getPrivateMessage(),5,$ex->getMessage(),$ex);
             }
         }
     }

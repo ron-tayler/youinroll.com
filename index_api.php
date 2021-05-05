@@ -43,7 +43,8 @@ try{
     Engine\Router::map('/profile/:id/subscribers','User/Profile::subscribers',['GET'],['id'=>'\d+'],['1.0']);
     Engine\Router::map('/profile/:id/subscriptions','User/Profile::subscriptions',['GET'],['id'=>'\d+'],['1.0']);
     Engine\Router::map('/channels','Channel::list',['GET'],[],['1.0']);
-    Engine\Router::map('/debug','Debug::worker',['GET','POST'],['wait'=>'\w+']);
+    Engine\Router::map('/debug','Debug::worker',['GET','POST'],[]);
+    Engine\Router::map('/listen/:id','Debug::listen',['GET'],['id'=>'\d+']);
 
     // Версия
     preg_match('/v?([1-9]+[0-9]*\.[0-9]+)/',$_GET['api'],$matches);
