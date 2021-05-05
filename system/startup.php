@@ -54,6 +54,7 @@ try {
     require_once DIR_ENGINE . '/Route.php';
     require_once DIR_ENGINE . '/Request.php';
     require_once DIR_ENGINE . '/Response.php';
+    require_once DIR_ENGINE . '/Event.php';
 
     // Логирование ошибок
     require_once DIR_ENGINE . '/Log.php';

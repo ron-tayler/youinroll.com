@@ -8,5 +8,6 @@ namespace Engine;
  * @copyright 2021
  */
 interface IController {
-    public function index(array $param);
+    static function index(array $param);
+    static function init();
 }

@@ -1,6 +1,9 @@
 <?php
 
 namespace Controller;
+use Engine\Log;
+use Engine\Request;
+use Library\DB;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Exception\AMQPTimeoutException;
@@ -12,23 +15,25 @@ use PhpAmqpLib\Message\AMQPMessage;
  * @author Ron_Tayler
  * @copyright 22.04.2021
  */
-class Debug implements \Engine\IController {
+final class Debug implements \Engine\IController {
 
-    private static \Library\DB $db;
-    private static \Engine\Log $log;
-    private static \Engine\Log $dlog;
+    private static DB $db;
+    private static Log $log;
+    private static Log $dlog;
 
-    private AMQPStreamConnection $connection;
-    private AMQPChannel $channel;
+    private static AMQPStreamConnection $connection;
+    private static AMQPChannel $channel;
 
     /**
      * Static method init
      * @throws \ExceptionBase
      */
     public static function init(){
-        self::$db = \Library\DB::init('base');
-        self::$log = \Engine\Log::init('error');
-        self::$dlog = \Engine\Log::init('debug');
+        self::$db = DB::init('base');
+        self::$log = Log::init('error');
+        self::$dlog = Log::init('debug');
+        \Engine\Event::add('debug/event','Debug/event()');
+        \Engine\Event::add('debug/event','Debug/event()');
     }
 
     /**
@@ -38,40 +43,43 @@ class Debug implements \Engine\IController {
      * @throws \Exception
      */
     public static function worker(array $param = []){
+        \Engine\Event::exec('debug/event',['text'=>'Hello event!']);
         $user = self::$db->select('*','users','id=1');
         return (array)$user->row;
     }
 
+    public static function event(array $param = []){
+        echo $param['text']??'text';
+        return [];
+    }
 
-    public function index(array $param)
+    public static function index(array $param = [])
     {
         $method = $param['method'];
         $ret = '';
         switch ($method){
             case 'listen':
-                $wait = $this->request->get['wait']??0;
-                $id = $this->request->get['user_id']??0;
-                $ret = $this->connectAndListen($wait,$id);
+                $wait = Request::$get['wait']??0;
+                $id = Request::$get['user_id']??0;
+                $ret = self::connectAndListen($wait,$id);
                 break;
             case 'send':
-                $id = $this->request->get['peer_id']??0;
-                $msg = $this->request->get['message']??'';
-                $this->connectAndSend($id,$msg);
+                $id = Request::$get['peer_id']??0;
+                $msg = Request::$get['message']??'';
+                self::connectAndSend($id,$msg);
                 $ret = 'Send \''.$msg.'\'';
                 break;
-            case 'work':
-
         }
         return ['message'=>$ret];
     }
 
-    private function connectAndSend($id,$msg){
+    private static function connectAndSend($id,$msg){
         $msg = new AMQPMessage($msg);
         
-        $this->channel->basic_publish($msg, 'debug', 'id'.$id);
+        self::$channel->basic_publish($msg, 'debug', 'id'.$id);
     }
 
-    private function connectAndListen($wait,$id):string{
+    private static function connectAndListen($wait,$id):string{
 
         // Подключаемся
         $connection = new AMQPStreamConnection(
@@ -146,19 +154,18 @@ class Debug implements \Engine\IController {
         return $response??"Сообщение не получено";
     }
 
-    private function connect2rabbit(){
-        $this->connection = new AMQPStreamConnection(
+    private static function connect2rabbit(){
+        self::$connection = new AMQPStreamConnection(
             'youinrolltinod.com',
             5672,
             'xatikont',
             'tester322'
         );
-        $this->channel = $this->connection->channel();
+        self::$channel = self::$connection->channel();
     }
 
-    private function disconnect2rabbit(){
-        $this->channel->close();
-        $this->connection->close();
+    private static function disconnect2rabbit(){
+        self::$channel->close();
+        self::$connection->close();
     }
-
 }
