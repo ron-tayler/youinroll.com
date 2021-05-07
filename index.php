@@ -1,8 +1,10 @@
 <?php
+set_time_limit(30);
+
 /* Start API */
-if(isset($_GET['api']) or isset($_POST['api'])){
-    $api = $_GET['api'] ?? $_POST['api'];
-    $res = preg_match('/v?[1-9]+[0-9]*\.[0-9]+/',$_GET['api']);
+$v_api = $_REQUEST['api']??false;
+if($v_api){
+    $res = preg_match('/v?[1-9]+[0-9]*\.[0-9]+/',$v_api);
     if($res===1){
         require_once __DIR__.'/index_api.php';
     }else{

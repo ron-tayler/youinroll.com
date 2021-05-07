@@ -7,7 +7,7 @@ namespace Controller\User;
  * @author Ron_Tayler
  * @copyright 2021
  */
-class Profile extends \LMVCL implements \IController{
+final class Profile {
 
     /**
      * публичная информация о пользователе по id

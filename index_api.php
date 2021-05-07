@@ -14,7 +14,7 @@ header("Content-Type: text/html; charset=utf-8");
 ob_start();
 
 //Дебаг
-if(isset($_GET['debug']) and ($_GET['debug']=='error' or $_GET['debug']=='all')){
+if(isset($_REQUEST['debug']) and ($_REQUEST['debug']=='error' or $_REQUEST['debug']=='all')){
     define('DISPLAY_ERROR',true);
 }
 
@@ -39,15 +39,18 @@ try{
 
     // Мапинг
     Engine\Router::map('/profile/:id','User/Profile',['GET'],['id'=>'\d+'],['1.0','1.0']);
-    Engine\Router::map('/profile/:id/info','User/Profile::info',['GET'],['id'=>'\d+'],['1.0']);
-    Engine\Router::map('/profile/:id/subscribers','User/Profile::subscribers',['GET'],['id'=>'\d+'],['1.0']);
-    Engine\Router::map('/profile/:id/subscriptions','User/Profile::subscriptions',['GET'],['id'=>'\d+'],['1.0']);
-    Engine\Router::map('/channels','Channel::list',['GET'],[],['1.0']);
-    Engine\Router::map('/debug','Debug::worker',['GET','POST'],[]);
-    Engine\Router::map('/listen/:id','Debug::listen',['GET'],['id'=>'\d+']);
+    Engine\Router::map('/profile/:id/info','User/Profile::info',['GET'],['id'=>'\d+']);
+    Engine\Router::map('/profile/:id/subscribers','User/Profile::subscribers',['GET'],['id'=>'\d+']);
+    Engine\Router::map('/profile/:id/subscriptions','User/Profile::subscriptions',['GET'],['id'=>'\d+']);
+    Engine\Router::map('/channels','Channel::list',['GET']);
+    Engine\Router::map('/debug','Debug::worker',['GET','POST']);
+    Engine\Router::map('/listen/event','Listen::Event',['GET']);
+    Engine\Router::map('/listen/im','Listen::im',['GET']);
+    Engine\Router::map('/listen/stream','Listen::stream',['GET']);
+    Engine\Router::map('/listen/conf','Listen::conf',['GET']);
 
     // Версия
-    preg_match('/v?([1-9]+[0-9]*\.[0-9]+)/',$_GET['api'],$matches);
+    preg_match('/v?([1-9]+[0-9]*\.[0-9]+)/',$v_api,$matches);
     // Запуск маршрута
     Engine\Router::execute($matches[1]);
 
@@ -67,7 +70,7 @@ try{
         'message'=>$err->getMessage()
     ]];
 
-    if(isset($_GET['debug']) and ($_GET['debug']=='private' or $_GET['debug']=='all')) {
+    if(isset($_REQUEST['debug']) and ($_REQUEST['debug']=='private' or $_REQUEST['debug']=='all')) {
         $msg['error']['private'] = $err->getPrivateMessage();
         echo '<br />'.$err->getTraceAsString();
     }
@@ -78,5 +81,5 @@ try{
 
     $buffer = ob_get_contents();
     ob_end_clean();
-    echo (isset($_GET['debug'])?'<pre>':'').$resp.$buffer;
+    echo (isset($_REQUEST['debug'])?'<pre>':'').$resp.$buffer;
 }

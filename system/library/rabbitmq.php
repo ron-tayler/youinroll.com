@@ -14,9 +14,17 @@ class RabbitMQ{
     /** @var RabbitMQ[] */
     static array $data = [];
 
+    /**
+     * @param string $name
+     * @param array $param
+     * @return RabbitMQ
+     * @throws \ExceptionBase
+     */
     public static function init(string $name = 'base', array $param = []){
         if(isset(self::$data[$name])){
             return self::$data[$name];
+        }elseif($param===[]){
+            throw new \ExceptionBase('RabbitMQ['.$name.'] not init.',5);
         }else{
             if(!isset($param['host'])) throw new \ExceptionBase('Не указан host для подключения к RabbitMQ',5);
             if(!isset($param['login'])) throw new \ExceptionBase('Не указан login для подключения к RabbitMQ',5);
@@ -26,18 +34,16 @@ class RabbitMQ{
             $login = $param['login'];
             $password = $param['password'];
 
-            try{
+            //try{
                 return self::$data[$name] = new self($host, $port, $login, $password);
+                /*
             }catch (\ExceptionBase $ex){
                 unset(self::$data[$name]);
                 throw new \ExceptionBase($ex->getPrivateMessage(),5,$ex->getMessage(),$ex);
-            }
+            }//*/
         }
     }
-    public static function final(string $name){
-        self::$data[$name]->__destruct();
-        unset(self::$data[$name]);
-    }
+//----------------------------------------------------------------------------------------------------------------------
 
     private AMQPStreamConnection $connection;
     private AMQPChannel $channel;
@@ -51,7 +57,7 @@ class RabbitMQ{
      * Get Connection
      * @return AMQPStreamConnection
      */
-    public function getConnection(): AMQPChannel{
+    public function getConnection(): AMQPStreamConnection{
         return $this->connection;
     }
 
@@ -63,7 +69,7 @@ class RabbitMQ{
         return $this->channel;
     }
 
-    private function __destruct(){
+    public function __destruct(){
         $this->channel->close();
         $this->connection->close();
     }

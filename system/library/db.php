@@ -24,12 +24,14 @@ class DB {
      * Инициализация подключения или получение из списка
      * @param string $name
      * @param array $param
-     * @return DB|mixed
+     * @return DB
      * @throws \ExceptionBase
      */
     public static function init(string $name, array $param = []){
         if(isset(self::$data[$name])){
             return self::$data[$name];
+        }elseif($param===[]){
+            throw new \ExceptionBase('DB['.$name.'] not init.',5);
         }else{
             if(!isset($param['username'])) throw new \ExceptionBase('Не указан пользователь для подключения к БД',5);
             if(!isset($param['password'])) throw new \ExceptionBase('Не указан пароль для подключения к БД',5);

@@ -5,6 +5,7 @@ use Engine\Event;
 use Engine\Log;
 use Engine\Request;
 use Engine\Response;
+use ExceptionBase;
 use Library\DB;
 use Library\RabbitMQ;
 use PhpAmqpLib\Channel\AMQPChannel;
@@ -30,7 +31,7 @@ final class Debug implements \Engine\IController {
 
     /**
      * Static method init
-     * @throws \ExceptionBase
+     * @throws ExceptionBase
      */
     public static function init(){
         self::$db = DB::init('base');
