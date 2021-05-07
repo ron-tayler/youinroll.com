@@ -17,7 +17,8 @@ class Log {
      * @param string $filename
      */
 	public function __construct($filename) {
-	    $this->random_hash = substr(md5($_SERVER['REMOTE_ADDR']),0,8).'-'.md5(rand(0,PHP_INT_MAX));
+	    $usec = explode('.',(string)(explode(" ", microtime())[0]))[1];
+        $this->random_hash = date('d.m.Y-H:i:s.').$usec.'-'.md5($usec);
 		$this->handle = fopen($filename.'_'.$this->random_hash.'.log', 'a');
 		fwrite($this->handle,str_pad('',20,'-').'[ Start ]'.str_pad('',20,'-') . PHP_EOL);
 	}
