@@ -52,13 +52,10 @@ class Route{
         }
 
         Loader::controller($controller);
-        $class = 'Controller\\'.str_replace('/','\\',$controller);
 
-        if(!class_exists($class)) throw new ExceptionBase('Класс '.$class.' Не объявлен',5);
-        if(!is_callable(Array($class, "init"))) throw new ExceptionBase('Невозможно вызвать метод '.$class.'::init',5);
+        $class = 'Controller\\'.str_replace('/','\\',$controller);
         if(!is_callable(array($class, $method))) throw new ExceptionBase('Невозможно вызвать метод '.$class.'::'.$method,5);
 
-        call_user_func(Array($class, "init"));
         call_user_func(Array($class, $method),$params);
     }
 

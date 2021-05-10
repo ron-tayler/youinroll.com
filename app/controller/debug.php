@@ -49,7 +49,6 @@ final class Debug implements \Engine\IController {
     /**
      * Static method worker
      * @param array $param
-     * @return array
      * @throws \Exception
      */
     public static function worker(array $param = []){
@@ -159,5 +158,42 @@ final class Debug implements \Engine\IController {
     private static function disconnect2rabbit(){
         self::$channel->close();
         self::$connection->close();
+    }
+
+    public static function test_search_queue(){
+        $channel = self::$rabbit->getChannel();
+
+        $info_1 = $channel->queue_declare(
+            'debug_rtf_1',
+            false,
+            false,
+            false,
+            false,
+            false
+        );
+        $info_2 = $channel->queue_declare(
+            'debug_rtf_2',
+            false,
+            false,
+            false,
+            false,
+            false
+        );
+        $info_3 = $channel->queue_declare(
+            'debug_rtf_3',
+            false,
+            false,
+            false,
+            false,
+            false
+        );
+
+        \Engine\Log::init('debug')->print(print_r($info_1,true));
+        \Engine\Log::init('debug')->print(print_r($info_2,true));
+        \Engine\Log::init('debug')->print(print_r($info_3,true));
+
+        $channel->basic_consume('debug_rtf_1');
+
+        $channel->wait(null,false,10);
     }
 }

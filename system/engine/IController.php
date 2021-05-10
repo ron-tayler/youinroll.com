@@ -9,5 +9,5 @@ namespace Engine;
  */
 interface IController {
     static function init();
-    static function index(array $param);
+    static function index(array $param = []);
 }

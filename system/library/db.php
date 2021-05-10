@@ -90,7 +90,7 @@ class DB {
      * @return bool|\stdClass|string
      * @throws \Exception
      */
-	public function selectAll($tbl,$where,$is_return=false){
+	public function selectAll($tbl,$where=null,$is_return=false){
 	    return $this->select('*',$tbl,$where,$is_return);
     }
 
@@ -103,9 +103,9 @@ class DB {
      * @return bool|\stdClass|string
      * @throws \Exception
      */
-    public function select($select,$tbl,$where,$is_return=false){
+    public function select($select,$tbl,$where=null,$is_return=false){
         $sql = 'SELECT '.$select.' FROM '.DB_PREFIX.$tbl;
-        if(isset($where))$sql.=' WHERE '.$where;
+        if(isset($where) and !empty($where)) $sql.=' WHERE '.$where;
         if($is_return)
             return $sql;
         else
