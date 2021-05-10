@@ -1,7 +1,10 @@
 <?php
 
-
 namespace Controller;
+use Engine\IController;
+use Engine\Request;
+use Engine\Response;
+use Library\DB;
 
 /**
  * Class Controller/Channel
@@ -9,8 +12,13 @@ namespace Controller;
  * @author Ron_Tayler
  * @copyright 2021
  */
-class Channel extends \LMVCL implements \IController
-{
+class Channel implements IController{
+
+    static DB $db;
+
+    static function init(){
+        self::$db = DB::init('base');
+    }
 
     /**
      * index
@@ -19,7 +27,7 @@ class Channel extends \LMVCL implements \IController
      * @api
      * @version
      */
-    public function index(array $param){
+    static function index(array $param = []){
         return [];
     }
 
@@ -31,15 +39,15 @@ class Channel extends \LMVCL implements \IController
      * @api /channels
      * @version 1.0
      */
-    public function list(array $param){
-        $offset = $this->request->get['offset']??'0';
+    static function list(array $param){
+        $offset = Request::$get['offset']??'0';
         // Проверка по регулярному
         if(preg_match('/^[0-9]?$/',$offset)!==1)
-            throw new \Error\Controller\User\Profile('Переданный offset имеет значение: '.$offset,7,'Ошибка в параметре offset');
+            throw new \Error\Controller\User\ProfileError('Переданный offset имеет значение: '.$offset,7,'Ошибка в параметре offset');
 
         $offset = (int)$offset;
 
-        $res = $this->db->selectAll('users','1 ORDER BY lastNoty DESC,views DESC LIMIT '.$offset.',100');
+        $res = self::$db->selectAll('users','1 ORDER BY lastNoty DESC,views DESC LIMIT '.$offset.',100');
 
         $data = [];
         foreach ($res->rows as $row){
@@ -50,6 +58,6 @@ class Channel extends \LMVCL implements \IController
                 'onAir'=>(int)$row['onAir']
             ];
         }
-        return $data;
+        Response::setOutput($data);
     }
 }

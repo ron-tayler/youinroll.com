@@ -1,44 +1,43 @@
 <?php
-/**
-* @package		SITE
-* @author		Ron tayler
-* @copyright	2020
-*/
 
+namespace Engine;
 /**
 * Request class
-*/
-class Request implements IEngine {
-	public array $get = [];
-	public array $post = [];
-	public array $request = [];
-	public array $cookie = [];
-	public array $files = [];
-	public array $server = [];
+ * @package Engine
+ * @author Ron_Tayler
+ * @copyright 04.05.2021
+ */
+class Request {
+	public static array $get = [];
+	public static array $post = [];
+	public static array $request = [];
+	public static array $cookie = [];
+	public static array $files = [];
+	public static array $server = [];
 	
 	/**
-	 * Request constructor
+	 * Request init
  	 */
-	public function __construct() {
-		$this->get = $this->clean($_GET);
-		$this->post = $this->clean($_POST);
-		$this->request = $this->clean($_REQUEST);
-		$this->cookie = $this->clean($_COOKIE);
-		$this->files = $this->clean($_FILES);
-		$this->server = $this->clean($_SERVER);
+	public static function init() {
+		self::$get = self::clean($_GET);
+        self::$post = self::clean($_POST);
+        self::$request = self::clean($_REQUEST);
+        self::$cookie = self::clean($_COOKIE);
+        self::$files = self::clean($_FILES);
+        self::$server = self::clean($_SERVER);
 	}
 	
 	/**
      * Method clean - очистка спец. символов html
-	 * @param array $data
-     * @return array
+	 * @param array|string $data
+     * @return array|string
      */
-	private function clean($data) {
+	private static function clean($data) {
 		if (is_array($data)) {
 			foreach ($data as $key => $value) {
 				unset($data[$key]);
 
-				$data[$this->clean($key)] = $this->clean($value);
+				$data[self::clean($key)] = self::clean($value);
 			}
 		} else {
 			$data = htmlspecialchars($data, ENT_COMPAT, 'UTF-8');

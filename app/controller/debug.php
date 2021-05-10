@@ -1,65 +1,99 @@
 <?php
 
 namespace Controller;
+use Engine\Event;
+use Engine\Log;
+use Engine\Request;
+use Engine\Response;
+use ExceptionBase;
+use Library\DB;
+use Library\RabbitMQ;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Exception\AMQPTimeoutException;
 use PhpAmqpLib\Message\AMQPMessage;
+
 /**
  * Class Controller\Debug
- * @package YouInRoll.com
+ * @package Controller
  * @author Ron_Tayler
  * @copyright 22.04.2021
  */
-class Debug extends \LMVCL implements \IController
-{
+final class Debug implements \Engine\IController {
 
-    private AMQPStreamConnection $connection;
-    private AMQPChannel $channel;
+    private static DB $db;
+    private static Log $log;
+    private static Log $dlog;
+    private static RabbitMQ $rabbit;
 
-    public function index(array $param)
+    private static AMQPStreamConnection $connection;
+    private static AMQPChannel $channel;
+
+    /**
+     * Static method init
+     * @throws ExceptionBase
+     */
+    public static function init(){
+        self::$db = DB::init('base');
+        self::$log = Log::init('error');
+        self::$dlog = Log::init('debug');
+        \Engine\Loader::library('RabbitMQ');
+        self::$rabbit = RabbitMQ::init('base',[
+            'host'=>'youinrolltinod.com',
+            'port'=>5672,
+            'login'=>'xatikont',
+            'password'=>'tester322'
+        ]);
+    }
+
+    /**
+     * Static method worker
+     * @param array $param
+     * @throws \Exception
+     */
+    public static function worker(array $param = []){
+        Event::exec('debug/event',['text'=>'Hello event!']);
+        $user = self::$db->select('*','users','id=1');
+        Response::setOutput((array)$user->row);
+    }
+
+    public static function event(array $param = []){
+        echo $param['text']??'text';
+    }
+
+    public static function index(array $param = [])
     {
         $method = $param['method'];
         $ret = '';
         switch ($method){
             case 'listen':
-                $wait = $this->request->get['wait']??0;
-                $id = $this->request->get['user_id']??0;
-                $ret = $this->connectAndListen($wait,$id);
+                $wait = Request::$get['wait']??0;
+                $id = Request::$get['user_id']??0;
+                $ret = self::connectAndListen($wait,$id);
                 break;
             case 'send':
-                $id = $this->request->get['peer_id']??0;
-                $msg = $this->request->get['message']??'';
-                $this->connectAndSend($id,$msg);
+                $id = Request::$get['peer_id']??0;
+                $msg = Request::$get['message']??'';
+                self::connectAndSend($id,$msg);
                 $ret = 'Send \''.$msg.'\'';
                 break;
-            case 'work':
-
         }
         return ['message'=>$ret];
     }
 
-    private function connectAndSend($id,$msg){
+    private static function connectAndSend($id,$msg){
         $msg = new AMQPMessage($msg);
         
-        $this->channel->basic_publish($msg, 'debug', 'id'.$id);
+        self::$channel->basic_publish($msg, 'debug', 'id'.$id);
     }
 
-    private function connectAndListen($wait,$id):string{
-
-        // Подключаемся
-        $connection = new AMQPStreamConnection(
-            'youinrolltinod.com',
-            5672,
-            'xatikont',
-            'tester322'
-        );
-
-        // Создаём канал связи
-        $channel = $connection->channel();
-
+    public static function listen(array $param = []){
+        // Параметры
+        $wait = (int)\Engine\Request::$get['wait'];
+        $id = (int)$param['id'];
         $queue_id = 'debug-id'.$id.'-'.md5(rand(PHP_INT_MIN,PHP_INT_MAX));
         $fanout_id = 'debug-id'.$id;
+        $channel = self::$rabbit->getChannel();
 
         // Создаём очередь
         $channel->queue_declare(
@@ -79,18 +113,13 @@ class Debug extends \LMVCL implements \IController
             false
         );
 
-        // Подключаем очередь и распределитель
-        $channel->exchange_bind(
-            $fanout_id,
-            'debug',
-            'id'.$id
-        );
+        // Подключаем распределители и очередь
+        $channel->exchange_bind($fanout_id,'debug','id'.$id);
         $channel->queue_bind($queue_id,$fanout_id);
 
         //Функция, которая будет обрабатывать данные, полученные из очереди
         $response = null;
         $callback = function($msg) use (&$response) {
-            $this->log->printArrDebug($msg);
             $response .= $msg->body;
         };
 
@@ -105,7 +134,7 @@ class Debug extends \LMVCL implements \IController
             $callback
         );
 
-        $channel->basic_get('debug-rtf');
+        //$channel->basic_get('debug-rtf');
 
         try {
             // Уходим в прослушку
@@ -113,30 +142,58 @@ class Debug extends \LMVCL implements \IController
         }catch (AMQPTimeoutException $ex){
             $response = 'timeout';
         }
-
-        //Не забываем закрыть канал и соединение
-        $channel->close();
-        $connection->close();
-        return $response??"Сообщение не получено";
+        \Engine\Response::setOutput($response??'Сообщение не получено');
     }
 
-    private function worker(){
-
-    }
-
-    private function connect2rabbit(){
-        $this->connection = new AMQPStreamConnection(
+    private static function connect2rabbit(){
+        self::$connection = new AMQPStreamConnection(
             'youinrolltinod.com',
             5672,
             'xatikont',
             'tester322'
         );
-        $this->channel = $this->connection->channel();
+        self::$channel = self::$connection->channel();
     }
 
-    private function disconnect2rabbit(){
-        $this->channel->close();
-        $this->connection->close();
+    private static function disconnect2rabbit(){
+        self::$channel->close();
+        self::$connection->close();
     }
 
+    public static function test_search_queue(){
+        $channel = self::$rabbit->getChannel();
+
+        $info_1 = $channel->queue_declare(
+            'debug_rtf_1',
+            false,
+            false,
+            false,
+            false,
+            false
+        );
+        $info_2 = $channel->queue_declare(
+            'debug_rtf_2',
+            false,
+            false,
+            false,
+            false,
+            false
+        );
+        $info_3 = $channel->queue_declare(
+            'debug_rtf_3',
+            false,
+            false,
+            false,
+            false,
+            false
+        );
+
+        \Engine\Log::init('debug')->print(print_r($info_1,true));
+        \Engine\Log::init('debug')->print(print_r($info_2,true));
+        \Engine\Log::init('debug')->print(print_r($info_3,true));
+
+        $channel->basic_consume('debug_rtf_1');
+
+        $channel->wait(null,false,10);
+    }
 }

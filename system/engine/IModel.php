@@ -1,4 +1,6 @@
 <?php
+
+namespace Engine;
 /**
  * Interface IModel
  * @package YouInRoll.com

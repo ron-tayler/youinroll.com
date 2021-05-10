@@ -1,6 +1,6 @@
 <?php
-namespace DB;
-final class MSSQL {
+namespace Library\DB;
+final class MSSQL implements IAdaptor{
 	private $connection;
 
 	public function __construct($hostname, $username, $password, $database, $port = '1433') {
@@ -76,4 +76,8 @@ final class MSSQL {
 	public function __destruct() {
 		mssql_close($this->connection);
 	}
+
+    public function connected(){
+        return (bool)($this->connection);
+    }
 }
