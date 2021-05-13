@@ -28,7 +28,6 @@ class Listen implements \Engine\IController {
     /**
      * @param array $param
      * @throws ExceptionBase
-     * @todo Частично является псевдокодом!
      */
     public static function stream(array $param = []){
         // Полученные\заполнение данных
