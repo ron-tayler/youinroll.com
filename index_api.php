@@ -5,7 +5,6 @@ $time = explode(" ", microtime());
 define('TIME_SEC',$time[1]);
 define('TIME_USEC',$time[0]);
 unset($time);
-ini_set('display_errors', 1);
 
 // Заголовки
 header("Content-Type: text/html; charset=utf-8");
@@ -13,8 +12,17 @@ header("Content-Type: text/html; charset=utf-8");
 // Буферизация
 ob_start();
 
-//Дебаг
-if(isset($_REQUEST['debug']) and ($_REQUEST['debug']=='error' or $_REQUEST['debug']=='all')){
+//Дебаг [error_to_display, trace_to_display, private_msg_to_json]
+$debug_types =[
+    '0'         =>0,
+    'private'   =>0b1,
+    'trace'     =>0b10,
+    'error'     =>0b100,
+    'localhost' =>0b1000,
+    'request'   =>0b10000,
+    'all'       =>0b11111
+];
+if($debug_types[$_REQUEST['debug']??0] & 0b100){
     define('DISPLAY_ERROR',true);
 }
 
@@ -77,9 +85,11 @@ try{
         'message'=>$err->getMessage()
     ]];
 
-    if(isset($_REQUEST['debug']) and ($_REQUEST['debug']=='private' or $_REQUEST['debug']=='all')) {
+    if($debug_types[$_REQUEST['debug']??0] & 0b001) {
         $msg['error']['private'] = $err->getPrivateMessage();
-        echo '<br />'.$err->getTraceAsString();
+    }
+    if($debug_types[$_REQUEST['debug']??0] & 0b010) {
+        echo PHP_EOL.$err->getTraceAsString();
     }
     Engine\Log::init('error')->print($err->getPrivateMessage());
     Engine\Log::init('error')->print($err->getTraceAsString());
@@ -88,5 +98,5 @@ try{
 
     $buffer = ob_get_contents();
     ob_end_clean();
-    echo (isset($_REQUEST['debug'])?'<pre>':'').$resp.$buffer;
+    echo $resp.$buffer;
 }
