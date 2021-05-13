@@ -8,6 +8,9 @@ unset($time);
 
 // Заголовки
 header("Content-Type: text/html; charset=utf-8");
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET,POST');
+header('Access-Control-Allow-Headers: Content-Type');
 
 // Буферизация
 ob_start();
@@ -33,16 +36,19 @@ try{
     // Движок
     require_once DIR_SYSTEM.'/startup.php';
 
+    \Engine\Log::init('debug')->print(file_get_contents('php://input'));
+    \Engine\Log::init('debug')->print(print_r($_REQUEST,true));
+
     // Инициализация элементов
     Engine\Request::init();
     Engine\Loader::library('DB');
     Library\DB::init('base',[
         'adaptor'=>'mysqli',
-        'hostname'=>'mysql',
+        'hostname'=>DB_HOSTNAME,
         'port'=>3306,
-        'username'=>'root',
-        'password'=>'root',
-        'database'=>'youinroll'
+        'username'=>DB_USERNAME,
+        'password'=>DB_PASSWORD,
+        'database'=>DB_DATABASE
     ]);
 
     \Engine\Loader::library('user');
