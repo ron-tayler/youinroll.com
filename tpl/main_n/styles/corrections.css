@@ -89,7 +89,7 @@ ul.socialfooter li {
 .hamburger .line{
   width: 20px;
   height: 2px;
-  background-color: #000;
+  background-color: #fff;
   display: block;
   margin: 3px auto;
   -webkit-transition: all 0.35s ease-in-out;
