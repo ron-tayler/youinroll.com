@@ -9,7 +9,7 @@
 	if ((!isset($_SERVER['REQUEST_URI']) || ltrim($_SERVER['REQUEST_URI'],'/') === '') && !is_user()) {
 	echo ' item-activ';
 	}
-
+    // TODO Тут работать
 	if(is_user() && com() !== 'profile'){
 		echo '"><a href="'.profile_url(user_id(), user_name()).'?sk=about"><span class="iconed"><img src="/tpl/main/icon-menu/home.png" alt="icon" /></span> Мой канал</a><span class="tooltip-item" style="margin-left:-8px">Мой канал</span></li>';
 
