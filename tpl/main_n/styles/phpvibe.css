@@ -2243,7 +2243,8 @@ li.indanger {
     height: 62px;
     width: 100%;
     z-index: 2039;
-    background-color: #fff;
+    background-color: rgba(18,18,18,.8);
+    backdrop-filter: blur(40px);
     padding: 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -2279,7 +2280,8 @@ a.logo {
     float: left;
     padding-left: 34px;
     line-height: 60px;
-    vertical-align: middle
+    vertical-align: middle;
+    max-width: 180px;
 }
 
 .logo>span {
