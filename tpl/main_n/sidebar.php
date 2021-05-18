@@ -63,7 +63,7 @@
                     ">' . $messagesCount . '</span></span>' . _lang('Чат') . '</a><span class="tooltip-item" style="margin-left:-15px">' . _lang('Чат') . '</span></li>';
 
                 } ?>
-                <!-- // TODO Тут сделать полоску -->
+                <hr/>
                 <? if(get_option('premiumhub', 1)==1){ ?>
                     <li class="lihead <?=($_SERVER['REQUEST_URI'] == "/premiumhub/browse/")?'item-activ':''?>">
                         <a href="<?=hub_url(browse)?>"><span class="iconed"><img src="/tpl/main/icon-menu/zvez.png" alt="icon" /></span><?=_lang('Premium Hub')?></a>
