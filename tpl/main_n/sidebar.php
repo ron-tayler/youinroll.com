@@ -112,130 +112,109 @@
                     </li>
                 <? } ?>
 
-        <?
-        if (get_option('showblog', 1) == 1) {
-            echo '<li class="lihead';
-            if ($_SERVER['REQUEST_URI'] == '/blog/') {
-                echo ' item-activ';
-            }
-            echo '"><a href="' . site_url() . blog . '/"><span class="iconed"><img src="/tpl/main/icon-menu/blog.png" alt="icon" /></span>' . _lang('Blog') . '</a><span class="tooltip-item" style="margin-left:-15px">' . _lang('Blog') . '</span></li>';;
-        }
 
-        echo '</ul></div>';
-        /* End of menu */
-        ?>
-        <?php
-        if (is_user()) {
-            /* start my playlists */
-            ?>
+                <? if (get_option('showblog', 1)==1){ ?>
+                    <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/blog/')?'item-activ':''?>">
+                        <a href="<?=site_url().blog?>/">
+                            <span class="iconed"><img src="/tpl/main/icon-menu/blog.png" alt="icon" /></span>
+                            <?=_lang('Blog')?>
+                        </a>
+                        <span class="tooltip-item" style="margin-left:-15px"><?=_lang('Blog')?></span>
+                    </li>
+                <? } ?>
+            </ul>
+        </div>
+
+        <? if(is_user()){ ?>
             <hr/>
             <div class='relative'>
                 <h4 class="li-heading li-heading-iconed">
-                    <a style="color: #797E89;"
-                       href="https://youinroll.com/me?sk=playlists"
-                       title="<?php echo _("View all"); ?>">
-                        <h5><?= _lang('My playlists') ?></h5></a>
-
+                    <a style="color: #797E89;" href="https://youinroll.com/me?sk=playlists" title="<?=_("View all")?>">
+                        <h5><?= _lang('My playlists') ?></h5>
+                    </a>
                 </h4>
                 <div class="sidebar-nav blc">
                     <ul id="playlistItems">
-                        <i id="playlistDropdown" class="material-icons" type="button"
-                           data-page="1" title="<?= _lang('Expand'); ?>">
-                            &#xe313;
-                        </i>
-                        <i id="playlistMinimize" class="material-icons" title="<?= _lang('Minimize'); ?>">
-                            &#xe316;
-                        </i>
+                        <i id="playlistDropdown" class="material-icons" type="button"data-page="1" title="<?=_lang('Expand')?>">&#xe313;</i>
+                        <i id="playlistMinimize" class="material-icons" title="<?=_lang('Minimize')?>">&#xe316;</i>
                     </ul>
                 </div>
             </div>
             <hr/>
-            <?
-            /* end my playlists */
-            /* start my albums */
-            /* $albums = $cachedb->get_results("SELECT id, title FROM ".DB_PREFIX."playlists where owner= '".user_id()."' and picture not in ('[likes]','[history]','[later]') and ptype > 1 order by title asc limit 0,100");
-            if($albums) {
-            foreach ($albums as $play) {
-            echo '<li>
-            <a href="'.playlist_url($play->id, $play->title).'" original-title="'.$play->title.'" title="'.$play->title.'"><i class="material-icons">&#xE438;</i>
-            '._html(_cut($play->title, 24)).'
-            </a>
-            </li>';
-            }
-            }
-            echo '</ul>
-            </div>'; */
-
-            /* end my albums */
-            /* start my  subscriptions */
-            ?>
             <div class='relative'>
                 <h4 class="li-heading">
-                    <a style="color: #797E89;"
-                       href="<?php echo profile_url(user_id(), user_name()); ?>?sk=subscribed"
-                       title="<?php echo _("View all"); ?>"><?php echo _lang('My subscriptions'); ?> </a>
+                    <a style="color: #797E89;" href="<?=profile_url(user_id(), user_name())?>?sk=subscribed" title="<?php echo _("View all"); ?>">
+                        <?=_lang('My subscriptions')?>
+                    </a>
                 </h4>
                 <div class="sidebar-nav blc">
                     <ul id="subscribtionItems">
                     </ul>
                     <div id="subscriptionDropdown" class="" type="button" data-page="1">
-                        <i class="material-icons" type="button"
-                           data-page="1" title="<?= _lang('Expand'); ?>">
-                            &#xe313;
-                        </i><span><?= _lang('Expand'); ?></span>
+                        <i class="material-icons" type="button" data-page="1" title="<?=_lang('Expand')?>">&#xe313;</i>
+                        <span><?=_lang('Expand')?></span>
                     </div>
                     <div id="subscriptionMinimize" class="" type="button">
-                        <i class="material-icons" title="<?= _lang('Minimize'); ?>">
-                            &#xe316;
-                        </i><span><?= _lang('Minimize'); ?></span>
+                        <i class="material-icons" title="<?=_lang('Minimize')?>">&#xe316;</i>
+                        <span><?=_lang('Minimize')?></span>
                     </div>
                 </div>
             </div>
             <hr/>
-            <?php
-            /* end subscriptions */
-            echo '<div id="endSidebar"><h4 class="li-heading">' . _lang('Другие возможности') . '</h4>';
-            echo '<div class="sidebar-nav blc"><ul>';
-
-            if (!has_premium()) {
-                echo '<li class="lihead';
-                if ($_SERVER['REQUEST_URI'] == '/payment') {
-                    echo ' item-activ';
-                }
-                echo '"><a href="/payment"><span class="iconed"><img src="/tpl/main/icon-menu/zvez.png" alt="icon" /></span> ' . _lang("Get Premium") . '</a><span class="tooltip-item" style="margin-left:-8px">' . _lang("Get Premium") . '</span></li>';
-            }
-
-            echo '<li class="lihead';
-            if ($_SERVER['REQUEST_URI'] == '/dashboard?sk=edit') {
-                echo ' item-activ';
-            }
-            echo '"><a href="/dashboard?sk=edit"><span class="iconed"><img src="/tpl/main/icon-menu/settings.svg" alt="icon" /></span> ' . _lang("My Settings") . '</a><span class="tooltip-item" style="margin-left:-8px">' . _lang("My Settings") . '</span></li>';
-
-            echo "</ul></div></div>";
-            do_action('user-sidebar-end');
-        } else {
-            echo '<div class="blc mtop20 odet fs300" id="guestButton">';
-            echo _lang('Share videos, music and pictures, follow friends and keep track of what you enjoy!');
-            echo '<p class="small mright20 mleft10"><a href="/login" class="btn-primary1 btn-small btn-block mtop20">		
-		' . _lang("Join us") . '</a> </p>';
-            echo '</div>';
-            echo '<div id="endSidebar"><h4 class="li-heading">' . _lang('Другие возможности') . '</h4>';
-            echo '<div class="sidebar-nav blc"><ul>';
-
-            if (!has_premium()) {
-                echo '<li class="lihead';
-                if ($_SERVER['REQUEST_URI'] == '/payment') {
-                    echo ' item-activ';
-                }
-                echo '"><a href="/payment"><span class="iconed"><img src="/tpl/main/icon-menu/zvez.png" alt="icon" /></span> ' . _lang("Get Premium") . '</a><span class="tooltip-item" style="margin-left:-8px">' . _lang("Get Premium") . '</span></li>';
-            }
-
-            echo '</ul></div></div>';
-            do_action('guest-sidebar');
-        }
-        do_action('sidebar-end');
-        echo _ad('0', 'sidebar-end')
-        ?>
+            <div id="endSidebar">
+                <h4 class="li-heading">
+                    <?=_lang('Другие возможности')?>
+                </h4>
+                <div class="sidebar-nav blc">
+                    <ul>
+                        <? if(!has_premium()){ ?>
+                            <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/payment')?'item-activ':''?>">
+                                <a href="/payment">
+                                    <span class="iconed"><img src="/tpl/main/icon-menu/zvez.png" alt="icon" /></span>
+                                    <?=_lang("Get Premium")?>
+                                </a>
+                                <span class="tooltip-item" style="margin-left:-8px"><?=_lang("Get Premium")?></span>
+                            </li>';
+                        <? } ?>
+                        <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/dashboard?sk=edit')?'item-activ':''?>">
+                            <a href="/dashboard?sk=edit">
+                                <span class="iconed"><img src="/tpl/main/icon-menu/settings.svg" alt="icon" /></span>
+                                <?=_lang("My Settings")?>
+                            </a>
+                            <span class="tooltip-item" style="margin-left:-8px"><?=_lang("My Settings")?></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <? do_action('user-sidebar-end') ?>
+        <? }else{ ?>
+            <div class="blc mtop20 odet fs300" id="guestButton">
+                <?=_lang('Share videos, music and pictures, follow friends and keep track of what you enjoy!')?>
+                <p class="small mright20 mleft10">
+                    <a href="/login" class="btn-primary1 btn-small btn-block mtop20">
+                    <?=_lang("Join us")?></a>
+                </p>
+            </div>
+            <div id="endSidebar">
+                <h4 class="li-heading"><?=_lang('Другие возможности')?></h4>
+                <div class="sidebar-nav blc">
+                    <ul>
+                        <? if(!has_premium()){ ?>
+                            <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/payment')?'item-activ':''?>">
+                                <a href="/payment">
+                                    <span class="iconed"><img src="/tpl/main/icon-menu/zvez.png" alt="icon" /></span>
+                                    <?=_lang("Get Premium")?>
+                                </a>
+                                <span class="tooltip-item" style="margin-left:-8px"><?=_lang("Get Premium")?></span>
+                            </li>';
+                        <? } ?>
+                    </ul>
+                </div>
+            </div>
+            <? do_action('guest-sidebar') ?>
+        <? } ?>
+        <? do_action('sidebar-end') ?>
+        <?=_ad('0', 'sidebar-end')?>
         <div class="blc">&nbsp;</div>
     </div>
 </div>
