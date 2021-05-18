@@ -1,122 +1,118 @@
-<div id="sidebar" class="<?php if (is_video() || is_picture() || is_com('stream') || is_com('conversation')) {
-    echo 'hide-all';
-} elseif (is_com('home')) {
-    echo 'hide';
-} else {
-    echo '';
-} ?> animated zoomInLeft">
+<?php
+    if (is_video() || is_picture() || is_com('stream') || is_com('conversation')) {
+        $sidebar_class = 'hide-all';
+    } elseif (is_com('home')) {
+        $sidebar_class = 'hide';
+    } else {
+        $sidebar_class = '';
+    }
+?>
+<div id="sidebar" class="<?=$sidebar_class?> animated zoomInLeft">
     <div class="sidescroll">
-        <?php do_action('sidebar-start');
-        echo _ad('0', 'sidebar-start');
+        <?php do_action('sidebar-start'); ?>
+        <?=_ad('0', 'sidebar-start')?>
 
-        //The menu
-        echo '<div class="sidebar-nav blc"><ul>';
-        echo '<li class="lihead';
-        if ((!isset($_SERVER['REQUEST_URI']) || ltrim($_SERVER['REQUEST_URI'], '/') === '') && !is_user()) {
-            echo ' item-activ';
-        }
+        <div class="sidebar-nav blc">
+            <ul>
+                <li class="lihead <?=((!isset($_SERVER['REQUEST_URI']) || ltrim($_SERVER['REQUEST_URI'], '/') === '') && !is_user())?'item-activ':''?>">
+                    <a href="<?=profile_url(user_id(), user_name())?>?sk=about">
+                        <span class="iconed"><img src="/tpl/main/icon-menu/home.png" alt="icon" /></span>
+                        Мой канал
+                    </a>
+                    <span class="tooltip-item" style="margin-left:-8px">Мой канал</span>
+                </li>
+                <? if (is_user()) {
+                    global $db;
 
-        echo '"><a href="' . profile_url(user_id(), user_name()) . '?sk=about"><span class="iconed"><img src="/tpl/main/icon-menu/home.png" alt="icon" /></span> Мой канал</a><span class="tooltip-item" style="margin-left:-8px">Мой канал</span></li>';
+                    $messagesCount = 0;
 
-        if (is_user()) {
-            global $db;
+                    try {
 
-            $messagesCount = 0;
+                        $sql = 'SELECT * FROM ' . DB_PREFIX . 'conversations WHERE user_id = ' . toDb(user_id());
 
-            try {
+                        $conferences = $db->get_results($sql);
 
-                $sql = 'SELECT * FROM ' . DB_PREFIX . 'conversations WHERE user_id = ' . toDb(user_id());
+                        foreach ($conferences as $conference) {
 
-                $conferences = $db->get_results($sql);
+                            $sql = 'SELECT * FROM ' . DB_PREFIX . 'messages WHERE user_id <> ' . toDb(user_id()) . ' AND readed = 0 AND conversation_id = ' . toDb($conference->conf_id);
 
-                foreach ($conferences as $conference) {
+                            $sql2 = $db->get_results($sql);
 
-                    $sql = 'SELECT * FROM ' . DB_PREFIX . 'messages WHERE user_id <> ' . toDb(user_id()) . ' AND readed = 0 AND conversation_id = ' . toDb($conference->conf_id);
+                            $messagesCount = $messagesCount + count($sql2 ?? []);
+                        }
 
-                    $sql2 = $db->get_results($sql);
 
-                    $messagesCount = $messagesCount + count($sql2 ?? []);
+                    } catch (\Throwable $th) {
+
+                    }
+
+                    if ($messages !== null) {
+                        $messagesCount = count($messages);
+                    }
+
+                    echo '<li class="lihead';
+                    if ($_SERVER['REQUEST_URI'] == '/conversation/0/') {
+                        echo ' item-activ';
+                    }
+                    echo '"><a href="' . site_url() . 'conversation/0/" id="myInbox">
+                    <span class="iconed"><img src="/tpl/main/icon-menu/blog-mean.png" alt="icon" />' .
+                        '<span class="badge badge-danger" style="
+                        position: absolute;
+                        bottom: -8px;
+                        left: 15px;
+                    ">' . $messagesCount . '</span></span>' . _lang('Чат') . '</a><span class="tooltip-item" style="margin-left:-15px">' . _lang('Чат') . '</span></li>';
+
+                } ?>
+                <!-- // TODO Тут сделать полоску -->
+                <? if(get_option('premiumhub', 1)==1){ ?>
+                    <li class="lihead <?=($_SERVER['REQUEST_URI'] == "/premiumhub/browse/")?'item-activ':''?>">
+                        <a href="<?=hub_url(browse)?>"><span class="iconed"><img src="/tpl/main/icon-menu/zvez.png" alt="icon" /></span><?=_lang('Premium Hub')?></a>
+                        <span class="tooltip-item" style="margin-left:-15px"><?=_lang('Premium Hub')?></span>
+                    </li>
+                <? } ?>
+                <? /* TODO Хард-код решение по отключению трендов
+                echo '<li class="lihead';
+                if ($_SERVER['REQUEST_URI'] == '/activity') {
+                    echo ' item-activ';
                 }
+                echo '"><a href="' . site_url() . buzz . '"><span class="iconed"><img src="/tpl/main/icon-menu/activ.png" alt="icon" /></span> ' . _lang('What\'s up') . '</a><span class="tooltip-item" style="margin-left:-15px">' . _lang('What\'s up') . '</span></li>';
+                */ ?>
+                <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/videos/browse/')?'item-activ':''?>">
+                    <a href="<?=list_url(browse)?>">
+                        <span class="iconed"><img src="/tpl/main/icon-menu/video.png" alt="icon" /></span>
+                        <?=_lang('Категории')?>
+                    </a>
+                    <span class="tooltip-item" style="margin-left:-15px"><?=_lang('Категории')?></span>
+                </li>
+                <? if(get_option('musicmenu')==1){ ?>
+                    <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/music/browse/')?'item-activ':''?>">
+                        <a href="<?=music_url(browse)?>">
+                            <span class="iconed"><img src="/tpl/main/icon-menu/music.png" alt="icon" /></span>
+                            <?=_lang('Music')?>
+                        </a>
+                        <span class="tooltip-item" style="margin-left:-15px"><?=_lang('Music')?></span>
+                    </li>
+                <? } ?>
+                <? if(get_option('showplaylists', 1)==1){ ?>
+                    <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/lists/')?'item-activ':''?>">
+                        <a href="<?=site_url().playlists?>/">
+                            <span class="iconed"><img src="/tpl/main/icon-menu/audio.png" alt="icon" /></span>
+                            <?=_lang('Playlists')?>
+                        </a>
+                        <span class="tooltip-item" style="margin-left:-15px"><?=_lang('Playlists')?></span>
+                    </li>
+                <? } ?>
+                <? if(get_option('showusers', 1)==1){ ?>
+                    <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/users/')?'item-activ':''?>">
+                        <a href="<?=site_url() . members?>/">
+                            <span class="iconed"><img src="/tpl/main/icon-menu/chanal.png" alt="icon" /></span>
+                            <?=_lang('Channels')?>
+                        </a>
+                        <span class="tooltip-item" style="margin-left:-15px"><?=_lang('Channels')?></span>
+                    </li>
+                <? } ?>
 
-
-            } catch (\Throwable $th) {
-
-            }
-
-            if ($messages !== null) {
-                $messagesCount = count($messages);
-            }
-
-            echo '<li class="lihead';
-            if ($_SERVER['REQUEST_URI'] == '/conversation/0/') {
-                echo ' item-activ';
-            }
-            echo '"><a href="' . site_url() . 'conversation/0/" id="myInbox">
-			<span class="iconed"><img src="/tpl/main/icon-menu/blog-mean.png" alt="icon" />' .
-                '<span class="badge badge-danger" style="
-				position: absolute;
-				bottom: -8px;
-				left: 15px;
-			">' . $messagesCount . '</span></span>' . _lang('Чат') . '</a><span class="tooltip-item" style="margin-left:-15px">' . _lang('Чат') . '</span></li>';
-
-        }
-        //echo '"><a href="'.site_url().'"><span class="iconed"><img src="/tpl/main/icon-menu/home.png" alt="icon" /></span> '._lang('Home').'</a><span class="tooltip-item">'._lang('Home').'</span></li>';
-        /*
-        echo '<li class="lihead hidden-md hidden-lg visible-sm-block visible-sm visible-xs-block visible-xs">
-        <a data-target="#search-now" data-toggle="modal" href="javascript:void(0)" id="show-searched2"> <span class="iconed"> <i class="material-icons">&#xE8B6;</i> </span>'._lang('Search').'</a>
-        </a>';
-        */
-        if (get_option('premiumhub', 1) == 1) {
-            echo '<li class="lihead';
-            if ($_SERVER['REQUEST_URI'] == "/premiumhub/browse/") {
-                echo ' item-activ';
-            }
-            echo '"><a href="' . hub_url(browse) . '"><span class="iconed"><img src="/tpl/main/icon-menu/zvez.png" alt="icon" /></span> ' . _lang('Premium Hub') . '</a><span class="tooltip-item" style="margin-left:-15px">' . _lang('Premium Hub') . '</span></li>';
-        }
-
-        /* TODO Хард-код решение по отключению трендов
-        echo '<li class="lihead';
-        if ($_SERVER['REQUEST_URI'] == '/activity') {
-            echo ' item-activ';
-        }
-        echo '"><a href="' . site_url() . buzz . '"><span class="iconed"><img src="/tpl/main/icon-menu/activ.png" alt="icon" /></span> ' . _lang('What\'s up') . '</a><span class="tooltip-item" style="margin-left:-15px">' . _lang('What\'s up') . '</span></li>';
-        */
-
-        echo '<li class="lihead';
-        if ($_SERVER['REQUEST_URI'] == '/videos/browse/') {
-            echo ' item-activ';
-        }
-        echo '"><a href="' . list_url(browse) . '"><span class="iconed"><img src="/tpl/main/icon-menu/video.png" alt="icon" /></span> ' . _lang('Категории') . '</a><span class="tooltip-item" style="margin-left:-15px">' . _lang('Категории') . '</span></li>';
-
-        if (get_option('musicmenu') == 1) {
-            echo '<li class="lihead';
-
-            if ($_SERVER['REQUEST_URI'] == '/music/browse/') {
-                echo ' item-activ';
-            }
-            echo '"><a href="' . music_url(browse) . '"><span class="iconed"><img src="/tpl/main/icon-menu/music.png" alt="icon" /></span> ' . _lang('Music') . '</a><span class="tooltip-item" style="margin-left:-15px">' . _lang('Music') . '</span></li>';
-        }
-        /*
-        if ($_SERVER['REQUEST_URI'] == '/music/browse/') {echo ' item-activ';}
-        echo '"><span class="iconed temp-sidebar-class"><img src="/tpl/main/icon-menu/music.png"> <a href="'.music_url(browse).'">'._lang('Music').'</a></span></li>';
-        }
-        */
-        if (get_option('showplaylists', 1) == 1) {
-            echo '<li class="lihead';
-            if ($_SERVER['REQUEST_URI'] == '/lists/') {
-                echo ' item-activ';
-            }
-            echo '"><a href="' . site_url() . playlists . '/"><span class="iconed"><img src="/tpl/main/icon-menu/audio.png" alt="icon" /></span>' . _lang('Playlists') . '</a><span class="tooltip-item" style="margin-left:-15px">' . _lang('Playlists') . '</span></li>';
-        }
-
-
-        if (get_option('showusers', 1) == 1) {
-            echo '<li class="lihead';
-            if ($_SERVER['REQUEST_URI'] == '/users/') {
-                echo ' item-activ';
-            }
-            echo '"><a href="' . site_url() . members . '/"><span class="iconed"><img src="/tpl/main/icon-menu/chanal.png" alt="icon" /></span>' . _lang('Channels') . '</a><span class="tooltip-item" style="margin-left:-15px">' . _lang('Channels') . '</span></li>';
-        }
+        <?
         if (get_option('showblog', 1) == 1) {
             echo '<li class="lihead';
             if ($_SERVER['REQUEST_URI'] == '/blog/') {
