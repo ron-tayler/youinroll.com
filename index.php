@@ -19,7 +19,7 @@ if($v_api){
     exit();
 }
 /* End API */
-if($_COOKIE['landing']!='visited' and $_SERVER['REQUEST_URI']=='/'){
+if(false && $_COOKIE['landing']!='visited' and $_SERVER['REQUEST_URI']=='/'){
     echo file_get_contents(__DIR__.'/land/index.html');
     exit();
 }
