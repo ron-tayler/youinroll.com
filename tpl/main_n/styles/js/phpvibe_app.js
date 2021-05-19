@@ -820,7 +820,7 @@ $(document).ready(function() {
             }*/
             if (data.buzz) {
                 let buzz = parseInt(data.buzz);
-                $("a#notifs").append('<span id="notifyBadge" class="badge badge-primary" style="display:none">' + buzz + '</span>');
+                $("a#notifs").append('<span id="notifyBadge" class="badge badge-coral" style="position: absolute; top: 40px; right: -15px; display: none;">' + buzz + '</span>');
                 if(buzz>0){
                     $('#notifyBadge').css('display','inherit');
                 }

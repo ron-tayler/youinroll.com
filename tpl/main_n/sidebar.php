@@ -6,6 +6,8 @@
     } else {
         $sidebar_class = '';
     }
+    $isActive_myChannel = ((!isset($_SERVER['REQUEST_URI']) || ltrim($_SERVER['REQUEST_URI'], '/') === '') && !is_user())?'item-activ':'';
+    $myChannelHref = is_user()? profile_url(user_id(), user_name()).'?sk=about':'/login';
 ?>
 <div id="sidebar" class="<?=$sidebar_class?> animated zoomInLeft">
     <div class="sidescroll">
@@ -14,8 +16,8 @@
 
         <div class="sidebar-nav blc">
             <ul>
-                <li class="lihead <?=((!isset($_SERVER['REQUEST_URI']) || ltrim($_SERVER['REQUEST_URI'], '/') === '') && !is_user())?'item-activ':''?>">
-                    <a href="<?=profile_url(user_id(), user_name())?>?sk=about">
+                <li class="lihead <?=$isActive_myChannel?>">
+                    <a href="<?=$myChannelHref?>">
                         <span class="iconed"><img src="/tpl/main/icon-menu/home.png" alt="icon" /></span>
                         Мой канал
                     </a>
@@ -42,7 +44,7 @@
                         <a href="<?=site_url()?>conversation/0/" id="myInbox">
                             <span class="iconed">
                                 <img src="/tpl/main/icon-menu/blog-mean.png" alt="icon" />
-                                <span id="chatNotifyBadge" class="badge badge-danger" style="position: absolute;bottom: -8px;left: 15px;<?=($messagesCount==0)?'display: none':''?>">
+                                <span id="chatNotifyBadge" class="badge badge-coral" style="position: absolute;bottom: -8px;left: 15px;<?=($messagesCount==0)?'display: none':''?>">
                                     <?=$messagesCount?>
                                 </span>
                             </span>
@@ -50,8 +52,8 @@
                         </a>
                         <span class="tooltip-item" style="margin-left:-15px"><?=_lang('Чат')?></span>
                     </li>
+                    <hr/>
                 <? } ?>
-                <hr/>
                 <? if(get_option('premiumhub', 1)==1){ ?>
                     <li class="lihead <?=($_SERVER['REQUEST_URI'] == "/premiumhub/browse/")?'item-activ':''?>">
                         <a href="<?=hub_url(browse)?>"><span class="iconed"><img src="/tpl/main/icon-menu/zvez.png" alt="icon" /></span><?=_lang('Premium Hub')?></a>
@@ -110,8 +112,8 @@
                 <? } ?>
             </ul>
         </div>
+        <hr/>
         <? if(is_user()){ ?>
-            <hr/>
             <? /* ?>
             <div class='relative'>
                 <h4 class="li-heading li-heading-iconed">
