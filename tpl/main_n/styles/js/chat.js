@@ -98,9 +98,12 @@ class YRChat {
                         $(`.msg[data-id="${message.chatId}"]`).find('.msg-message').text(message.text);
                         $(`.msg[data-id="${message.chatId}"]`).find('.msg-date').text('Сейчас');
 
-                        let prevVal = $('#myInbox').find('.badge').text();
-
-                        $('#myInbox').find('.badge').text(parseInt(prevVal) + 1);
+                        let prevVal = parseInt($('#chatNotifyBadge').text());
+                        prevVal += 1;
+                        $('#chatNotifyBadge').text(prevVal);
+                        if(prevVal>0){
+                            $('#chatNotifyBadge').css('display','inherit')
+                        }
 
                         if ($(`.msg[data-id="${message.chatId}"]`).find('.badge').length) {
                             let messagesCount = parseInt($(`.msg[data-id="${message.chatId}"]`).find('.badge').text()) + 1;
@@ -230,7 +233,7 @@ class YRChat {
     }
 
     startStreamChat(streamId) {
-        $.get('https://youinroll.com/lib/ajax/jitsi/getChat.php', {
+        $.get('lib/ajax/jitsi/getChat.php', {
             streamId: streamId
         }, function(data) {
 
@@ -290,7 +293,7 @@ class YRChat {
 
         window.ActiveChat = 0;
 
-        $.get('https://youinroll.com/lib/ajax/chat/getUserRoom.php', function(data) {
+        $.get('http://youinroll.rtf/lib/ajax/chat/getUserRoom.php', function(data) {
             let ws = new WebSocket('wss://youinrolltinod.com:15673/ws');
 
             let ua = navigator.userAgent.toLowerCase();
@@ -453,7 +456,7 @@ class YRChat {
      */
     _getMessages(params) {
 
-        $.get("https://youinroll.com/lib/ajax/chat/getMessages.php", {
+        $.get("lib/ajax/chat/getMessages.php", {
                 chatId: params.chatId,
                 page: params.page
             },
@@ -463,16 +466,19 @@ class YRChat {
 
                 ActiveChat = params.chatId;
 
-                // TODO Это временное решение, нужно сделать через API
+                // TODO Это временное решение, стоит сделать через API
                 // START
-                let prevVal = parseInt($('#myInbox').find('.badge').text());
+                let prevVal = parseInt($('#chatNotifyBadge').text());
                 let prevvVal = parseInt($(`.msg[data-id="${params.chatId}"]`).find('.badge').text());
                 if((prevVal>0) && (prevvVal>0)) {
                     prevVal -= prevvVal;
                     if(prevVal<0) {
                         prevVal = 0;
                     }
-                    $('#myInbox').find('.badge').text(prevVal);
+                    $('#chatNotifyBadge').text(prevVal);
+                    if(prevVal==0){
+                        $('#chatNotifyBadge').css('display','none');
+                    }
                 }
                 // END
 
@@ -568,7 +574,7 @@ class YRChat {
 
     sendPing(chatId) {
 
-        $.post("https://youinroll.com/lib/ajax/chat/sendPing.php", {
+        $.post("lib/ajax/chat/sendPing.php", {
                 'chatId': chatId
             },
             function(data) {
@@ -607,7 +613,7 @@ class YRChat {
             $.ajax({
                 type: "POST",
                 contentType: "multipart/form-data",
-                url: "https://youinroll.com/lib/ajax/chat/sendMessage.php",
+                url: "lib/ajax/chat/sendMessage.php",
                 data: postData,
                 processData: false,
                 contentType: false,
@@ -650,7 +656,7 @@ class YRChat {
                 };
             }
 
-            $.post("https://youinroll.com/lib/ajax/chat/sendMessage.php",
+            $.post("lib/ajax/chat/sendMessage.php",
                 postData,
                 function(data) {
 
@@ -672,7 +678,7 @@ class YRChat {
 
     _getStreamMessages(params) {
 
-        $.get("https://youinroll.com/lib/ajax/jitsi/getMessages.php", {
+        $.get("lib/ajax/jitsi/getMessages.php", {
                 streamId: params.streamId
             },
             function(data) {
@@ -747,7 +753,7 @@ class YRChat {
             $.ajax({
                 type: "POST",
                 contentType: "multipart/form-data",
-                url: "https://youinroll.com/lib/ajax/jitsi/sendMessage.php",
+                url: "lib/ajax/jitsi/sendMessage.php",
                 data: postData,
                 processData: false,
                 contentType: false,
@@ -776,7 +782,7 @@ class YRChat {
                 text: params.text
             };
 
-            $.post("https://youinroll.com/lib/ajax/jitsi/sendMessage.php",
+            $.post("lib/ajax/jitsi/sendMessage.php",
                 postData,
                 function(data) {
 
