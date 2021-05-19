@@ -42,7 +42,7 @@
                         <a href="<?=site_url()?>conversation/0/" id="myInbox">
                             <span class="iconed">
                                 <img src="/tpl/main/icon-menu/blog-mean.png" alt="icon" />
-                                <span class="badge badge-danger" style="position: absolute;bottom: -8px;left: 15px;<?=($messagesCount==0)?'display: none':''?>">
+                                <span id="chatNotifyBadge" class="badge badge-danger" style="position: absolute;bottom: -8px;left: 15px;<?=($messagesCount==0)?'display: none':''?>">
                                     <?=$messagesCount?>
                                 </span>
                             </span>

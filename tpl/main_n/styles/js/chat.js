@@ -98,9 +98,12 @@ class YRChat {
                         $(`.msg[data-id="${message.chatId}"]`).find('.msg-message').text(message.text);
                         $(`.msg[data-id="${message.chatId}"]`).find('.msg-date').text('Сейчас');
 
-                        let prevVal = $('#myInbox').find('.badge').text();
-
-                        $('#myInbox').find('.badge').text(parseInt(prevVal) + 1);
+                        let prevVal = parseInt($('#chatNotifyBadge').text());
+                        prevVal += 1;
+                        $('#chatNotifyBadge').text(prevVal);
+                        if(prevVal>0){
+                            $('#chatNotifyBadge').css('display','inherit')
+                        }
 
                         if ($(`.msg[data-id="${message.chatId}"]`).find('.badge').length) {
                             let messagesCount = parseInt($(`.msg[data-id="${message.chatId}"]`).find('.badge').text()) + 1;
@@ -463,16 +466,19 @@ class YRChat {
 
                 ActiveChat = params.chatId;
 
-                // TODO Это временное решение, нужно сделать через API
+                // TODO Это временное решение, стоит сделать через API
                 // START
-                let prevVal = parseInt($('#myInbox').find('.badge').text());
+                let prevVal = parseInt($('#chatNotifyBadge').text());
                 let prevvVal = parseInt($(`.msg[data-id="${params.chatId}"]`).find('.badge').text());
                 if((prevVal>0) && (prevvVal>0)) {
                     prevVal -= prevvVal;
                     if(prevVal<0) {
                         prevVal = 0;
                     }
-                    $('#myInbox').find('.badge').text(prevVal);
+                    $('#chatNotifyBadge').text(prevVal);
+                    if(prevVal==0){
+                        $('#chatNotifyBadge').css('display','none');
+                    }
                 }
                 // END
 
