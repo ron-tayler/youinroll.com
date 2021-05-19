@@ -815,11 +815,15 @@ $(document).ready(function() {
     $.getJSON(site_url + "api/noty/", function(data) {
         // console.log("data " + data);
         if (data) {
-            if (data.msg) {
+            /*if (data.msg) {
                 $("li.my-inbox > a").append('<span class="badge badge-danger pull-right">' + data.msg + '</span>');
-            }
+            }*/
             if (data.buzz) {
-                $("a#notifs").append('<span class="badge badge-primary">' + data.buzz + '</span>');
+                let buzz = parseInt(data.buzz);
+                $("a#notifs").append('<span id="notifyBadge" class="badge badge-primary" style="display:none">' + buzz + '</span>');
+                if(buzz>0){
+                    $('#notifyBadge').css('display','inherit');
+                }
             }
             var $da = parseInt(data.msg);
             var $db = parseInt(data.buzz);
