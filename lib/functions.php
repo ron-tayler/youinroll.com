@@ -809,7 +809,7 @@ function subscribe_box($user, $btnc = '', $counter = false, $type = 'default')
         } else {
             //It's you
             $btnc = "btn btn-default subscriber";
-            echo '<a href="me?sk=playlists" style="background-color:#3598dc;border-color: #3598dc;" class="'.$btnc.'"><i class="icon icon-cogs"></i>'._lang('My playlists').'</a>';
+            echo '<a href="me?sk=playlists" style="background-color:#fe2c55;border-color: #fe2c55;" class="btn btn-coral subscriber"><i class="icon icon-cogs"></i>'._lang('My playlists').'</a>';
             echo '<a href="dashboard/?sk=edit" style="background-color:#3598dc;border-color: #3598dc;" class="'.$btnc.'"><i class="icon icon-cogs"></i>'._lang('Settings').'</a>';
         }
     }
