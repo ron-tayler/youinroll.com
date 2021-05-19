@@ -23,46 +23,34 @@
                 </li>
                 <? if (is_user()) {
                     global $db;
-
                     $messagesCount = 0;
-
                     try {
-
-                        $sql = 'SELECT * FROM ' . DB_PREFIX . 'conversations WHERE user_id = ' . toDb(user_id());
-
+                        $sql = 'SELECT * FROM '.DB_PREFIX.'conversations WHERE user_id = '.toDb(user_id());
                         $conferences = $db->get_results($sql);
-
                         foreach ($conferences as $conference) {
-
-                            $sql = 'SELECT * FROM ' . DB_PREFIX . 'messages WHERE user_id <> ' . toDb(user_id()) . ' AND readed = 0 AND conversation_id = ' . toDb($conference->conf_id);
-
+                            $sql = 'SELECT * FROM '.DB_PREFIX.'messages WHERE user_id <> '.toDb(user_id()).' AND readed = 0 AND conversation_id = '.toDb($conference->conf_id);
                             $sql2 = $db->get_results($sql);
-
                             $messagesCount = $messagesCount + count($sql2 ?? []);
                         }
-
-
-                    } catch (\Throwable $th) {
-
-                    }
+                    }catch(\Throwable $th){ }
 
                     if ($messages !== null) {
                         $messagesCount = count($messages);
                     }
-
-                    echo '<li class="lihead';
-                    if ($_SERVER['REQUEST_URI'] == '/conversation/0/') {
-                        echo ' item-activ';
-                    }
-                    echo '"><a href="' . site_url() . 'conversation/0/" id="myInbox">
-                    <span class="iconed"><img src="/tpl/main/icon-menu/blog-mean.png" alt="icon" />' .
-                        '<span class="badge badge-danger" style="
-                        position: absolute;
-                        bottom: -8px;
-                        left: 15px;
-                    ">' . $messagesCount . '</span></span>' . _lang('Чат') . '</a><span class="tooltip-item" style="margin-left:-15px">' . _lang('Чат') . '</span></li>';
-
-                } ?>
+                    ?>
+                    <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/conversation/0/')?'item-activ':''?>">
+                        <a href="<?=site_url()?>conversation/0/" id="myInbox">
+                            <span class="iconed">
+                                <img src="/tpl/main/icon-menu/blog-mean.png" alt="icon" />
+                                <span class="badge badge-danger" style="position: absolute;bottom: -8px;left: 15px;<?=($messagesCount==0)?'display: none':''?>">
+                                    <?=$messagesCount?>
+                                </span>
+                            </span>
+                            <?=_lang('Чат')?>
+                        </a>
+                        <span class="tooltip-item" style="margin-left:-15px"><?=_lang('Чат')?></span>
+                    </li>
+                <? } ?>
                 <hr/>
                 <? if(get_option('premiumhub', 1)==1){ ?>
                     <li class="lihead <?=($_SERVER['REQUEST_URI'] == "/premiumhub/browse/")?'item-activ':''?>">
