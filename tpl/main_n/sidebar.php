@@ -99,8 +99,6 @@
                         <span class="tooltip-item" style="margin-left:-15px"><?=_lang('Channels')?></span>
                     </li>
                 <? } ?>
-
-
                 <? if (get_option('showblog', 1)==1){ ?>
                     <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/blog/')?'item-activ':''?>">
                         <a href="<?=site_url().blog?>/">
@@ -112,9 +110,9 @@
                 <? } ?>
             </ul>
         </div>
-
         <? if(is_user()){ ?>
             <hr/>
+            <? /* ?>
             <div class='relative'>
                 <h4 class="li-heading li-heading-iconed">
                     <a style="color: #797E89;" href="https://youinroll.com/me?sk=playlists" title="<?=_("View all")?>">
@@ -129,6 +127,7 @@
                 </div>
             </div>
             <hr/>
+            <? //*/ ?>
             <div class='relative'>
                 <h4 class="li-heading">
                     <a style="color: #797E89;" href="<?=profile_url(user_id(), user_name())?>?sk=subscribed" title="<?php echo _("View all"); ?>">
