@@ -15,6 +15,11 @@ body {
     min-height: 100%;
 }
 
+.badge-coral{
+    color:#fff !important;
+    background-color:#fe2c55 !important;
+}
+
 /* Page formats */
 #wrapper {
     margin-top: 69px;
@@ -2347,6 +2352,7 @@ a.logo {
 }
 
 .user-quick a#uplBtn,
+.user-quick a#notifs,
 .user-quick a#show-search,
 .user-quick a#uploadNow,
 .user-quick a#loginNow {
@@ -2597,6 +2603,7 @@ a#openusr>.badge {
 @media (max-width:540px) {
 
     .user-quick a#uplBtn,
+    .user-quick a#notifs,
     .user-quick a#show-search,
     .user-quick a#uploadNow {
         margin-right: 15px
@@ -4205,6 +4212,7 @@ img.img-selected {
     }
 
     .user-quick a#uplBtn,
+    .user-quick a#notifs,
     .user-quick a#show-search,
     .user-quick a#uploadNow {
         margin-right: 9px;

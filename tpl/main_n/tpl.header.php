@@ -309,7 +309,7 @@ data-animation="scale-up" role="button" title="' . _lang('Dashboard') . '">	';
 <li role="presentation"><a href="' . ADMINCP . '"><i class="icon material-icons">&#xE8A4;</i> ' . _lang("Administration") . '</a></li>
 ';
         }
-        $nav .= '<li role="presentation" class="drop-footer"><a href="' . site_url() . 'index.php?action=logout"><i class="icon material-icons">&#xE14C;</i> ' . _lang("Logout") . '</a></li>
+        $nav .= '<li role="presentation" class="drop-footer"><a href="/?action=logout"><i class="icon material-icons">&#xE14C;</i> ' . _lang("Logout") . '</a></li>
 </ul>
 </div>
 ';

@@ -189,7 +189,7 @@
                     </a>
                 </li>
                 <?}?>
-                <li role="presentation" class="drop-footer"><a href="<?=site_url()?> index.php?action=logout"><i
+                <li role="presentation" class="drop-footer"><a href="/?action=logout"><i
                             class="icon material-icons">&#xE14C;</i><?=_lang("Logout")?></a></li>
             </ul>
         </div>
