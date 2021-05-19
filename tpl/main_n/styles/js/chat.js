@@ -293,7 +293,7 @@ class YRChat {
 
         window.ActiveChat = 0;
 
-        $.get('http://youinroll.rtf/lib/ajax/chat/getUserRoom.php', function(data) {
+        $.get('lib/ajax/chat/getUserRoom.php', function(data) {
             let ws = new WebSocket('wss://youinrolltinod.com:15673/ws');
 
             let ua = navigator.userAgent.toLowerCase();
