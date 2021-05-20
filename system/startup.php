@@ -27,7 +27,7 @@ set_error_handler(function($code, $message, $file, $line){
             break;
     }
     if (DISPLAY_ERROR) {
-        echo '<br /><b>'.$error.'</b>: '.$message.' in <b>'.$file.'</b> on line <b>'.$line.'</b>';
+        echo PHP_EOL.'<b>'.$error.'</b>: '.$message.' in <b>'.$file.'</b> on line <b>'.$line.'</b>';
     }
     return true;
 });
@@ -83,7 +83,7 @@ try {
                 break;
         }
         if (DISPLAY_ERROR) {
-            echo '<br /><b>' . $error . '</b>: ' . $message . ' in <b>' . $file . '</b> on line <b>' . $line . '</b>';
+            echo PHP_EOL.'<b>' . $error . '</b>: ' . $message . ' in <b>' . $file . '</b> on line <b>' . $line . '</b>';
         }
         if (LOGFILE_ERROR) {
             $log->print('PHP ' . $error . ':  ' . $message . ' in ' . $file . ' on line ' . $line);

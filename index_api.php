@@ -5,18 +5,12 @@ $time = explode(" ", microtime());
 define('TIME_SEC',$time[1]);
 define('TIME_USEC',$time[0]);
 unset($time);
-ini_set('display_errors', 1);
 
 // Заголовки
 header("Content-Type: text/html; charset=utf-8");
 
 // Буферизация
 ob_start();
-
-//Дебаг
-if(isset($_REQUEST['debug']) and ($_REQUEST['debug']=='error' or $_REQUEST['debug']=='all')){
-    define('DISPLAY_ERROR',true);
-}
 
 // Конфиги
 require_once __DIR__.'/config.php';
@@ -30,11 +24,11 @@ try{
     Engine\Loader::library('DB');
     Library\DB::init('base',[
         'adaptor'=>'mysqli',
-        'hostname'=>'mysql',
+        'hostname'=>DB_HOSTNAME,
         'port'=>3306,
-        'username'=>'root',
-        'password'=>'root',
-        'database'=>'youinroll'
+        'username'=>DB_USERNAME,
+        'password'=>DB_PASSWORD,
+        'database'=>DB_DATABASE
     ]);
 
     \Engine\Loader::library('user');
@@ -77,10 +71,6 @@ try{
         'message'=>$err->getMessage()
     ]];
 
-    if(isset($_REQUEST['debug']) and ($_REQUEST['debug']=='private' or $_REQUEST['debug']=='all')) {
-        $msg['error']['private'] = $err->getPrivateMessage();
-        echo '<br />'.$err->getTraceAsString();
-    }
     Engine\Log::init('error')->print($err->getPrivateMessage());
     Engine\Log::init('error')->print($err->getTraceAsString());
 
@@ -88,5 +78,5 @@ try{
 
     $buffer = ob_get_contents();
     ob_end_clean();
-    echo (isset($_REQUEST['debug'])?'<pre>':'').$resp.$buffer;
+    echo $resp.$buffer;
 }
