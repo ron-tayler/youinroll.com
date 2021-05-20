@@ -1,69 +1,69 @@
 <?php
 
+namespace Engine;
+use ExceptionBase;
+
 /**
  * Class Loader
- * @package YouInRoll.com
+ * @package Engine
  * @author Ron_Tayler
- * @copyright 2021
+ * @copyright 04.05.2021
  */
-class Loader implements IEngine{
-    private Registry $registry;
+class Loader {
 
     /**
      * Loader constructor.
-     * @param Registry $registry
      */
-    public function __construct(Registry $registry){
-        $this->registry = $registry;
-    }
+    private function __construct(){}
 
     /**
      * Method controller - Загрузка контролеров
      * @param string $name
-     * @return bool False при ошибке, True при успехе
+     * @throws ExceptionBase
      */
-    public function controller(string $name){
-        return $this->load($name,DIR_CONTROLLER,'controller_','Controller');
+    public static function controller(string $name){
+        self::load($name,DIR_CONTROLLER);
+        $class = 'Controller\\'.str_replace('/','\\',$name);
+        if(!class_exists($class)) throw new ExceptionBase('Класс '.$class.' Не удалось объявить',5);
+        if(!is_callable(Array($class, "init"))) throw new ExceptionBase('Невозможно вызвать метод '.$class.'::init',5);
+        call_user_func(Array($class, "init"));
     }
 
     /**
      * Method model - Загрузка моделей
      * @param string $name
-     * @return bool False при ошибке, True при успехе
+     * @throws ExceptionBase
      */
-    public function model(string $name){
-        return $this->load($name,DIR_MODEL,'model_','Model');
+    public static function model(string $name){
+        self::load($name,DIR_MODEL);
+        $class = 'Model\\'.str_replace('/','\\',$name);
+        if(!class_exists($class)) throw new ExceptionBase('Класс '.$class.' Не удалось объявить',5);
+        if(!is_callable(Array($class, "init"))) throw new ExceptionBase('Невозможно вызвать метод '.$class.'::init',5);
+        call_user_func(Array($class, "init"));
     }
 
     /**
      * Method library - Загрузка моделей
      * @param string $name
-     * @return bool False при ошибке, True при успехе
+     * @throws ExceptionBase
      */
-    public function library(string $name){
-        return $this->load($name,DIR_LIB,'','');
+    public static function library(string $name){
+        self::load($name,DIR_LIB);
     }
 
     /**
      * Method load - Универсальный загрузчик
-     * @param string $name 'video' or 'user/chanel/video'
+     * @param string $name 'Video' or 'User/Chanel/Video'
      * @param string $dir DIR_...
-     * @param string $prefix
-     * @param string $namespace
-     * @return bool False при ошибке, True при успехе
-     * @todo Добавить проверки
-     * Проверка $name по регулярке
-     * Проверка наличия файла
-     * Проверка наличия класса
+     * @throws ExceptionBase
      */
-    private function load(string $name,string $dir,string $prefix,string $namespace){
-        $class = $namespace.'\\'.str_replace('/','\\', $name);
+    private static function load(string $name,string $dir){
+        $reg = /** @lang PhpRegExp */ '/^(?:[A-Za-z_]+)(?:\/[A-Za-z_]+)*$/';
+        if(preg_match($reg,$name)!==1){
+            throw new ExceptionBase("Name '$name' указанно неверно",5);
+        }
         $file = $dir.'/'.strtolower($name).'.php';
-        $reg_name = strtolower($prefix).str_replace('/','_',strtolower($name));
+        if(!is_file($file)) throw new ExceptionBase("File '$file' не найден",5);
         require_once $file;
-        /** @var LMVCL $lmvcl */
-        $lmvcl = new $class($this->registry);
-        $this->registry->set($reg_name,$lmvcl);
-        return true;
     }
 }

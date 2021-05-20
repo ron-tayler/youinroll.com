@@ -1,4 +1,6 @@
 <?php
+
+namespace Engine;
 /**
  * Interface IController
  * @package YouInRoll.com
@@ -6,5 +8,6 @@
  * @copyright 2021
  */
 interface IController {
-    public function index(array $param);
+    static function init();
+    static function index(array $param = []);
 }

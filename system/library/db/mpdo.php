@@ -1,6 +1,6 @@
 <?php
-namespace DB;
-final class mPDO {
+namespace Library\DB;
+final class mPDO implements IAdaptor{
 	private $connection = null;
 	private $statement = null;
 
@@ -96,7 +96,11 @@ final class mPDO {
 	public function getLastId() {
 		return $this->connection->lastInsertId();
 	}
-	
+
+    public function connected(){
+        return $this->isConnected();
+    }
+
 	public function isConnected() {
 		if ($this->connection) {
 			return true;
@@ -104,7 +108,7 @@ final class mPDO {
 			return false;
 		}
 	}
-	
+
 	public function __destruct() {
 		$this->connection = null;
 	}

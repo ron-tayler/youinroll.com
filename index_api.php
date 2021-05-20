@@ -5,6 +5,7 @@ $time = explode(" ", microtime());
 define('TIME_SEC',$time[1]);
 define('TIME_USEC',$time[0]);
 unset($time);
+ini_set('display_errors', 1);
 
 // Заголовки
 header("Content-Type: text/html; charset=utf-8");
@@ -12,68 +13,80 @@ header("Content-Type: text/html; charset=utf-8");
 // Буферизация
 ob_start();
 
+//Дебаг
+if(isset($_REQUEST['debug']) and ($_REQUEST['debug']=='error' or $_REQUEST['debug']=='all')){
+    define('DISPLAY_ERROR',true);
+}
+
 // Конфиги
 require_once __DIR__.'/config.php';
 
-// Движок
-require_once DIR_SYSTEM.'/startup.php';
-
-//Дебаг
-if($_GET['debug']='on'){
-    ini_set('display_errors', 1);
-}else{
-    ini_set('display_errors', 0);
-}
-
 try{
+    // Движок
+    require_once DIR_SYSTEM.'/startup.php';
+
     // Инициализация элементов
-    $registry = new Registry();
-    $registry->set('log',$log);
+    Engine\Request::init();
+    Engine\Loader::library('DB');
+    Library\DB::init('base',[
+        'adaptor'=>'mysqli',
+        'hostname'=>'mysql',
+        'port'=>3306,
+        'username'=>'root',
+        'password'=>'root',
+        'database'=>'youinroll'
+    ]);
 
-    $loader = new Loader($registry);
-    $registry->set('load',$loader);
-
-    $router = new Router($registry);
-    $registry->set('router',$router);
-
-    $request = new Request();
-    $registry->set('request',$request);
-
-    $response = new Response();
-    $registry->set('response',$response);
-
-    $db = new DB($registry,DB_DRIVER,DB_HOSTNAME,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
-    $registry->set('db',$db);
+    \Engine\Loader::library('user');
+    Library\User::tokenAuth(Engine\Request::$request['access_token']??'');
 
     // Мапинг
-    $router->map('/profile/:id','User/Profile',['GET'],['id'=>'\d+'],['1.0','1.0']);
-    $router->map('/profile/:id/info','User/Profile/info()',['GET'],['id'=>'\d+'],['1.0']);
-    $router->map('/profile/:id/subscribers','User/Profile/subscribers()',['GET'],['id'=>'\d+'],['1.0']);
-    $router->map('/profile/:id/subscriptions','User/Profile/subscriptions()',['GET'],['id'=>'\d+'],['1.0']);
-    $router->map('/channels','channel/list()',['GET'],[],['1.0']);
-    $router->map('/debug/:method','Debug',['GET','POST'],['wait'=>'\w+']);
+    Engine\Router::map('/profile/:id','User/Profile',['GET'],['id'=>'\d+'],['1.0','1.0']);
+    Engine\Router::map('/profile/:id/info','User/Profile::info',['GET'],['id'=>'\d+']);
+    Engine\Router::map('/profile/:id/subscribers','User/Profile::subscribers',['GET'],['id'=>'\d+']);
+    Engine\Router::map('/profile/:id/subscriptions','User/Profile::subscriptions',['GET'],['id'=>'\d+']);
+    Engine\Router::map('/channels','Channel::list',['GET']);
+    //Engine\Router::map('/listen/event','Listen::Event',['GET']);
+    //Engine\Router::map('/listen/im','Listen::im',['GET']);
+    Engine\Router::map('/listen/stream','Listen::stream',['GET']);
+    //Engine\Router::map('/listen/conf','Listen::conf',['GET']);
+    Engine\Router::map('/message/send','Message::send',['POST']);
+    Engine\Router::map('/login','User/Auth::login',['POST']);
+
+    // DebugMap
+    Engine\Router::map('/debug','Debug::test_search_queue',['GET','POST']);
 
     // Версия
-    preg_match('/v?([1-9]+[0-9]*\.[0-9]+)/',$_GET['api'],$matches);
+    preg_match('/v?([1-9]+[0-9]*\.[0-9]+)/',$v_api,$matches);
     // Запуск маршрута
-    $return = $router->execute($matches[1]);
+    Engine\Router::execute($matches[1]);
 
     // Вывод ответа
-    $resp = json_encode(['response'=>$return],JSON_UNESCAPED_UNICODE);
+    \Engine\Response::getOutput();
+    $resp = json_encode(['response'=>\Engine\Response::getOutput()],JSON_UNESCAPED_UNICODE);
     $buffer = ob_get_contents();
     ob_end_clean();
     echo $resp.$buffer;
 
 }catch (ErrorBase | ExceptionBase $err){
+    // TODO Отделить Исключения и вызывать ErrorBase с ошибкой непойманного исключения
+    // Всегда при любых фатальных ошибках нужно генерировать JSON Error Code 5
 
-    $resp = json_encode(['error'=>[
+    $msg = ['error'=>[
         'code'=>$err->getCode(),
         'message'=>$err->getMessage()
-    ]],JSON_UNESCAPED_UNICODE);
+    ]];
+
+    if(isset($_REQUEST['debug']) and ($_REQUEST['debug']=='private' or $_REQUEST['debug']=='all')) {
+        $msg['error']['private'] = $err->getPrivateMessage();
+        echo '<br />'.$err->getTraceAsString();
+    }
+    Engine\Log::init('error')->print($err->getPrivateMessage());
+    Engine\Log::init('error')->print($err->getTraceAsString());
+
+    $resp = json_encode($msg,JSON_UNESCAPED_UNICODE);
 
     $buffer = ob_get_contents();
     ob_end_clean();
-    echo $resp.$buffer;
-
-    trigger_error($err->getPrivateMessage(),E_USER_WARNING);
+    echo (isset($_REQUEST['debug'])?'<pre>':'').$resp.$buffer;
 }

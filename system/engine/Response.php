@@ -1,55 +1,64 @@
 <?php
-/**
- * @package		SITE
- * @author		Ron Tayler
- * @copyright	2020
- */
 
+namespace Engine;
 /**
  * Response class
+ * @package Engine
+ * @author Ron_Tayler
+ * @copyright 04.05.2021
  */
-class Response implements IEngine {
-	private $headers = array();
-	private $level = 0;
-	private $output;
+class Response {
+	private static array $headers = array();
+	private static int $level = 0;
+	/** @var string|array */
+	private static $output;
 
 	/**
-	 * Constructor
-	 * @param	string	$header
+	 * Method addHeader - Добавление заголовков
+	 * @param string $header
  	 */
-	public function addHeader($header) {
-		$this->headers[] = $header;
+	public static function addHeader($header) {
+		self::$headers[] = $header;
 	}
 	
 	/**
-	 * @param	string	$url
-	 * @param	int		$status
-	 *
+     * Method redirect - Перенаправление
+	 * @param string $url
+	 * @param int $status
  	 */
-	public function redirect($url, $status = 302) {
-		header('Location: ' . str_replace(array('&amp;', "\n", "\r"), array('&', '', ''), $url), true, $status);
+	public static function redirect($url, $status = 303) {
+        if (!headers_sent())
+            header('Location: ' . str_replace(array('&amp;', "\n", "\r"), array('&', '', ''), $url), true, $status);
+        else {
+            echo '<script type="text/javascript">';
+            echo 'window.location.href="'.$url.'";';
+            echo '</script>';
+            echo '<noscript>';
+            echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+            echo '</noscript>';
+        }
 		exit();
 	}
 	
 	/**
-	 * @param	int		$level
+	 * @param int $level
  	 */
-	public function setCompression($level) {
-		$this->level = $level;
+	private static function setCompression($level) {
+		self::$level = $level;
 	}
 	
 	/**
-	 * @return	array
+	 * @return string|array
  	 */
-	public function getOutput() {
-		return $this->output;
+	public static function getOutput() {
+		return self::$output;
 	}
 	
 	/**
-	 * @param	string	$output
+	 * @param string|array $output
  	 */
-	public function setOutput($output) {
-		$this->output = $output;
+	public static function setOutput($output) {
+		self::$output = $output;
 	}
 	
 	/**
@@ -57,7 +66,7 @@ class Response implements IEngine {
 	 * @param	int		$level
 	 * @return	string
  	 */
-	private function compress($data, $level = 0) {
+    private static function compress($data, $level = 0) {
 		if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && (strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false)) {
 			$encoding = 'gzip';
 		}
@@ -82,7 +91,7 @@ class Response implements IEngine {
 			return $data;
 		}
 
-		$this->addHeader('Content-Encoding: ' . $encoding);
+		self::addHeader('Content-Encoding: ' . $encoding);
 
 		return gzencode($data, (int)$level);
 	}
@@ -91,16 +100,15 @@ class Response implements IEngine {
 	 * output
      * Вывод данных пользователю
  	 */
-	public function output() {
-		if ($this->output) {
-			$output = $this->level ? $this->compress($this->output, $this->level) : $this->output;
+    private static function output() {
+		if (self::$output) {
+			$output = self::$level ? self::compress(self::$output, self::$level) : self::$output;
 			
 			if (!headers_sent()) {
-				foreach ($this->headers as $header) {
+				foreach (self::$headers as $header) {
 					header($header, true);
 				}
 			}
-			
 			echo $output;
 		}
 	}
