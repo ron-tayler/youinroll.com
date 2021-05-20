@@ -46,6 +46,7 @@ final class Profile {
             'last_login'=>(string)$profile['lastlogin'],
             'group'=>(string)$group_name,
             'avatar'=>(string)$profile['avatar'],
+            'banner'=>(string)$profile['cover'],
             'date_registered'=>(string)$profile['date_registered'],
             'name'=>(string)$profile['name'],
             'bio'=>(string)$profile['bio'],
