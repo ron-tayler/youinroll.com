@@ -85,7 +85,6 @@ try{
 }catch (ErrorBase | ExceptionBase $err){
     // TODO Отделить Исключения и вызывать ErrorBase с ошибкой непойманного исключения
     // Всегда при любых фатальных ошибках нужно генерировать JSON Error Code 5
-    // ...
 
     $msg = ['error'=>[
         'code'=>$err->getCode(),
