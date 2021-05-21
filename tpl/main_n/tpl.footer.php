@@ -153,17 +153,8 @@ fjs.parentNode.insertBefore(js, fjs);
 '.extra_js().'
 '._pjs(get_option('googletracking'));
 
-$gamburger_script = '<script>
-$(document).ready(function(){
-  $("#show-sidebar").click(function(){
-    $(".hamburger").toggleClass("is-active");
-  });
-});
-</script>';
-
 $footer .= "<script src='/tpl/main_n/styles/js/mobile.js'></script>";
 
-$footer .= $gamburger_script;
 $footer .='
 </body>
 </html>';

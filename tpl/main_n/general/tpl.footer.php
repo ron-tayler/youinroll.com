@@ -198,9 +198,6 @@ $('#searchform').on('submit', function(e){
 <?=_pjs(get_option('googletracking'))?>
 <script>
 $(document).ready(function() {
-    $("#show-sidebar").click(function() {
-        $(".hamburger").toggleClass("is-active");
-    });
 
     $('.user-quick').on('click', '#show-search', function(){
 
