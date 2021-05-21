@@ -3,7 +3,7 @@
 ?>
 
 <h4 class="loop-heading">
-	<span><?=_lang("Стримы")?></span>
+	<span><?=_lang("Трансляции")?></span>
 </h4>
 <div id="SearchResults" class="loop-content phpvibe-video-list vTrends bottom20 ">
     <? if($conferences !== null && count($conferences) > 0 ) { ?>
