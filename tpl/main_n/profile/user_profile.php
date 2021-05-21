@@ -1,9 +1,9 @@
 <?
-    $conferences = $db->get_results('SELECT * FROM '.DB_PREFIX.'conferences WHERE moderator_id = '.toDb($profile->id)." AND type = '".toDb('lesson')."' ORDER BY started_at DESC LIMIT 4");
+    $conferences = $db->get_results('SELECT * FROM '.DB_PREFIX.'conferences WHERE moderator_id = '.toDb($profile->id)." AND type = '".toDb('stream')."' ORDER BY started_at DESC LIMIT 4");
 ?>
 
 <h4 class="loop-heading">
-	<span><?=_lang("Последние уроки")?></span>
+	<span><?=_lang("Стримы")?></span>
 </h4>
 <div id="SearchResults" class="loop-content phpvibe-video-list vTrends bottom20 ">
     <? if($conferences !== null && count($conferences) > 0 ) { ?>
