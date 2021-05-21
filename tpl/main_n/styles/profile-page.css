@@ -4,7 +4,7 @@
 }
 
 /* Smartphones (landscape) ----------- */
-@media only screen and (min-width : 321px) and (max-width : 800px) {
+@media only screen and (min-width: 321px) and (max-width: 800px) {
 
     .landingSocial {
         display: none !important;
@@ -18,7 +18,7 @@
         margin-left: auto !important;
     }
 
-    .course-channel>.btn {
+    .course-channel > .btn {
         width: 90%;
         margin-bottom: 30px !important;
         margin-top: auto !important;
@@ -114,7 +114,7 @@
 }
 
 /* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 320px) {
+@media only screen and (max-width: 320px) {
     .course-image {
         height: 175px !important;
         max-width: none;
@@ -125,7 +125,7 @@
 }
 
 /* iPads (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     .course-image {
         height: 175px;
         max-width: none;
@@ -136,17 +136,17 @@
 }
 
 /* iPads (landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
     /* Styles */
 }
 
 /* iPads (portrait) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
     /* Styles */
 }
 
 /* Desktops and laptops ----------- */
-@media only screen and (min-width : 1224px) and (max-width : 1400px) {
+@media only screen and (min-width: 1224px) and (max-width: 1400px) {
     :root {
         --container-width: 1200px;
         --landing-block-width: 650px;
@@ -198,8 +198,7 @@
 }
 
 /* iPhone 4 ----------- */
-@media only screen and (-webkit-min-device-pixel-ratio : 1.5),
-only screen and (min-device-pixel-ratio : 1.5) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
     /* Styles */
 }
 
@@ -259,7 +258,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     padding-top: 5px;
 }
 
-.channel-subheader>div {
+.channel-subheader > div {
     display: flex;
     flex-direction: row;
 }
@@ -336,7 +335,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     display: none;
 }
 
-.course-channel>.btn {
+.course-channel > .btn {
     width: 90%;
     margin-top: 30px;
     margin: 0 auto;
@@ -547,7 +546,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     height: 20px;
 }
 
-#SearchResults .video-title>a {
+#SearchResults .video-title > a {
     max-width: 228px;
     text-overflow: ellipsis;
 }
@@ -566,7 +565,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     /* width: 100% !important; */
 }
 
-#SearchResults .video-data>img {
+#SearchResults .video-data > img {
     display: flex;
     border-radius: 100%;
     width: 35px;
@@ -654,14 +653,14 @@ only screen and (min-device-pixel-ratio : 1.5) {
     margin-right: 10px;
 }
 
-#channelAbout .landingSocial>ul>li {
+#channelAbout .landingSocial > ul > li {
     display: flex;
     width: 110px;
     padding: 5px;
     justify-content: flex-start;
 }
 
-#channelAbout .landingSocial>ul>li>span {
+#channelAbout .landingSocial > ul > li > span {
     display: flex;
     text-align: center;
     font-weight: bold;
@@ -670,7 +669,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     flex: auto;
 }
 
-#channelAbout>.btn-writeus {
+#channelAbout > .btn-writeus {
     display: flex;
     justify-content: center;
     margin-top: 14px !important;
@@ -721,7 +720,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     position: relative;
 }
 
-#channelAbout>h3 {
+#channelAbout > h3 {
     text-align: center;
     color: black !important;
 }
@@ -730,7 +729,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     background-color: red;
 }
 
-#channelAbout .landingSocial>ul>li:not(:first-of-type) {
+#channelAbout .landingSocial > ul > li:not(:first-of-type) {
     margin-top: 5px;
 }
 

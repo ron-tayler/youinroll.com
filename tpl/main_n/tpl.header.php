@@ -150,14 +150,7 @@ function meta_add()
     return $meta;
 }
 
-function top_nav()
-{
-
-    $type = 'iconic';
-
-    if (is_video() || is_picture() || is_com('conversation') || is_com('stream')) {
-        $type = 'normal';
-    }
+function top_nav(){
 
     $nav = '';
     include(TPL . '/sidebar-mobile.php');
@@ -166,7 +159,7 @@ function top_nav()
 <div class="row block" style="position:relative;">
 <div class="logo-wrapper">';
     $nav .= '
-<a id="show-sidebar" href="javascript:void(0)" title="' . _lang('Show sidebar') . '" data-type="' . $type . '">
+<a id="show-sidebar" href="javascript:void(0)" title="'._lang('Show sidebar').'">
 <div class="hamburger" id="hamburger">
   <span class="line"></span>
   <span class="line"></span>

@@ -793,7 +793,7 @@ $(window).scroll(function() {
     }
 });
 /* Doc ready*/
-$(document).ready(function() {
+$(document).ready(function (key, value) {
     $('.icon-material,button:not(".vjs-control"):not(".vjs-button"), a.btn').ripple();
     if ($(window).width() < 1000) {
         $('body').addClass('isdevice');
@@ -991,24 +991,125 @@ $(document).ready(function() {
     $(".page-aside-switch , page-aside-switch > i").click(function() {
         $(".page-aside").toggleClass('open');
     });
-    //Sidebar
 
-    function toggleSidebar() {
-        $('#show-sidebar').click();
+    //Sidebar
+    // Иницализация sidebar
+    let sidebar_status = sessionStorage.getItem('sidebarStatus')??$("#sidebar").data('status');
+    if(sidebar_status==='open'){
+        sidebar_open();
+    }else if(sidebar_status==='close'){
+        sidebar_close();
+    }else{
+        console.error('Ошибка с параметром sidebar_status:',sidebar_status);
+        sidebar_status = 'close';
+        console.error('Параметр sidebar_status теперь:',sidebar_status);
+    }
+    sessionStorage.setItem('sidebarStatus', sidebar_status);
+    $("#sidebar").data('status',sidebar_status);
+
+    // Hook на кнопку
+    $("#show-sidebar").click(function() {
+        let sidebar_status = $("#sidebar").data('status');
+        if(sidebar_status==='open'){
+            sidebar_status='close';
+            sidebar_close();
+        }else if(sidebar_status==='close'){
+            sidebar_status='open';
+            sidebar_open();
+        }else{
+            console.error('Ошибка с параметром sidebar_status:',sidebar_status);
+            sidebar_status = 'close';
+            console.error('Параметр sidebar_status теперь:',sidebar_status);
+        }
+        sessionStorage.setItem('sidebarStatus', sidebar_status);
+        $("#sidebar").data('status',sidebar_status);
+    });
+
+    // Функция на открытие
+    function sidebar_open(){
+        if ($('#sidebar').data('type') === 'iconic') {
+
+            $("#sidebar").removeClass('hide');
+            $("#wrapper").addClass('haside');
+
+            let sideSpace = parseInt($("#wrapper").offset().left);
+            if (sideSpace < 240) {
+                $("#wrapper").css({
+                    "margin-left": "240px",
+                    "margin-right": "auto"
+                });
+            }
+
+            if ($('#tinted').length || $('#sidebar').hasClass('hide')) {
+                $('#tinted').remove();
+                $('body').css('overflow-y', 'auto');
+            } else {
+                /* $('body').prepend('<div id="tinted"></div>'); */
+            }
+
+        } else {
+            $("#sidebar").removeClass('hide-all');
+
+            if (!$('#tinted').length) {
+                $('body').prepend('<div id="tinted"></div>');
+                $('body').css('overflow-y', 'hidden');
+            }
+        }
+    }
+
+    // Функция на закрытие
+    function sidebar_close(){
+        if ($('#show-sidebar').data('type') === 'iconic') {
+
+            $("#sidebar").addClass('hide');
+            $("#wrapper").removeClass('haside');
+
+            let sideSpace = $("#wrapper").offset().left;
+            if (sideSpace == 240) {
+                $("#wrapper").css({
+                    "margin-left": "auto",
+                    "margin-right": "auto"
+                });
+            }
+
+            if ($('#tinted').length || $('#sidebar').hasClass('hide')) {
+                $('#tinted').remove();
+                $('body').css('overflow-y', 'auto');
+            }
+
+        } else {
+
+            $("#sidebar").addClass('hide-all');
+
+            $('#tinted').remove();
+            $('body').css('overflow-y', 'auto');
+        }
     }
 
     $("#show-sidebar").click(function() {
+        return;
+        $("#show-sidebar>.hamburger").toggleClass("is-active");
 
         if ($('#show-sidebar').data('type') === 'iconic') {
+            let is_open = $("#show-sidebar>.hamburger").hasClass("is-active");
+
             document.removeEventListener('click', toggleSidebar)
 
-            $("#sidebar").toggleClass('hide');
+            if(is_open){
+                $("#sidebar").removeClass('hide');
+            }else{
+                $("#sidebar").addClass('hide');
+            }
 
-            $("#wrapper").toggleClass('haside');
+            if(is_open){
+                $("#wrapper").addClass('haside');
+            }else{
+                $("#wrapper").removeClass('haside');
+            }
 
             if (!$("#sidebar").hasClass("hide")) {
 
-                localStorage.setItem('menuState', 'open');
+                //localStorage.setItem('menuState', 'open');
 
                 let sideSpace = parseInt($("#wrapper").offset().left);
                 if (sideSpace < 240) {
@@ -1018,7 +1119,7 @@ $(document).ready(function() {
                     });
                 }
             } else {
-                localStorage.setItem('menuState', 'hiden');
+                //localStorage.setItem('menuState', 'hiden');
 
                 let sideSpace = $("#wrapper").offset().left;
                 if (sideSpace == 240) {
