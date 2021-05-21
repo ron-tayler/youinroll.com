@@ -601,6 +601,9 @@ class user
         if (!isset($userData['fid']) || nullval($userData['fid'])) {
             $userData['fid'] = '';
         }
+        if (!isset($userData['phone']) || nullval($userData['phone'])) {
+            $userData['phone'] = '';
+        }
         if (!isset($userData['oauth_token']) || nullval($userData['oauth_token'])) {
             $userData['oauth_token'] = '';
         }
@@ -623,8 +626,8 @@ class user
             $userData['chatRoom'] = '';
         }
 //insert to db
-        $sql = "INSERT INTO " . DB_PREFIX . "users (name,username,email,type,lastlogin,date_registered,gid,fid,oauth_token,avatar,local,country,group_id,pass,password,bio,chatRoom)"
-            . " VALUES ('" . toDb($userData['name']) . "','" . toDb($userData['username']) . "','" . esc_attr($userData['email']) . "','" . $userData['type'] . "', now(), now(), '" . $userData['gid'] . "', '" . $userData['fid'] . "', '" . $userData['oauth_token'] . "', '" . $userData['avatar'] . "', '" . toDb($userData['local']) . "', '" . toDb($userData['country']) . "', '" . toDb($userData['group_id']) . "', '" . $pass . "','" . toDb($userData['password']) . "', '" . toDb($userData['bio']) . "', '" . toDb($userData['chatRoom']) . "')";
+        $sql = "INSERT INTO " . DB_PREFIX . "users (name,username,email,type,lastlogin,date_registered,gid,fid,oauth_token,avatar,local,country,group_id,pass,password,bio,chatRoom,phone)"
+            . " VALUES ('" . toDb($userData['name']) . "','" . toDb($userData['username']) . "','" . esc_attr($userData['email']) . "','" . $userData['type'] . "', now(), now(), '" . $userData['gid'] . "', '" . $userData['fid'] . "', '" . $userData['oauth_token'] . "', '" . $userData['avatar'] . "', '" . toDb($userData['local']) . "', '" . toDb($userData['country']) . "', '" . toDb($userData['group_id']) . "', '" . $pass . "','" . toDb($userData['password']) . "', '" . toDb($userData['bio']) . "', '" . toDb($userData['chatRoom']) . "', '" . toDb($userData['phone']) . "')";
         $db->query($sql);
         $tid = user::checkUser($userData);
         return $tid;
