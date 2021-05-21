@@ -15,8 +15,8 @@ $md = $cachedb->get_row("SELECT count(case when pub = 1 then 1 else null end) as
             <?php if (not_empty($profile->cover)) {
                 $pcover = (not_empty($profile->cover)) ? thumb_fix($profile->cover) : tpl() . 'images/default-cover.jpg'; ?>
                 <div id="profile-cover" class="row"
-                     style="height:230px; background-image: url(<?php echo $pcover; ?>); background-size: auto;
-                             background-attachment: fixed;">
+                     style="height:300px; background-image: url(<?php echo $pcover; ?>); background-size: cover; background-position: center;
+                             background-attachment: scroll;">
                 </div>
             <?php } ?>
             <div class='channel-info'>
