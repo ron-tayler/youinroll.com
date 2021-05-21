@@ -27,7 +27,7 @@
           <span>Сообщества</span>
         </div>
       </div>
-      <?if(is_user()){}?>
+      <?if(is_user()){?>
       <div onclick="location.href='/dashboard'" class="bottom-nav-item <?=($_SERVER['REQUEST_URI'] === '/dashboard') ? 'active'  : ''?>">
         <div class="bottom-nav-link">
           <i class="material-icons">settings</i>
