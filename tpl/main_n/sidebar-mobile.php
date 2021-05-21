@@ -2,7 +2,7 @@
   <div class="container">
     <nav class="bottom-nav">
       <div class="bottom-nav-item <?=(!isset($_SERVER['REQUEST_URI']) || ltrim($_SERVER['REQUEST_URI'],'/') === '') ? 'active'  : ''?>">
-		<div onclick="location.href='<?=is_user()? profile_url(user_id(), user_name()).'?sk=about':'/login'?>>'" class="bottom-nav-link">
+		<div onclick="location.href='<?=is_user()? profile_url(user_id(), user_name()).'?sk=about':'/login'?>'" class="bottom-nav-link">
 			<i class="material-icons">home</i>
 			<span>Мой канал</span>
 		</div>
@@ -27,12 +27,14 @@
           <span>Сообщества</span>
         </div>
       </div>
+      <?if(is_user()){}?>
       <div onclick="location.href='/dashboard'" class="bottom-nav-item <?=($_SERVER['REQUEST_URI'] === '/dashboard') ? 'active'  : ''?>">
         <div class="bottom-nav-link">
           <i class="material-icons">settings</i>
           <span>Студия</span>
         </div>
       </div>
+        <?}?>
     </nav>
   </div>
 </header>
