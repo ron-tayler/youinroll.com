@@ -79,6 +79,7 @@ try{
         'country'  => _post('country'),
         'name'     => _post('name'),
         'email'    => _post('email'),
+        'phone'    => _post('nick'),
         'group_id' => $role,
         'chatRoom' => generateRandomString(),
         'password' => sha1(_post('password')),

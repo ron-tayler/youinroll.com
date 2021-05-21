@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
                     let formData = document.forms[0];
 
-                    location.href = 'https://youinroll.com'+backurl;
+                    location.href = backurl;
                 }
 
                 if(response.errors !== null)
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function(){
             )
         }, 25000);
     }, 30000);
-    
+
 })
 </script>
 </footer>
