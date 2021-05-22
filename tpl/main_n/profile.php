@@ -20,35 +20,21 @@ $md = $cachedb->get_row("SELECT count(case when pub = 1 then 1 else null end) as
                 </div>
             <?php } ?>
             <div class='channel-info'>
-                <img class="channel-image img-circle inline mright20"
-                     src="<?= thumb_fix($profile->avatar, true, 130, 130); ?>"
-                     data-name="<?= addslashes($profile->name); ?>">
                 <div class="channel-head">
-                    <h1><?= _html($profile->name); ?></h1>
-                    <div class='channel-buttons-mobile'>
-                        <div class="btn-group">
-                            <? if (intval($profile->id) !== intval(user_id())) { ?>
-
-                                <?php subscribe_box($profile->id, '', false, 'modal'); ?>
-                                <?php subscribe_box($profile->id, 'btn btn-primary tipS mleft10', false, 'follow'); ?>
-
-                            <? } else { ?>
-                                <?php subscribe_box($profile->id); ?>
-                            <? } ?>
-                            <!-- <div class='last-buttons'>
-                            <button class="btn btn-secondary2"><i class="icon-threedot"></i></button>
-                            <button class="btn btn-secondary2"><i class="icon-ring"></i></button>
-                            </div> -->
-                        </div>
-                    </div>
-                    <div class="channel-subheader row mtop10">
-                        <div class="mright20">
-                            <strong class="profile-stat-count"><?= u_k(get_subscribers($profile->id)); ?></strong>
-                            <span><?= _lang("Subscribers"); ?></span>
-                        </div>
-                        <div class="mright20">
-                            <strong class="profile-stat-count"><?= u_k($vd->nr); ?></strong>
-                            <span><?= _lang("Videos"); ?></span>
+                    <img class="channel-image img-circle inline mright20"
+                         src="<?= thumb_fix($profile->avatar, true, 130, 130); ?>"
+                         data-name="<?= addslashes($profile->name); ?>">
+                    <div class="channel-name">
+                        <h1><?= _html($profile->name); ?></h1>
+                        <div class="channel-subheader row mtop10">
+                            <div class="mright20">
+                                <strong class="profile-stat-count"><?= u_k(get_subscribers($profile->id)); ?></strong>
+                                <span><?= _lang("Subscribers"); ?></span>
+                            </div>
+                            <div class="mright20">
+                                <strong class="profile-stat-count"><?= u_k($vd->nr); ?></strong>
+                                <span><?= _lang("Videos"); ?></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -74,7 +60,47 @@ $md = $cachedb->get_row("SELECT count(case when pub = 1 then 1 else null end) as
                         </div>
                     </div>
                 </div>
+                <div class='channel-buttons-mobile'>
+                    <div class="btn-group">
+                        <? if (intval($profile->id) !== intval(user_id())) { ?>
+
+                            <?php subscribe_box($profile->id, '', false, 'modal'); ?>
+                            <?php subscribe_box($profile->id, 'btn btn-primary tipS mleft10', false, 'follow'); ?>
+
+                        <? } else { ?>
+                            <?php subscribe_box($profile->id); ?>
+                        <? } ?>
+                        <!-- <div class='last-buttons'>
+                        <button class="btn btn-secondary2"><i class="icon-threedot"></i></button>
+                        <button class="btn btn-secondary2"><i class="icon-ring"></i></button>
+                        </div> -->
+                    </div>
+                </div>
             </div>
+            <style>
+                .channel-info{
+                    display: inherit;
+                }
+                .channel-head{
+                    float: left;
+                    display: inline-flex;
+                }
+                .channel-buttons{
+                    float: right;
+                }
+                .channel-buttons-mobile{
+                    float: right;
+                }
+                .channel-buttons .btn-group{
+                    display: inline-flex;
+                }
+                .channel-buttons a{
+                    height: fit-content;
+                }
+                .channel-buttons-mobile .btn-group{
+                    display: inline-flex;
+                }
+            </style>
             <div id="profile-nav" class="red-nav">
                 <ul>
                     <li class="<?= aTab("profile"); ?>"><a

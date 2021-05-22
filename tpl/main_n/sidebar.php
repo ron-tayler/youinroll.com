@@ -1,15 +1,17 @@
 <?php
     if (is_video() || is_picture() || is_com('stream') || is_com('conversation')) {
+        $sidebar_type = 'normal';
+        $sidebar_status = 'close';
         $sidebar_class = 'hide-all';
-        $type = 'normal';
     } else{
-        $sidebar_class = 'hide';
-        $type = 'iconic';
+        $sidebar_type = 'iconic';
+        $sidebar_status = 'open';
+        $sidebar_class = '';
     }
     $isActive_myChannel = ((!isset($_SERVER['REQUEST_URI']) || ltrim($_SERVER['REQUEST_URI'], '/') === '') && !is_user())?'item-activ':'';
     $myChannelHref = is_user()? profile_url(user_id(), user_name()).'?sk=about':'/login';
 ?>
-<div id="sidebar" class="<?=$sidebar_class?> animated zoomInLeft" data-type="<?=$type?>" data-status="close">
+<div id="sidebar" class="<?=$sidebar_class?> animated zoomInLeft" data-type="<?=$sidebar_type?>" data-status="<?=$sidebar_status?>">
     <div class="sidescroll">
         <?php do_action('sidebar-start'); ?>
         <?=_ad('0', 'sidebar-start')?>
