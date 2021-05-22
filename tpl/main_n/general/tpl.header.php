@@ -141,5 +141,5 @@ global $page;
     
     <?=the_sidebar()?>
     <?include(TPL.'/sidebar-mobile.php');?>
-    <div id="wrapper" class="<?=wrapper_class()?> haside aside <?= ($page === 'stream') ? 'big-pic' : '' ?>">
+    <div id="wrapper" class="<?=wrapper_class()?> aside <?= ($page === 'stream') ? 'big-pic' : '' ?>">
         <div class="row block page p-<?=$page?>">
