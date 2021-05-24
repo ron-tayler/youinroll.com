@@ -182,7 +182,7 @@
             <div class="blc mtop20 odet fs300" id="guestButton">
                 <?=_lang('Share videos, music and pictures, follow friends and keep track of what you enjoy!')?>
                 <p class="small mright20 mleft10">
-                    <a href="/login" class="btn-primary1 btn-small btn-block mtop20">
+                    <a href="/login" class="btn-primary1 btn-coral btn-small btn-block mtop20">
                     <?=_lang("Join us")?></a>
                 </p>
             </div>

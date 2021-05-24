@@ -749,7 +749,7 @@ function subscribe_box($user, $btnc = '', $counter = false, $type = 'default')
     echo '<div class="btn-group">';
     if (!is_user()) {
         //It's guest
-        $btnc .= "btn btn-labled social-google-plus subscriber";
+        $btnc .= "btn btn-coral social-google-plus subscriber";
 
         if ($type === 'modal') {
             echo '<a id="modal-' . $user . '" data-next="' . _lang('Subscribe') . '" class="' . $btnc . ' pv_tip" href="javascript:SubscribeModal(' . $user . ')" title="' . _lang('Click to add a subscription') . '"><span>' . _lang('Subscribe') . ' ' . $ktool . '</span></a>';
@@ -766,7 +766,7 @@ function subscribe_box($user, $btnc = '', $counter = false, $type = 'default')
         $check = $db->get_row("SELECT count(*) as nr from " . DB_PREFIX . "users_friends where uid ='" . $user . "' and fid='" . user_id() . "'");
         if ($check->nr < 1) {
             //You're not subscribed
-            $btnc .= "btn btn-labled social-google-plus subscriber";
+            $btnc .= "btn btn-coral social-google-plus subscriber";
             if ($type === 'modal') {
                 echo '<a id="modal-' . $user . '" data-next="' . _lang('Subscribe') . '" class="' . $btnc . ' pv_tip" href="javascript:SubscribeModal(' . $user . ')" title="' . _lang('Click to add a subscription') . '"><span>' . _lang('Subscribe') . ' ' . $ktool . '</span></a>';
 
@@ -775,12 +775,12 @@ function subscribe_box($user, $btnc = '', $counter = false, $type = 'default')
                 echo '<a id="follow-' . $user . '" data-next="' . _lang("Follow") . '" class="' . $btnc . ' pv_tip" href="javascript:Subscribe(' . $user . ', 2, `#follow-' . $user . '`)" title="' . _lang('Click to ') . '"><i class="icon-follow"></i><span>' . _lang('Follow') . '</span></a>';
 
             } else {
-                echo '<a id="subscribe-' . $user . '" data-next="' . _lang('Subscribe') . '" class="' . $btnc . ' pv_tip" href="javascript:Subscribe(' . $user . ', 1, `#subscribe-' . $user . '`)" title="' . _lang('Click to add a subscription') . '"><span>' . _lang('Subscribe') . ' ' . $ktool . '</span></a>';
+                echo '<a style="color: #fff !important;" id="subscribe-' . $user . '" data-next="' . _lang('Subscribe') . '" class="' . $btnc . ' pv_tip" href="javascript:Subscribe(' . $user . ', 1, `#subscribe-' . $user . '`)" title="' . _lang('Click to add a subscription') . '"><span>' . _lang('Subscribe') . ' ' . $ktool . '</span></a>';
             }
 
         } else {
             //You are, but can unsubscribe
-            $btnc .= "btn btn-default subscriber";
+            $btnc .= "btn btn-coral subscriber";
 
             if ($type === 'modal') {
                 echo '<a id="modal-' . $user . '" data-next="' . _lang("unsubscribed") . '" class="' . $btnc . ' pv_tip" href="javascript:SubscribeModal(' . $user . ')" title="' . _lang('Click to add a subscription') . '"><span>' . _lang('Subscribe') . ' ' . $ktool . '</span></a>';
