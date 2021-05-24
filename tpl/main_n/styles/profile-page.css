@@ -616,8 +616,8 @@ only screen and (min-device-pixel-ratio : 1.5) {
 }
 
 #channelAbout .landingHead {
-    width: 1400px;
-    height: 250px;
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
     margin: 0 auto;
@@ -628,7 +628,7 @@ only screen and (min-device-pixel-ratio : 1.5) {
     margin: auto;
     position: relative;
     display: flex;
-    width: var(--landing-block-width);
+    width: 100%; /* var(--landing-block-width);*/
     padding: 26px;
     justify-content: center;
     border-radius: 10px;
