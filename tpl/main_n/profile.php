@@ -128,7 +128,7 @@ $md = $cachedb->get_row("SELECT count(case when pub = 1 then 1 else null end) as
                                 href="<?= $canonical; ?>?sk=timeline"><?= _lang("Расписание"); ?></a></li>
                 </ul>
 
-                <div class="channel-subheader mtop10">
+                <div id="channel-subheader-viewer" class="channel-subheader mtop10">
                     <? if (u_k($vd->vnr) !== null) { ?>
                         <div class="mright20">
                             <strong class="profile-stat-count"><?= u_k($profile->views); ?></strong>

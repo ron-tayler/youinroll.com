@@ -54,7 +54,7 @@
         margin-left: 0px !important;
     }
 
-    .channel-buttons * {
+    .channel-buttons {
         display: none !important;
     }
 
@@ -102,6 +102,8 @@
     .channel-buttons-mobile {
         display: block !important;
         zoom: 0.8;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     .sticky {
@@ -121,6 +123,15 @@
         width: 125px !important;
         border-radius: 5px;
         margin-bottom: auto;
+    }
+    .channel-buttons-mobile {
+        display: block !important;
+        zoom: 0.8;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .channel-buttons {
+        display: none !important;
     }
 }
 
@@ -306,10 +317,15 @@
     background-color: white !important;
 }
 
+#profile-nav ul{
+    display: inherit;
+}
+
 #profile-nav {
     display: flex;
     justify-content: space-between;
     background-color: white;
+    overflow-x: auto;
 }
 
 .panel-body {
@@ -627,7 +643,7 @@
     margin: auto;
     position: relative;
     display: flex;
-    width: var(--landing-block-width);
+    /*width: var(--landing-block-width);*/
     padding: 26px;
     justify-content: center;
     border-radius: 10px;
@@ -740,4 +756,10 @@
     z-index: 99;
     width: 82.75% !important;
     transition: ease-in 1s;
+}
+
+@media (max-width: 1024px){
+    #channel-subheader-viewer{
+        display: none !important;
+    }
 }
