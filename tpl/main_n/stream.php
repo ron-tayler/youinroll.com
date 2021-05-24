@@ -79,26 +79,30 @@ if($streamInfo !== null)
                                         </div>
                                     </div>
 
-                                    <div class="aaa">
-                                        <a role="button" data-toggle="modal" href="#ShareModal"
-                                            title=" <?php echo _lang('Share or Embed');?>">
-                                            <!-- <i class="material-icons ico-flipped">&#xE15E;</i> -->
-                                            <img src="/tpl/main/images/share.svg" class="share" />
-                                            <span class="hidden-xs">
-                                                <?php 
-                                                    //echo _lang('Share');
-                                                    echo 'Поделиться';
-                                                    ?>
-                                            </span>
-                                        </a>
+                                    <div class="likes-bar">
+    					<div class="aaa">
+                                         <a role="button" data-toggle="modal" href="#ShareModal"
+                                             title=" <?php echo _lang('Share or Embed');?>">
+                                             <!-- <i class="material-icons ico-flipped">&#xE15E;</i> -->
+                                             <img src="/tpl/main/images/share.svg" class="share" />
+                                             <span class="hidden-xs">
+                                                 <?php 
+                                                     //echo _lang('Share');
+                                                     echo 'Поделиться';
+                                                     ?>
+                                             </span>
+				 	 </a>
+ 					</div>
                                     </div>
                                     <?php if (is_user()) { ?>
                                     <?php if ((int)user_id() === (int)$streamInfo->moderator_id) { ?>
-                                        <div class="aaa">
-                                            <a role="button" class="btn btn-danger" style="padding: 10px" data-toggle="modal" id="closeStream">
-                                                <span style="text-align:center;"><?php echo _lang("Завершить урок");?></span>
-                                            </a>
-                                        </div>
+				    	<div class="likes-bar">
+                                         <div class="aaa">
+                                             <a role="button" class="btn btn-danger" style="padding: 10px" data-toggle="modal" id="closeStream">
+                                                 <span style="text-align:center;"><?php echo _lang("Завершить урок");?></span>
+                                             </a>
+                                         </div>
+                                       </div>
                                     <?php } else { ?>
                                         <div class="aaa">
                                             <a class="tipS" title=" <?php echo _lang('Report');?>" data-target="#report-it"
