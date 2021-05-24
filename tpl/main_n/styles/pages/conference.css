@@ -189,4 +189,11 @@
         width: 100%;
         height: 475px;
     }
+#stream-content {
+ height: auto;
+}
+
+    #stream  {
+   min-height : auto !important;
+   }
 }
