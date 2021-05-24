@@ -1010,23 +1010,22 @@ $(document).ready(function (key, value) {
     $("#show-sidebar").click(function () {
         let sidebar_status = $("#sidebar").data('status');
         if (sidebar_status === 'open') {
-            sidebar_status = 'close';
             sidebar_close();
         } else if (sidebar_status === 'close') {
-            sidebar_status = 'open';
             sidebar_open();
         } else {
             console.error('Ошибка с параметром sidebar_status:', sidebar_status);
-            sidebar_status = 'close';
-            console.error('Параметр sidebar_status теперь:', sidebar_status);
+            console.error('Параметр sidebar_status теперь: close');
+            sessionStorage.setItem('sidebarStatus', 'close');
+            $("#sidebar").data('status', 'close');
         }
-        sessionStorage.setItem('sidebarStatus', sidebar_status);
-        $("#sidebar").data('status', sidebar_status);
     });
 
     // Функция на открытие sidebar
     function sidebar_open(){
         $("#show-sidebar>.hamburger").addClass("is-active");
+        sessionStorage.setItem('sidebarStatus', 'open');
+        $("#sidebar").data('status', 'open');
         if ($('#sidebar').data('type') === 'iconic') {
 
             $("#sidebar").removeClass('hide');
@@ -1044,26 +1043,18 @@ $(document).ready(function (key, value) {
             if (!$('#tinted').length) {
                 $('body').prepend('<div id="tinted"></div>');
                 $('body').css('overflow-y', 'hidden');
-            }
-            /*
-            setTimeout(() => {
-                document.addEventListener('click', toggleSidebar);
-
-                $(document).keyup(function(e) {
-                    if (e.key === "Escape") {
-                        toggleSidebar();
-                    }
+                $('#tinted').click(function(e){
+                    sidebar_close();
                 });
-
-             }, 500);
-             */
+            }
         }
     }
 
     // Функция на закрытие sidebar
     function sidebar_close(){
+        sessionStorage.setItem('sidebarStatus', 'close');
+        $("#sidebar").data('status', 'close');
         $("#show-sidebar>.hamburger").removeClass("is-active");
-
         if ($('#sidebar').data('type') === 'iconic') {
 
             $("#sidebar").addClass('hide');
