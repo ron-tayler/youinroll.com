@@ -159,10 +159,10 @@ input, .is-invalid {
 }
 .btn-signin {
     cursor: pointer;
-    background: #bd2130;
-    background: -webkit-linear-gradient(to right, #ff002f, #bd2130);
-    background: linear-gradient(to right, #ff002f, #bd2130);
-    box-shadow: 0px 5px 15px 5px #bd213045;
+    background: #fe2c55;
+    background: -webkit-linear-gradient(to right, #fe2c55, #dc1f44);
+    background: linear-gradient(to right, #fe2c55, #dc1f44);
+    box-shadow: 0px 5px 15px 5px #dc1f4445;
     color: #fff !important;
     font-weight: bold !important;
 }

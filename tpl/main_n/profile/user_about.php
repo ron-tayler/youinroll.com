@@ -39,7 +39,7 @@ $role = $db->get_row("SELECT * FROM ".DB_PREFIX."users_groups WHERE id='".$roleI
         <span class='registerChannel'><?=_lang('registered ')?> <?=date('yy-m',strtotime($profile->date_registered))?></span>
     </div>
     <?}?>
-    <a href="conversation/<?=$profile->id?>/" class='btn btn-writeus'><?=_lang('Write Us');?></a>
+    <a style="color: #fff !important; background: #fe2c55 !important;" href="conversation/<?=$profile->id?>/" class='btn btn-writeus'><?=_lang('Write Us');?></a>
 </div>
 
 <?
