@@ -2,12 +2,51 @@
 
 .widthcto {
 width: 100%;
+height: 130px;
+overflow: hidden;
+}
+
+.widthcto img {
+width: 100%;
 }
 
 .pad-3 {
 padding: 3px;
 }
 
+.basic-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+ }
+
+.avatar {
+  vertical-align: middle;
+  padding-top: 3px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.vidd {
+display: inline-block;
+}
+
+.vid-descr {
+width: 100%
+}
+
+.one {
+  width: 20%;
+  float: left;
+}
+
+.two {
+  margin-left: 20%;
+ padding-left: 3px;
+ padding-top: 3px;
+}
 
 </style>
 
@@ -22,35 +61,65 @@ padding: 3px;
 
 <!-- start  -->
 
-<div id="SearchResults" class="row row-cols-1 row-cols-md-3">
+<section class="basic-grid">
     <? if($conferences !== null && count($conferences) > 0 ) { ?>
     <?foreach ($conferences as $conference) { ?>
         <? $url2 = conference_url($conference->id, $conference->name); ?>
-	 <div id="video-<?=$conference->id?>" class="pad-3   col-md-3 col-lg-3 col-xl-2"> 
+	 <div id="video-<?=$conference->id?>" class="pad-3"> 
            <div class="widthcto">
-              <img src="<?=($conference->cover === '') ? '/uploads/def-avatar.jpg' : $conference->cover?>" alt="" class="widthcto" />
+              <img src="https://youinroll.com/<?=($conference->cover === '') ? 'https://youinroll.com/uploads/def-avatar.jpg' : $conference->cover?>" alt=""  />
            </div>
-           <div class="">
-              <div class="">
-                  <a class="clip-link" data-id="" title="" href="<?=$url2?>">
-                      <span class="overlay"></span>
-                  </a>
+              <a class="clip-link" data-id="" title="" href="<?=$url2?>">
+                  <span class="overlay"></span>
+              </a>
+              <div class="vid-descr">
+                <div class="one">
+		   <img src='https://youinroll.com/<?=$profile->avatar?>' class='avatar'/>
+                </div>
+                <div class="two">
+                   <h4 class="vidd"><a href="<?=$url?>" title="<?=$full_title?>"><?=$conference->name?></a></h4>
+              <small><?= date('Y/m/d', strtotime($conference->created_at)) ?></small>
+                </div>	      
               </div>
-              <div class="video-data">
-				<img src='<?=$profile->avatar?>' class='img-rounded'/>
-				<div>
-                <h4 class="video-title"><a href="<?=$url?>" title="<?=$full_title?>"><?=$conference->name?></a></h4>
-				<small><?= date('Y/m/d', strtotime($conference->created_at)) ?></small>
-				</div>
-            </div>
-        </div>
-    </div>
+         </div>
     <?}} else {?>
         <h3 style='width:100%;text-align:center;'><?=_lang('There is no content')?></h3>
     <?}?>
-	
-    <br style="clear:both">
-</div>
+        
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- start  -->
 
 
