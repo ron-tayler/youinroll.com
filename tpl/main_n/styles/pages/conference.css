@@ -6,9 +6,9 @@
 @import url("./chat.css");
 
 #wrapper.big-pic {
-    margin-left: 0.1% !important;
-    margin-right: 0.1% !important;
-    width: 98% !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    width: 100% !important;
 }
 
 #stream-content {
@@ -90,8 +90,8 @@
 
 #streamerImage {
     border-radius: 50%;
-    height: 60px;
-    width: 60px;
+    max-height: 60px;
+    max-width: 60px;
 }
 
 #streamerName {
