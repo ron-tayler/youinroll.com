@@ -793,12 +793,26 @@ $(window).scroll(function() {
     }
 });
 /* Doc ready*/
-$(document).ready(function() {
+$(document).ready(function (key, value) {
+    // Иницализация sidebar
+    let sidebar_type = $("#sidebar").data('type');
+    let sidebar_status = (sidebar_type === 'normal') ? 'close' : sessionStorage.getItem('sidebarStatus') ?? $("#sidebar").data('status');
+    if (sidebar_status === 'open') {
+        sidebar_open();
+    } else if (sidebar_status === 'close') {
+        sidebar_close();
+    } else {
+        console.error('Ошибка с параметром sidebar_status:', sidebar_status);
+        sidebar_status = 'close';
+        console.error('Параметр sidebar_status теперь:', sidebar_status);
+    }
+    sessionStorage.setItem('sidebarStatus', sidebar_status);
+    $("#sidebar").data('status', sidebar_status);
+
     $('.icon-material,button:not(".vjs-control"):not(".vjs-button"), a.btn').ripple();
     if ($(window).width() < 1000) {
         $('body').addClass('isdevice');
     }
-
 
     //Process image errors
     $('img').error(function() {
@@ -991,120 +1005,80 @@ $(document).ready(function() {
     $(".page-aside-switch , page-aside-switch > i").click(function() {
         $(".page-aside").toggleClass('open');
     });
-    //Sidebar
 
-    function toggleSidebar() {
-        $('#show-sidebar').click();
+    // Hook на кнопку sidebar
+    $("#show-sidebar").click(function () {
+        let sidebar_status = $("#sidebar").data('status');
+        if (sidebar_status === 'open') {
+            sidebar_close();
+        } else if (sidebar_status === 'close') {
+            sidebar_open();
+        } else {
+            console.error('Ошибка с параметром sidebar_status:', sidebar_status);
+            console.error('Параметр sidebar_status теперь: close');
+            sessionStorage.setItem('sidebarStatus', 'close');
+            $("#sidebar").data('status', 'close');
+        }
+    });
+
+    // Функция на открытие sidebar
+    function sidebar_open(){
+        $("#show-sidebar>.hamburger").addClass("is-active");
+        sessionStorage.setItem('sidebarStatus', 'open');
+        $("#sidebar").data('status', 'open');
+        if ($('#sidebar').data('type') === 'iconic') {
+
+            $("#sidebar").removeClass('hide');
+            //$("#wrapper").addClass('haside');
+
+            let sideSpace = parseInt($("#wrapper").offset().left);
+            $("#wrapper").css({
+                "margin-left": "240px",
+                "margin-right": "0",
+                "width": "auto"
+            });
+        } else {
+            $("#sidebar").removeClass('hide-all');
+
+            if (!$('#tinted').length) {
+                $('body').prepend('<div id="tinted"></div>');
+                $('body').css('overflow-y', 'hidden');
+                $('#tinted').click(function(e){
+                    sidebar_close();
+                });
+            }
+        }
     }
 
-    $("#show-sidebar").click(function() {
+    // Функция на закрытие sidebar
+    function sidebar_close(){
+        sessionStorage.setItem('sidebarStatus', 'close');
+        $("#sidebar").data('status', 'close');
+        $("#show-sidebar>.hamburger").removeClass("is-active");
+        if ($('#sidebar').data('type') === 'iconic') {
 
-        if ($('#show-sidebar').data('type') === 'iconic') {
-            document.removeEventListener('click', toggleSidebar)
+            $("#sidebar").addClass('hide');
+            $("#wrapper").removeClass('haside');
 
-            $("#sidebar").toggleClass('hide');
-
-            $("#wrapper").toggleClass('haside');
-
-            if (!$("#sidebar").hasClass("hide")) {
-
-                localStorage.setItem('menuState', 'open');
-
-                let sideSpace = parseInt($("#wrapper").offset().left);
-                if (sideSpace < 240) {
-                    $("#wrapper").css({
-                        "margin-left": "240px",
-                        "margin-right": "auto"
-                    });
-                }
-            } else {
-                localStorage.setItem('menuState', 'hiden');
-
-                let sideSpace = $("#wrapper").offset().left;
-                if (sideSpace == 240) {
-                    $("#wrapper").css({
-                        "margin-left": "auto",
-                        "margin-right": "auto"
-                    });
-                }
-            }
+            let sideSpace = $("#sidebar").width();
+            $("#wrapper").css({
+                "margin-left": sideSpace,
+                "margin-right": "0",
+                "width": "auto"
+            });
 
             if ($('#tinted').length || $('#sidebar').hasClass('hide')) {
                 $('#tinted').remove();
                 $('body').css('overflow-y', 'auto');
-            } else {
-                /* $('body').prepend('<div id="tinted"></div>'); */
-
-                setTimeout(() => {
-                    if ($("#sidebar").hasClass("hide")) {
-                        document.addEventListener('click', toggleSidebar)
-
-                        $(document).keyup(function(e) {
-                            if (e.key === "Escape") {
-                                toggleSidebar();
-                            }
-                        });
-                    }
-
-                }, 500);
-
             }
 
         } else {
-            document.removeEventListener('click', toggleSidebar);
 
-            $("#sidebar").toggleClass('hide-all');
+            $("#sidebar").addClass('hide-all');
 
-            if ($('#tinted').length) {
-                $('#tinted').remove();
-                $('body').css('overflow-y', 'auto');
-            } else {
-                $('body').prepend('<div id="tinted"></div>');
-                $('body').css('overflow-y', 'hidden');
-
-                setTimeout(() => {
-                    document.addEventListener('click', toggleSidebar);
-
-                    $(document).keyup(function(e) {
-                        if (e.key === "Escape") {
-                            toggleSidebar();
-                        }
-                    });
-
-                }, 500);
-
-            }
+            $('#tinted').remove();
+            $('body').css('overflow-y', 'auto');
         }
-
-
-        /* $("#wrapper").toggleClass('haside'); */
-        /* if (!$("#sidebar").hasClass("hide")) {
-            var sideSpace = parseInt($("#wrapper").offset().left);
-            if (sideSpace < 240) {
-                $("#wrapper").css({
-                    "margin-left": "240px",
-                    "margin-right": "auto"
-                });
-            }
-        } else {
-            var sideSpace = $("#wrapper").offset().left;
-            if (sideSpace == 240) {
-                $("#wrapper").css({
-                    "margin-left": "auto",
-                    "margin-right": "auto"
-                });
-            }
-        } */
-    });
-    if (!$("#sidebar").hasClass("hide") && !$("#sidebar").hasClass("hide-all")) {
-        var sideSpace = $("#wrapper").offset().left;
-        if (sideSpace < 240) {
-            $("#wrapper").css({
-                "margin-left": "240px",
-                "margin-right": "auto"
-            }).addClass('haside');
-        }
-
     }
     //End sidebar
 

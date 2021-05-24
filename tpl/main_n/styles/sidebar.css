@@ -13,7 +13,7 @@
     background: #fff;
     color: #666666;
     font-weight: 500;
-    transition: all .3s linear 0s;
+    /*transition: all .3s linear 0s;*/
     -moz-box-shadow: 0 0 1px 0px rgba(0, 0, 0, .08);
     -webkit-box-shadow: 0 0 1px 0px rgba(0, 0, 0, .08);
     box-shadow: 0 0 1px 0px rgba(0, 0, 0, .08);
@@ -36,18 +36,18 @@
 }
 
 .tooltip-item {
-    transition: all .3s linear 0s;
+    /*transition: all .3s linear 0s;*/
     display: none;
 }
 
 #sidebar.hide {
     display: block;
-    transition: all .3s linear 0s;
+    /*transition: all .3s linear 0s;*/
     width: fit-content !important;
 }
 
 #sidebar.hide .sidebar-nav li {
-    transition: all .3s linear 0s;
+   /* transition: all .3s linear 0s;*/
     font-size: 15px;
     margin: 0 auto;
     width: 100%;
@@ -70,7 +70,7 @@
 }
 
 #sidebar.hide .tooltip-item {
-    transition: all .3s linear 0s;
+    /*transition: all .3s linear 0s;*/
     display: block;
     font-size: 12px;
 }
@@ -113,7 +113,7 @@
 
 #sidebar.hide-all {
     display: none !important;
-    transition: all .3s linear 0s;
+    /*transition: all .3s linear 0s;*/
 }
 
 #myInbox {
@@ -121,11 +121,11 @@
 }
 
 #sidebar * {
-    transition: all .3s linear 0s;
+    /*transition: all .3s linear 0s;*/
 }
 
 #sidebar.hide * {
-    transition: all .3s linear 0s;
+    /*transition: all .3s linear 0s;*/
     font-size: 0px;
     width: fit-content !important;
 }
@@ -328,7 +328,7 @@ a#openusr {
     }
 
     #sidebar * {
-        transition: all .3s linear 0s;
+        /*transition: all .3s linear 0s;*/
         font-size: 0px;
         width: fit-content !important;
     }
@@ -381,7 +381,7 @@ a#openusr {
     }
 
     #sidebar .sidebar-nav li {
-        transition: all .3s linear 0s;
+        /*transition: all .3s linear 0s;*/
         font-size: 15px;
         margin: 0 auto;
         width: 100%;
@@ -400,7 +400,7 @@ a#openusr {
     }
 
     #sidebar .tooltip-item {
-        transition: all .3s linear 0s;
+        /*transition: all .3s linear 0s;*/
         display: block;
         font-size: 12px;
     }
@@ -449,9 +449,9 @@ a#openusr {
         font-size: 12px !important;
     }
 
-    .channel-subheader {
-        display: none !important;
-    }
+    /*.channel-subheader {*/
+    /*    display: none !important;*/
+    /*}*/
 
     .backtotop {
         bottom: 45px !important;

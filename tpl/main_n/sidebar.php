@@ -1,15 +1,17 @@
 <?php
     if (is_video() || is_picture() || is_com('stream') || is_com('conversation')) {
+        $sidebar_type = 'normal';
+        $sidebar_status = 'close';
         $sidebar_class = 'hide-all';
-    } elseif (is_com('home')) {
-        $sidebar_class = 'hide';
-    } else {
+    } else{
+        $sidebar_type = 'iconic';
+        $sidebar_status = 'open';
         $sidebar_class = '';
     }
     $isActive_myChannel = ((!isset($_SERVER['REQUEST_URI']) || ltrim($_SERVER['REQUEST_URI'], '/') === '') && !is_user())?'item-activ':'';
     $myChannelHref = is_user()? profile_url(user_id(), user_name()).'?sk=about':'/login';
 ?>
-<div id="sidebar" class="<?=$sidebar_class?> animated zoomInLeft">
+<div id="sidebar" class="<?=$sidebar_class?> animated zoomInLeft" data-type="<?=$sidebar_type?>" data-status="<?=$sidebar_status?>">
     <div class="sidescroll">
         <?php do_action('sidebar-start'); ?>
         <?=_ad('0', 'sidebar-start')?>
@@ -180,7 +182,7 @@
             <div class="blc mtop20 odet fs300" id="guestButton">
                 <?=_lang('Share videos, music and pictures, follow friends and keep track of what you enjoy!')?>
                 <p class="small mright20 mleft10">
-                    <a href="/login" class="btn-primary1 btn-small btn-block mtop20">
+                    <a href="/login" class="btn-primary1 btn-coral btn-small btn-block mtop20">
                     <?=_lang("Join us")?></a>
                 </p>
             </div>
