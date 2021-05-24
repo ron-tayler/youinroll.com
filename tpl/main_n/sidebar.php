@@ -152,31 +152,6 @@
                 </div>
             </div>
             <hr/>
-            <div id="endSidebar">
-                <h4 class="li-heading">
-                    <?=_lang('Другие возможности')?>
-                </h4>
-                <div class="sidebar-nav blc">
-                    <ul>
-                        <? if(!has_premium()){ ?>
-                            <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/payment')?'item-activ':''?>">
-                                <a href="/payment">
-                                    <span class="iconed"><img src="/tpl/main/icon-menu/zvez.png" alt="icon" /></span>
-                                    <?=_lang("Get Premium")?>
-                                </a>
-                                <span class="tooltip-item" style="margin-left:-8px"><?=_lang("Get Premium")?></span>
-                            </li>';
-                        <? } ?>
-                        <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/dashboard?sk=edit')?'item-activ':''?>">
-                            <a href="/dashboard?sk=edit">
-                                <span class="iconed"><img src="/tpl/main/icon-menu/settings.svg" alt="icon" /></span>
-                                <?=_lang("My Settings")?>
-                            </a>
-                            <span class="tooltip-item" style="margin-left:-8px"><?=_lang("My Settings")?></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             <? do_action('user-sidebar-end') ?>
         <? }else{ ?>
             <div class="blc mtop20 odet fs300" id="guestButton">
@@ -185,22 +160,6 @@
                     <a href="/login" class="btn-primary1 btn-coral btn-small btn-block mtop20">
                     <?=_lang("Join us")?></a>
                 </p>
-            </div>
-            <div id="endSidebar">
-                <h4 class="li-heading"><?=_lang('Другие возможности')?></h4>
-                <div class="sidebar-nav blc">
-                    <ul>
-                        <? if(!has_premium()){ ?>
-                            <li class="lihead <?=($_SERVER['REQUEST_URI'] == '/payment')?'item-activ':''?>">
-                                <a href="/payment">
-                                    <span class="iconed"><img src="/tpl/main/icon-menu/zvez.png" alt="icon" /></span>
-                                    <?=_lang("Get Premium")?>
-                                </a>
-                                <span class="tooltip-item" style="margin-left:-8px"><?=_lang("Get Premium")?></span>
-                            </li>';
-                        <? } ?>
-                    </ul>
-                </div>
             </div>
             <? do_action('guest-sidebar') ?>
         <? } ?>
