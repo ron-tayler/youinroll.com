@@ -1,12 +1,12 @@
 {
   "name": "YouInRoll",
-  "short_name": "You",
+  "short_name": "YouInRoll",
   "description": "Хотите развиваться и образовываться | повысить свой уровень знаний | вы найдёте у нас множество контента и единомышленников для благотворного обучения | добро пожаловать ! в образовательную видео сеть",
   "lang": "ru-RU",
   "start_url": "/",
   "display": "standalone",
   "orientation": "any",
-  "theme_color": "#fe2c55",
+  "theme_color": "#fff",
   "icons": [
     {
       "src": "lib/favicos/favicon(16x16).png",
