@@ -1,6 +1,6 @@
 <div class="fixed-top">
     <div class="row block" style="position:relative;">
-        <div class="logo-wrapper">
+        <div class="logo-wrapper" style="display: inline-flex; width: 300px; max-width: 300px">
             <a id="show-sidebar" href="javascript:void(0)" title="<?=_lang('Show sidebar')?>" data-type="<?=$type?>">
                 <div class="hamburger" id="hamburger">
                     <span class="line"></span>
@@ -8,7 +8,10 @@
                     <span class="line"></span>
                 </div>
             </a>
-            <a href="<?=site_url()?>" title="" class="logo"><?=str_replace("/>"," alt=\"logo\" />",show_logo())?></a>
+            <a href="<?=site_url()?>" title="" class="logo" style="display: inline-flex; width: 100%; align-items: center;">
+                <img src="/lib/favicos/favicon.svg" style="max-height: 60%; margin-right: 10px;"/>
+                <?=str_replace("/>"," alt=\"logo\" style=\"max-height: 60%;\"/>",show_logo())?>
+            </a>
             <br style="clear:both;" />
         </div>
         <div class="header">

@@ -1,6 +1,6 @@
 {
-    "name": "MultimediaPub",
-    "short_name": "MultimediaPub",
+    "name": "YouInRoll",
+    "short_name": "You",
     "icons": [
         {
             "src": "/lib/favicos/android-chrome-192x192.png",
@@ -13,6 +13,7 @@
             "type": "image/png"
         }
     ],
+    "start_url":"/",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "display": "standalone"

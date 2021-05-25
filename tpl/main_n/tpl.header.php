@@ -90,12 +90,15 @@ function meta_add()
 
     $meta .= '<link rel="stylesheet" href="tpl/main_n/styles/sidebar.css" type="text/css">
 <link rel="stylesheet" href="tpl/main_n/styles/sidebar-mobile.css" type="text/css">
-<link rel="apple-touch-icon" sizes="180x180" href="' . site_url() . 'lib/favicos/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="' . site_url() . 'lib/favicos/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="' . site_url() . 'lib/favicos/favicon-16x16.png">
-<link rel="manifest" href="' . site_url() . 'lib/favicos/site.webmanifest">
-<link rel="mask-icon" href="' . site_url() . 'lib/favicos/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="shortcut icon" href="' . site_url() . 'lib/favicos/favicon.ico">
+
+<!--<link rel="apple-touch-icon" sizes="180x180" href="lib/favicos/apple-touch-icon.png">-->
+<link rel="icon" type="image/png" sizes="64x64" href="lib/favicos/favicon(64x64).png">
+<link rel="icon" type="image/png" sizes="32x32" href="lib/favicos/favicon(32x32).png">
+<link rel="icon" type="image/png" sizes="16x16" href="lib/favicos/favicon(16x16).png">
+<!--<link rel="manifest" href="lib/favicos/site.webmanifest">-->
+<link rel="mask-icon" href="lib/favicos/favicon.svg" color="#5bbad5">
+<link rel="shortcut icon" href="lib/favicos/favicon(16x16).png">
+
 <meta name="msapplication-TileColor" content="#2b5797">
 <meta name="msapplication-config" content="' . site_url() . 'lib/favicos/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
