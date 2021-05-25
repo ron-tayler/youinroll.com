@@ -22,17 +22,43 @@ if($streamInfo !== null)
 
 <div class="stream-holder row">
     <div class="stream-row" id="#stremrowwindow">
-
         <div id="renderPlaylist">
+            <div class="stream-under col-xs-12">
+                <div class=" mtop10">
+                    <div class="row vibe-interactions">
+                        <div class="streamer-row">
+                            <div class='streamerStatus'>
+                                <img id="streamerImage" src="<?=$userInfo->avatar?>" width="40" height="40" />
+                            </div>
+                            <div class='streamerData'>
+                                <h1 id='streamerName' style="margin:0px;"><?=$userInfo->name?></h1>
+                                <p style="font-weight:500; color:#333">
+                                    <?= _lang("Category: ") . $streamInfo->categoryName[0]?> <a
+                                        href="<?php echo channel_url($streamInfo->category,$streamInfo->channel_name);?>"
+                                        title="<?php echo _html($streamInfo->channel_name);?>">
+                                        <?php echo _html($streamInfo->channel_name);?>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <? if( (int)user_id() === (int)$streamInfo->moderator_id ) {?>
+                    <?include(TPL.'/modals/streamsettings.php');?>
+                <? } ?>
+
+                <?include(TPL.'/modals/sharemodal.php');?>
+                
+            </div>
+
             <div class="col-xs-12">
                 <div id="stream-content" class="col-xs-12">
                     <div class='stream-main'>
                     <?if( !in_array(user_group(),[4,5,3,8],true) && $streamInfo->on_air === '1' )
                     {?>
-                        <div class="video-player pull-left" id="stream" data-stream="<?=$streamId?>">
-			<div class"customstff"></div>
-
-                            <div class="clearfix"></div>
+                        <div class="video-player pull-left" id="stream" data-stream="<?=$streamId?>">                    
                         </div>
                     <?} else {?>
                         <?if($streamInfo->on_air !== '1') {?>
@@ -53,7 +79,6 @@ if($streamInfo !== null)
                         </div>
                         <?}?>
                     <?}?>
-
                         <div class="stream-header">
                             <h1><?=$streamInfo->name?></h1>
                             <div class="user-media-actions">
@@ -80,24 +105,24 @@ if($streamInfo !== null)
                                     </div>
 
                                     <div class="likes-bar">
-    					<div class="aaa">
-                                         <a role="button" data-toggle="modal" href="#ShareModal"
-                                             title=" <?php echo _lang('Share or Embed');?>">
-                                             <!-- <i class="material-icons ico-flipped">&#xE15E;</i> -->
-                                             <img src="/tpl/main/images/share.svg" class="share" />
-                                             <span class="hidden-xs">
-                                                 <?php 
-                                                     //echo _lang('Share');
-                                                     echo 'Поделиться';
-                                                     ?>
-                                             </span>
-				 	 </a>
- 					</div>
+    					                <div class="aaa">
+                                            <a role="button" data-toggle="modal" href="#ShareModal"
+                                                title=" <?php echo _lang('Share or Embed');?>">
+                                                <!-- <i class="material-icons ico-flipped">&#xE15E;</i> -->
+                                                <img src="/tpl/main/images/share.svg" class="share" />
+                                                <span class="hidden-xs">
+                                                    <?php 
+                                                        //echo _lang('Share');
+                                                        echo 'Поделиться';
+                                                        ?>
+                                                </span>
+                                            </a>
+ 					                    </div>
                                     </div>
                                     <?php if (is_user()) { ?>
                                     <?php if ((int)user_id() === (int)$streamInfo->moderator_id) { ?>
-				    	<div class="likes-bar">
-                                         <div class="aaa">
+				    	            <div class="likes-bar">
+                                        <div class="aaa">
                                              <a role="button" class="btn btn-danger" style="padding: 10px" data-toggle="modal" id="closeStream">
                                                  <span style="text-align:center;"><?php echo _lang("Завершить урок");?></span>
                                              </a>
@@ -128,46 +153,15 @@ if($streamInfo !== null)
                         include(TPL.'/widgets/microchat.php');
                     }
                     ?>
-                    <div class="clearfix"></div>
+                    
+                </div>
+                <div class="mobile-chat" style="width:100%;">
                 </div>
             </div>
         </div>
-
     </div>
 
-    <div class="stream-under col-xs-12">
-        <div class=" mtop10">
-
-            <div class="row vibe-interactions">
-                <div class="streamer-row">
-                    <div class='streamerStatus'>
-                        <img id="streamerImage" src="<?=$userInfo->avatar?>" width="40" height="40" />
-                    </div>
-                    <div class='streamerData'>
-                        <h1 id='streamerName'><?=$userInfo->name?></h1>
-
-                        <p style="font-weight:500; color:#333">
-                            <?= _lang("Category :") . $streamInfo->categoryName[0]?> <a
-                                href="<?php echo channel_url($streamInfo->category,$streamInfo->channel_name);?>"
-                                title="<?php echo _html($streamInfo->channel_name);?>">
-                                <?php echo _html($streamInfo->channel_name);?>
-                            </a>
-                        </p>
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="clearfix"></div>
-        </div>
-
-        <? if( (int)user_id() === (int)$streamInfo->moderator_id ) {?>
-        <?include(TPL.'/modals/streamsettings.php');?>
-        <? } ?>
-
-        <?include(TPL.'/modals/sharemodal.php');?>
-        <div class="clearfix"></div>
-    </div>
+    
 </div>
 </div>
 <?php do_action('post-video'); ?>
@@ -185,4 +179,19 @@ if($streamInfo !== null)
 		window.addEventListener("beforeunload", function(event) {
   event.returnValue = "Write something clever here..";
 });
+var promise = document.querySelector('vjs-tech').play();
+
+if (promise !== undefined) {
+    promise.catch(error => {
+        console.log("error")
+        // Auto-play was prevented
+        // Show a UI element to let the user manually start playback
+    }).then(() => {
+     console.log("started") 
+    });
+}
+
+
+
+
 			</script>
