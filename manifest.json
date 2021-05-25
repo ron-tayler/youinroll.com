@@ -1,0 +1,32 @@
+{
+  "name": "YouInRoll",
+  "short_name": "You",
+  "description": "Хотите развиваться и образовываться | повысить свой уровень знаний | вы найдёте у нас множество контента и единомышленников для благотворного обучения | добро пожаловать ! в образовательную видео сеть",
+  "lang": "ru-RU",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#fe2c55",
+  "icons": [
+    {
+      "src": "lib/favicos/favicon(16x16).png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "lib/favicos/favicon(32x32).png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "lib/favicos/favicon(64x64).png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "/lib/favicos/android-chrome-192x192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/lib/favicos/android-chrome-256x256.png",
+      "sizes": "256x256"
+    }
+  ]
+}
