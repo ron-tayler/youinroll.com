@@ -1,5 +1,8 @@
 $(document).on('ready', function() {
 
+
+
+
     if ($(window).width() < 768) {
         let $chat = $('.chat-wrapper');
         let $closeStream = $('#closeStream').parent();
@@ -7,7 +10,7 @@ $(document).on('ready', function() {
         $closeStream.css('display', 'grid');
 
         $('.stream-under').append($closeStream);
-        $('.stream-under').append($chat);
+        $('.mobile-chat').append($chat);
     }
 
     $('#streamSettings').on('submit', function(e) {
@@ -167,6 +170,7 @@ $(document).on('ready', function() {
         $('.intercom-composer-emoji-popover').toggleClass("active");
         $('body').prepend('<div id="modalKostil"></div>');
     });
+
 
     $('#wrapper').on('click', function() {
         if ($('#modalKostil').length) {
