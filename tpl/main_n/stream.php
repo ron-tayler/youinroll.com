@@ -1,5 +1,7 @@
 <?php include_once('../../load.php'); do_action('pre-video');?>
 
+
+
 <?
 $streamId = token_id();
 
@@ -24,7 +26,7 @@ if($streamInfo !== null)
     <div class="stream-row" id="#stremrowwindow">
         <div id="renderPlaylist">
             <div class="stream-under col-xs-12">
-                <div class=" mtop10">
+                <div class="mtop10" style="padding-left:20px;">
                     <div class="row vibe-interactions">
                         <div class="streamer-row">
                             <div class='streamerStatus'>
@@ -33,7 +35,12 @@ if($streamInfo !== null)
                             <div class='streamerData'>
                                 <h1 id='streamerName' style="margin:0px;"><?=$userInfo->name?></h1>
                                 <p style="font-weight:500; color:#333">
-                                    <?= _lang("Category: ") . $streamInfo->categoryName[0]?> <a
+                                    <span style="font-weight:bold;color:black;font-size:18px"><?= $streamInfo->name?></span>                                     
+                                        <span style="color:red; font-size:20px">&#8226;</span>
+
+                                        <span class="badge badge-secondary" style="color:#9147ff;">                                         
+                                        
+                                    <?= $streamInfo->categoryName[0]?></span> <a
                                         href="<?php echo channel_url($streamInfo->category,$streamInfo->channel_name);?>"
                                         title="<?php echo _html($streamInfo->channel_name);?>">
                                         <?php echo _html($streamInfo->channel_name);?>
@@ -53,8 +60,41 @@ if($streamInfo !== null)
                 
             </div>
 
+<style>
+
+
+.sidebar-mobile .bottom-nav {
+    display: none;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+.phone-stream {
+    position: sticky;
+   top: 0px;
+   z-index: 2040;
+   background-color: white;
+}
+
+.chat-area-main {
+	padding-bottom: 50px;
+}
+
+.chat-area-footer {
+	position: fixed;
+}
+
+.notifyjs-corner {
+	display: none;
+}
+
+}
+
+</style>
+
             <div class="col-xs-12">
-                <div id="stream-content" class="col-xs-12">
+                <div id="stream-content" class="col-xs-12 phone-stream">
                     <div class='stream-main'>
                     <?if( !in_array(user_group(),[4,5,3,8],true) && $streamInfo->on_air === '1' )
                     {?>
@@ -80,7 +120,7 @@ if($streamInfo !== null)
                         <?}?>
                     <?}?>
                         <div class="stream-header">
-                            <h1><?=$streamInfo->name?></h1>
+                            
                             <div class="user-media-actions">
                                 <div class="interaction-icons">
 
