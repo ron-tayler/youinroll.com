@@ -2317,8 +2317,7 @@ a.logo {
 
 .header {
     display: inline-block;
-    width: auto;
-    width: calc(100% - 234px);
+    width: calc(100% - 300px);
     line-height: 56px;
     position: relative;
     top: 0;
@@ -3528,7 +3527,8 @@ p.empty-content {
 
 /* Footer */
 #footer {
-    margin-top: 90px;
+    margin-top: 0px;
+    margin-bottom: 90px;
 }
 
 @media only screen and (max-width: 600px) {
