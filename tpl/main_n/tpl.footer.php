@@ -12,72 +12,67 @@ $footer .='<div class="row footer-holder">
 <div class="container footer-inner">
 <div class="row">
 <div class="col-md-12 text-center">
-<div class="row row-socials">
 ';
-$footer .='
-<ul class="socialfooter">';
+    /*
+    $footer .='<div class="row row-socials"><ul class="socialfooter">';
+     if(not_empty(get_option("our_facebook", "#"))) {
+      $footer .= '<li>
+         <a rel="nofollow" class="tipS" href="'.get_option("our_facebook").'" target="_blank" title="'._lang("Facebook").'"><img src="/tpl/main/socicon/fb.png" alt="icon" /></a>
+      </li>';
+      }
+    if(not_empty(get_option("our_googleplus", "#"))) {
+      $footer .= '<li>
+        <a rel="nofollow" class="tipS" href="'.get_option("our_googleplus").'" target="_blank" title="'._lang("Google Plus").'"><img src="/tpl/main/socicon/gg.png" alt="icon" /></a>
+      </li>';
+      }
+      /*if(not_empty(get_option("our_youtube", "#"))) {
+      $footer .= '<li class="youtube">
+        <a rel="nofollow" class="tipS" href="'.get_option("our_youtube").'" target="_blank" title="'._lang("Youtube").'"></a>
+      </li>';
+      }*//*
+    if(not_empty(get_option("our_pinterest", "#"))) {
+      $footer .= '<li>
+        <a rel="nofollow" class="tipS" href="'.get_option("our_pinterest").'" target="_blank" title="'._lang("Pinterest").'"><img src="/tpl/main/socicon/in.png" alt="icon" /></a>
+      </li>';
+      }
+    if(not_empty(get_option("our_twitter", "#"))) {
+      $footer .= '<li>
+        <a rel="nofollow" class="tipS" href="'.get_option("our_twitter").'" target="_blank" title="'._lang("Twitter").'"><img src="/tpl/main/socicon/gg.png" alt="icon" /></a>
+      </li>';
+      }
+      if(not_empty(get_option("our_rss", "#"))) {
+      $footer .= '<li>
+        <a rel="nofollow" class="tipS" href="'.get_option("our_rss").'" target="_blank" title="'._lang("Feedburner").'"><img src="/tpl/main/socicon/rs.png" alt="icon" /></a>
+      </li>';
+      }
+    if(not_empty(get_option("our_skype", "#"))) {
+      $footer .= '<li>
+        <a rel="nofollow" class="tipS" href="'.get_option("our_skype").'" target="_blank" title="'._lang("Skype").'"><img src="/tpl/main/socicon/sk.png" alt="icon" /></a>
+      </li>';
+      }
+    if(not_empty(get_option("our_vimeo", "#"))) {
+      $footer .= '<li>
+        <a rel="nofollow" class="tipS" href="'.get_option("our_vimeo").'" target="_blank" title="'._lang("Vimeo").'"><img src="/tpl/main/socicon/vm.png" alt="icon" /></a>
+      </li>';
+      }
+     if(not_empty(get_option("our_dribbble", "#"))) {
+      $footer .= '<li>
+        <a rel="nofollow" class="tipS" href="'.get_option("our_dribbble").'" target="_blank" title="'._lang("Dribbble").'"><img src="/tpl/main/socicon/Dribbble.png" alt="icon" /></a>
+      </li>';
+      }
+    /*if(not_empty(get_option("our_flickr", "#"))) {
+      $footer .= '<li>
+        <a rel="nofollow" class="tipS" href="'.get_option("our_flickr").'" target="_blank" title="'._lang("Flickr").'"><img src="/tpl/main/socicon/v.png"></a>
+      </li>';
+      }*//*
+     if(not_empty(get_option("our_linkedin", "#"))) {
+      $footer .= '<li>
+        <a rel="nofollow" class="tipS" href="'.get_option("our_linkedin").'" target="_blank" title="'._lang("Linked in").'"><img src="/tpl/main/socicon/lk.png" alt="icon" /></a>
+      </li>';
+      }
+    $footer .='</ul></div>';//*/
 
-  
-
- if(not_empty(get_option("our_facebook", "#"))) { 
-  $footer .= '<li>
-     <a rel="nofollow" class="tipS" href="'.get_option("our_facebook").'" target="_blank" title="'._lang("Facebook").'"><img src="/tpl/main/socicon/fb.png" alt="icon" /></a>
-  </li>';
-  }
-if(not_empty(get_option("our_googleplus", "#"))) { 
-  $footer .= '<li>
-    <a rel="nofollow" class="tipS" href="'.get_option("our_googleplus").'" target="_blank" title="'._lang("Google Plus").'"><img src="/tpl/main/socicon/gg.png" alt="icon" /></a>
-  </li>';
-  }
-  /*if(not_empty(get_option("our_youtube", "#"))) { 
-  $footer .= '<li class="youtube">
-    <a rel="nofollow" class="tipS" href="'.get_option("our_youtube").'" target="_blank" title="'._lang("Youtube").'"></a>
-  </li>';
-  }*/
-if(not_empty(get_option("our_pinterest", "#"))) { 
-  $footer .= '<li>
-    <a rel="nofollow" class="tipS" href="'.get_option("our_pinterest").'" target="_blank" title="'._lang("Pinterest").'"><img src="/tpl/main/socicon/in.png" alt="icon" /></a>
-  </li>';
-  }
-if(not_empty(get_option("our_twitter", "#"))) { 
-  $footer .= '<li>
-    <a rel="nofollow" class="tipS" href="'.get_option("our_twitter").'" target="_blank" title="'._lang("Twitter").'"><img src="/tpl/main/socicon/gg.png" alt="icon" /></a>
-  </li>';
-  }
-  if(not_empty(get_option("our_rss", "#"))) { 
-  $footer .= '<li>
-    <a rel="nofollow" class="tipS" href="'.get_option("our_rss").'" target="_blank" title="'._lang("Feedburner").'"><img src="/tpl/main/socicon/rs.png" alt="icon" /></a>
-  </li>';
-  }
-if(not_empty(get_option("our_skype", "#"))) { 
-  $footer .= '<li>
-    <a rel="nofollow" class="tipS" href="'.get_option("our_skype").'" target="_blank" title="'._lang("Skype").'"><img src="/tpl/main/socicon/sk.png" alt="icon" /></a>
-  </li>';
-  }
-if(not_empty(get_option("our_vimeo", "#"))) { 
-  $footer .= '<li>
-    <a rel="nofollow" class="tipS" href="'.get_option("our_vimeo").'" target="_blank" title="'._lang("Vimeo").'"><img src="/tpl/main/socicon/vm.png" alt="icon" /></a>
-  </li>';
-  }
- if(not_empty(get_option("our_dribbble", "#"))) { 
-  $footer .= '<li>
-    <a rel="nofollow" class="tipS" href="'.get_option("our_dribbble").'" target="_blank" title="'._lang("Dribbble").'"><img src="/tpl/main/socicon/Dribbble.png" alt="icon" /></a>
-  </li>';
-  }
-/*if(not_empty(get_option("our_flickr", "#"))) { 
-  $footer .= '<li>
-    <a rel="nofollow" class="tipS" href="'.get_option("our_flickr").'" target="_blank" title="'._lang("Flickr").'"><img src="/tpl/main/socicon/v.png"></a>
-  </li>';
-  }*/
- if(not_empty(get_option("our_linkedin", "#"))) { 
-  $footer .= '<li>
-    <a rel="nofollow" class="tipS" href="'.get_option("our_linkedin").'" target="_blank" title="'._lang("Linked in").'"><img src="/tpl/main/socicon/lk.png" alt="icon" /></a>
-  </li>';
-  }
-$footer .='</ul>
-';
-$footer .= '</div>
-<div class="row row-links">';
+$footer .= '<div class="row row-links">';
 $posts = $cachedb->get_results("select title,pid from ".DB_PREFIX."pages where menu = 1 ORDER BY m_order, title ASC limit 0,100");
 if($posts) {
 foreach ($posts as $px) {

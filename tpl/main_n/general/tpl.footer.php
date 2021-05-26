@@ -9,7 +9,7 @@
         <div class="container footer-inner">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <div class="row row-socials">
+                    <!--<div class="row row-socials">
 
                         <ul class="socialfooter">
                             <?if(not_empty(get_option("our_facebook", "#"))) {?>
@@ -85,7 +85,7 @@
                             </li>
                             <?}?>
                         </ul>
-                    </div>
+                    </div>-->
                     <div class="row row-links">
                         <?
     $posts = $cachedb->get_results("select title,pid from ".DB_PREFIX."pages where menu = 1 ORDER BY m_order, title ASC limit 0,100");
