@@ -18,6 +18,7 @@ padding: 3px;
 .basic-grid {
     display: grid;
     gap: 1rem;
+    width: 100%;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
  }
 

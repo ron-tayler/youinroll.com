@@ -130,7 +130,7 @@ class YRChat {
                                     let chatName = $('.msg-active').find('.msg-username').text();
                                     let chatImage = $('.msg-active').find('.msg-profile').prop('src');
 
-                                    $('.chat-area-title').text(chatName);
+                                    $('.chat-area-title').text("ЧАТ ТРАНСЛЯЦИИ");
                                     $('.chat-area-profile').prop('src', chatImage);
 
                                     $('.chat-area-main').empty();
@@ -139,7 +139,7 @@ class YRChat {
                                     let chatName = $('.msg-active').find('.msg-username').text();
                                     let chatImage = $('.msg-active').find('.msg-profile').prop('src');
 
-                                    $('.chat-area-title').text(chatName);
+                                    $('.chat-area-title').text("ЧАТ ТРАНСЛЯЦИИ"); // chatName
                                     $('.chat-area-profile').prop('src', chatImage);
                                 }
                             }

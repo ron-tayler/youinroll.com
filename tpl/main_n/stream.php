@@ -1,5 +1,75 @@
 <?php include_once('../../load.php'); do_action('pre-video');?>
 
+<script>
+// When the user clicks on <div>, open the popup
+function isHidden(el) {
+    return (el.offsetParent === null)
+};
+
+function myFunction() {
+	var popup = document.getElementById("report-author");
+	if ((window.getComputedStyle(popup).visibility === "hidden")){
+
+  document.getElementById("report-author").style.visibility = "inherit";
+  document.getElementById("stream-content").style.display = "none";
+	}else{
+
+  document.getElementById("report-author").style.visibility = "hidden";
+  document.getElementById("stream-content").style.display = "";
+	}
+}
+</script>
+
+
+
+
+<style>
+
+@media only screen and (min-width: 601px) {
+.inter-icons {
+   display: none;
+}
+}
+
+
+.sidebar-mobile .bottom-nav {
+    display: none;
+}
+
+
+#report-author {
+ z-index: 99999;
+visibility: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+
+.stream-header {
+	display: none;
+}
+
+.phone-stream {
+    position: sticky;
+   top: 0px;
+   z-index: 2040;
+   background-color: white;
+}
+
+.chat-area-main {
+	padding-bottom: 50px;
+}
+
+.chat-area-footer {
+	position: fixed;
+}
+
+.notifyjs-corner {
+	display: none;
+}
+
+}
+
+</style>
 
 
 <?
@@ -47,6 +117,35 @@ if($streamInfo !== null)
                                     </a>
                                 </p>
                             </div>
+			    <div>
+				<h1>
+					<button onclick="myFunction()"  class="btn btn-secondary2 legitRipple">
+						<i class="icon-threedot"></i>
+					</button>
+
+						<div id="report-author">
+						    <?php if (is_user()) { ?>
+						    <?php if ((int)user_id() === (int)$streamInfo->moderator_id) { ?>
+								    <div class="likes-bar">
+							<div class="aaa">
+							     <a role="button" class="btn btn-danger" style="padding: 10px" data-toggle="modal" id="closeStream">
+								 <span style="text-align:center;"><?php echo _lang("Завершить урок");?></span>
+							     </a>
+							 </div>
+						       </div>
+						    <?php } else { ?>
+							<div class="aaa">
+							    <a class="tipS" title=" <?php echo _lang('Report');?>" data-target="#report-it"
+								data-toggle="modal" href="javascript:void(0)"
+								title=" <?php echo _lang('Report media');?>">
+								<i class="material-icons">&#xE153;</i>
+							    </a>
+							</div>
+						    <?php } ?>
+						    <?php } ?>
+						</div>
+				</h1>
+                            </div>
                         </div>
                     </div>
                    
@@ -60,43 +159,11 @@ if($streamInfo !== null)
                 
             </div>
 
-<style>
-
-
-.sidebar-mobile .bottom-nav {
-    display: none;
-}
-
-
-@media only screen and (max-width: 600px) {
-
-.phone-stream {
-    position: sticky;
-   top: 0px;
-   z-index: 2040;
-   background-color: white;
-}
-
-.chat-area-main {
-	padding-bottom: 50px;
-}
-
-.chat-area-footer {
-	position: fixed;
-}
-
-.notifyjs-corner {
-	display: none;
-}
-
-}
-
-</style>
 
             <div class="col-xs-12">
                 <div id="stream-content" class="col-xs-12 phone-stream">
                     <div class='stream-main'>
-                    <?if( !in_array(user_group(),[4,5,3,8],true) && $streamInfo->on_air === '1' )
+<?if( true /* !in_array(user_group(),[4,5,3,8],true)*/ && $streamInfo->on_air === '1' )
                     {?>
                         <div class="video-player pull-left" id="stream" data-stream="<?=$streamId?>">                    
                         </div>
@@ -119,9 +186,10 @@ if($streamInfo !== null)
                         </div>
                         <?}?>
                     <?}?>
-                        <div class="stream-header">
+                        <div id="stream-header" class="stream-header">
                             
                             <div class="user-media-actions">
+
                                 <div class="interaction-icons">
 
                                     <div class="likes-bar">
@@ -145,7 +213,7 @@ if($streamInfo !== null)
                                     </div>
 
                                     <div class="likes-bar">
-    					                <div class="aaa">
+    				       <div class="aaa">
                                             <a role="button" data-toggle="modal" href="#ShareModal"
                                                 title=" <?php echo _lang('Share or Embed');?>">
                                                 <!-- <i class="material-icons ico-flipped">&#xE15E;</i> -->
@@ -157,28 +225,16 @@ if($streamInfo !== null)
                                                         ?>
                                                 </span>
                                             </a>
- 					                    </div>
+		                       </div>
                                     </div>
-                                    <?php if (is_user()) { ?>
-                                    <?php if ((int)user_id() === (int)$streamInfo->moderator_id) { ?>
-				    	            <div class="likes-bar">
-                                        <div class="aaa">
-                                             <a role="button" class="btn btn-danger" style="padding: 10px" data-toggle="modal" id="closeStream">
-                                                 <span style="text-align:center;"><?php echo _lang("Завершить урок");?></span>
-                                             </a>
-                                         </div>
-                                       </div>
-                                    <?php } else { ?>
-                                        <div class="aaa">
-                                            <a class="tipS" title=" <?php echo _lang('Report');?>" data-target="#report-it"
-                                                data-toggle="modal" href="javascript:void(0)"
-                                                title=" <?php echo _lang('Report media');?>">
-                                                <i class="material-icons">&#xE153;</i>
-                                            </a>
-                                        </div>
-                                    <?php } ?>
-                                    <?php } ?>
+
                                 </div>
+
+
+
+
+
+
                             </div>
                         </div>
 

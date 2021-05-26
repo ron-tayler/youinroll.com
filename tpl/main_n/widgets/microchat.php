@@ -1,7 +1,110 @@
+
+<script>
+
+window.onload = function() {
+  init();
+
+
+const targetNode = document.getElementById('ShareModal');
+const config = { attributes: true, childList: true, subtree: true };
+
+const callback = function(mutationsList, observer) {
+    // Use traditional 'for loops' for IE 11
+    for(const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            console.log('A child node has been added or removed.');
+        }
+        else if (mutation.type === 'attributes') {
+            console.log('The ' + mutation.attributeName + ' attribute was modified.');
+        }
+    }
+};
+
+
+
+// Create an observer instance linked to the callback function
+const observer = new MutationObserver(callback);
+
+// Start observing the target node for configured mutations
+observer.observe(targetNode, config);
+
+// Later, you can stop observing
+observer.disconnect();
+
+};
+
+function addClassNameListener(elemId, callback) {
+	console.log("fired");
+    var elem = document.getElementById(elemId);
+    var lastClassName = elem.className;
+    window.setInterval( function() {   
+       var className = elem.className;
+        if (className !== lastClassName) {
+            callback();   
+            lastClassName = className;
+        }
+    },10);
+}
+
+
+
+
+function myFunction() {
+	var popup = document.getElementById("report-author");
+
+  document.getElementById("stream-content").style.zIndex = "235";
+
+  document.getElementById("stream-content").style.top = "61px";
+}
+
+addClassNameListener('ShareModal', myFunction);
+
+
+</script>
+
+
+
+
+
+
+
+
+
 <div class="chat-wrapper">
     <div class="chat-area">
         <div class="chat-area-header">
             <div class="chat-area-title">ЧАТ ТРАНСЛЯЦИИ  <?/*=$chatTitle*/?></div>
+
+
+
+
+                                <div class="inter-icons">
+
+
+
+                                    <div class="likes-bar">
+    				       <div class="aaa">
+                                            <a role="button" onClick="myFunction()"  data-toggle="modal" href="#ShareModal"
+                                                title=" <?php echo _lang('Share or Embed');?>">
+                                                <!-- <i class="material-icons ico-flipped">&#xE15E;</i> -->
+                                                <img src="/tpl/main/images/share.svg" class="share" />
+                                                <span class="hidden-xs">
+                                                    <?php 
+                                                        //echo _lang('Share');
+                                                        echo 'Поделиться';
+                                                        ?>
+                                                </span>
+                                            </a>
+		                       </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
             
             <div class="chat-area-group">
                 <img class="chat-area-profile" src="<?=$chatImage?>" alt="" />
@@ -16,7 +119,8 @@
 
         </div>
         <div class="chat-area-footer">
-            <?if(user_group() !== 4 && user_group() !== 5 && user_group() !== 3 && user_group() !== 8){?>
+            <?if(true ){?>
+	    <!-- user_group() !== 4 && user_group() !== 5 && user_group() !== 3 && user_group() !== 8-->
             <div id="openfile" style="
                 position: relative;
                 display: contents;

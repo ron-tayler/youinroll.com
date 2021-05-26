@@ -36,20 +36,29 @@ class JitsiChat {
                 $('.pv_tip.views').find('span').text(data.stream.views ? data.stream.likes : 0);
 
                 if (data.stream.type === 'stream') {
-                    let $videoplayer = `<video class="video-js vjs-default-skin vjs-big-play-centered vjs-fluid tvideo-dimensions vjs-controls-enabled vjs-workinghover vjs-v6 vjs-brand vjs-has-started vjs-paused vjs-user-inactive" id="videoPlayer">
+			// https://stackoverflow.com/questions/19521667/disable-fullscreen-iphone-video - play video in browser for iphone - add playsinline
+                    let $videoplayer = `<video playsinline class="video-js vjs-default-skin vjs-big-play-centered vjs-fluid tvideo-dimensions vjs-big-play-centered  vjs-controls-enabled vjs-workinghover vjs-v6 vjs-brand vjs-has-started vjs-paused vjs-user-inactive" id="videoPlayer">
                     <source
                         src="https://smartfooded.com:8443/hls/${data.stream.token}.m3u8"
                         type="application/x-mpegURL"></source>
                     </video>`;
 
+
+document.getElementById("openfile").remove();
+
                     $("#stream").append($videoplayer);
 
                     let options = {
-                        autoplay: true,
+                        autoplay: 'any',
                         width: 100,
+			    
+			    controls: true,
+			    preload: "auto",
+			    language: "ru-ru",
+			    liveTracker: true,
                         autoSetup: true,
-                        poster: data.stream.cover,
                         textTrackSettings: false,
+			//    ErrorDisplay: "Возникла ошибка, перезагрузите страницу",
                         notSupportedMessage: "Трансляция ещё не началась",
                         liveui: true,
                         controlBar: {
@@ -62,6 +71,7 @@ class JitsiChat {
                     };
 
                     let player = videojs('#videoPlayer', options);
+	
 
                     /*  player.src({
                          src: `https://smartfooded.com:8443/hls/${data.stream.token}.m3u8`,

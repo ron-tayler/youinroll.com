@@ -1,3 +1,18 @@
+<style>
+
+#mobilem {
+   z-index: 2050;
+}
+
+@media only screen and (max-width: 600px) {
+#mobilem {
+left:-170%;
+}
+}
+
+</style>
+
+
 <div class="fixed-top">
     <div class="row block" style="position:relative;">
         <div class="logo-wrapper">
@@ -101,10 +116,10 @@
                 <img src="/tpl/main/images/man-avatar.svg" class="man-avatar-icon" alt="icon" />
                 <?}?>
             </a>
-            <ul class="dropdown-menu dropdown-left" role="menu">
+            <ul id="mobilem" class="dropdown-menu dropdown-left mobile-menu" role="menu"> 
                 <li role="presentation" class="drop-head"><?=group_creative(user_group())?>
                     <a href="<?=profile_url(user_id(), user_name())?>">
-                        <?=user_name()?>
+                      Мой канал  <!--  <?=user_name()?> -->
                     </a>
                     <? if( !is_empty(premium_upto())) {
                         if (new DateTime() > new DateTime(premium_upto())) {?>

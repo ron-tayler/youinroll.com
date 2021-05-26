@@ -42,7 +42,15 @@ $conferences = $db->get_results($sql);
             </li>
         </ol>
         <ol class="days">
+<li> </li>
+<li> </li>
+<li> </li>
+<li> </li>
+<li> </li>
             <? foreach ($daysInMonth as $day) { ?>
+
+
+
                 <li>
                     <div class="date">
                         <?=$day;?>

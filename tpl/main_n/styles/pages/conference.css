@@ -127,6 +127,7 @@
 
 .user-media-actions {
     border-bottom: none !important;
+    margin-left: auto;
 }
 
 .btn-secondary2 {
@@ -187,7 +188,7 @@
 @media only screen and (max-device-width: 736px) and (max-device-width: 480px) and (max-device-width: 640px) {
     .chat-wrapper {
         width: 100%;
-        height: 475px;
+        height: 975px;
     }
 
     #stream-content {

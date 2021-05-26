@@ -3531,6 +3531,17 @@ p.empty-content {
     margin-top: 90px;
 }
 
+@media only screen and (max-width: 600px) {
+  #footer {
+    margin-top: 0px; 
+    height: 50px;
+  }
+
+  #footer  .footer-holder  {
+  	display: none;
+  }
+}
+
 .footer-holder {
     padding: 14px 0 0;
 }
