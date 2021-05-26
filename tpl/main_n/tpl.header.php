@@ -24,7 +24,7 @@ function header_add()
 {
     global $page;
     $head = render_styles(0);
-    $corrections_css .= '<link rel="stylesheet" type="text/css" media="screen" href="' . site_url() . 'tpl/main/styles/corrections.css" /><!-- ok -->';
+    $corrections_css .= '<link rel="stylesheet" type="text/css" media="screen" href="' . site_url() . 'tpl/main/styles/corrections.css?v=260520211240" /><!-- ok -->';
     $head .= extra_css() . $corrections_css . '
 <link rel="stylesheet" type="text/css" media="screen" href="/tpl/main_n/styles/search.css" />
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -88,7 +88,7 @@ function meta_add()
         $meta .= '<link rel="stylesheet" href="tpl/main_n/styles/profile-page.css" type="text/css">';
     }
 
-    $meta .= '<link rel="stylesheet" href="tpl/main_n/styles/sidebar.css" type="text/css">
+    $meta .= '<link rel="stylesheet" href="tpl/main_n/styles/sidebar.css?v=260520211240" type="text/css">
 <link rel="stylesheet" href="tpl/main_n/styles/sidebar-mobile.css" type="text/css">
 
 <!--<link rel="apple-touch-icon" sizes="180x180" href="lib/favicos/apple-touch-icon.png">-->

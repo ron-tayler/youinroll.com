@@ -3527,7 +3527,8 @@ p.empty-content {
 
 /* Footer */
 #footer {
-    margin-top: 90px;
+    margin-top: 0px;
+    margin-bottom: 90px;
 }
 
 .footer-holder {

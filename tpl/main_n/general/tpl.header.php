@@ -64,7 +64,7 @@ global $page;
     <?if(com() == "profile") {?>
     <link rel="stylesheet" href="tpl/main_n/styles/profile-page.css" type="text/css">
     <?}?>
-    <link rel="stylesheet" href="tpl/main_n/styles/sidebar.css" type="text/css">
+    <link rel="stylesheet" href="tpl/main_n/styles/sidebar.css?v=260520211525" type="text/css">
     <link rel="stylesheet" href="tpl/main_n/styles/sidebar-mobile.css" type="text/css">
 
     <link rel="manifest" href="manifest.json">
@@ -135,7 +135,7 @@ global $page;
     <meta property="og:description" content="<?=seo_desc()?>" />
     <meta property="og:title" content="<?=_html($profile->name)?>" />
     <?}}?>
-    <link rel="stylesheet" type="text/css" media="screen" href="<?=site_url()?>tpl/main/styles/corrections.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/tpl/main/styles/corrections.css?v=260520211540" />
     <!-- ok -->
     <?=extra_css()?>
     <link rel="stylesheet" type="text/css" media="screen" href="/tpl/main_n/styles/search.css" />
