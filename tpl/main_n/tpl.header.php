@@ -280,6 +280,7 @@ data-animation="scale-up" role="button" title="' . _lang('Dashboard') . '">	';
         $nav .= '
 </a>
 <ul class="dropdown-menu dropdown-left" role="menu">
+<!---
 <li role="presentation" class="drop-head">' . group_creative(user_group()) . ' <a href="' . profile_url(user_id(), user_name()) . '"> ' . user_name() . ' </a>
 ';
         if (!is_empty(premium_upto())) {
@@ -289,7 +290,7 @@ data-animation="scale-up" role="button" title="' . _lang('Dashboard') . '">	';
         }
         $nav .= '
 </li>
-<li class="divider" role="presentation"></li>';
+<li class="divider" role="presentation"></li>-->';
         if (get_option('allowpremium') == 1) {
             if (is_empty(premium_upto())) {
                 $nav .= '<li><a href="' . site_url() . 'payment"><i class="icon material-icons">&#xE8D0;</i> ' . _lang("Get Premium") . '</a></li>';
@@ -297,8 +298,9 @@ data-animation="scale-up" role="button" title="' . _lang('Dashboard') . '">	';
         }
         $nav .= '<li class="my-buzz" role="presentation"><a href="' . site_url() . 'studio/"><i class="icon material-icons">&#xE031;</i> ' . _lang('Media Studio') . '</a> </li>
 <li role="presentation"><a href="' . site_url() . 'dashboard/?sk=edit"><i class="icon material-icons">&#xE8B8;</i> ' . _lang("My Settings") . '</a></li>
-<li role="presentation"> <a href="' . site_url() . me . '"> <i class="icon material-icons">&#xE04A;</i> ' . _lang("Мои видео") . ' </a>       </li>       
-<li role="presentation"> <a href="' . site_url() . me . '?sk=music"> <i class="icon material-icons">&#xE030;</i> ' . _lang("My Music") . ' </a>       </li>       
+<!--  <li role="presentation"> <a href="' . site_url() . me . '"> <i class="icon material-icons">&#xE04A;</i> ' . _lang("Мои видео") . ' </a>       </li>       
+<li role="presentation"> <a href="' . site_url() . me . '?sk=music"> <i class="icon material-icons">&#xE030;</i> ' . _lang("My Music") . ' </a>       </li> -->      
+<li role="presentation"> <a href="https://youinroll.com/me?sk=subscriptions"> <i class="icon material-icons">&#xe8a1;</i>Подписки</a>       </li>       
 <li role="presentation"> <a href="' . site_url() . me . '?sk=images"> <i class="icon material-icons">&#xE413;</i> ' . _lang("My Images") . ' </a>       </li>';
         if (is_admin()) {
             $nav .= '
