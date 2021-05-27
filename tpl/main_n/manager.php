@@ -234,7 +234,7 @@
                         </div>
                         <div class="content--items"> <?php foreach ($images as $image) { ?>
                                 <div class="item-in-list">
-                                    <div style="display:none;" class="segment">
+                                    <div  class="segment">
                                         <div class="checkbox-custom checkbox-primary">
                                             <input type="checkbox" name="imagesRow[]"
                                                    value="<?php echo $image->id; ?>"/>
@@ -328,7 +328,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                         </div>
                         <div class="content--items">
                             <?php foreach ($videos as $video) { ?>
-                                <div style="display:none;" class="item-in-list">
+                                <div  class="item-in-list">
                                     <div class="segment">
                                         <div class="checkbox-custom checkbox-primary">
                                             <input type="checkbox" name="likesRow[]" value="<?php echo $video->id; ?>"/>
@@ -422,7 +422,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                         </div>
                         <div class="content--items"> <?php foreach ($images as $image) { ?>
                                 <div class="item-in-list">
-                                    <div style="display:none;" class="segment">
+                                    <div class="segment">
                                         <div class="checkbox-custom checkbox-primary">
                                             <input type="checkbox" name="heartsRow[]"
                                                    value="<?php echo $image->id; ?>"/>
@@ -492,7 +492,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                     </div>
                     <div class="content--items"> <?php foreach ($videos as $video) { ?>
                             <div class="item-in-list">
-                                <div style="display:none;" class="segment">
+                                <div  class="segment">
                                     <a class=""
                                        href="<?php echo video_url($video->id, $video->title, $history_playlist); ?>"
                                        title="  <?php echo _lang("View"); ?>"> <img
@@ -553,7 +553,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                     <div class="content--items">
                         <?php foreach ($videos as $video) { ?>
                             <div class="item-in-list">
-                                <div style="display:none;" class="segment">
+                                <div  class="segment">
                                     <a class=""
                                        href="<?php echo video_url($video->id, $video->title, $later_playlist); ?>"
                                        title="  <?php echo _lang("View"); ?>">
@@ -592,6 +592,8 @@ font-weight: bold;
 border-radius: 5px !important;
 text-transform:uppercase;
 font-size: 12px;
+float: right;
+margin: 2px;
 }
 
 .btn-coral2 {
@@ -610,15 +612,16 @@ border-color: #3598dc;
 
 
             <div class="row blc mIdent">
-                <div class="col-md-3">
+                    <h1><?php echo _lang("Playlists manager"); ?> </h1>
+                <div class="col-md-4">
 		    <div style="min-height: 140px;max-width: 140px;"  class="iholder bg-facebook">
 			<img src="https://youinroll.com/storage/chat/0_B2AB2LxA5P3m-XIE.gif" alt="giigig"  style="width:140px;height:140px" / >
 	<!--		<i class="icon-list-alt" style="width:140px;height:140px" ></i> -->
                     </div>
+
+                    Количество курсов: <?php echo $count->nr; ?> 
                 </div>
-                <div class="col-md-7 col-md-offset-1">
-                    <h1><?php echo _lang("Playlists manager"); ?> </h1>
-                    <?php echo $count->nr; ?> <?php echo _lang("playlists by") . ' ' . user_name(); ?>
+                <div class="col-md-8">
 
                     <div class='row white-link'>
                         <a class="btn-custom btn-coral2"  href="/lessons"><?php echo _lang('Мои уроки'); ?></a>
