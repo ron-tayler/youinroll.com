@@ -129,7 +129,7 @@
                         <div class="content--items">
                             <?php foreach ($videos as $video) { ?>
                                 <div class="item-in-list">
-                                    <div class="segment">
+                                    <div  class="segment">
                                         <div class="checkbox-custom checkbox-primary">
                                             <input type="checkbox" name="checkRow[]" value="<?php echo $video->id; ?>"/>
                                             <label></label>
@@ -234,7 +234,7 @@
                         </div>
                         <div class="content--items"> <?php foreach ($images as $image) { ?>
                                 <div class="item-in-list">
-                                    <div class="segment">
+                                    <div style="display:none;" class="segment">
                                         <div class="checkbox-custom checkbox-primary">
                                             <input type="checkbox" name="imagesRow[]"
                                                    value="<?php echo $image->id; ?>"/>
@@ -328,7 +328,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                         </div>
                         <div class="content--items">
                             <?php foreach ($videos as $video) { ?>
-                                <div class="item-in-list">
+                                <div style="display:none;" class="item-in-list">
                                     <div class="segment">
                                         <div class="checkbox-custom checkbox-primary">
                                             <input type="checkbox" name="likesRow[]" value="<?php echo $video->id; ?>"/>
@@ -422,7 +422,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                         </div>
                         <div class="content--items"> <?php foreach ($images as $image) { ?>
                                 <div class="item-in-list">
-                                    <div class="segment">
+                                    <div style="display:none;" class="segment">
                                         <div class="checkbox-custom checkbox-primary">
                                             <input type="checkbox" name="heartsRow[]"
                                                    value="<?php echo $image->id; ?>"/>
@@ -492,7 +492,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                     </div>
                     <div class="content--items"> <?php foreach ($videos as $video) { ?>
                             <div class="item-in-list">
-                                <div class="segment">
+                                <div style="display:none;" class="segment">
                                     <a class=""
                                        href="<?php echo video_url($video->id, $video->title, $history_playlist); ?>"
                                        title="  <?php echo _lang("View"); ?>"> <img
@@ -553,7 +553,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                     <div class="content--items">
                         <?php foreach ($videos as $video) { ?>
                             <div class="item-in-list">
-                                <div class="segment">
+                                <div style="display:none;" class="segment">
                                     <a class=""
                                        href="<?php echo video_url($video->id, $video->title, $later_playlist); ?>"
                                        title="  <?php echo _lang("View"); ?>">
@@ -582,18 +582,47 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
         case "playlists":
         $count = $db->get_row("SELECT count(*) as nr FROM " . DB_PREFIX . "playlists where owner= '" . user_id() . "' and ptype < 2 and picture not in ('[likes]','[history]','[later]')");
         $videos = $db->get_results("SELECT * FROM " . DB_PREFIX . "playlists where owner= '" . user_id() . "' and picture not in ('[likes]','[history]','[later]') and ptype < 2 order by title desc " . this_limit() . ""); ?>
+
+<style>
+
+.btn-custom {
+color: white !important;
+font-weight: bold;
+    padding: 6px 17px !important;
+border-radius: 5px !important;
+text-transform:uppercase;
+font-size: 12px;
+}
+
+.btn-coral2 {
+border-color: #fe2c55;
+background-color:#fe2c55;
+}
+
+.btn-blue {
+
+background-color: #3598dc;
+border-color: #3598dc;
+}
+
+
+</style>
+
+
             <div class="row blc mIdent">
                 <div class="col-md-3">
-                    <div class="iholder bg-facebook"><i class="icon-list-alt"></i>
+		    <div style="min-height: 140px;max-width: 140px;"  class="iholder bg-facebook">
+			<img src="https://youinroll.com/storage/chat/0_B2AB2LxA5P3m-XIE.gif" alt="giigig"  style="width:140px;height:140px" / >
+	<!--		<i class="icon-list-alt" style="width:140px;height:140px" ></i> -->
                     </div>
                 </div>
                 <div class="col-md-7 col-md-offset-1">
                     <h1><?php echo _lang("Playlists manager"); ?> </h1>
                     <?php echo $count->nr; ?> <?php echo _lang("playlists by") . ' ' . user_name(); ?>
 
-                    <div class='row'>
-                        <a class="btn btn-default" href="/lessons"><?php echo _lang('Мои уроки'); ?></a>
-                        <a class="btn btn-default"
+                    <div class='row white-link'>
+                        <a class="btn-custom btn-coral2"  href="/lessons"><?php echo _lang('Мои уроки'); ?></a>
+                        <a class="btn-custom btn-blue" style="background-color:#3598dc;border-color:#3598dc;color:#F8F8FF;"
                            href="<?php echo site_url() . me; ?>/?sk=new-playlist"><?php echo _lang('Create a new playlist'); ?></a>
                     </div>
 
@@ -616,7 +645,8 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                 </div>
                 <div class="row top10">
                     <div class="div div-checks">
-                        <div class="item-in-list list-header">
+                        <div style="display:none;" class="item-in-list list-header">
+
                             <div class="segment">
                                 <div class="checkbox-custom checkbox-primary">
                                     <input type="checkbox" name="checkRows" class="check-all"/>
@@ -628,35 +658,48 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                                     <i class="icon icon-trash"></i> <?php echo _lang("selected"); ?>
                                 </button>
                             </div>
-                        </div>
+
+
+			</div>
                         <div class="content--items">
                             <?php foreach ($videos as $video) { ?>
                                 <div class="item-in-list">
-                                    <div class="segment">
+                                    <div style="display:none;" class="segment">
                                         <div class="checkbox-custom checkbox-primary">
                                             <input type="checkbox" name="playlistsRow[]"
                                                    value="<?php echo $video->id; ?>" class="styled"/>
                                             <label></label>
                                         </div>
                                     </div>
-                                    <div class="segment">
-                                        <a class="btn btn-sm btn-primary "
-                                           href="<?php echo site_url() . me; ?>?sk=manage-playlists&playlist=<?php echo $video->id; ?>"
-                                           title="<?php echo _lang("Manage the videos in ");
-                                           echo _html($video->title); ?>"><i
-                                                    class="icon icon-navicon"></i><?php echo _lang("Review"); ?> </a>
-                                    </div>
+
                                     <div class="segment">
                                         <a class="" target="_blank"
                                            href="<?php echo playlist_url($video->id, $video->title); ?>"
                                            title="<?php echo _lang("View"); ?>"><img
                                                     src="<?php echo thumb_fix($video->picture, true, get_option('thumb-width'), get_option('thumb-height')); ?>"
-                                                    style=""></a>
-                                        <a class="content-title" target="_blank"
+                                                    style="min-width: 200px; min-height: 130px; overflow: hidden;"></a>
+                                        <a class="content-title" style="padding-left:5px;"  target="_blank"
                                            href="<?php echo playlist_url($video->id, $video->title); ?>"
                                            title="<?php echo _lang("View"); ?>"><strong> <?php echo _html($video->title); ?></strong></a>
                                     </div>
+<!--
                                     <div class="segment">
+                                        <a class="btn-custom btn-blue"
+                                           href="<?php echo site_url() . me; ?>?sk=manage-playlists&playlist=<?php echo $video->id; ?>"
+                                           title="<?php echo _lang("Manage the videos in ");
+                                           echo _html($video->title); ?>">  <i class="icon icon-navicon"></i>   <?php echo _lang("Review"); ?> </a>
+                                    </div> -->
+
+                                    <div class="segment">
+
+
+
+                                        <a class="btn-custom btn-blue"
+                                           href="<?php echo site_url() . me; ?>?sk=manage-playlists&playlist=<?php echo $video->id; ?>"
+                                           title="<?php echo _lang("Manage the videos in ");
+                                           echo _html($video->title); ?>"> <!--  <i class="icon icon-navicon"></i> -->  <?php echo _lang("Review"); ?> </a>
+
+
                                         <a class="btn btn-sm btn-default btn-outline "
                                            href="<?php echo site_url() . me; ?>?sk=playlists&p=<?php echo this_page(); ?>&delete-playlist=<?php echo $video->id; ?>"
                                            title="<?php echo _lang("Delete playlist"); ?>"><i
@@ -719,7 +762,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                         <div class="content--items">
                             <?php foreach ($albums as $album) { ?>
                                 <div class="item-in-list">
-                                    <div class="segment">
+                                    <div  class="segment">
                                         <div class="checkbox-custom checkbox-primary">
                                             <input type="checkbox" name="playlistsRow[]"
                                                    value="<?php echo $album->id; ?>" class="styled"/>
@@ -913,7 +956,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                         <div class="content--items">
                             <?php foreach ($images as $video) { ?>
                                 <div class="item-in-list">
-                                    <div class="segment">
+                                    <div style="display:none;" class="segment">
                                         <div class="checkbox-custom checkbox-primary">
                                             <input type="checkbox" name="albumsRemoval[]"
                                                    value="<?php echo $video->id; ?>"/>
@@ -1377,14 +1420,17 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
     <div id="DashSidebar" class="col-md-2 col-xs-12"> <?php do_action('dashSide-top'); ?>
         <div class="nav-tabs-vertical">
             <ul class="nav nav-tabs nav-tabs-line">
-                <li class=""><a href="<?php echo site_url(); ?>dashboard/"><i
-                                class="icon icon-hashtag"></i><?php echo _lang("Overview"); ?></a></li>
-                <li class=""><a href="<?php echo site_url(); ?>dashboard/?sk=activity"><i class="material-icons">&#xE7F7;</i><?php echo _lang("Activities"); ?>
+                <li class=""><a href="<?php echo site_url(); ?>dashboard/"><i class="icon icon-hashtag"></i><?php echo _lang("Overview"); ?></a></li>
+                <li class=""><a href="https://youinroll.com/me/?sk=likes"><i class="icon icon-thumbs-up"></i><?php echo _lang("Loved"); ?></a></li>
+                <li class=""><a href="https://youinroll.com/me/?sk=history"><i class="icon icon-film"></i>История просмотров</a></li>
+
+                <li class=""><a href="https://youinroll.com/me/?sk=later"><i class="icon icon-history"></i>Смотреть позже</a></li>
+       <!--         <li class=""><a href="<?php echo site_url(); ?>dashboard/?sk=activity"><i class="material-icons">&#xE7F7;</i><?php echo _lang("Activities"); ?>
                     </a></li>
                 <li class=""><a href="<?php echo site_url() . me; ?>?sk=subscriptions"><i class="material-icons">&#xE8A1;</i><?php echo _lang("Payments"); ?>
                     </a></li>
                 <li class=""><a href="<?php echo site_url(); ?>dashboard/?sk=edit"><i
-                                class="icon icon-cogs"></i><?php echo _lang("Channel Settings"); ?></a></li>
+                                class="icon icon-cogs"></i><?php echo _lang("Channel Settings"); ?></a></li>  
                 <li class=""><a href="<?php echo site_url() . me; ?>"><i
                                 class="icon icon-film"></i><?php echo _lang("Videos"); ?></a></li>
                 <li class="left20"><a href="<?php echo site_url() . me; ?>?sk=playlists"><i
@@ -1396,7 +1442,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
                 <li class="left20"><a href="<?php echo site_url() . me; ?>?sk=hearts"><i
                                 class="icon icon-heart"></i><?php echo _lang("Loved"); ?></a></li>
                 <li class=""><a href="<?php echo site_url() . me; ?>?sk=music"><i
-                                class="icon icon-headphones"></i><?php echo _lang("Music"); ?></a></li>
+                                class="icon icon-headphones"></i><?php echo _lang("Music"); ?></a></li> -->
             </ul>
         </div>
         <?php do_action('dashSide-bottom'); ?> </span>
