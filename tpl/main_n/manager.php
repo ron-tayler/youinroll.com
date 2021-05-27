@@ -3,6 +3,18 @@
     <li class="active"><a data-toggle="tab" href="#DashContent" role="tab"> <?php echo _lang('Dashboard'); ?></a></li>
     <li class=""><a data-toggle="tab" href="#DashSidebar" role="tab"><?php echo _lang('Menu'); ?></a></li>
 </ul>
+
+<style>
+
+.circull {
+    max-width: 140px;
+    min-height: 140px;
+    overflow: hidden;
+}
+
+
+</style>
+
 <script>
     $(document).ready(function () {
         if ($(window).width() < 972) {
@@ -286,7 +298,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
         ?>
             <div class="row blc mIdent">
                 <div class="col-md-3">
-                    <div class="iholder bg-google-plus"><i class="icon-heart"></i>
+                    <div class="iholder circull bg-google-plus"><i class="icon-heart circull"></i>
                     </div>
                 </div>
                 <div class="col-md-7 col-md-offset-1">
@@ -463,7 +475,15 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
         ?>
             <div class="row blc mIdent">
                 <div class="col-md-3">
-                    <div class="iholder bg-twitter"><i class="icon-check-square"></i>
+		    <div class="iholder bg-twitter"
+style="max-width: 140px;
+    min-height: 140px;
+    overflow: hidden;"
+><i class="icon-check-square" 
+style=" max-width: 140px;
+    min-height: 140px;
+    overflow: hidden;"
+   ></i>
                     </div>
                 </div>
                 <div class="col-md-7 col-md-offset-1">
@@ -522,7 +542,7 @@ ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit() . "");
         $videos = $db->get_results("select " . DB_PREFIX . "videos.id," . DB_PREFIX . "videos.title," . DB_PREFIX . "videos.thumb, " . DB_PREFIX . "videos.views, " . DB_PREFIX . "videos.liked, " . DB_PREFIX . "videos.duration FROM " . DB_PREFIX . "playlist_data LEFT JOIN " . DB_PREFIX . "videos ON " . DB_PREFIX . "playlist_data.video_id = " . DB_PREFIX . "videos.id WHERE " . DB_PREFIX . "playlist_data.playlist =  '" . later_playlist() . "' and " . DB_PREFIX . "videos.pub > 0 ORDER BY " . DB_PREFIX . "playlist_data.id DESC " . this_limit()); ?>
             <div class="row blc mIdent">
                 <div class="col-md-3">
-                    <div class="iholder bg-linkedin"><i class="icon-history"></i>
+                    <div class="iholder  circull bg-linkedin"><i class="icon-history circull"></i>
                     </div>
                 </div>
                 <div class="col-md-7 col-md-offset-1">
@@ -918,7 +938,8 @@ border-color: #3598dc;
         $images = $db->get_results($vq); ?>
             <div class="row blc mIdent">
                 <div class="col-md-3">
-                    <div class="iholder bg-google-plus"><i class="icon-camera"></i>
+                    <div class="iholder bg-google-plus"   ><i class="icon-camera"></i>
+
                     </div>
                 </div>
                 <div class="col-md-7 col-md-offset-1">
