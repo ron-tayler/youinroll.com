@@ -141,17 +141,17 @@
                 <div class="sidebar-nav blc">
                     <ul id="subscribtionItems">
                     </ul>
-                    <div id="subscriptionDropdown" class="" type="button" data-page="1">
-                        <i class="material-icons" type="button" data-page="1" title="<?=_lang('Expand')?>">&#xe313;</i>
-                        <span><?=_lang('Expand')?></span>
+                    <div id="subscriptionDropdown" class="" style="cursor: pointer"  type="button" data-page="1">
+                    <!--    <i class="material-icons" type="button" data-page="1" title="<?=_lang('Expand')?>">&#xe313;</i> -->
+                        <span style="color:#fe2c55" ><?=_lang('Expand')?></span>
                     </div>
-                    <div id="subscriptionMinimize" class="" type="button">
-                        <i class="material-icons" title="<?=_lang('Minimize')?>">&#xe316;</i>
-                        <span><?=_lang('Minimize')?></span>
+                    <div id="subscriptionMinimize" class="" style="cursor: pointer" type="button">
+                      <!--  <i class="material-icons" title="<?=_lang('Minimize')?>">&#xe316;</i> -->
+                        <span style="color:#fe2c55" ><?=_lang('Minimize')?></span>
                     </div>
                 </div>
             </div>
-            <hr/>
+      <!--  <hr/> -->
             <? do_action('user-sidebar-end') ?>
         <? }else{ ?>
             <div class="blc mtop20 odet fs300" id="guestButton">
