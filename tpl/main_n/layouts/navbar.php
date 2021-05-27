@@ -107,8 +107,8 @@ left:-170%;
                 <img src="/tpl/main/images/notifications.svg" class="notifications-icon" alt="icon" />
             </a>
             <?if(get_option('showusers','1') == 1 ) {?>
-            <a id="chnls" class="top-link" href="<?=site_url()?>members/"><img src="/tpl/main/images/chanels.svg"
-                    class="chanels-icon" alt="icon" /></a>
+         <!--   <a id="chnls" class="top-link" href="<?=site_url()?>members/"><img src="/tpl/main/images/chanels.svg"
+                    class="chanels-icon" alt="icon" /></a>  -->
             <?}?>
             <a id="openusr" class="btn uav btn-small dropdown-toggle" data-toggle="dropdown" href="#"
                 aria-expanded="false" data-animation="scale-up" role="button" title="<?=_lang('Dashboard')?>">
