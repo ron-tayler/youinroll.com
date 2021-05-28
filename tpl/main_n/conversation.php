@@ -16,7 +16,9 @@
                 </div>
             </div>
             <div class="chat-area-main">
-
+                <div class="chat-area-smile-container">
+                    <img src="storage/smile.svg" class="chat-area-smile-img">
+                </div>
             </div>
             <div class="chat-area-footer">
                 <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
