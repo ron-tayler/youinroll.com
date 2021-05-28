@@ -225,7 +225,7 @@ class YRChat {
         if (ua.indexOf('safari') != -1) {
             if (ua.indexOf('chrome') > -1) {
                 let audio = new Audio('/tpl/main_n/sounds/incomingMessage.wav');
-                audio.play();
+            //    audio.play();
             } else {
 
             }
@@ -530,8 +530,9 @@ class YRChat {
                                 <img class="chat-msg-img"
                                     src="${message.avatar}"
                                     alt="${message.author}" />
-                            </a>
-                            <div class="chat-msg-date">${message.author} ${moment(message.created_at, 'YYYY-MM-DD hh:mm:ss').lang('ru').fromNow()}</div>
+                            </a> <!--  ${moment(message.created_at, 'YYYY-MM-DD hh:mm:ss').lang('ru').fromNow()} -->
+                            <div class="chat-msg-date">${message.author}: 
+			   </div>
                         </div>
                         <div class="chat-msg-content">
                             <div class="chat-msg-text">${$filePreview}${message.text}</div>
