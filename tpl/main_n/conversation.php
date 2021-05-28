@@ -10,9 +10,9 @@
         </div>
         <div class="chat-area">
             <div class="chat-area-header">
-                <div class="chat-area-title">Выберите чат</div>
+                <div class="chat-area-title">Выберите чат или воспользуйтесь поиском новых каналов</div>
                 <div class="chat-area-group">
-                    <img class="chat-area-profile" src="" alt="" />
+                 <!--    <img class="chat-area-profile" src="" alt="" /> -->
                     <span></span>
                     <!-- <img class="chat-area-profile"
                         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%282%29.png" alt="">
@@ -21,8 +21,36 @@
                      -->
                 </div>
             </div>
-            <div class="chat-area-main">
+<style>
 
+
+
+.image-cropper {
+display: block;
+  width: 600px;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+margin-left: auto;
+margin-right: auto;
+}
+
+.img-smile {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+}
+</style>
+
+
+
+            <div class="chat-area-main">
+ 		<div class="image-cropper">
+  			<img src="https://youinroll.com/storage/chat/8R3PmeIVZlGCEiwdlH4WqMSCM4qdR90DTncnk5wK.gif.gif" class=" img-smile" />
+		</div>
+<!--		<img style="border-radius: 50%;" src="https://youinroll.com/storage/chat/8R3PmeIVZlGCEiwdlH4WqMSCM4qdR90DTncnk5wK.gif.gif"> -->
             </div>
             <div class="chat-area-footer">
                 <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -71,7 +99,7 @@
         <div class="detail-area">
             <div class="detail-area-header">
                 <div class="msg-profile group">
-                    <img class='chat-area-profile' src="">
+                 <!--   <img class='chat-area-profile' src=""> -->
                 </div>
                 <div class="detail-title">Выберите чат</div>
                 <!-- <div class="detail-subtitle">Created by Aysenur, 1 May 2020</div> -->

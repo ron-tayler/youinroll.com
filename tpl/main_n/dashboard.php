@@ -199,29 +199,44 @@ the_sidebar(); ?>
         </div>
         <?php do_action('dashboard-bottom'); ?>
     </div>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<style>
+
+.nav-item {
+display: flex;
+  vertical-align: middle;
+}
+
+.nav-ccc {
+display: block; float: left;
+}
+
+.nav-text {
+padding-left: 6px;
+display: block; float: right;
+}
+
+</style>
     <div id="DashSidebar" class="col-md-2 col-xs-12">
         <?php do_action('dashSide-top'); ?>
-        <div class="nav-tabs-vertical">
+        <div class="nav-tabs-vertical" style="min-width:250px">
             <ul class="nav nav-tabs nav-tabs-line">
-                <li class=""><a href="<?php echo site_url(); ?>studio/"><i
+             <!--   <li class=""><a href="<?php echo site_url(); ?>studio/"><i
                                 class="icon icon-hashtag"></i><?php echo _lang("Overview"); ?></a></li>
-             <!--   <li class=""><a href="<?php echo site_url(); ?>dashboard/?sk=activity"><i class="material-icons">&#xE7F7;</i><?php echo _lang("Activities"); ?></a></li>
+                <li class=""><a href="<?php echo site_url(); ?>dashboard/?sk=activity"><i class="material-icons">&#xE7F7;</i><?php echo _lang("Activities"); ?></a></li>
                 <li class=""><a href="<?php echo site_url() . me; ?>?sk=subscriptions"><i class="material-icons">&#xE8A1;</i><?php echo _lang("Payments"); ?></a></li>
-                <li class=""><a href="<?php echo site_url(); ?>dashboard/?sk=edit"><i class="icon icon-cogs"></i><?php echo _lang("Channel Settings"); ?></a></li> -->
-                <li class=""><a href="<?php echo site_url(); ?>lessons"><i
-                                class="icon icon-film"></i><?php echo _lang("Studio"); ?></a></li>
-                <li class=""><a href="<?php echo site_url() . me; ?>"><i
-                                class="icon icon-film"></i><?php echo _lang("Videos"); ?></a></li>
-                <li class=""><a href="<?php echo site_url() . me; ?>?sk=playlists"><i
-                                class="icon icon-bars"></i><?php echo _lang("Playlists"); ?></a></li>
-                <li class=""><a href="<?php echo site_url() . me; ?>?sk=images"><i
-                                class="icon icon-camera"></i><?php echo _lang("Images"); ?></a></li>
-                <li class=""><a href="<?php echo site_url() . me; ?>?sk=albums"><i
-                                class="icon icon-bars"></i><?php echo _lang("Albums"); ?></a></li>
-                <li class=""><a href="<?php echo site_url() . me; ?>?sk=hearts"><i
-                                class="icon icon-heart"></i><?php echo _lang("Loved"); ?></a></li>
-                <li class=""><a href="<?php echo site_url() . me; ?>?sk=music"><i
-                                class="icon icon-headphones"></i><?php echo _lang("Music"); ?></a></li>
+                <li class=""><a href="<?php echo site_url(); ?>dashboard/?sk=edit"><i class="icon icon-cogs"></i><?php echo _lang("Channel Settings"); ?></a></li> 
+                <li class=""><a href="<?php echo site_url(); ?>lessons"><i class="icon icon-film"></i><?php echo _lang("Studio"); ?></a></li>
+                <li class=""><a href="<?php echo site_url() . me; ?>"><i class="icon icon-film"></i><?php echo _lang("Videos"); ?></a></li>
+                <li class=""><a href="<?php echo site_url() . me; ?>?sk=playlists"><i class="icon icon-bars"></i><?php echo _lang("Playlists"); ?></a></li>
+                <li class=""><a href="<?php echo site_url() . me; ?>?sk=images"><i class="icon icon-camera"></i><?php echo _lang("Images"); ?></a></li>
+                <li class=""><a href="<?php echo site_url() . me; ?>?sk=albums"><i class="icon icon-bars"></i><?php echo _lang("Albums"); ?></a></li>-->
+                <li class="nav-item"><a href="/me/?sk=likes"><span class="material-icons nav-ccc">thumb_up</span><span class="nav-text">Понравившиеся</span></a></li>
+                <li class="nav-item"><a href="/me/?sk=history"><span class="material-icons nav-ccc">history</span><span class="nav-text">История просмотров</span> </a></li>
+                <li class="nav-item"><a href="/me/?sk=later"><span class="material-icons nav-ccc">watch_later</span><span class="nav-text">Смотреть позже</span></a></li>
+                <li class="nav-item"><a href="/me?sk=playlists"><span class="material-icons nav-ccc">playlist_play</span><span class="nav-text">Менеджер курсов</span></a></li>
+         <!--   <li class=""><a href="<?php echo site_url() . me; ?>?sk=music"><i class="icon icon-headphones"></i><?php echo _lang("Music"); ?></a></li> -->
             </ul>
         </div>
         <?php

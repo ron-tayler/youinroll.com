@@ -412,10 +412,11 @@
 .chat-msg-content {
     position: relative;
     margin-left: 12px;
+    flex-wrap: nowrap;
+
     max-width: 70%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .owner .chat-msg-content>i {

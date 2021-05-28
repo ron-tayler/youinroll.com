@@ -72,6 +72,8 @@ class YRChat {
                         let exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i;
                         message.text = message.text.replace(exp, "<a target='blank' href='$1'>$1</a>");
 
+/* ${moment(message.created_at, 'YYYY-MM-DD hh:mm:ss').lang('ru').fromNow()} */
+			    
                         let $message = `<div class="chat-msg ${typeClass}">
                             <div class="chat-msg-profile">
                                 <a href='${message.avatarLink}'>
@@ -79,11 +81,11 @@ class YRChat {
                                         src="${message.avatar}"
                                         alt="${message.author}" />
                                 </a>
-                                <div class="chat-msg-date">${message.author} ${moment(message.created_at, 'YYYY-MM-DD hh:mm:ss').lang('ru').fromNow()}</div>
+                                <div class="chat-msg-date">${message.author}: </div>
                             </div>
                             <div class="chat-msg-content">
                                 <div class="chat-msg-text">${$filePreview}${message.text}</div>
-                                ${icon}
+                               <div style="padding-left:10px;"> ${icon}</div>
                             </div>
                             <hr />
                         </div>`;
@@ -536,7 +538,7 @@ class YRChat {
                         </div>
                         <div class="chat-msg-content">
                             <div class="chat-msg-text">${$filePreview}${message.text}</div>
-                            ${icon}
+                            <div style="padding-left:10px;"> ${icon} </div>
                         </div>
                     </div>`;
 
