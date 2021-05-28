@@ -182,7 +182,7 @@ function top_nav(){
   <span class="line"></span>
 </div>
 </a>
-<a href="/" title="" class="logo">
+<a href="/" title="" class="logo" style="display: inline-flex; width: 100%; height: 100%; align-items: center;">
 <img src="/lib/favicos/favicon.svg" style="max-height: 60%; margin-right: 10px;"/>
 '.str_replace("/>", " alt=\"logo\" style=\"max-height: 60%;\"/>", show_logo()).'</a>
 <br style="clear:both;"/>
