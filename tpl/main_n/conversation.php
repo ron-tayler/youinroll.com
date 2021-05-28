@@ -12,45 +12,13 @@
             <div class="chat-area-header">
                 <div class="chat-area-title">Выберите чат или воспользуйтесь поиском новых каналов</div>
                 <div class="chat-area-group">
-                 <!--    <img class="chat-area-profile" src="" alt="" /> -->
-                    <span></span>
-                    <!-- <img class="chat-area-profile"
-                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%282%29.png" alt="">
-                    <img class="chat-area-profile"
-                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3364143/download+%2812%29.png" alt="" />
-                     -->
+                    <span data-toggle="modal" data-target="#addParticipantModal" id="addParticipant">+</span>
                 </div>
             </div>
-<style>
-
-
-
-.image-cropper {
-display: block;
-  width: 600px;
-  height: 600px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-margin-left: auto;
-margin-right: auto;
-}
-
-.img-smile {
-  display: inline;
-  margin: 0 auto;
-  height: 100%;
-  width: auto;
-}
-</style>
-
-
-
             <div class="chat-area-main">
- 		<div class="image-cropper">
-  			<img src="https://youinroll.com/storage/chat/8R3PmeIVZlGCEiwdlH4WqMSCM4qdR90DTncnk5wK.gif.gif" class=" img-smile" />
-		</div>
-<!--		<img style="border-radius: 50%;" src="https://youinroll.com/storage/chat/8R3PmeIVZlGCEiwdlH4WqMSCM4qdR90DTncnk5wK.gif.gif"> -->
+                <div class="chat-area-smile-container">
+                    <img src="storage/smile.svg" class="chat-area-smile-img">
+                </div>
             </div>
             <div class="chat-area-footer">
                 <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"

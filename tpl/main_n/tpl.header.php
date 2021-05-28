@@ -89,15 +89,28 @@ function meta_add()
     }
 
     $meta .= '<link rel="stylesheet" href="tpl/main_n/styles/sidebar.css?v=260520211240" type="text/css">
-<link rel="stylesheet" href="tpl/main_n/styles/sidebar-mobile.css" type="text/css">
+    <link rel="stylesheet" href="tpl/main_n/styles/sidebar-mobile.css" type="text/css">
 
-<!--<link rel="apple-touch-icon" sizes="180x180" href="lib/favicos/apple-touch-icon.png">-->
-<link rel="icon" type="image/png" sizes="64x64" href="lib/favicos/favicon(64x64).png">
-<link rel="icon" type="image/png" sizes="32x32" href="lib/favicos/favicon(32x32).png">
-<link rel="icon" type="image/png" sizes="16x16" href="lib/favicos/favicon(16x16).png">
-<!--<link rel="manifest" href="lib/favicos/site.webmanifest">-->
-<link rel="mask-icon" href="lib/favicos/favicon.svg" color="#5bbad5">
-<link rel="shortcut icon" href="lib/favicos/favicon(16x16).png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="YouInRoll">
+    <meta name="apple-mobile-web-app-title" content="YouInRoll">
+    <meta name="theme-color" content="#fff">
+    <meta name="msapplication-navbutton-color" content="#fff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-starturl" content="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" sizes="16x16" href="lib/favicos/favicon(16x16).png">
+    <link rel="apple-touch-icon" sizes="16x16" href="lib/favicos/favicon(16x16).png">
+    <link rel="icon" sizes="32x32" href="lib/favicos/favicon(32x32).png">
+    <link rel="apple-touch-icon" sizes="32x32" href="lib/favicos/favicon(32x32).png">
+    <link rel="icon" sizes="64x64" href="lib/favicos/favicon(64x64).png">
+    <link rel="apple-touch-icon" sizes="64x64" href="lib/favicos/favicon(64x64).png">
+    <link rel="icon" sizes="192x192" href="/lib/favicos/android-chrome-192x192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/lib/favicos/android-chrome-192x192.png">
+    <link rel="icon" sizes="256x256" href="/lib/favicos/android-chrome-256x256.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="/lib/favicos/android-chrome-256x256.png">
 
 <meta name="msapplication-TileColor" content="#2b5797">
 <meta name="msapplication-config" content="' . site_url() . 'lib/favicos/browserconfig.xml">
@@ -169,7 +182,9 @@ function top_nav(){
   <span class="line"></span>
 </div>
 </a>
-<a href="' . site_url() . '" title="" class="logo">' . str_replace("/>", " alt=\"logo\" />", show_logo()) . '</a>
+<a href="/" title="" class="logo" style="display: inline-flex; width: 100%; height: 100%; align-items: center;">
+<img src="/lib/favicos/favicon.svg" style="max-height: 60%; margin-right: 10px;"/>
+'.str_replace("/>", " alt=\"logo\" style=\"max-height: 60%;\"/>", show_logo()).'</a>
 <br style="clear:both;"/>
 </div>		
 <div class="header">
