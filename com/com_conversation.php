@@ -23,7 +23,7 @@ if($cid !== 0) {
 
 //Time for design
 $YNRtemplate->include('/conversation.php',[
-    '/tpl/main_n/styles/pages/chat.css',
+    '/tpl/main_n/styles/pages/chat.css?v=290520210140',
     '/tpl/main_n/styles/components/smiles.css'
 ],[
     '/tpl/main_n/styles/js/pages/chat.js'

@@ -173,7 +173,7 @@ function top_nav(){
     $nav .= '
 <div class="fixed-top">
 <div class="row block" style="position:relative;">
-<div class="logo-wrapper">';
+<div class="logo-wrapper" style="display: inline-flex; width: 300px; max-width: 300px">';
     $nav .= '
 <a id="show-sidebar" href="javascript:void(0)" title="'._lang('Show sidebar').'">
 <div class="hamburger" id="hamburger">
@@ -182,7 +182,7 @@ function top_nav(){
   <span class="line"></span>
 </div>
 </a>
-<a href="/" title="" class="logo" style="display: inline-flex; width: 100%; height: 100%; align-items: center;">
+<a href="/" title="" class="logo" style="display: inline-flex; width: 100%; height: 100%; align-items: center;max-width: 100%;">
 <img src="/lib/favicos/favicon.svg" style="max-height: 60%; margin-right: 10px;"/>
 '.str_replace("/>", " alt=\"logo\" style=\"max-height: 60%;\"/>", show_logo()).'</a>
 <br style="clear:both;"/>
