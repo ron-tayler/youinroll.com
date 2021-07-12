@@ -2,11 +2,11 @@
 <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
     <title><?=seo_title()?></title>
-    <meta charset="UTF-8">  
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <base href="<?=site_url()?>" />  
+    <base href="<?=site_url()?>" />
     <meta name="description" content="<?=seo_desc()?>">
     <meta name="generator" content="PHPVibe" />
     <meta property="og:site_name" content="<?=get_option('site-logo-text')?>" />
@@ -46,6 +46,10 @@
         </div>
         <div class="form-field mt-2">
             <select class="w-100" name="category" placeholder="Выберите категорию">
+                <? $categories = $db->get_results("SELECT id,name FROM ".DB_PREFIX.'users_groups where access_level IS NULL AND is_bussines = '.toDb(1).' ORDER BY id'); ?>
+                <? foreach($categories as $category){?>
+                    <option value="<?=$category->id?>"><?=$category->name?></option>
+                <? } ?>
             </select>
         </div>
         <div class="form-field mt-2">
@@ -202,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function(){
             )
         }, 25000);
     }, 30000);
-    
+
 })
 </script>
 </footer>

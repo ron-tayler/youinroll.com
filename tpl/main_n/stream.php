@@ -244,8 +244,9 @@ if($streamInfo !== null)
                         $chatImage = $streamInfo->cover;
                     ?>
                     <!-- user_group() !== 4 && user_group() !== 5 && user_group() !== 3 && user_group() !== 8 -->
-                    <?if(true)
-                    {
+                    <?if($streamInfo->type==='stream'){
+                        include(TPL.'/widgets/streamchat.php');
+                    }else{
                         include(TPL.'/widgets/microchat.php');
                     }
                     ?>

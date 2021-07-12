@@ -2,25 +2,38 @@
 <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
     <title><?=seo_title()?></title>
-    <meta charset="UTF-8">  
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <base href="<?=site_url()?>" />  
+    <base href="<?=site_url()?>" />
     <meta name="description" content="<?=seo_desc()?>">
     <meta name="generator" content="PHPVibe" />
     <meta property="og:site_name" content="<?=get_option('site-logo-text')?>" />
     <meta property="fb:app_id" content="<?=Fb_Key?>" />
     <meta property="og:url" content="<?=canonical()?>" />
-    <link rel="apple-touch-icon" sizes="180x180" href="lib/favicos/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="lib/favicos/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="lib/favicos/favicon-16x16.png">
-    <link rel="manifest" href="lib/favicos/site.webmanifest">
-    <link rel="mask-icon" href="lib/favicos/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="lib/favicos/favicon.ico">
-    <meta name="msapplication-TileColor" content="#2b5797">
-    <meta name="msapplication-config" content="lib/favicos/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="YouInRoll">
+    <meta name="apple-mobile-web-app-title" content="YouInRoll">
+    <meta name="theme-color" content="#fff">
+    <meta name="msapplication-navbutton-color" content="#fff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-starturl" content="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" sizes="16x16" href="lib/favicos/favicon(16x16).png">
+    <link rel="apple-touch-icon" sizes="16x16" href="lib/favicos/favicon(16x16).png">
+    <link rel="icon" sizes="32x32" href="lib/favicos/favicon(32x32).png">
+    <link rel="apple-touch-icon" sizes="32x32" href="lib/favicos/favicon(32x32).png">
+    <link rel="icon" sizes="64x64" href="lib/favicos/favicon(64x64).png">
+    <link rel="apple-touch-icon" sizes="64x64" href="lib/favicos/favicon(64x64).png">
+    <link rel="icon" sizes="192x192" href="/lib/favicos/android-chrome-192x192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/lib/favicos/android-chrome-192x192.png">
+    <link rel="icon" sizes="256x256" href="/lib/favicos/android-chrome-256x256.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="/lib/favicos/android-chrome-256x256.png">
+
     <link rel='stylesheet' href="/tpl/main_n/styles/loginAssets/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.css" integrity="sha512-2xznCEl5y5T5huJ2hCmwhvVtIGVF1j/aNUEJwi/BzpWPKEzsZPGpwnP1JrIMmjPpQaVicWOYVu8QvAIg9hwv9w==" crossorigin="anonymous" />
     <link rel='stylesheet' href="tpl/main_n/styles/login.css">

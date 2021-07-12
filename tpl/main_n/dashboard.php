@@ -1,5 +1,3 @@
-<?php the_header();
-the_sidebar(); ?>
 <ul class="nav nav-tabs nav-tabs-line hidden-md hidden-lg visible-xs visible-sm" id="myTabs" role="tablist">
     <li class="active"><a data-toggle="tab" href="#DashContent" role="tab"> <?php echo _lang('Dashboard'); ?></a></li>
     <li class=""><a data-toggle="tab" href="#DashSidebar" role="tab"><?php echo _lang('Menu'); ?></a></li>
@@ -177,7 +175,8 @@ the_sidebar(); ?>
                             v.duration,
                             v.nsfw, 
                             u.group_id, 
-                            u.name AS owner
+                            u.name AS owner,
+                            u.avatar AS avatar
                         FROM PREFIX_playlist_data AS pd
                         LEFT JOIN PREFIX_videos AS v
                             ON pd.video_id = v.id
@@ -226,7 +225,7 @@ display: block; float: right;
                                 class="icon icon-hashtag"></i><?php echo _lang("Overview"); ?></a></li>
                 <li class=""><a href="<?php echo site_url(); ?>dashboard/?sk=activity"><i class="material-icons">&#xE7F7;</i><?php echo _lang("Activities"); ?></a></li>
                 <li class=""><a href="<?php echo site_url() . me; ?>?sk=subscriptions"><i class="material-icons">&#xE8A1;</i><?php echo _lang("Payments"); ?></a></li>
-                <li class=""><a href="<?php echo site_url(); ?>dashboard/?sk=edit"><i class="icon icon-cogs"></i><?php echo _lang("Channel Settings"); ?></a></li> 
+                <li class=""><a href="<?php echo site_url(); ?>dashboard/?sk=edit"><i class="icon icon-cogs"></i><?php echo _lang("Channel Settings"); ?></a></li>
                 <li class=""><a href="<?php echo site_url(); ?>lessons"><i class="icon icon-film"></i><?php echo _lang("Studio"); ?></a></li>
                 <li class=""><a href="<?php echo site_url() . me; ?>"><i class="icon icon-film"></i><?php echo _lang("Videos"); ?></a></li>
                 <li class=""><a href="<?php echo site_url() . me; ?>?sk=playlists"><i class="icon icon-bars"></i><?php echo _lang("Playlists"); ?></a></li>

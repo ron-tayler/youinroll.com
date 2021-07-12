@@ -20,7 +20,15 @@ class Request {
  	 */
 	public static function init() {
 		self::$get = self::clean($_GET);
-        self::$post = self::clean($_POST);
+        $post_json = file_get_contents('php://input');
+        $post_obj = json_decode($post_json);
+        if(json_last_error() == JSON_ERROR_NONE){
+            $post_array = [];
+            foreach ($post_obj as $post_arg_key=>$post_arg_value) $post_array[$post_arg_key] = $post_arg_value;
+            self::$post = $post_array;
+        }else{
+            self::$post = $_POST;
+        }
         self::$request = self::clean($_REQUEST);
         self::$cookie = self::clean($_COOKIE);
         self::$files = self::clean($_FILES);

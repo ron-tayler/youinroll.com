@@ -22,10 +22,16 @@ if($user > 0) {
 
         add_filter( 'phpvibe_title', 'modify_title' );
         add_filter( 'phpvibe_desc', 'modify_desc' );
-
+        /*
         $YNRtemplate->include('/profile.php', [
             'tpl/main_n/styles/calendar.css'
         ]);
+        */
+        the_header();
+        the_sidebar();
+        echo '<link rel="stylesheet" href="tpl/main_n/styles/calendar.css">';
+        include DIR_TPL.'/main_n/profile.php';
+        the_footer();
 
         //Track this view
 

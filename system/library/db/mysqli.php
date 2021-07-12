@@ -10,7 +10,10 @@ final class MySQLi implements IAdaptor {
 			throw new \Exception('Error: ' . $this->connection->error . '<br />Error No: ' . $this->connection->errno);
 		}
 
-		$this->connection->set_charset("utf8");
+		//$this->connection->set_charset("utf8");
+        $this->connection->set_charset('utf8mb4');
+        $this->connection->query("set character_set_client='utf8mb4'");
+        $this->connection->query("set character_set_results='utf8mb4'");
 		$this->connection->query("SET SQL_MODE = ''");
 	}
 

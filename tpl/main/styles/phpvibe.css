@@ -2991,7 +2991,7 @@ p.empty-content {
 #SearchResults .video-thumb,
 #SearchResults .video-thumb img {
     overflow: hidden;
-    background: #f1f1f1;
+    background: rgba(0,0,0,.15);
     font-size: 0;
     vertical-align: middle;
     display: inline-block;

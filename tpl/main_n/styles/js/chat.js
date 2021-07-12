@@ -73,7 +73,7 @@ class YRChat {
                         message.text = message.text.replace(exp, "<a target='blank' href='$1'>$1</a>");
 
 /* ${moment(message.created_at, 'YYYY-MM-DD hh:mm:ss').lang('ru').fromNow()} */
-			    
+
                         let $message = `<div class="chat-msg ${typeClass}">
                             <div class="chat-msg-profile">
                                 <a href='${message.avatarLink}'>
@@ -423,7 +423,7 @@ class YRChat {
             });
     }
 
-    /* 
+    /*
      * Method for searching channels by name
      */
     _getChannels(params) {
@@ -466,7 +466,7 @@ class YRChat {
 
                 let messages = JSON.parse(data);
 
-                ActiveChat = params.chatId;
+                window.ActiveChat = params.chatId;
 
                 // TODO Это временное решение, стоит сделать через API
                 // START

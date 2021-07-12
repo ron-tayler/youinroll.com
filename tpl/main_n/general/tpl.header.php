@@ -10,8 +10,8 @@ if(!is_home() && !is_video()) {
 register_style('bootstrap.min');
 
 if(!is_home()) {
-  register_style('jssocials');
-  register_style('playerads');	
+      register_style('jssocials');
+      register_style('playerads');
 }
 
 if(!is_video()) {
@@ -21,10 +21,10 @@ if(!is_video()) {
 register_style('https://fonts.googleapis.com/css?family=Material+Icons:300,400,500');
 
 if(not_empty(get_option('rtl_langs',''))) {
-  //Rtl	
+  //Rtl
   $lg = @explode(",",get_option('rtl_langs'));
 
-  if(in_array(current_lang(),$lg)) {	
+  if(in_array(current_lang(),$lg)) {
     register_style('rtl');
   }
 }
@@ -64,8 +64,11 @@ global $page;
     <?if(com() == "profile") {?>
     <link rel="stylesheet" href="tpl/main_n/styles/profile-page.css" type="text/css">
     <?}?>
-    <link rel="stylesheet" href="tpl/main_n/styles/sidebar.css?v=260520211525" type="text/css">
-    <link rel="stylesheet" href="tpl/main_n/styles/sidebar-mobile.css" type="text/css">
+    <link rel="stylesheet" href="tpl/main_n/styles/sidebar.css?v=300620211450" type="text/css">
+    <link rel="stylesheet" href="tpl/main_n/styles/sidebar-mobile.css?v=250620211623" type="text/css">
+
+    <script src="/tpl/main_n/styles/js/jquery.js"></script>
+    <script src="/tpl/main_rtf/js/sidebar.js?v=125"></script>
 
     <link rel="manifest" href="manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
@@ -148,12 +151,12 @@ global $page;
 
     if(is_video() || is_picture() || is_com('conversation') || is_com('stream'))
     {
-    $type = 'normal';
+        $type = 'normal';
     }
     ?>
 
     <? include(TPL.'/layouts/navbar.php'); ?>
-    
+
     <?=the_sidebar()?>
     <?include(TPL.'/sidebar-mobile.php');?>
     <div id="wrapper" class="<?=wrapper_class()?> aside <?= ($page === 'stream') ? 'big-pic' : '' ?>">

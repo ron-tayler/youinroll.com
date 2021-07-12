@@ -9,7 +9,7 @@ if(isset($_GET['cat']))
     {
         $categories = $db->get_results('SELECT category,cat_name FROM `'.DB_PREFIX.'videos` INNER JOIN '.DB_PREFIX.'channels ON '.DB_PREFIX.'channels.cat_id = '.DB_PREFIX.'videos.category WHERE user_id = '.toDb($profile->id).' AND '.DB_PREFIX.'videos.category = '.toDb($categoryId).' GROUP BY category');
     }
-    
+
 } else
 {
     $categories = $db->get_results('SELECT category,cat_name FROM `'.DB_PREFIX.'videos` INNER JOIN '.DB_PREFIX.'channels ON '.DB_PREFIX.'channels.cat_id = '.DB_PREFIX.'videos.category WHERE user_id = '.toDb($profile->id).' GROUP BY category');
@@ -22,9 +22,21 @@ if(isset($_GET['cat']))
     <?}?><div class="panel-body">
         <div id="videolist-content">
             <?=_ad('0','user-video-list-top');?>
-            
+
             <? if($categoryId === 0) {
-                $vq = "select ".$options.", '".toDb($profile->name)."' as owner FROM ".DB_PREFIX."videos WHERE pub > 0 and date < now() and media < 2 and user_id ='".$profile->id."' ORDER BY date DESC ".this_limit(bpp());
+                /** @lang MySQL */
+                $vq = "SELECT 
+                    v.id,
+                    v.title,
+                    v.user_id,
+                    v.thumb,
+                    v.views,
+                    v.duration,
+                    v.category, 
+                    '" .toDb($profile->name). "' as owner,
+                    '" .toDb($profile->avatar). "' AS avatar
+                FROM " .DB_PREFIX. "videos AS v
+                WHERE pub > 0 and date < now() and media < 2 and user_id ='" .$profile->id. "' ORDER BY date DESC " .this_limit(bpp());
                 include_once(TPL.'/video-loop.php');
             } else {?>
 
@@ -35,7 +47,7 @@ if(isset($_GET['cat']))
                     <a href='<?=profile_url($profile->id, $profile->name)?>?sk=videos&cat=<?=$category->category?>'><small class="videod"><?=_lang('Show all')?></small></a>
                 <? } ?>
             </div>
-            <?  
+            <?
                 $limit = isset($categoryId) ? '20' : '4';
                 $vq = "select ".$options." FROM ".DB_PREFIX."videos WHERE pub > 0 and date < now() and media < 2 and user_id ='".$profile->id."' AND category = ".toDb($category->category)." ORDER BY date DESC LIMIT ".$limit;
                 $videos = $db->get_results($vq);
@@ -43,8 +55,8 @@ if(isset($_GET['cat']))
             <? if ($videos) { ?>
             <div id="videoLoop" class="loop-content phpvibe-video-list">
                 <? foreach ($videos as $video) {
-                    $title = _html(_cut($video->title, 70));			
-                    $full_title = _html(str_replace("\"", "",$video->title));			
+                    $title = _html(_cut($video->title, 70));
+                    $full_title = _html(str_replace("\"", "",$video->title));
                     $url = video_url($video->id , $video->title);
                     if(isset($profile->group_id)) { $grcreative = group_creative($profile->group_id); } else { $grcreative=''; }
                     $watched = (is_watched($video->id)) ? '<span class="vSeen">'._lang("Watched").'</span>' : '';
@@ -90,7 +102,7 @@ if(isset($_GET['cat']))
                                             $time_ago = str_replace('8 месяц ', '8 месяцев ', $time_ago);
                                             $time_ago = str_replace('9 месяц ', '9 месяцев ', $time_ago);
                                             $time_ago = str_replace('10 месяц ', '10 месяцев ', $time_ago);
-                                            $time_ago = str_replace('11 месяц ', '11 месяцев ', $time_ago); 
+                                            $time_ago = str_replace('11 месяц ', '11 месяцев ', $time_ago);
                                             $time_ago = str_replace('годс', 'год', $time_ago);
                                             $time_ago = str_replace('2 год ', '2 года ', $time_ago);
                                             $time_ago = str_replace('3 год ', '3 года ', $time_ago);

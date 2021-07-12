@@ -37,6 +37,7 @@ class Router {
         $version = explode('.',$version);
         $url = explode('?',Request::$server['REQUEST_URI'])[0];
         $executed = false;
+        $error = null;
         foreach (self::$routes as $route){
             // Проверка версии
             $minVersion = explode('.',$route->getMinVersion());
@@ -65,12 +66,19 @@ class Router {
                 $executed = true;
             }catch(\ExceptionBase $ex){
                 trigger_error($ex->getPrivateMessage(),E_USER_NOTICE);
+                $error = $ex;
                 continue;
             }
             break;
         }
-        if(!$executed) throw new ErrorEngine('Контроллер не найден: '.$url.' - v'.$version[0].'.'.$version[1],4,'Не найден метод API или версия не верна');
-    }
+        if(!$executed){
+            if($error){
+                throw $error;
+            }else{
+                throw new ErrorEngine('Контроллер не найден: '.$url.' - v'.$version[0].'.'.$version[1],'Не найден метод API или версия не верна');
+            }
+        }
+}
 
     private function checkingConvergence(){
 

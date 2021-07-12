@@ -20,7 +20,7 @@ $st = '
 <div class="row main-holder">
 
 <?
-$categories = $cachedb->get_results('SELECT cat_id,cat_name,cat_desc,picture FROM '.DB_PREFIX.'channels where type = '.toDb(1).' AND child_of = '.toDb(0).'');
+$categories = $cachedb->get_results('SELECT cat_id,cat_name,cat_desc,picture FROM '.DB_PREFIX.'channels where type = '.toDb(1).' AND child_of = '.toDb(0));
 ?>
 
 <div class='container'>

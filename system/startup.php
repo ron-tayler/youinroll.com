@@ -91,8 +91,21 @@ try {
         return true;
     });
 
+    spl_autoload_register(function($class) {
+        $file = DIR_SYSTEM.'/Errors/'.str_replace('\\', '/', $class).'.php';
+
+        if (is_file($file)) {
+            include_once($file);
+
+            return true;
+        } else {
+            return false;
+        }
+    });
+    spl_autoload_extensions('.php');
+
 }catch(ErrorBase | ExceptionBase $err){
-    throw new ErrorBase($err->getPrivateMessage(),$err->getCode(),$err->getMessage(),$err);
+    throw new ErrorKnown($err->getPrivateMessage(),$err->getMessage(),$err);
 } finally {
     ob_end_flush();
 }

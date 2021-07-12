@@ -260,14 +260,16 @@ a#openusr {
 
 @media only screen and (max-device-width: 736px) and (max-device-width: 480px) and (max-device-width: 640px) {
 
-#linkTop {
-	display: none;
-}
+    #linkTop {
+        display: none;
+    }
 
     #sidebar {
         display: none !important;
     }
-
+    #uplBtn{
+        display: none !important;
+    }
     .searchWidget {
         display: none !important;
     }
@@ -478,4 +480,22 @@ a#openusr {
     .sticky {
         width: 100% !important;
     }
+}
+
+.sidebar-btn-login{
+    background: var(--color-coral);
+    color: #ffffff !important;
+    padding: 15px 0;
+    border-radius: 20px;
+    letter-spacing: .007px;
+    text-align: center;
+    font-size: 14px;
+    white-space: normal;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+
+    -webkit-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
 }

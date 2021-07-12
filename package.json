@@ -1,28 +1,3 @@
 {
-  "name": "youinroll_frontend",
-  "version": "1.0.0",
-  "description": "Frontend NPM packages",
-  "main": "tpl/main_n/styles/js/npm.js",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
-  "dependencies": {
-    "websocket": "^1.0.33",
-    "ws": "^7.4.3"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/h5xde-dev/test_vibe.git"
-  },
-  "author": "h5xde",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/h5xde-dev/test_vibe/issues"
-  },
-  "homepage": "https://github.com/h5xde-dev/test_vibe#readme"
+
 }

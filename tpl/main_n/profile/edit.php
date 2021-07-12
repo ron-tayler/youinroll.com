@@ -177,7 +177,7 @@
                         </div>
 
                         <div class="block mtop20">
-                            <button class="btn btn-block  btn-primary"
+                            <button class="btn btn-block  btn-primary" style="color: #fff !important;"
                                 type="submit"><?php echo _lang("Update"); ?></button>
                         </div>
                     </form>
@@ -257,7 +257,7 @@
                         </div>
 
                         <div class="block mtop20">
-                            <button class="btn btn-block  btn-primary"
+                            <button class="btn btn-block  btn-primary" style="color: #fff !important;"
                                 type="submit"><?php echo _lang("Update"); ?></button>
                         </div>
                 </form>
