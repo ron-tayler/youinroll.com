@@ -1,5 +1,47 @@
 /* * MediaVibe CMS ( PHPVibe PRO v6)  * * Copyright Interact.Software * https://www.phpvibe.com * PHPVibe IS NOT A FREE SOFTWARE * If you have downloaded this CMS from a website other * than www.phpvibe.com, if you have received * this CMS from someone who is not a representative of PHPVibe, you are involved in an illegal activity.  * The phpVibe team takes actions against all unlincensed websites using Google, local authorities and 3rd party agencies.  * Designed and built exclusively for sale at PHPVibe.com */
 /* Commons  */
+:root{
+    --color-coral: #fe2c55;
+    --color-blue-purple: #772ce8;
+    --color-header: #121212E0;
+    --color-dark-blue: #2c3e50;
+    --color-light-blue: #C3D6EC;
+    --color-light-bg: #FAFAFA;
+    --color-dark-bg: #202020;
+    --color-lvl-1: #202020;
+    --color-lvl-2: #404040;
+    --color-lvl-3: #606060;
+    --color-lvl-4: #808080;
+    --color-lvl-5: #a0a0a0;
+    --color-lvl-6: #c0c0c0;
+    --color-lvl-7: #e0e0e0;
+}
+:root.light-theme{
+    --color-text: var(--color-dark-blue);
+    --color-background: var(--color-light-bg);
+    --color-background-hover: var(--color-lvl-7);
+    --color-scroll: var(--color-lvl-6);
+
+    --color-bg-tag: var(--color-lvl-7);
+    --color-text-tag: var(--color-dark-blue);
+    --color-bg-tag-active: var(--color-dark-blue);
+    --color-text-tag-active: var(--color-lvl-7);
+
+    --shadow-base: 0 0 20px 0 var(--color-lvl-4);
+}
+:root.dark-theme{
+    --color-text: var(--color-light-blue);
+    --color-background: var(--color-dark-bg);
+    --color-background-hover: var(--color-lvl-1);
+    --color-scroll: var(--color-lvl-2);
+
+    --color-bg-tag: var(--color-dark-blue);
+    --color-text-tag: var(--color-light-bg);
+    --color-bg-tag-active: var(--color-light-bg);
+    --color-text-tag-active: var(--color-dark-blue);
+
+    --shadow-base: 0 0 20px 0 var(--color-lvl-6);
+}
 img {
     max-width: 100%;
     width: auto\9;
@@ -17,12 +59,12 @@ body {
 
 .badge-coral{
     color:#fff !important;
-    background-color:#fe2c55 !important;
+    background-color: var(--color-coral) !important;
 }
 
 .btn-coral{
     color:#fff !important;
-    background-color:#fe2c55 !important;
+    background-color: var(--color-coral) !important;
 }
 
 /* Page formats */
@@ -1186,7 +1228,10 @@ a#revealRelated {
     background: #fff;
     font-size: 0;
     vertical-align: middle;
-    height: 170px
+    height: 120px
+}
+.video-thumb i.material-icons{
+    color: #fff;
 }
 
 .video-thumb .timer {
@@ -2255,6 +2300,7 @@ li.indanger {
     z-index: 2039;
     background-color: rgba(18,18,18,.8);
     backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
     padding: 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -3533,7 +3579,7 @@ p.empty-content {
 
 @media only screen and (max-width: 600px) {
   #footer {
-    margin-top: 0px; 
+    margin-top: 0px;
     height: 50px;
   }
 
@@ -3585,7 +3631,7 @@ ul.socialfooter li {
     margin-right: 5px;
 }
 
-/*ul.socialfooter li a { background-color:transparent; background-image:url('../images/socialfooter.png'); background-repeat:no-repeat; background-size:auto 96px; border:0 none; display:block; height:32px; 
+/*ul.socialfooter li a { background-color:transparent; background-image:url('../images/socialfooter.png'); background-repeat:no-repeat; background-size:auto 96px; border:0 none; display:block; height:32px;
  text-align:left; text-decoration:none; transition:all 0.2s ease 0s; width:32px; position: relative; display: flex; } */
 .ie7 ul.socialfooter li a,
 .ie8 ul.socialfooter li a {
@@ -5640,7 +5686,7 @@ a.top-link:focus:before,
     }
 }
 
-.body-dashboard .owl-carousel .owl-item img {
+.body-dashboard .owl-carousel .owl-item .video-thumb img {
     min-height: 110px
 }
 
@@ -5765,4 +5811,27 @@ a.song .badge {
 
 .playlist-order .dropdown-menu.bullet {
     margin-top: 3px
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb{
+    border-radius: 8px;
+    background-color: #8884;
+}
+::-webkit-scrollbar-track{
+    border-radius: 8px;
+    background-color: #ccc4;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    border-radius: 8px;
+    background-color: #888f;
+}
+::-webkit-scrollbar-track:hover{
+    border-radius: 8px;
+    background-color: #cccf;
 }

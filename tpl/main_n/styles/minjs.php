@@ -1,5 +1,5 @@
 <?php  error_reporting(0);
-// Root 
+// Root
 if( !defined( 'ABSPATH' ) )
 	define( 'ABSPATH', str_replace( '\\', '/',  dirname( __FILE__ ) )  );
 $cachef = explode('tpl', ABSPATH);
@@ -21,8 +21,7 @@ $scripts = array (
   11 => 'jssocials.min',
   12 => 'jquery.grid-a-licious.min',
   13 => 'phpvibe_app',
-  14 => 'extravibes',
-  15 => 'sidebar'
+  14 => 'extravibes'
 );
 
 /* Cache file */
@@ -30,27 +29,27 @@ $cachexists= true;
 $cachedfile = $cachef[0].'storage/cache/js-combined.cache';
     if (file_exists($cachef[0].'storage/cache/js-combined-min.cache') && (filesize($cachef[0].'storage/cache/js-combined-min.cache') > 100000 )) {
 	// Prefer minimized	file
-	$txt = file_get_contents($cachef[0].'storage/cache/js-combined-min.cache');	
+	$txt = file_get_contents($cachef[0].'storage/cache/js-combined-min.cache');
 	$cachexists= true;
-	} elseif (file_exists($cachef[0].'storage/cache/js-combined.cache')){ 
+	} elseif (file_exists($cachef[0].'storage/cache/js-combined.cache')){
     // Use combined	file
-	$txt = file_get_contents($cachef[0].'storage/cache/js-combined.cache');	
-	$cachexists= true;	
+	$txt = file_get_contents($cachef[0].'storage/cache/js-combined.cache');
+	$cachexists= true;
 	} else {
-    // Get individual js & combine	them	
+    // Get individual js & combine	them
 	if(!is_null($scripts) && !empty($scripts)) {
-		foreach ($scripts as $js) {			
+		foreach ($scripts as $js) {
 			$jsfile = ABSPATH.'/js/'.trim($js).'.js';
-			//echo $jsfile;	
-            if (file_exists($jsfile)) {			
-            $txt .= file_get_contents($jsfile);	
-			}			
-			
+			//echo $jsfile;
+            if (file_exists($jsfile)) {
+            $txt .= file_get_contents($jsfile);
+			}
+
 		}
 		$cachexists= false;
 	}
-	
-	
+
+
 }
 
 // Enable GZip encoding.
@@ -62,13 +61,13 @@ header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 86400) . ' GMT');
 // Set the correct MIME type, because Apache won't set it for us
 header("Content-Type: application/javascript");
 // Print the css
-echo($txt);	
-// Write cache file 
+echo($txt);
+// Write cache file
 if(!$cachexists) {
     // Minify
 	// Create cache file
 	$f = fopen($cachedfile, 'w');
 	fwrite ($f, $txt);
-	fclose($f);	
+	fclose($f);
 }
 ?>

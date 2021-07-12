@@ -10,12 +10,12 @@ $result = array();
 
 if(is_user() && $page > 0)
 {
-    $itemsCount = 7;
+    $itemsCount = 5;
 
     $offset = ($page - 1) * $itemsCount;
 
     //0,5 5,10 10,15
-    
+
     $userFriends = $cachedb->get_results("SELECT id,avatar,name from ".DB_PREFIX."users where id in (select uid from ".DB_PREFIX."users_friends where fid ='".user_id()."') order by lastNoty desc limit $offset,$itemsCount");
     if($userFriends !== null)
     {

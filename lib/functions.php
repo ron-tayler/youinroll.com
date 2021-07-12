@@ -763,19 +763,32 @@ function subscribe_box($user, $btnc = '', $counter = false, $type = 'default')
         }
     } elseif ($user <> user_id()) {
         //If it's not you
-        $check = $db->get_row("SELECT count(*) as nr from " . DB_PREFIX . "users_friends where uid ='" . $user . "' and fid='" . user_id() . "'");
+        $check = $db->get_row("SELECT count(*) as nr from vibe_users_friends where uid ='$user' and fid='".user_id()."'");
         if ($check->nr < 1) {
             //You're not subscribed
             $btnc .= "btn btn-coral social-google-plus subscriber";
             if ($type === 'modal') {
-                echo '<a id="modal-' . $user . '" data-next="' . _lang('Subscribe') . '" class="' . $btnc . ' pv_tip" href="javascript:SubscribeModal(' . $user . ')" title="' . _lang('Click to add a subscription') . '"><span>' . _lang('Subscribe') . ' ' . $ktool . '</span></a>';
+                echo '<a id="modal-' . $user . '" data-next="' . _lang('Subscribe') . '" class="' . $btnc . ' pv_tip" href="javascript:SubscribeModal(' . $user . ')" title="' . _lang('Click to add a subscription') . '"><span class="follow-text">' . _lang('Subscribe') . ' ' . $ktool . '</span></a>';
 
             } elseif ($type === 'follow') {
 
-                echo '<a id="follow-' . $user . '" data-next="' . _lang("Follow") . '" class="' . $btnc . ' pv_tip" href="javascript:Subscribe(' . $user . ', 2, `#follow-' . $user . '`)" title="' . _lang('Click to ') . '"><i class="icon-follow"></i><span>' . _lang('Follow') . '</span></a>';
+                $text_follow = _lang("Follow");
+                $text_click_to = _lang('Click to ');
+
+
+                ?>
+                <a id="follow-<?=$user?>"
+                data-next="<?=$text_follow?>"
+                class="<?=$btnc?> pv_tip"
+                href="javascript:Subscribe(<?=$user?>, 2, `#follow-<?=$user?>`)"
+                title="<?=$text_click_to?>">
+                <i class="icon-follow follow-icon"></i>
+                <span class="follow-text"><?=$text_follow?></span>
+                </a>
+                <?php
 
             } else {
-                echo '<a style="color: #fff !important;" id="subscribe-' . $user . '" data-next="' . _lang('Subscribe') . '" class="' . $btnc . ' pv_tip" href="javascript:Subscribe(' . $user . ', 1, `#subscribe-' . $user . '`)" title="' . _lang('Click to add a subscription') . '"><span>' . _lang('Subscribe') . ' ' . $ktool . '</span></a>';
+                echo '<a style="color: #fff !important;" id="subscribe-'.$user.'" data-next="' . _lang('Subscribe') . '" class="' . $btnc . ' pv_tip" href="javascript:Subscribe(' . $user . ', 1, `#subscribe-' . $user . '`)" title="' . _lang('Click to add a subscription') . '"><span class="follow-text">' . _lang('Subscribe') . ' ' . $ktool . '</span></a>';
             }
 
         } else {
@@ -783,14 +796,14 @@ function subscribe_box($user, $btnc = '', $counter = false, $type = 'default')
             $btnc .= "btn btn-coral subscriber";
 
             if ($type === 'modal') {
-                echo '<a id="modal-' . $user . '" data-next="' . _lang("unsubscribed") . '" class="' . $btnc . ' pv_tip" href="javascript:SubscribeModal(' . $user . ')" title="' . _lang('Click to add a subscription') . '"><span>' . _lang('Subscribe') . ' ' . $ktool . '</span></a>';
+                echo '<a id="modal-' . $user . '" data-next="' . _lang("unsubscribed") . '" class="' . $btnc . ' pv_tip" href="javascript:SubscribeModal(' . $user . ')" title="' . _lang('Click to add a subscription') . '"><span class="follow-text">' . _lang('Subscribe') . ' ' . $ktool . '</span></a>';
 
             } elseif ($type === 'follow') {
 
-                echo '<a id="follow-' . $user . '" data-next="' . _lang("unfollowed") . '" class="' . $btnc . ' pv_tip" href="javascript:Subscribe(' . $user . ', 2, `#follow-' . $user . '`)" title="' . _lang('Click to add a ') . '"><i class="icon-unfollow"></i><span></span></a>';
+                echo '<a id="follow-' . $user . '" data-next="' . _lang("unfollowed") . '" class="' . $btnc . ' pv_tip" href="javascript:Subscribe(' . $user . ', 2, `#follow-' . $user . '`)" title="' . _lang('Click to add a ') . '"><i class="icon-unfollow"></i><span class="follow-text"></span></a>';
 
             } else {
-                echo '<a id="subscribe-' . $user . '" data-next="' . _lang("unsubscribed") . '" class="' . $btnc . ' pv_tip" href="javascript:Subscribe(' . $user . ', 1, `#subscribe-' . $user . '`)" title="' . _lang('Click to add a subscription') . '"><span>' . _lang('unsubscribed') . ' ' . $ktool . '</span></a>';
+                echo '<a id="subscribe-' . $user . '" data-next="' . _lang("unsubscribed") . '" class="' . $btnc . ' pv_tip" href="javascript:Subscribe(' . $user . ', 1, `#subscribe-' . $user . '`)" title="' . _lang('Click to add a subscription') . '"><span class="follow-text">' . _lang('unsubscribed') . ' ' . $ktool . '</span></a>';
             }
         }
     } else {
@@ -863,7 +876,7 @@ function canonical()
 
 function selfURL()
 {
-    $s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
+    $s = ($_SERVER["HTTPS"] == "on") ? 's' : '';
     $protocol = strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/") . $s;
     $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":" . $_SERVER["SERVER_PORT"]);
     return $protocol . "://" . $_SERVER['SERVER_NAME'] . $port . $_SERVER['REQUEST_URI'];
@@ -1947,11 +1960,14 @@ function generateRandomString($length = 8)
 function render_styles($mode = 1)
 {
     global $privatestyles;
-    $localstyles = array();
-    $webstyles = array();
+    $localstyles = [];
+    $webstyles = [];
+    $localstyles_version = 0;
     $output = '';
     foreach ($privatestyles as $css) {
         if (filter_var($css, FILTER_VALIDATE_URL) === FALSE) {
+            $file_time = (int)filemtime(DIR_SITE . '/tpl/main_n/styles/'.$css.'.css');
+            if($localstyles_version < $file_time) $localstyles_version = $file_time;
             $localstyles[] = $css;
         } else {
             $webstyles[] = $css;
@@ -1959,7 +1975,7 @@ function render_styles($mode = 1)
     }
 
     if (not_empty($localstyles)) {
-        $output .= '<link rel="stylesheet" type="text/css" media="screen" href="' . tpl() . 'styles/min.php?f=' . implode(",", $localstyles) . '" />' . PHP_EOL;
+        $output .= '<link rel="stylesheet" type="text/css" media="screen" href="' . tpl() . 'styles/min.php?v='.$localstyles_version.'&f=' . implode(",", $localstyles) . '" />' . PHP_EOL;
     }
     if (not_empty($webstyles)) {
         foreach ($webstyles as $webcss) {

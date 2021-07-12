@@ -183,13 +183,13 @@
 }
 
 /* Large screens ----------- */
-/* @media only screen 
+/* @media only screen
   and (min-width : 1400px) {
     :root{
       --container-width: 1200px;
       --landing-block-width: 900px;
     }
-  
+
     .course-channel:last-child {
       display: none !important;
     }
@@ -751,10 +751,10 @@
 
 /* The sticky class is added to the header with JS when it reaches its scroll position */
 .sticky {
-    position: fixed;
+    position: sticky;
     top: 60px;
     z-index: 99;
-    width: 82.75% !important;
+    /*width: 82.75% !important;*/
     transition: ease-in 1s;
 }
 

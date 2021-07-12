@@ -14,7 +14,7 @@ add_filter( 'phpvibe_title', 'modify_title' );
 add_filter( 'phpvibe_desc', 'modify_desc' );
 
 $streamId = token_id();
-$streamInfo = $db->get_row("SELECT id,name,cover,description,category,likes,on_air,views,moderator_id,tags FROM ".DB_PREFIX."conferences where id = ".$streamId." limit  0,1");
+$streamInfo = $db->get_row("SELECT id,name,cover,description,category,likes,on_air,views,moderator_id,tags,type FROM ".DB_PREFIX."conferences where id = ".$streamId." limit  0,1");
 
 if(is_user() and $streamInfo->moderator_id == user_id() and $streamInfo->on_air != 1){
     $db->query('UPDATE '.DB_PREFIX.'conferences SET on_air = 1 WHERE id = '.toDb($streamInfo->id));

@@ -1,5 +1,32 @@
 <?php //Check session start
-ini_set('display_errors', 0);
+
+// Дебагинг
+define('DEBUG_PRIVATE',1);
+define('DEBUG_TRACE',1<<1);
+define('DEBUG_ERROR',1<<2);
+define('DEBUG_REQUEST',1<<3);
+define('DEBUG_GET',1<<4);
+define('DEBUG_POST',1<<5);
+$debug_types =[
+    '0'         => 0,
+    'private'   => DEBUG_PRIVATE,
+    'trace'     => DEBUG_TRACE,
+    'error'     => DEBUG_ERROR,
+    'request'   => DEBUG_REQUEST,
+    'get'       => DEBUG_GET,
+    'post'      => DEBUG_POST,
+];
+$debug_types['all'] = array_sum($debug_types);
+$debug_text = (($_GET['dev_token']??'')=='953C54')?($_GET['debug']??''):'';
+$debug_type = 0;
+foreach (explode(',',$debug_text) as $el) $debug_type |= ($debug_types[$el]??0);
+define('DEBUG_TYPE',$debug_type??0);
+unset($debug_types,$debug_type,$debug_text);
+
+if(DEBUG_TYPE & DEBUG_ERROR)
+    ini_set('display_errors', 1);
+else
+    ini_set('display_errors', 0);
 
 // Log
 require(__DIR__.'/lib/class.log.php');
@@ -37,7 +64,7 @@ set_error_handler(function($code, $message, $file, $line) use($err_log) {
 });
 
 if (!isset($_SESSION)) { @session_start(); }
-// Root 
+// Root
 if( !defined( 'ABSPATH' ) )
 	define( 'ABSPATH', __DIR__  );
 // Includes
@@ -46,7 +73,7 @@ if( !defined( 'INC' ) )
 // Security
 if( !defined( 'in_phpvibe' ) )
 	define( 'in_phpvibe', true);
-// Configs 
+// Configs
 require_once( ABSPATH.'/vibe_config.php' );
 require_once( ABSPATH.'/vibe_setts.php' );
 // Sql db classes
@@ -65,7 +92,7 @@ if( !defined( 'cacheEngine' ) || (cacheEngine == "mysql") ) {
 
     /* Define live db for MySql Improved */
     $db = new ezSQL_mysqli(DB_USER,DB_PASS,DB_NAME,DB_HOST,'utf8');
-    
+
      /* Define cached db for MySql Improved */
     $cachedb = new ezSQL_mysqli(DB_USER,DB_PASS,DB_NAME,DB_HOST,'utf8');
 }
@@ -98,7 +125,7 @@ $YNRpayment = new YNRPayment();
 
 // Theme
 if( !defined( 'THEME' ) )
-	define( 'THEME', get_option('theme','main') );	
+	define( 'THEME', get_option('theme','main') );
 // Themes directory
 if( !defined( 'TPL' ) )
 	define( 'TPL', ABSPATH.'/tpl/'.THEME);
@@ -119,23 +146,23 @@ if ( /*get_magic_quotes_gpc() устарело с версии 7.4*/false ) {
     $_REQUEST   = array_map( 'stripslashes_deep', $_REQUEST );
 }
 // Current translation
-$trans = init_lang(); 
+$trans = init_lang();
 // Plugins
 if(!is_null(get_option('activePlugins',null))) {
-//Plugins array	
+//Plugins array
 $Plugins = explode(",",get_option('activePlugins',null));
 if(!empty($Plugins) && is_array($Plugins)){
 // Plugins loop
 foreach ($Plugins as $plugin) {
 if(file_exists(plugin_inc($plugin))) { include_once(plugin_inc($plugin)); }
-}	
-}	
-}	
+}
+}
+}
 // Twitter Login
 define( 'Tw_Key', get_option('Tw_Key') ); define( 'Tw_Secret', get_option('Tw_Secret') );
 //Facebook API Login
 define( 'Fb_Key', get_option('Fb_Key') ); define( 'Fb_Secret', get_option('Fb_Secret'));
-// OnSite Login 
+// OnSite Login
 define('COOKIEKEY', get_option('COOKIEKEY') ); define('SECRETSALT', get_option('SECRETSALT')); define( 'COOKIESPLIT', get_option('COOKIESPLIT') );
 // Cookie logins
 authByCookie(); validate_session();

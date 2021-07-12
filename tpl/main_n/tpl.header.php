@@ -14,7 +14,7 @@ if (!is_video()) {
 }
 register_style('https://fonts.googleapis.com/css?family=Material+Icons:300,400,500');
 if (not_empty(get_option('rtl_langs', ''))) {
-//Rtl	
+//Rtl
     $lg = @explode(",", get_option('rtl_langs'));
     if (in_array(current_lang(), $lg)) {
         register_style('rtl');
@@ -88,8 +88,11 @@ function meta_add()
         $meta .= '<link rel="stylesheet" href="tpl/main_n/styles/profile-page.css" type="text/css">';
     }
 
-    $meta .= '<link rel="stylesheet" href="tpl/main_n/styles/sidebar.css?v=260520211240" type="text/css">
-    <link rel="stylesheet" href="tpl/main_n/styles/sidebar-mobile.css" type="text/css">
+    $meta .= '<link rel="stylesheet" href="tpl/main_n/styles/sidebar.css?v=300620211450" type="text/css">
+    <link rel="stylesheet" href="tpl/main_n/styles/sidebar-mobile.css?v=250620211623" type="text/css">
+    
+    <script src="/tpl/main_n/styles/js/jquery.js"></script>
+    <script src="/tpl/main_rtf/js/sidebar.js?v=125"></script>
 
     <link rel="manifest" href="manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
@@ -166,25 +169,26 @@ function meta_add()
     return $meta;
 }
 
-function top_nav(){
+function top_nav()
+{
 
     $nav = '';
     include(TPL . '/sidebar-mobile.php');
     $nav .= '
 <div class="fixed-top">
 <div class="row block" style="position:relative;">
-<div class="logo-wrapper" style="display: inline-flex; width: 300px; max-width: 300px">';
+<div class="logo-wrapper" style="max-width: 300px">';
     $nav .= '
-<a id="show-sidebar" href="javascript:void(0)" title="'._lang('Show sidebar').'">
+<a id="show-sidebar" href="javascript:void(0)" title="' . _lang('Show sidebar') . '">
 <div class="hamburger" id="hamburger">
   <span class="line"></span>
   <span class="line"></span>
   <span class="line"></span>
 </div>
 </a>
-<a href="/" title="" class="logo" style="display: inline-flex; width: 100%; height: 100%; align-items: center;max-width: 100%;">
+<a href="/" title="" class="logo" style="display: inline-flex; width: 240px; max-width: 240px; height: 100%; align-items: center;">
 <img src="/lib/favicos/favicon.svg" style="max-height: 60%; margin-right: 10px;"/>
-'.str_replace("/>", " alt=\"logo\" style=\"max-height: 60%;\"/>", show_logo()).'</a>
+' . str_replace("/>", " alt=\"logo\" style=\"max-height: 60%;\"/>", show_logo()) . '</a>
 <br style="clear:both;"/>
 </div>		
 <div class="header">
@@ -274,7 +278,7 @@ data-animation="scale-up" role="button" title="' . _lang('Login') . '">
         if ((get_option('upmenu') == 1) || is_moderator()) {
 // old icon for download: <i class="material-icons">file_upload</i>
             $nav .= '<a id="uplBtn" href="' . site_url() . share . '" class="top-link" title="' . _lang('Upload video') . '">	
-<img src="/tpl/main/images/download.svg" class="download-icon" alt="icon" /></a>';
+<img src="/tpl/main/images/camera.svg" class="download-icon" alt="icon" style="width: 30px !important; height: 30px !important;"/></a>';
         }
 
 // old icon for notifications: $nav .= <i class="icon material-icons">notifications</i>

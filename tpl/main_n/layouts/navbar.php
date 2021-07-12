@@ -23,7 +23,7 @@ left:-170%;
                     <span class="line"></span>
                 </div>
             </a>
-            <a href="<?=site_url()?>" title="" class="logo" style="display: inline-flex; width: 100%; align-items: center;">
+            <a href="<?=site_url()?>" title="" class="logo" style="display: inline-flex; width: 100%; max-width: 100%; align-items: center;">
                 <img src="/lib/favicos/favicon.svg" style="max-height: 60%; margin-right: 10px;"/>
                 <?=str_replace("/>"," alt=\"logo\" style=\"max-height: 60%;\"/>",show_logo())?>
             </a>
@@ -52,7 +52,7 @@ left:-170%;
                 <div id="suggest-results"></div>
                 <?}?>
             </div>
-            
+
             <div class="user-quick">
                 <a class="top-link" id="show-search"><i class="material-icons">search</i></a>
                 <?if(!is_user()) {?>
@@ -88,7 +88,7 @@ left:-170%;
 
 
                 } catch (\Throwable $th) {
-                
+
                 }
 
                 if($messages !== null)
@@ -119,7 +119,7 @@ left:-170%;
                 <img src="/tpl/main/images/man-avatar.svg" class="man-avatar-icon" alt="icon" />
                 <?}?>
             </a>
-            <ul id="mobilem" class="dropdown-menu dropdown-left mobile-menu" role="menu"> 
+            <ul id="mobilem" class="dropdown-menu dropdown-left mobile-menu" role="menu">
 <!--
                 <li role="presentation" class="drop-head"><?=group_creative(user_group())?>
                     <a href="<?=profile_url(user_id(), user_name())?>">
@@ -158,8 +158,8 @@ left:-170%;
 		<li role="presentation">
 			 <a href="https://youinroll.com/me?sk=subscriptions">
 				<i class="icon material-icons">&#xe8a1;</i>Подписки
-			</a> 
-		</li>    
+			</a>
+		</li>
 		<li role="presentation"> <a href="/me/'?sk=images"> <i class="icon material-icons">&#xE413;</i>Пост-менеджер</a></li>
 <!--
                 <li role="presentation">

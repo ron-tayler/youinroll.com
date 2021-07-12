@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $daysInMonth = range(1, date("t"));
 
@@ -20,25 +20,25 @@ $conferences = $db->get_results($sql);
     <div class="calendar">
         <ol class="day-names">
             <li>
-                Понедельник
+                Пн
             </li>
             <li>
-                Вторник
+                Вт
             </li>
             <li>
-                Среда
+                Ср
             </li>
             <li>
-                Четверг
+                Чт
             </li>
             <li>
-                Пятница
+                Пт
             </li>
             <li>
-                Суббота
+                Сб
             </li>
             <li>
-                Воскресенье
+                Вс
             </li>
         </ol>
         <ol class="days">
@@ -68,7 +68,7 @@ $conferences = $db->get_results($sql);
                         <div class="event" title="<?=$conference->description;?>">
                             <p class="event-name"><?=$conference->name;?></p>
                             <span class='time'><?=$confTime;?></span>
-                            <? $tooltip = 'tooltiptext'; 
+                            <? $tooltip = 'tooltiptext';
                                 if((int)$day > 15) { $tooltip .= ' tooltip-top-right'; }
                                 if( ( (int)$day % 7 ) === 0 ) { $tooltip .= ' tooltip-left'; }
                             ?>

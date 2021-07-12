@@ -54,7 +54,7 @@ class Listen implements \Engine\IController {
                     $data_message = array();
                     $data_message['id'] = $message['message_id'];
                     $data_message['user_id'] = $message['user_id'];
-                    $data_message['message'] = $message['text'];
+                    $data_message['message'] = htmlspecialchars_decode($message['text']);
                     $data_message['date'] = $message['date'];
                     $data[]=$data_message;
                 }
@@ -63,6 +63,7 @@ class Listen implements \Engine\IController {
             }
             sleep(1);
         }
+        Response::setOutput('timeout');
 
 
         // При получении попробовать получить ещё

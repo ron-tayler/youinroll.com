@@ -55,7 +55,8 @@ jQuery(function($) {
         window.onbeforeunload = tabUnloadEventHandler;
         $(document).ready(tabLoadEventHandler);
 
-        if (Object.keys(JSON.parse(localStorage.getItem('TabsOpen'))).length > 1) {
+
+        if (localStorage.getItem('TabsOpen') && Object.keys(JSON.parse(localStorage.getItem('TabsOpen'))).length > 1) {
             localStorage.removeItem('menuState')
         }
 
@@ -147,7 +148,7 @@ jQuery(function($) {
                 var $newElems = jQuery(newElements).hide(); // hide to begin with
                 // ensure that images load before adding to layout
                 $newElems.imagesLoaded(function() {
-                    $newElems.fadeIn(); // fade in when ready	
+                    $newElems.fadeIn(); // fade in when ready
                 });
             });
     };
@@ -164,7 +165,7 @@ jQuery(function($) {
                 var $newElems = jQuery(newElements).hide(); // hide to begin with
                 // ensure that images load before adding to layout
                 $newElems.imagesLoaded(function() {
-                    $newElems.fadeIn(); // fade in when ready	
+                    $newElems.fadeIn(); // fade in when ready
                 });
             });
     };
@@ -184,7 +185,7 @@ jQuery(function($) {
                 var $newElems = jQuery(newElements).hide(); // hide to begin with
                 // ensure that images load before adding to layout
                 $newElems.imagesLoaded(function() {
-                    $newElems.fadeIn(); // fade in when ready										
+                    $newElems.fadeIn(); // fade in when ready
                 });
 
             });
@@ -219,7 +220,7 @@ jQuery(function($) {
                 var $newmElems = jQuery(newmElements).hide(); // hide to begin with
                 // ensure that images load before adding to layout
                 $newmElems.imagesLoaded(function() {
-                    $newmElems.fadeIn(); // fade in when ready	
+                    $newmElems.fadeIn(); // fade in when ready
                 });
             });
     };
@@ -265,7 +266,7 @@ jQuery(function($) {
                         var $newigElems = jQuery(newmElements).hide(); // hide to begin with
                         // ensure that images load before adding to layout
                         $newigElems.imagesLoaded(function() {
-                            //$newigElems.fadeIn(); // fade in when ready	
+                            //$newigElems.fadeIn(); // fade in when ready
                             $mgrid.masonry().append(elem).masonry('appended', $newigElems).masonry();
                             $mgrid.masonry('layout');
                         });
@@ -794,21 +795,6 @@ $(window).scroll(function() {
 });
 /* Doc ready*/
 $(document).ready(function (key, value) {
-    // Иницализация sidebar
-    let sidebar_type = $("#sidebar").data('type');
-    let sidebar_status = (sidebar_type === 'normal') ? 'close' : sessionStorage.getItem('sidebarStatus') ?? $("#sidebar").data('status');
-    if (sidebar_status === 'open') {
-        sidebar_open();
-    } else if (sidebar_status === 'close') {
-        sidebar_close();
-    } else {
-        console.error('Ошибка с параметром sidebar_status:', sidebar_status);
-        sidebar_status = 'close';
-        console.error('Параметр sidebar_status теперь:', sidebar_status);
-    }
-    sessionStorage.setItem('sidebarStatus', sidebar_status);
-    $("#sidebar").data('status', sidebar_status);
-
     $('.icon-material,button:not(".vjs-control"):not(".vjs-button"), a.btn').ripple();
     if ($(window).width() < 1000) {
         $('body').addClass('isdevice');
@@ -851,7 +837,7 @@ $(document).ready(function (key, value) {
         console.log("incoming Text " + jqXHR.responseText);
     });
 
-    // Hide owl on mobiles	
+    // Hide owl on mobiles
     $(".owl-carousel").owlCarousel({
         responsiveClass: true,
         items: 1,
@@ -1005,82 +991,6 @@ $(document).ready(function (key, value) {
     $(".page-aside-switch , page-aside-switch > i").click(function() {
         $(".page-aside").toggleClass('open');
     });
-
-    // Hook на кнопку sidebar
-    $("#show-sidebar").click(function () {
-        let sidebar_status = $("#sidebar").data('status');
-        if (sidebar_status === 'open') {
-            sidebar_close();
-        } else if (sidebar_status === 'close') {
-            sidebar_open();
-        } else {
-            console.error('Ошибка с параметром sidebar_status:', sidebar_status);
-            console.error('Параметр sidebar_status теперь: close');
-            sessionStorage.setItem('sidebarStatus', 'close');
-            $("#sidebar").data('status', 'close');
-        }
-    });
-
-    // Функция на открытие sidebar
-    function sidebar_open(){
-        $("#show-sidebar>.hamburger").addClass("is-active");
-        sessionStorage.setItem('sidebarStatus', 'open');
-        $("#sidebar").data('status', 'open');
-        if ($('#sidebar').data('type') === 'iconic') {
-
-            $("#sidebar").removeClass('hide');
-            //$("#wrapper").addClass('haside');
-
-            let sideSpace = parseInt($("#wrapper").offset().left);
-            $("#wrapper").css({
-                "margin-left": "240px",
-                "margin-right": "0",
-                "width": "auto"
-            });
-        } else {
-            $("#sidebar").removeClass('hide-all');
-
-            if (!$('#tinted').length) {
-                $('body').prepend('<div id="tinted"></div>');
-                $('body').css('overflow-y', 'hidden');
-                $('#tinted').click(function(e){
-                    sidebar_close();
-                });
-            }
-        }
-    }
-
-    // Функция на закрытие sidebar
-    function sidebar_close(){
-        sessionStorage.setItem('sidebarStatus', 'close');
-        $("#sidebar").data('status', 'close');
-        $("#show-sidebar>.hamburger").removeClass("is-active");
-        if ($('#sidebar').data('type') === 'iconic') {
-
-            $("#sidebar").addClass('hide');
-            $("#wrapper").removeClass('haside');
-
-            let sideSpace = $("#sidebar").width();
-            $("#wrapper").css({
-                "margin-left": sideSpace,
-                "margin-right": "0",
-                "width": "auto"
-            });
-
-            if ($('#tinted').length || $('#sidebar').hasClass('hide')) {
-                $('#tinted').remove();
-                $('body').css('overflow-y', 'auto');
-            }
-
-        } else {
-
-            $("#sidebar").addClass('hide-all');
-
-            $('#tinted').remove();
-            $('body').css('overflow-y', 'auto');
-        }
-    }
-    //End sidebar
 
     //VideoPlayer Container
     var vpWidth = $('.video-player').width();
@@ -1530,7 +1440,7 @@ function DOtrackview(vid) {
             video_id: vid
         },
         function(data) {
-            //console.log(data);	
+            //console.log(data);
         }
     );
 }
@@ -1597,39 +1507,23 @@ function Subscribe(user, type, element) {
             the_type: type
         },
         function(data) {
-
             data = JSON.parse(data);
+            let newIncon = data.button;
+            let newText = data.content;
+            let notifyText = data.title + ' ' + data.text;
+            let componentSpan = $('#follow-' + user + ' .follow-text');
+            let componentIcon = $('#follow-' + user + ' .follow-icon');
 
-            let newText = data.button.toString();
+            componentSpan.each((i,el)=>{
+                $(el).text(newText);
+            })
+            componentIcon.each((i,el)=>{
+                $(el).removeClass('icon-unfollow');
+                $(el).removeClass('icon-follow');
+                $(el).addClass(newIncon);
+            })
 
-            let spanText = $(element).find('span');
-
-
-
-            switch (data.type) {
-                case '1':
-                    $('#subscribe-' + user)[0].textContent = newText;
-                    $('#subscribe-' + user + ' > span')[0].textContent = newText;
-                    break;
-
-                default:
-
-                    let icon = $('#follow-' + user + '> i');
-
-                    $('#follow-' + user)[0].textContent = '';
-
-                    $('#follow-' + user)[0].textContent = data.content;
-                    $('#follow-' + user + ' > span')[0].textContent = data.content;
-
-                    icon.removeClass('icon-unfollow');
-                    icon.removeClass('icon-follow');
-
-                    icon.addClass(data.button.toString());
-
-                    break;
-            }
-
-            $.notify(data.title + ' ' + data.text);
+            $.notify(notifyText);
         });
 }
 
@@ -1715,7 +1609,7 @@ function DOtrackview(vid) {
             video_id: vid
         },
         function(data) {
-            //console.log(data);	
+            //console.log(data);
         }
     );
 }

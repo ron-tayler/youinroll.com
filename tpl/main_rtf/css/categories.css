@@ -1,0 +1,203 @@
+.categories-video-carousel{
+
+}
+
+.categories-header h1{
+    line-height: 64px;
+    font-size: 64px;
+    margin: 0;
+}
+.categories-header{
+    height: 150px;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.categories-box{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, auto));
+    align-items: start;
+    grid-gap: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.category-box{
+    height: fit-content;
+    /*background: #faa;*/
+}
+.category-img-box {
+    position: relative;
+    background: #772CE8;
+    width: 100%;
+    height: 0;
+    padding-top: 133%;
+}
+
+@supports ( aspect-ratio: 1) {
+    /*.category-img-box {
+        height: auto;
+        padding-top: 0;
+        aspect-ratio: 3/4;
+    }*/
+}
+.category-img-a{
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.category-img-tl, .category-img-br{
+    position: absolute;
+    width: 0;
+    height: 0;
+    transition: all .2s ease;
+}
+.category-img-tl{
+    top: 0;
+    left: 0;
+    border-left: .5rem solid transparent;
+    border-top: .5rem solid transparent;
+    border-right: .5rem solid #772CE8;
+    border-bottom: .5rem solid #772CE8;
+    transform: translateX(-.5rem) translateY(-.5rem) scale(0);
+}
+.category-img-br{
+    bottom: 0;
+    right: 0;
+    border-left: .5rem solid #772CE8;
+    border-top: .5rem solid #772CE8;
+    border-right: .5rem solid transparent;
+    border-bottom: .5rem solid transparent;
+    transform: translateY(.5rem) translateX(.5rem) scale(0);
+}
+.category-img-box:hover .category-img-tl{
+    transform: translateY(-1rem) translateX(0) scale(1);
+}
+.category-img-box:hover .category-img-br{
+    transform: translateX(1rem) translateY(0) scale(1);
+}
+.category-img{
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+    height: 100%;
+    background: #aaf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 128px;
+    color: #88888844;
+    transform: translateY(0) translateX(0);
+    transition: all .2s ease;
+    overflow:hidden;
+}
+.category-img img{
+    height: 100%;
+}
+.category-img-box:hover .category-img{
+    transform: translateY(-1rem) translateX(1rem);
+}
+.category-name-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    height: 22px;
+    position: relative;
+}
+.category-name{
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.category-name a{
+    color: black;
+    line-height: 16px;
+    font-size: 16px;
+}
+.category-name a:hover{
+    text-decoration: underline;
+}
+.category-btn{
+    /*background: #f66;*/
+}
+.category-sub{
+    margin-top: 5px;
+    line-height: 14px;
+    font-size: 14px;
+    color: #4b4b4b;
+}
+.category-sub:hover{
+    text-decoration: underline;
+}
+.category-tags-box{
+    margin-top: 5px;
+    position: relative;
+    height: 22px;
+    overflow: hidden;
+}
+.category-tags{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.category-tag{
+    display: inline-block;
+    background-color: #ddd;
+    padding: 0 10px;
+    border-radius: 100px;
+    margin-bottom: 2px;
+    max-width: 98%;
+    width: fit-content;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #4b4b4b;
+    transition: background-color .2s ease;
+}
+.category-tag:hover{
+    background-color: #bbb;
+}
+.category-tag a{
+    color: #4b4b4b;
+    line-height: 14px;
+    font-size: 14px;
+}
+
+@media (max-width: 420px) {
+    .category-name-btn{
+        height: 30px;
+    }
+    .category-name a{
+        line-height: 26px;
+        font-size: 26px;
+    }
+    .category-sub{
+        line-height: 22px;
+        font-size: 22px;
+        color: #4b4b4b;
+    }
+    .category-tags-box{
+        height: 26px;
+    }
+    .category-tag a{
+        line-height: 18px;
+        font-size: 18px;
+    }
+}

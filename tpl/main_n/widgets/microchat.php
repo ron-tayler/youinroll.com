@@ -37,10 +37,10 @@ function addClassNameListener(elemId, callback) {
 	console.log("fired");
     var elem = document.getElementById(elemId);
     var lastClassName = elem.className;
-    window.setInterval( function() {   
+    window.setInterval( function() {
        var className = elem.className;
         if (className !== lastClassName) {
-            callback();   
+            callback();
             lastClassName = className;
         }
     },10);
@@ -52,7 +52,7 @@ function addClassNameListener(elemId, callback) {
 function myFunction() {
 	var popup = document.getElementById("report-author");
 
-  document.getElementById("stream-content").style.zIndex = "235";
+  //document.getElementById("stream-content").style.zIndex = "235";
 
   document.getElementById("stream-content").style.top = "61px";
 }
@@ -89,7 +89,7 @@ addClassNameListener('ShareModal', myFunction);
                                                 <!-- <i class="material-icons ico-flipped">&#xE15E;</i> -->
                                                 <img src="/tpl/main/images/share.svg" class="share" />
                                                 <span class="hidden-xs">
-                                                    <?php 
+                                                    <?php
                                                         //echo _lang('Share');
                                                         echo 'Поделиться';
                                                         ?>
@@ -105,7 +105,7 @@ addClassNameListener('ShareModal', myFunction);
 
 
 
-            
+
             <div class="chat-area-group">
                 <img class="chat-area-profile" src="<?=$chatImage?>" alt="" />
                 <!-- <img class="chat-area-profile"
@@ -130,7 +130,7 @@ addClassNameListener('ShareModal', myFunction);
                     <path
                         d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" />
                 </svg>
-            </div> 
+            </div>
             <svg id="smiles" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smile">
                 <circle cx="12" cy="12" r="10" />

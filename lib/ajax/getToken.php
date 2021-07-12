@@ -18,6 +18,8 @@ if(is_user()){
             $data = "Access:{$user_id}:{$user_name}:$random";
             $token = hash('sha512', $data);
         }while( $db->get_var('SELECT count(*) FROM vibe_users_tokens WHERE token='.$token));
+        $sql = "INSERT INTO `vibe_users_tokens`(`user_id`, `type`, `token`) VALUES ($user_id,4,'{$token}')";
+        $db->query($sql);
     }
 
     echo json_encode(['token'=>$token], JSON_UNESCAPED_UNICODE);

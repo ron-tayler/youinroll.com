@@ -1,0 +1,201 @@
+#header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    box-sizing: border-box;
+    z-index: 1000;
+    background: rgba(18,18,18,.8);
+    backdrop-filter: blur(40px);
+    display: flex;
+    justify-content: space-between;
+}
+.header-left, .header-center, .header-right{
+    display: inline-flex;
+    height: 100%;
+    align-items: center;
+    width: fit-content;
+}
+.header-center{
+    flex-grow: 1;
+    display: inline-flex;
+    justify-content: center;
+}
+.header-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    height: 60px;
+
+}
+.header-burger:hover {
+    cursor: pointer;
+}
+.header-burger-box {
+    width: 22px;
+    height: 22px;
+    position: relative;
+    display: inline-block;
+}
+.header-burger-box>span{
+    margin: 3px auto;
+    height: 2px;
+    width: 100%;
+    background-color: #fff;
+    display: block;
+    transition: all 0.35s ease-in-out;
+}
+.header-burger.is-active>.header-burger-box>span:nth-child(1) {
+    transform: translateY(5px) rotate(-45deg);
+}
+.header-burger.is-active>.header-burger-box>span:nth-child(2) {
+    opacity: 0;
+}
+.header-burger.is-active>.header-burger-box>span:nth-child(3) {
+    transform: translateY(-5px) rotate(45deg);
+}
+.header-logo{
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+}
+.header-logo>img{
+    height: 60%;
+    margin-right: 10px;
+}
+.header-btn-load img, .header-btn-notify img{
+    height: 20px;
+}
+.header-dropdown-profile{
+    margin-right: 20px;
+}
+.dropdown-menu-left{
+    left: auto;
+    right: 0;
+}
+.header-btn-profile img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.header-btn-people{
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+.header-btn-people img{
+    height: 30px;
+}
+.header-btn-people span{
+    margin-left: 10px;
+    color: white;
+    font-weight: bold;
+}
+@media (min-width: 1080px) {
+    .header-search{
+        width: 40%;
+    }
+}
+@media (min-width: 720px) and (max-width: 1080px) {
+    .header-search{
+        width: 90%;
+    }
+}
+@media (min-width: 720px) and (max-width: 860px) {
+    .header-search-wrap input::placeholder{
+        font-size: 0;
+    }
+}
+@media (max-width: 720px) {
+    .header-search{
+        display: none;
+    }
+}
+@media (min-width: 480px) and (max-width: 640px) {
+    .header-logo-favicon{
+        display: none;
+    }
+}
+@media (max-width: 480px) {
+    .header-btn-load{
+        display: none;
+    }
+    .header-burger{
+        display: none;
+    }
+    .header-logo-main{
+        display: none;
+    }
+    .header-logo{
+        margin-left: 20px;
+    }
+}
+.header-search-box{
+    height: 35px;
+    width: 100%;
+    background-color: #fff;
+    border: rgb(111,111,111) solid 2px;
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+}
+.header-search-wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 60px;
+}
+.header-search-wrap input{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border-width: 0;
+    padding-left: 10px;
+    font-size: 16px;
+}
+.header-search-wrap input:focus{
+    outline-width: 0;
+}
+.header-search-button{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+}
+.header-search-button button{
+    border-width: 0;
+    border-left: rgb(111,111,111) solid 2px;
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-search-button button:focus{
+    outline-width: 0;
+}
+.header-search-button i{
+    color: rgba(18,18,18,.8);
+}
+
+.bs-ddm-upload a{
+    min-width: max-content;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 15px;
+}
+.bs-ddm-upload img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+#bs-ddm-notify{
+    border: 0;
+    box-shadow: var(--shadow-base);
+}

@@ -2,11 +2,11 @@
 <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8">
     <title><?=seo_title()?></title>
-    <meta charset="UTF-8">  
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <base href="<?=site_url()?>" />  
+    <base href="<?=site_url()?>" />
     <meta name="description" content="<?=seo_desc()?>">
     <meta name="generator" content="PHPVibe" />
     <meta property="og:site_name" content="<?=get_option('site-logo-text')?>" />
@@ -45,7 +45,11 @@
           <input id="name" name="name" type="name" placeholder="Имя" />
         </div>
         <div class="form-field mt-2">
+            <? $categories = $db->get_results('SELECT id,name FROM vibe_users_groups where is_simple = '.toDb(1).' ORDER BY id asc'); ?>
             <select class="w-100" name="category" placeholder="Выберите категорию">
+                <? foreach($categories as $category){ ?>
+                    <option value="<?=$category->id?>"><?=$category->name?></option>
+                <? } ?>
             </select>
         </div>
         <div class="form-field mt-2">
@@ -140,16 +144,6 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     )
 
-    $.get('/lib/ajax/getCategories.php', {type: 'simple'}, function(data){
-        let roles = JSON.parse(data);
-        roles = roles.result;
-        for (const role in roles)
-        {
-            console.log(roles[role]);
-            $('select').append(`<option value="${roles[role].id}">${roles[role].name}</option>`)
-        }
-    })
-
     $('.btn-signin').on('click', function(e){
         e.preventDefault();
 
@@ -207,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function(){
             )
         }, 25000);
     }, 30000);
-    
+
 })
 </script>
 </footer>

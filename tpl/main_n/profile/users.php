@@ -1,10 +1,10 @@
 <?php //echo $vq;
 $users = $db->get_results($vq);
 if ($users) {
-echo '<div class="row"><ul class="list-group users-list">'; 
+echo '<div class="row"><ul class="list-group users-list">';
 foreach ($users as $user) {
 			$title = stripslashes(_cut($user->name, 46));
-			$full_title = stripslashes(str_replace("\"", "",$user->name));			
+			$full_title = stripslashes(str_replace("\"", "",$user->name));
 			$url = profile_url($user->id , $user->name);
 echo '
 <li id="user-'.$user->id.'" class="list-group-item">
@@ -22,13 +22,19 @@ echo '
                        <small> '._lang("Last online:").' '.time_ago($user->lastnoty).'</small>
 						</p>
                       </div>
-                      <div class="media-right">';
-			subscribe_box($user->id,"btn btn-xs", false);
-                     echo ' </div>
+                      <div class="media-right">
+						<a id="subscribe-'.$user->id.'"
+						style="padding: 5px 10px; color:#fff !important"
+						data-next="'._lang("unsubscribed").'"
+						class="btn btn-xs btn-coral subscriber pv_tip"
+						href="javascript:Subscribe('.$user->id.', 1, `#subscribe-'.$user->id.'`)"
+						title="'._lang('Click to add a subscription').'">
+						<span class="follow-text">'._lang('unsubscribed').'</span>
+						</a>
+                     </div>
                     </div>
-	</li>
-';
-}
-echo '</ul></div>';
+		</li>';
+	}
+	echo '</ul></div>';
 }
 ?>

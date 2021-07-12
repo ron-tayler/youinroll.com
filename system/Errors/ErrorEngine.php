@@ -1,6 +1,7 @@
 <?php
 
 
-class ErrorEngine extends ErrorBase{
-
+class ErrorEngine extends ErrorServer {
+    //protected const CODE = 5;
+    protected const MESSAGE = 'Ошибка движка';
 }

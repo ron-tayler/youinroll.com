@@ -4,7 +4,6 @@ function modify_title($text)
     return get_option("DashboardSEO", _lang("Your Studio"));
 }
 
-add_filter('phpvibe_title', 'modify_title');
 function file_up_support($text)
 {
     $text = '<script type="text/javascript" >
@@ -25,10 +24,8 @@ function file_up_support($text)
     return $text;
 }
 
+add_filter('phpvibe_title', 'modify_title');
 add_filter('filter_extrajs', 'file_up_support');
-/* echo "<pre>";
-var_dump($_POST['pass1']);
-die(); */
 
 if ((isset($_SESSION['loggedfrommail']) && isset($_POST['pass1']) && $_POST['pass1'] !== '') || (isset($_POST['pass1']) && $_POST['pass1'] !== '')) {
     if (isset($_SESSION['loggedfrommail']) || ($profile->password === sha1($_POST['oldpassword']))) {
@@ -186,7 +183,7 @@ if (isset($_POST['changelanding_cover'])) {
 
 //Details change
 if (isset($_POST['changeuser'])) {
-//var_dump($_POST);	
+//var_dump($_POST);
     if (isset($_POST['name'])) {
         user::Update('name', $_POST['name']);
     }
@@ -222,6 +219,8 @@ if (isset($_POST['changeuser'])) {
     redirect(site_url() . 'dashboard/?sk=edit&msg=' . urlencode(_lang('Channel updated')));
 }
 
+the_header();
+the_sidebar();
 include_once(TPL . '/dashboard.php');
 the_footer();
 
