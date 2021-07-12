@@ -9,9 +9,9 @@ $sql = "SELECT
     users.chatRoom as userCharRoom,
     users.avatar AS userImage,
     cat.cat_name
-FROM vibe_conferences AS conf
-LEFT JOIN vibe_channels AS cat ON conf.category = cat.cat_id
-INNER JOIN vibe_users AS users ON conf.moderator_id = users.id
+FROM PREFIX_conferences AS conf
+LEFT JOIN PREFIX_channels AS cat ON conf.category = cat.cat_id
+INNER JOIN PREFIX_users AS users ON conf.moderator_id = users.id
 WHERE conf.on_air = '1'  AND conf.type = 'stream' AND conf.tags <> 'dev'
 ORDER BY conf.views DESC
 LIMIT 0, 5";

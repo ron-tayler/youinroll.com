@@ -6,7 +6,7 @@
  }
 
  body {
-     background: rgba(0,0,0,.15);
+     background: #f1f1f1;
      margin: 0
  }
 
@@ -6870,8 +6870,8 @@
      background-color: #55acee;
  }
 
- /*.social-google-plus { color: #fff; background-color: #358fe4 !important; } 
-.social-google-plus:hover, .social-google-plus:focus { color: #fff; background-color: #e47365 !important; } 
+ /*.social-google-plus { color: #fff; background-color: #358fe4 !important; }
+.social-google-plus:hover, .social-google-plus:focus { color: #fff; background-color: #e47365 !important; }
 .social-google-plus:active, .social-google-plus.active { color: #fff; background-color: #c23321 !important; } */
  .bg-google-plus {
      background-color: #e12330;

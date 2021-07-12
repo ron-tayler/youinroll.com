@@ -240,7 +240,7 @@ carousel animation is a little jank, might fix it at some point. Most buttons an
 }
 
 .carousel__video.hidden {
-    display: none;
+   /* display: none;*/
 }
 
 .carousel__video.secondary {

@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/chatik/108/static/css/main.b90a7004.chunk.css",
+    "main.js": "/chatik/108/static/js/main.3fce9329.chunk.js",
+    "main.js.map": "/chatik/108/static/js/main.3fce9329.chunk.js.map",
+    "runtime-main.js": "/chatik/108/static/js/runtime-main.f59e5952.js",
+    "runtime-main.js.map": "/chatik/108/static/js/runtime-main.f59e5952.js.map",
+    "static/js/2.afaab393.chunk.js": "/chatik/108/static/js/2.afaab393.chunk.js",
+    "static/js/2.afaab393.chunk.js.map": "/chatik/108/static/js/2.afaab393.chunk.js.map",
+    "index.html": "/chatik/108/index.html",
+    "static/css/main.b90a7004.chunk.css.map": "/chatik/108/static/css/main.b90a7004.chunk.css.map",
+    "static/js/2.afaab393.chunk.js.LICENSE.txt": "/chatik/108/static/js/2.afaab393.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f59e5952.js",
+    "static/js/2.afaab393.chunk.js",
+    "static/css/main.b90a7004.chunk.css",
+    "static/js/main.3fce9329.chunk.js"
+  ]
+}
