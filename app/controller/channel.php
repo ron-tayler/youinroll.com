@@ -4,6 +4,7 @@ namespace Controller;
 use Engine\IController;
 use Engine\Request;
 use Engine\Response;
+use Error\Controller\User\ProfileError;
 use Library\DB;
 
 /**
@@ -35,15 +36,15 @@ class Channel implements IController{
      * Список всех каналов с лимитом 100
      * @param array $param
      * @get int offset
-     * @return array
      * @api /channels
      * @version 1.0
+     * @response array
      */
     static function list(array $param){
         $offset = Request::$get['offset']??'0';
         // Проверка по регулярному
-        if(preg_match('/^[0-9]?$/',$offset)!==1)
-            throw new \Error\Controller\User\ProfileError('Переданный offset имеет значение: '.$offset,7,'Ошибка в параметре offset');
+        if(preg_match('/^[0-9]*$/',$offset)!==1)
+            throw new ProfileError('Переданный offset имеет значение: '.$offset,'Ошибка в параметре offset');
 
         $offset = (int)$offset;
 
