@@ -1,7 +1,7 @@
 <?php $seenvids = array();
 $hs = uHistory();
 if(not_empty($hs)) {
-$seenvids = @explode(',',uHistory());	
+$seenvids = @explode(',',uHistory());
 }
 $seened = $video->id;
 
@@ -16,14 +16,14 @@ $pieces = array_merge($pieces, $pieces2);
 $par = array();
 $par[] = removeCommonWords($video->title);
 foreach($pieces as $p) {
-if(strlen($p) > 2){	
+if(strlen($p) > 2){
 if(strlen($p) < 4){
-$par[] = $p.'*';	
+$par[] = $p.'*';
 } else {
-$par[] = $p;	
-}	
+$par[] = $p;
 }
-}	
+}
+}
 $key = 	toDb(implode(",",$par));
 $options = DB_PREFIX."videos.id as vid,".DB_PREFIX."videos.title,".DB_PREFIX."videos.user_id as owner,".DB_PREFIX."videos.thumb,".DB_PREFIX."videos.views,".DB_PREFIX."videos.duration";
 $vq = "select ".$options.", ".DB_PREFIX."users.name , ".DB_PREFIX."users.group_id ,
@@ -34,16 +34,16 @@ MATCH (title) AGAINST ('".$key."' IN BOOLEAN MODE) AS title_relevance FROM ".DB_
 }
 $firstseen = false;
 $fsc = 1;
-if ($result) {	
+if ($result) {
 	foreach ($result as $related) {
-	
+
 	$watched = (in_array($related->vid,$seenvids)) ? '<span class="vSeen">'._lang("Watched").'</span>' : '';
 	$watchedcls = (in_array($related->vid,$seenvids)) ? 'beenSeen' : '';
 	if(($fsc < 2 ) && !in_array($related->vid,$seenvids)) {
 	$fsc++; /* Count only not seened */
 	$firstseen = true;
 	$watchedcls = 'AutoplHold';
-	}	
+	}
 	$duration = ($related->duration > 0) ? video_time($related->duration) : '<i class="material-icons">&#xE439;</i>';
 	if(isset($related->group_id)) { $grcreative= group_creative($related->group_id); } else { $grcreative=''; };
 	$wlater = (is_user()) ? '<a class="laterit" title="'._lang("Add to watch later").'" href="javascript:Padd('.$related->vid.', '.later_playlist().')"><i class="material-icons">&#xE924;</i></a>' : '';
@@ -67,9 +67,9 @@ if ($result) {
 	
 	</a>
     </div>
-	</div>';	
+	</div>';
 	}
-	$views_correct_text = str_replace('число ', '', _lang('views')); 
+	$views_correct_text = str_replace('число ', '', _lang('views'));
 	//echo $views_correct_text;
 	echo '<div class="inner">					
 					<div class="thumb">
@@ -85,10 +85,11 @@ if ($result) {
 						<span class="title"><a href="'.video_url($related->vid , $related->title).'" rel="bookmark" class="tipS" title="'.addslashes(_html($related->title)).'" data-placement="bottom">'._cut(_html($related->title),154 ).'</a></span>
 			
 						<span class="usermeta">
-							'._lang('by').' <a href="'.profile_url($related->owner, $related->name).'"> '._html($related->name).' </a> '.$grcreative.'
-							
-							<p class="views-related"><img src="/tpl/main/images/eye.svg" class="eye-related" alt="views" /> '.number_format($related->views).'</p>
-						</span>
+							'._lang('by').' <a href="'.profile_url($related->owner, $related->name).'"> '._html($related->name).' </a> '.$grcreative;
+if($related->source == 'up') {
+    echo '<p class="views-related"><img src="/tpl/main/images/eye.svg" class="eye-related" alt="views" /> ' . number_format($related->views) . '</p>';
+}
+echo '</span>
 					</div>
 				</div>
 				</li>
