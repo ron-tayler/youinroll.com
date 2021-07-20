@@ -72,10 +72,14 @@ class Message implements IController {
         // Проверка данных
         if(preg_match('/^([ugs])([1-9]\d*)$/',$peer_id,$peer_id_matches)!==1) throw new ExceptionBase("Ошибка в переданном параметре peer_id='$peer_id'",7,'Ошибка в параметре peer_id');
         if(preg_match('/^\d+$/',$offset)!==1) throw new ExceptionBase("Ошибка в переданном параметре ts='$offset'",7,'Ошибка в параметре ts');
-        if(preg_match('/^[1-9]\d*$/',$user_id)!==1) throw new ExceptionBase("Ошибка авторизации или у вас нет доступа, user_id='$user_id'",3,'Ошибка авторизации или у вас нет доступа');
 
         $chat_type = $peer_id_matches[1];
         $chat_id = $peer_id_matches[2];
+
+        switch ($chat_type){
+            case 'u':case 'g':
+                if(preg_match('/^[1-9]\d*$/',$user_id)!==1) throw new ExceptionBase("Ошибка авторизации или у вас нет доступа, user_id='$user_id'",3,'Ошибка авторизации или у вас нет доступа');
+        }
 
         switch ($chat_type){
             case 's':
