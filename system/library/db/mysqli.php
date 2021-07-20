@@ -15,6 +15,7 @@ final class MySQLi implements IAdaptor {
         $this->connection->query("set character_set_client='utf8mb4'");
         $this->connection->query("set character_set_results='utf8mb4'");
 		$this->connection->query("SET SQL_MODE = ''");
+		$this->connection->query("SET time_zone = '+00:00'");
 	}
 
 	public function query($sql) {
@@ -47,7 +48,7 @@ final class MySQLi implements IAdaptor {
 	public function escape($value) {
 		return $this->connection->real_escape_string($value);
 	}
-	
+
 	public function countAffected() {
 		return $this->connection->affected_rows;
 	}
@@ -55,11 +56,11 @@ final class MySQLi implements IAdaptor {
 	public function getLastId() {
 		return $this->connection->insert_id;
 	}
-	
+
 	public function connected() {
 		return $this->connection->ping();
 	}
-	
+
 	public function __destruct() {
 		$this->connection->close();
 	}

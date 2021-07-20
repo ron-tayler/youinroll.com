@@ -37,13 +37,17 @@ class Log {
      * @throws ErrorLog
      */
     public function __construct(string $name,string $dir) {
-        $this->hash = date('d.m.Y-H:i:s').'-'.md5((string)TIME_USEC).'.'.$name;
+        $this->hash = date('d.m.Y-H;i;s').'-'.md5((string)TIME_USEC).'.'.$name;
 
-        $this->handle_list = fopen($dir.'/log.list','a');
-        if(!$this->handle_list) throw new ErrorLog("Не удалось открыть/создать файл .../log.list",5);
+        if(!is_dir($dir)) throw new ErrorLog("Отсутствует директория для логов", 5);
+        if(!is_readable($dir)) throw new ErrorLog("Нет доступа на чтение к директории логов", 5);
+        if(!is_writable($dir)) throw new ErrorLog("Нет доступа на запись к директории логов", 5);
 
-        $this->handle_log = fopen($dir.'/'.$this->hash.'.log','w');
-        if(!$this->handle_log) throw new ErrorLog("Не удалось открыть/создать файл .../*.log",5);
+        $this->handle_list = fopen($dir . '/log.list', 'a');
+        if (!$this->handle_list) throw new ErrorLog("Не удалось открыть/создать файл .../log.list", 5);
+
+        $this->handle_log = fopen("$dir/$this->hash.log", 'a');
+        if (!$this->handle_log) throw new ErrorLog("Не удалось открыть/создать файл .../*.log", 5);
     }
 
     /**

@@ -28,10 +28,21 @@ class Router {
         self::$routes[] = new Route($url,$target,$methods,$filters,$version);
     }
 
+    public static function maps(array ...$routes){
+        $map = function($namespace,$routes){
+            foreach($routes as $route){
+                if( isset($route['target']) ){
+                    self::map($namespace.$route['path'],$route['target']);
+                }
+            }
+        };
+        $map('',$routes);
+    }
+
     /**
      * Method execute - Запуск обработки маршрутизации
      * @param string $version
-     * @todo Продумать запуск Pre и Post маршрутов
+     * @throws
      */
     public static function execute($version){
         $version = explode('.',$version);

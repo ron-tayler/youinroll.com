@@ -8,5 +8,5 @@ namespace Engine;
  * @copyright 2021
  */
 interface IModel{
-
+    static function init();
 }

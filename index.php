@@ -23,7 +23,7 @@ if ($v_api) {
 
 /* Перевод на лендинг */
 if ($_COOKIE['landing'] != 'visited' and $_SERVER['REQUEST_URI'] == '/') {
-    setcookie('landing', 'visited',);
+    setcookie('landing', 'visited');
     echo file_get_contents(__DIR__ . '/land/index.html');
     exit();
 }

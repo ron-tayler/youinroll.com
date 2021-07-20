@@ -10,27 +10,26 @@ unset($time);
 ob_start();
 
 //Дебаг
-define('DEBUG_PRIVATE',1);
-define('DEBUG_TRACE',1<<1);
-define('DEBUG_ERROR',1<<2);
-define('DEBUG_REQUEST',1<<3);
-define('DEBUG_GET',1<<4);
-define('DEBUG_POST',1<<5);
-$debug_types =[
-    '0'         => 0,
-    'private'   => DEBUG_PRIVATE,
-    'trace'     => DEBUG_TRACE,
-    'error'     => DEBUG_ERROR,
-    'request'   => DEBUG_REQUEST,
-    'get'       => DEBUG_GET,
-    'post'      => DEBUG_POST,
-    'all'       => DEBUG_PRIVATE | DEBUG_TRACE | DEBUG_ERROR | DEBUG_REQUEST | DEBUG_GET | DEBUG_POST
+define('DEBUG_PRIVATE', 1);
+define('DEBUG_TRACE', 1 << 1);
+define('DEBUG_ERROR', 1 << 2);
+define('DEBUG_REQUEST', 1 << 3);
+define('DEBUG_GET', 1 << 4);
+define('DEBUG_POST', 1 << 5);
+$debug_types = [
+    '0' => 0,
+    'private' => DEBUG_PRIVATE,
+    'trace' => DEBUG_TRACE,
+    'error' => DEBUG_ERROR,
+    'request' => DEBUG_REQUEST,
+    'get' => DEBUG_GET,
+    'post' => DEBUG_POST,
+    'all' => DEBUG_PRIVATE | DEBUG_TRACE | DEBUG_ERROR | DEBUG_REQUEST | DEBUG_GET | DEBUG_POST
 ];
-$debug_text = ($_GET['dev_token']=='952C54')?($_GET['debug']??''):'';
-foreach (explode(',',$debug_text) as $el) $debug_type = ($debug_type??0) | ($debug_types[$el]??0);
-define('DEBUG_TYPE',$debug_type??0);
-unset($debug_types,$debug_type,$debug_text);
-
+$debug_text = ($_GET['dev_token']??'' == '953C54') ? ($_GET['debug']??'') : '';
+foreach (explode(',', $debug_text) as $el) $debug_type = ($debug_type ?? 0) | ($debug_types[$el] ?? 0);
+define('DEBUG_TYPE', $debug_type ?? 0);
+unset($debug_types, $debug_type, $debug_text);
 
 // display error
 if(DEBUG_TYPE & DEBUG_ERROR) define('DISPLAY_ERROR',true);
@@ -41,9 +40,6 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET,POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
-// Буферизация
-ob_start();
-
 // Конфиги
 require_once __DIR__.'/config.php';
 
@@ -52,12 +48,10 @@ try{
     require_once DIR_SYSTEM.'/startup.php';
 
     // Request debug
-    /*
     if(DEBUG_TYPE & DEBUG_REQUEST){
         \Engine\Log::init('debug')->print(file_get_contents('php://input'));
         \Engine\Log::init('debug')->print(print_r($_REQUEST,true));
     }
-    */
 
     // Инициализация входных
     Engine\Request::init();
@@ -77,7 +71,7 @@ try{
     ]);
 
     \Engine\Loader::library('user');
-    Library\User::tokenAuth(Engine\Request::$post['access_token']??''); // Авторизация только по POST запросам
+    Library\User::tokenAuth(Engine\Request::$get['access_token']??Engine\Request::$post['access_token']??''); // Авторизация только по POST запросам
 
     // Мапинг
     foreach ([
@@ -88,11 +82,16 @@ try{
         ['url'=>'/listen/stream',               'target'=>'Listen::stream',                 'methods'=>['GET']],
         ['url'=>'/message/send',                'target'=>'Message::send',                  'methods'=>['POST']],
         ['url'=>'/message/getAll',              'target'=>'Message::getAll',                'methods'=>['GET']],
+        ['url'=>'/message/createGroupChat',     'target'=>'Message::createGroupChat',       'methods'=>['POST']],
         ['url'=>'/login',                       'target'=>'User/Auth::login',               'methods'=>['POST']],
         ['url'=>'/categories',                  'target'=>'Category::getList',              'methods'=>['GET']],
         ['url'=>'/getNotification',             'target'=>'Notification::getNotification',  'methods'=>['POST']],
         ['url'=>'/getNotificationTags',         'target'=>'Notification::getTags',          'methods'=>['POST']],
         ['url'=>'/regPushToken',                'target'=>'Notification::regPushToken',     'methods'=>['POST']],
+        ['url'=>'/profile/:id/videos',          'target'=>'User/Profile::videos',           'methods'=>['GET'], 'filters'=>['id'=>'\d+']],
+        ['url'=>'/profile/:id/lessons',         'target'=>'User/Profile::lessons',          'methods'=>['GET'], 'filters'=>['id'=>'\d+']],
+        ['url'=>'/profile/:id/timeline',        'target'=>'User/Profile::timeline',         'methods'=>['GET'], 'filters'=>['id'=>'\d+']],
+        ['url'=>'/message/test',                'target'=>'Message::test',                  'methods'=>['GET','POST'], 'filters'=>['id'=>'\d+']]
     ] as $route){
         Engine\Router::map($route['url'],$route['target'],$route['methods']??[],$route['filters']??[]);
     }
@@ -123,6 +122,8 @@ try{
 
     if(DEBUG_TYPE & DEBUG_PRIVATE) {
         $msg['error']['private'] = $err->getPrivateMessage();
+        $msg['error']['file'] = $err->getFile();
+        $msg['error']['line'] = $err->getLine();
     }
     if(DEBUG_TYPE & DEBUG_TRACE) {
         echo PHP_EOL.$err->getTraceAsString();
@@ -130,9 +131,9 @@ try{
 
     $resp = json_encode($msg,JSON_UNESCAPED_UNICODE);
 
-    //Engine\Log::init('error')->print($resp);
-    //Engine\Log::init('error')->print($err->getPrivateMessage());
-    //Engine\Log::init('error')->print($err->getTraceAsString());
+    Engine\Log::init('error')->print($resp);
+    Engine\Log::init('error')->print($err->getPrivateMessage());
+    Engine\Log::init('error')->print($err->getTraceAsString());
 
     $buffer = ob_get_contents();
     ob_end_clean();
@@ -146,6 +147,8 @@ try{
 
     if(DEBUG_TYPE & DEBUG_PRIVATE) {
         $msg['error']['private'] = $err->getMessage();
+        $msg['error']['file'] = $err->getFile();
+        $msg['error']['line'] = $err->getLine();
     }
     if(DEBUG_TYPE & DEBUG_TRACE) {
         echo PHP_EOL.$err->getTraceAsString();
