@@ -189,8 +189,9 @@ class DB {
 	/**
      * connected
 	 * @return	bool
-     */	
+     */
 	public function connected() {
 		return $this->adaptor->connected();
 	}
+
 }

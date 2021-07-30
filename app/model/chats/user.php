@@ -59,6 +59,31 @@ class User implements IModel{
         return self::$db->getLastId();
     }
 
+    static function getMessage(int $author_id, int $peer_id, int $message_id){
+        $first_id = min($author_id, $peer_id);
+        $second_id = max($author_id, $peer_id);
+
+        $tables = self::$db->query("SELECT TABLE_NAME AS 'table' 
+                                     FROM INFORMATION_SCHEMA.TABLES 
+                                     WHERE TABLE_SCHEMA = '".DB_DATABASE."' AND 
+                                           TABLE_NAME LIKE 'user_chat_{$first_id}_{$second_id}'");
+
+        if($tables->num_rows==0) return false;
+
+        $message_db = self::$db->query("SELECT * FROM user_chat_{$first_id}_{$second_id} WHERE id = {$message_id}");
+        if($message_db->num_rows==0) return false;
+        $message = $message_db->row;
+
+        $message['parent'] = json_decode($message['parent']);
+        foreach ($message['parent'] as $parent) {
+            if ($parent->type === 'notify') {
+                $message['type'] = 'notify';
+            }
+        }
+
+        return $message->row;
+    }
+
     /**
      * Редактирование сообщения
      * @param int $author_id Автор сообщения

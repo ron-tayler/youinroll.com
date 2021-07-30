@@ -65,7 +65,11 @@ class Group implements IModel{
     static function banUser(){}
     static function getUser(){}
     static function getUsers(){}
-    static function getInfo(){}
+    static function getInfo($chat_id){
+        $chat = self::$db->query("SELECT * FROM group_chats WHERE id = {$chat_id}");
+        if($chat->num_rows==0) throw new \ErrorNotFound();
+        return $chat->row;
+    }
     static function setPermission($user_id,$chat_id,$permission){}
     static function getPeerId4ChatId(int $user_id, int $chat_id){
         if (!self::isCreatedTable_userGroupChats($user_id)) self::createTable_UserGroupChats($user_id);
@@ -82,6 +86,14 @@ class Group implements IModel{
         if($chat->num_rows<1) throw new \ErrorNotFound("Не найден chat_id c peer_id: {$peer_id}");
 
         return $chat->row['group_chat_id'];
+    }
+
+    static function getGroupChats($user_id){
+        if(!self::isCreatedTable_userGroupChats($user_id)) self::createTable_UserGroupChats($user_id);
+
+        $chats = self::$db->query("SELECT * FROM user_{$user_id}_group_chats");
+
+        return ($chats->num_rows>0)?$chats->rows:[];
     }
 
     static function sendMessage(int $author_id, int $peer_id, string $message, array $parent = null){
@@ -111,7 +123,7 @@ class Group implements IModel{
 
         // Отправка сообщения
         $message = self::$db->escape($message);
-        $parent = json_encode($parent??[]);
+        $parent = json_encode($parent??[],JSON_UNESCAPED_UNICODE);
         self::$db->query("INSERT INTO group_chat_{$chat_id}_messages(user_id,message,parent) VALUES ({$author_id},'{$message}','{$parent}')");
 
         // Возврат ID нового сообщения
@@ -119,12 +131,46 @@ class Group implements IModel{
     }
     static function editMessage(int $author_id, int $chat_id, int $message_id, string $message, array $parent = null){}
     static function deleteMessage(int $author_id, int $chat_id, int $message_id){}
-    static function getMessage(int $author_id, int $chat_id, int $message_id){}
+    static function getMessage(int $chat_id, int $message_id){
+        if(!self::isCreatedTable_groupChatMessages($chat_id)) return false;
+
+        $messages = self::$db->query("SELECT * FROM group_chat_{$chat_id}_messages WHERE id={$message_id} AND is_deleted=0");
+        if($messages->num_rows==0) return false;
+        $message = $messages->row;
+        $message['parent'] = json_decode($message['parent']);
+        foreach ($message['parent'] as $parent) {
+            if ($parent->type === 'notify') {
+                $message['type'] = 'notify';
+            }
+        }
+        return $message;
+    }
     static function getLastMessages(int $chat_id, int $offset = 0){
-        $messages = self::$db->query("SELECT * FROM group_chat_{$chat_id}_messages WHERE is_deleted=0 ORDER BY id DESC LIMIT {$offset},25");
+        $messages = self::$db->query("SELECT * FROM group_chat_{$chat_id}_messages WHERE is_deleted=0 ORDER BY id LIMIT {$offset},25");
+        if($messages->num_rows==0) return [];
+        foreach ($messages->rows as &$message){
+            $message['parent'] = json_decode($message['parent']);
+            foreach ($message['parent'] as $parent){
+                if($parent->type==='notify'){
+                    $message['type'] = 'notify';
+                }
+            }
+        }
         return $messages->rows;
     }
-    static function getNewMessages(int $author_id, int $chat_id, int $ts = 0){}
+    static function getNewMessages(int $chat_id, int $ts = 0){
+        $messages = self::$db->query("SELECT * FROM group_chat_{$chat_id}_messages WHERE id>{$ts} AND is_deleted=0 ORDER BY id LIMIT 0,25");
+        if($messages->num_rows==0) return [];
+        foreach ($messages->rows as &$message){
+            $message['parent'] = json_decode($message['parent']);
+            foreach ($message['parent'] as $parent){
+                if($parent->type==='notify'){
+                    $message['type'] = 'notify';
+                }
+            }
+        }
+        return $messages->rows;
+    }
 
     private static function createTable_UserGroupChats($user_id){
         $table_name = "user_{$user_id}_group_chats";

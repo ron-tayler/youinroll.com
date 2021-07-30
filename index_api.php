@@ -73,13 +73,40 @@ try{
     \Engine\Loader::library('user');
     Library\User::tokenAuth(Engine\Request::$get['access_token']??Engine\Request::$post['access_token']??''); // Авторизация только по POST запросам
 
-    // Мапинг
+    // Маршрутизация
+    if(DEBUG_TYPE & DEBUG_PRIVATE){
+        Engine\Router::maps([
+            'path'=>'profile',
+            'params'=>['id'=>'^[1-9][0-9]*$'],
+            'children'=>[
+                [
+                    'path'=>'info',
+                    'target'=>'User/Profile::info'
+                ],[
+                    'path'=>'subscribers',
+                    'target'=>'User/Profile::subscribers',
+                    'params'=>['offset'=>'^[0-9]*$']
+                ],[
+                    'path'=>'subscriptions',
+                    'target'=>'User/Profile::subscriptions',
+                    'params'=>['offset'=>'^[0-9]*$']
+                ],[
+                    'path'=>'videos',
+                    'target'=>'User/Profile::videos',
+                    'params'=>['offset'=>'^[0-9]*$']
+                ]
+            ]
+        ]);
+    }
+
     foreach ([
         ['url'=>'/profile/:id/info',            'target'=>'User/Profile::info',             'methods'=>['GET'], 'filters'=>['id'=>'\d+']],
         ['url'=>'/profile/:id/subscribers',     'target'=>'User/Profile::subscribers',      'methods'=>['GET'], 'filters'=>['id'=>'\d+']],
         ['url'=>'/profile/:id/subscriptions',   'target'=>'User/Profile::subscriptions',    'methods'=>['GET'], 'filters'=>['id'=>'\d+']],
         ['url'=>'/channels',                    'target'=>'Channel::list',                  'methods'=>['GET']],
         ['url'=>'/listen/stream',               'target'=>'Listen::stream',                 'methods'=>['GET']],
+        ['url'=>'/listen/user_im',              'target'=>'Listen::user_im',                'methods'=>['GET']],
+        ['url'=>'/message/getChats',            'target'=>'Message::getChats',              'methods'=>['GET']],
         ['url'=>'/message/send',                'target'=>'Message::send',                  'methods'=>['POST']],
         ['url'=>'/message/getAll',              'target'=>'Message::getAll',                'methods'=>['GET']],
         ['url'=>'/message/createGroupChat',     'target'=>'Message::createGroupChat',       'methods'=>['POST']],
@@ -91,7 +118,7 @@ try{
         ['url'=>'/profile/:id/videos',          'target'=>'User/Profile::videos',           'methods'=>['GET'], 'filters'=>['id'=>'\d+']],
         ['url'=>'/profile/:id/lessons',         'target'=>'User/Profile::lessons',          'methods'=>['GET'], 'filters'=>['id'=>'\d+']],
         ['url'=>'/profile/:id/timeline',        'target'=>'User/Profile::timeline',         'methods'=>['GET'], 'filters'=>['id'=>'\d+']],
-        ['url'=>'/message/test',                'target'=>'Message::test',                  'methods'=>['GET','POST'], 'filters'=>['id'=>'\d+']]
+        ['url'=>'/message/test',                'target'=>'Message::test',                  'methods'=>['GET','POST'], 'filters'=>['id'=>'\d+']],
     ] as $route){
         Engine\Router::map($route['url'],$route['target'],$route['methods']??[],$route['filters']??[]);
     }
